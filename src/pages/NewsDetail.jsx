@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import CounsellingCTA from '../components/CounsellingCTA';
+
 
 // Advanced Mock Data Structure
 const getMockNewsData = (id) => {
@@ -106,6 +106,87 @@ const getMockNewsData = (id) => {
         { type: "p", text: "Recruiters from top consulting firms like McKinsey, BCG, and Bain are specifically looking for MBA graduates who can bridge the gap between business strategy and AI implementation. Traditional management frameworks are now being supplemented with algorithmic thinking." },
         
         { type: "quote", text: "The manager of tomorrow won't be replaced by AI. They will be replaced by a manager who knows how to use AI.", author: "Satya Nadella, CEO, Microsoft" }
+      ]
+    },
+    {
+      id: "top-10-nits",
+      title: "Top 10 NITs for Computer Science in 2026",
+      subtitle: "A comprehensive ranking based on placements, infrastructure, and research opportunities.",
+      category: "Guides",
+      date: "May 22, 2026",
+      readTime: "4 Min Read",
+      views: "18.5k Views",
+      author: {
+        name: "Priya Sharma",
+        role: "Tech Education Lead",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+      },
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80",
+      content: [
+        { type: "h2", text: "Why NITs over Tier-2 IITs?", id: "overview" },
+        { type: "p", text: "When it comes to Computer Science, the top NITs (Trichy, Surathkal, Warangal) often outshine newer or lower-tier IITs in terms of median packages and alumni network. Tech giants like Google, Microsoft, and Amazon recruit heavily from these campuses." },
+        
+        { type: "highlight", title: "Top 3 Performers", id: "highlights", items: [
+          "NIT Trichy: Consistent 100% placement for CSE with a median package of ₹27 LPA.",
+          "NIT Surathkal: Exceptional coding culture and high GSoC selections.",
+          "NIT Warangal: Rapidly growing research output in AI and ML."
+        ]},
+        
+        { type: "quote", text: "An NIT Trichy CS graduate is evaluated at par with top IITians in the software industry.", author: "HR Director, Top Tech Firm" }
+      ]
+    },
+    {
+      id: "cuet-prep-strategy",
+      title: "Last 30 Days CUET Preparation Strategy",
+      subtitle: "Maximize your percentile for Delhi University admissions with this proven 30-day revision blueprint.",
+      category: "Strategies",
+      date: "May 18, 2026",
+      readTime: "8 Min Read",
+      views: "22.1k Views",
+      author: {
+        name: "Rahul Verma",
+        role: "Test Prep Expert",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80"
+      },
+      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1920&q=80",
+      content: [
+        { type: "h2", text: "The Final Sprint", id: "overview" },
+        { type: "p", text: "With CUET just 30 days away, the focus must shift entirely from learning new concepts to rigorous revision and mock testing. The CUET exam tests speed and accuracy as much as knowledge, given the tight time constraints." },
+        
+        { type: "highlight", title: "Week-by-Week Blueprint", id: "highlights", items: [
+          "Days 1-10: Rapid revision of NCERT domain subjects and formula memorization.",
+          "Days 11-20: Focus on the General Test (Quants & Reasoning) and English vocabulary.",
+          "Days 21-30: One full-length mock test every day, followed by detailed analysis."
+        ]},
+        
+        { type: "quote", text: "Don't try to read new reference books now. NCERT is your bible for the domain subjects.", author: "Topper, SRCC Batch 2025" }
+      ]
+    },
+    {
+      id: "study-abroad-scholarships",
+      title: "10 Fully Funded Scholarships for MS in USA",
+      subtitle: "Pursue your Master's degree in the US without the financial burden. A complete guide to applying for top scholarships.",
+      category: "Success Stories",
+      date: "May 12, 2026",
+      readTime: "6 Min Read",
+      views: "30.4k Views",
+      author: {
+        name: "Sarah Jenkins",
+        role: "Global Admissions Consultant",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80"
+      },
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=80",
+      content: [
+        { type: "h2", text: "Breaking the Financial Barrier", id: "overview" },
+        { type: "p", text: "Studying in the US is expensive, but full-ride scholarships and assistantships make it possible for meritorious international students. We've compiled a list of the top 10 fully-funded programs available for Indian students targeting STEM and Management degrees." },
+        
+        { type: "highlight", title: "Key Requirements", id: "highlights", items: [
+          "A stellar GPA (usually above 8.5/10).",
+          "High GRE/GMAT and TOEFL/IELTS scores.",
+          "Strong Letters of Recommendation and a compelling Statement of Purpose."
+        ]},
+        
+        { type: "quote", text: "Apply early. The biggest mistake international students make is waiting until the regular decision deadline when most funding is already exhausted.", author: "Admissions Director, Stanford Engineering" }
       ]
     }
   ];
@@ -440,7 +521,7 @@ export default function NewsDetail() {
       </section>
 
       {/* Global CTA */}
-      <CounsellingCTA />
+
       
       <Footer />
     </div>

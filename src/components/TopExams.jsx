@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, CheckCircle, Clock, AlertCircle, FileText, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function TopExams({ onCounsellingClick }) {
   const exams = [
     {
+      id: "jee-main",
       name: "JEE Main / Advanced",
       fullForm: "Joint Entrance Examination",
       date: "Session 1: Jan 2026 | Session 2: Apr 2026",
@@ -16,6 +18,7 @@ export default function TopExams({ onCounsellingClick }) {
       applicants: "1.2 Million"
     },
     {
+      id: "neet",
       name: "NEET UG",
       fullForm: "National Eligibility cum Entrance Test",
       date: "Exam Date: May 3, 2026",
@@ -27,6 +30,7 @@ export default function TopExams({ onCounsellingClick }) {
       applicants: "2.1 Million"
     },
     {
+      id: "cat",
       name: "CAT",
       fullForm: "Common Admission Test (IIMs)",
       date: "Registration: Aug - Sep 2026",
@@ -38,6 +42,7 @@ export default function TopExams({ onCounsellingClick }) {
       applicants: "250K+"
     },
     {
+      id: "cuet",
       name: "CUET UG",
       fullForm: "Common University Entrance Test",
       date: "Exam Dates: May 15 - 31, 2026",
@@ -49,6 +54,7 @@ export default function TopExams({ onCounsellingClick }) {
       applicants: "1.4 Million"
     },
     {
+      id: "gate",
       name: "GATE",
       fullForm: "Graduate Aptitude Test in Engineering",
       date: "Registration starts: Sep 2026",
@@ -60,6 +66,7 @@ export default function TopExams({ onCounsellingClick }) {
       applicants: "800K+"
     },
     {
+      id: "clat",
       name: "CLAT",
       fullForm: "Common Law Admission Test",
       date: "Exam Date: Dec 7, 2026",
@@ -73,7 +80,7 @@ export default function TopExams({ onCounsellingClick }) {
   ];
 
   return (
-    <section id="exams" className="py-20 bg-white relative">
+    <section id="exams" className="py-20 bg-slate-50 relative border-y border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -98,7 +105,7 @@ export default function TopExams({ onCounsellingClick }) {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="glass-card p-6 rounded-3xl bg-white border border-slate-100 shadow-lg shadow-slate-100/50 flex flex-col justify-between h-80 text-left"
+              className="glass-card p-6 rounded-3xl bg-white border border-slate-200 shadow-lg shadow-slate-100/50 flex flex-col justify-between h-80 text-left"
             >
               <div>
                 {/* Header: Exam title & Status pill */}
@@ -141,13 +148,13 @@ export default function TopExams({ onCounsellingClick }) {
                   {exam.result}
                 </span>
 
-                <button 
-                  onClick={onCounsellingClick}
-                  className="flex items-center gap-1 text-xs font-extrabold text-brand-600 hover:text-brand-700 group cursor-pointer"
+                <Link 
+                  to={`/exam/${exam.id}`}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-brand-200 hover:bg-brand-50 text-xs font-bold text-brand-600 transition-colors group cursor-pointer shadow-sm"
                 >
-                  <span>Exam Details</span>
+                  <span>View Details</span>
                   <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                </button>
+                </Link>
               </div>
 
             </motion.div>

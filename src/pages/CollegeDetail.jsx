@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import CounsellingCTA from '../components/CounsellingCTA';
+
 import CounsellingModal from '../components/CounsellingModal';
 
 // Mock Data Generator
@@ -572,7 +572,7 @@ export default function CollegeDetail() {
         </div>
       </section>
 
-      <CounsellingCTA />
+
       <Footer />
       
       {/* Mobile Sticky CTA */}

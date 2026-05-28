@@ -9,6 +9,8 @@ import NewsDetail from './pages/NewsDetail';
 import ExamDetail from './pages/ExamDetail';
 import Login from './pages/Login';
 import Contact from './pages/Contact';
+import PremiumServices from './pages/PremiumServices';
+import Resources from './pages/Resources';
 import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
@@ -25,6 +27,8 @@ export default function App() {
         <Route path="/exam/:examId" element={<ExamDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/premium" element={<PremiumServices />} />
+        <Route path="/resources" element={<Resources />} />
       </Routes>
     </BrowserRouter>
   );

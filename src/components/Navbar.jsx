@@ -41,9 +41,9 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
         {
           title: "Premium Services",
           links: [
-            { name: "Admission Guidance", href: "#counselling", isAction: true, icon: Sparkles, badge: "Popular" },
-            { name: "AI College Finder", href: "#counselling", isAction: true, icon: Award },
-            { name: "Expert Consultation", href: "#counselling", isAction: true, icon: PhoneCall },
+            { name: "Admission Guidance", href: "/premium", icon: Sparkles, badge: "Popular" },
+            { name: "AI College Finder", href: "/premium#features", icon: Award },
+            { name: "Expert Consultation", href: "/premium#features", icon: PhoneCall },
           ]
         }
       ]
@@ -105,10 +105,11 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
         {
           title: "Latest Content",
           links: [
-            { name: "College Comparison Guides", href: "/news/jee-main-cutoff" },
-            { name: "Exam Strategy & Preparation", href: "/news/gen-ai-mba" },
-            { name: "Admission Policy Updates", href: "/news/ugc-guidelines", badge: "New" },
-            { name: "Student Success Stories", href: "/news/jee-main-cutoff" },
+            { name: "All Resources", href: "/resources" },
+            { name: "College Comparison Guides", href: "/resources?category=Guides" },
+            { name: "Exam Strategy & Preparation", href: "/resources?category=Strategies" },
+            { name: "Admission Policy Updates", href: "/resources?category=Updates", badge: "New" },
+            { name: "Student Success Stories", href: "/resources?category=Success+Stories" },
           ]
         }
       ]

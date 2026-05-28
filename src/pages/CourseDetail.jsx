@@ -1,454 +1,465 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  Briefcase, TrendingUp, Building2, ChevronRight,
-  CheckCircle, Sparkles, Send, BookOpen, MapPin, 
-  Clock, DollarSign, Target, Award, Monitor,
-  Scale, Palette, BarChart3, Globe2
+  Laptop, Briefcase, HeartPulse, Scale, 
+  Palette, BarChart3, Globe2, ArrowRight,
+  MapPin, Building2, Download, Search, Filter,
+  ChevronDown, Star, ChevronRight,
+  Award, ShieldCheck, Banknote, Monitor, Target
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import CounsellingCTA from '../components/CounsellingCTA';
 import CounsellingModal from '../components/CounsellingModal';
 
-// Dynamic mock data generator for Course details
+// Mock Data Generator for all courses
 const getMockCourseData = (id) => {
-  const courseName = id ? id.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : 'Computer Science';
-  
-  const defaultData = {
-    id: id || 'computer-science',
-    name: courseName,
-    degree: 'B.Tech / B.E.',
-    duration: '4 Years',
-    title: `Master ${courseName} & Build the Future`,
-    description: `A comprehensive program focusing on the fundamental principles, advanced applications, and practical implementation of ${courseName}. Prepare for a high-growth career in a rapidly evolving tech landscape.`,
+  const lowerId = id?.toLowerCase() || '';
+
+  // 1. B.Tech Data
+  const btechData = {
+    id: 'btech',
+    name: 'B.Tech / B.E.',
+    title: 'Top B.Tech Colleges in India',
+    description: 'Find the best Engineering colleges in India based on ranking, fees, placements, and reviews.',
     icon: Monitor,
-    color: 'from-blue-600 to-indigo-600',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80',
-    stats: {
-      avgFees: '₹1 L - ₹3 L / yr',
-      startingSalary: '₹8 - ₹15 LPA',
-      topRoles: 'Software Engg, Analyst',
-      growth: '+22% YoY'
+    stats: { totalColleges: '4,200+', avgPackage: '₹6 - ₹12 LPA', highestPackage: '₹50+ LPA' },
+    filters: {
+      state: ['Maharashtra', 'Delhi NCR', 'Karnataka', 'Tamil Nadu', 'Rajasthan', 'Telangana'],
+      city: ['Mumbai', 'New Delhi', 'Bangalore', 'Chennai', 'Vellore', 'Pilani', 'Tiruchirappalli'],
+      exam: ['JEE Main', 'JEE Advanced', 'BITSAT', 'VITEEE', 'SRMJEEE', 'MHT CET'],
+      type: ['Private', 'Public/Government'],
+      fees: ['< 1 Lakh', '1 - 2 Lakhs', '2 - 3 Lakhs', '3 - 5 Lakhs', '> 5 Lakhs']
     },
-    subjects: [
-      { name: 'Data Structures & Algorithms', desc: 'Core fundamentals of organizing and optimizing data processing.' },
-      { name: 'Database Management', desc: 'SQL, NoSQL, and structuring complex enterprise databases.' },
-      { name: 'Artificial Intelligence', desc: 'Machine learning models, neural networks, and prompt engineering.' },
-      { name: 'Cloud Computing', desc: 'AWS, Azure, containerization and deploying scalable microservices.' },
-      { name: 'Cybersecurity', desc: 'Network security, cryptography, and ethical hacking basics.' },
-      { name: 'Software Engineering', desc: 'Agile methodologies, system design, and product lifecycle.' }
-    ],
-    careers: [
-      { role: 'Software Developer', salary: '₹12 LPA', demand: 'Very High' },
-      { role: 'Data Scientist', salary: '₹15 LPA', demand: 'Extremely High' },
-      { role: 'Cloud Architect', salary: '₹18 LPA', demand: 'High' },
-      { role: 'Product Manager', salary: '₹20 LPA', demand: 'High' }
-    ],
+    tags: ['Computer Science', 'Mechanical', 'Electrical', 'Civil', 'AI & ML', 'Data Science'],
     topColleges: [
-      { id: 'iit-bombay', name: 'IIT Bombay', location: 'Mumbai, Maharashtra', fees: '₹2.5 L/yr', placement: '100%' },
-      { id: 'nit-trichy', name: 'NIT Trichy', location: 'Trichy, Tamil Nadu', fees: '₹2.1 L/yr', placement: '98%' },
-      { id: 'bits-pilani', name: 'BITS Pilani', location: 'Pilani, Rajasthan', fees: '₹5.5 L/yr', placement: '99%' },
-      { id: 'vit-vellore', name: 'VIT Vellore', location: 'Vellore, Tamil Nadu', fees: '₹1.9 L/yr', placement: '95%' }
+      { id: 'iit-bombay', name: 'IIT Bombay - Indian Institute of Technology', location: 'Mumbai, Maharashtra', state: 'Maharashtra', city: 'Mumbai', fees: '₹2.30 Lakhs (1st Year Fees)', feesCategory: '2 - 3 Lakhs', numericFees: 230000, tags: ['Computer Science', 'Mechanical', 'Civil'], placement: '₹36.9 LPA (Avg)', rating: 4.8, reviews: 450, type: 'Public/Government', exams: ['JEE Advanced'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80' },
+      { id: 'iit-delhi', name: 'IIT Delhi - Indian Institute of Technology', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹2.20 Lakhs (1st Year Fees)', feesCategory: '2 - 3 Lakhs', numericFees: 220000, tags: ['Mechanical', 'Electrical', 'Civil'], placement: '₹32.5 LPA (Avg)', rating: 4.7, reviews: 380, type: 'Public/Government', exams: ['JEE Advanced'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80' },
+      { id: 'bits-pilani', name: 'BITS Pilani - Birla Institute of Technology', location: 'Pilani, Rajasthan', state: 'Rajasthan', city: 'Pilani', fees: '₹5.50 Lakhs (1st Year Fees)', feesCategory: '> 5 Lakhs', numericFees: 550000, tags: ['Computer Science', 'Data Science', 'Electrical'], placement: '₹30.3 LPA (Avg)', rating: 4.6, reviews: 520, type: 'Private', exams: ['BITSAT'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80' },
+      { id: 'nit-trichy', name: 'NIT Trichy - National Institute of Technology', location: 'Tiruchirappalli, Tamil Nadu', state: 'Tamil Nadu', city: 'Tiruchirappalli', fees: '₹1.80 Lakhs (1st Year Fees)', feesCategory: '1 - 2 Lakhs', numericFees: 180000, tags: ['Mechanical', 'Civil', 'Electrical'], placement: '₹27.5 LPA (Avg)', rating: 4.5, reviews: 310, type: 'Public/Government', exams: ['JEE Main'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80' },
+      { id: 'vit-vellore', name: 'VIT Vellore - Vellore Institute of Technology', location: 'Vellore, Tamil Nadu', state: 'Tamil Nadu', city: 'Vellore', fees: '₹1.98 Lakhs (1st Year Fees)', feesCategory: '1 - 2 Lakhs', numericFees: 198000, tags: ['Computer Science', 'AI & ML', 'Data Science'], placement: '₹9.2 LPA (Avg)', rating: 4.2, reviews: 1200, type: 'Private', exams: ['VITEEE'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80' }
     ]
   };
 
-  const lowerId = id?.toLowerCase() || '';
+  // 2. MBA Data
+  const mbaData = {
+    id: 'mba',
+    name: 'MBA / PGDM',
+    title: 'Top MBA Colleges in India',
+    description: 'Find the best MBA and PGDM colleges in India based on ranking, fees, placements, and reviews.',
+    icon: Briefcase,
+    stats: { totalColleges: '3,100+', avgPackage: '₹8 - ₹15 LPA', highestPackage: '₹60+ LPA' },
+    filters: {
+      state: ['Gujarat', 'Karnataka', 'Telangana', 'Maharashtra', 'Delhi NCR', 'West Bengal'],
+      city: ['Ahmedabad', 'Bangalore', 'Hyderabad', 'Mumbai', 'New Delhi', 'Kolkata'],
+      exam: ['CAT', 'XAT', 'MAT', 'CMAT', 'GMAT', 'SNAP'],
+      type: ['Private', 'Public/Government'],
+      fees: ['< 5 Lakhs', '5 - 10 Lakhs', '10 - 20 Lakhs', '> 20 Lakhs']
+    },
+    tags: ['Finance', 'Marketing', 'HR', 'Operations', 'International Business', 'Business Analytics'],
+    topColleges: [
+      { id: 'iim-a', name: 'IIM Ahmedabad - Indian Institute of Management', location: 'Ahmedabad, Gujarat', state: 'Gujarat', city: 'Ahmedabad', fees: '₹31.50 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 3150000, tags: ['Finance', 'Marketing', 'Operations', 'Business Analytics'], placement: '₹32.8 LPA (Avg)', rating: 4.9, reviews: 850, type: 'Public/Government', exams: ['CAT'], approved: 'AICTE', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80' },
+      { id: 'iim-b', name: 'IIM Bangalore - Indian Institute of Management', location: 'Bangalore, Karnataka', state: 'Karnataka', city: 'Bangalore', fees: '₹24.50 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 2450000, tags: ['Marketing', 'HR', 'Operations'], placement: '₹35.3 LPA (Avg)', rating: 4.9, reviews: 720, type: 'Public/Government', exams: ['CAT'], approved: 'AICTE', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80' },
+      { id: 'isb-hyd', name: 'ISB Hyderabad - Indian School of Business', location: 'Hyderabad, Telangana', state: 'Telangana', city: 'Hyderabad', fees: '₹39.00 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 3900000, tags: ['Finance', 'International Business'], placement: '₹34.2 LPA (Avg)', rating: 4.8, reviews: 640, type: 'Private', exams: ['GMAT'], approved: 'AMBA, EQUIS, AACSB', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80' },
+      { id: 'xlri', name: 'XLRI Xavier School of Management', location: 'Jamshedpur, Jharkhand', state: 'Jharkhand', city: 'Jamshedpur', fees: '₹27.40 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 2740000, tags: ['HR', 'Business Analytics'], placement: '₹32.7 LPA (Avg)', rating: 4.8, reviews: 510, type: 'Private', exams: ['XAT'], approved: 'AICTE', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80' },
+      { id: 'spjimr', name: 'SPJIMR - SP Jain Institute', location: 'Mumbai, Maharashtra', state: 'Maharashtra', city: 'Mumbai', fees: '₹20.40 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 2040000, tags: ['Finance', 'Operations', 'Marketing'], placement: '₹32.0 LPA (Avg)', rating: 4.7, reviews: 460, type: 'Private', exams: ['CAT', 'GMAT'], approved: 'AICTE, NBA', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80' }
+    ]
+  };
 
-  if (lowerId.includes('finance') || lowerId.includes('marketing') || lowerId.includes('business')) {
-    return {
-      ...defaultData,
-      degree: 'MBA / PGDM',
-      duration: '2 Years',
-      icon: Briefcase,
-      color: 'from-purple-600 to-pink-600',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1920&q=80',
-      stats: { avgFees: '₹8 L - ₹25 L total', startingSalary: '₹12 - ₹25 LPA', topRoles: 'Consultant, Manager', growth: '+15% YoY' },
-      subjects: [
-        { name: 'Financial Management', desc: 'Corporate finance, budgeting, and investment strategies.' },
-        { name: 'Marketing Strategy', desc: 'Brand positioning, digital marketing, and consumer behavior.' },
-        { name: 'Business Analytics', desc: 'Data-driven decision making and statistical modeling.' },
-        { name: 'Strategic Leadership', desc: 'Organizational behavior, team management, and corporate strategy.' }
-      ],
-      careers: [
-        { role: 'Management Consultant', salary: '₹22 LPA', demand: 'Very High' },
-        { role: 'Investment Banker', salary: '₹25 LPA', demand: 'Extremely High' },
-        { role: 'Marketing Director', salary: '₹18 LPA', demand: 'High' }
-      ],
-      topColleges: [
-        { id: 'iima', name: 'IIM Ahmedabad', location: 'Ahmedabad, Gujarat', fees: '₹25 L/total', placement: '100%' },
-        { id: 'isb', name: 'ISB Hyderabad', location: 'Hyderabad, Telangana', fees: '₹35 L/total', placement: '99%' },
-        { id: 'xlri', name: 'XLRI Jamshedpur', location: 'Jamshedpur, Jharkhand', fees: '₹23 L/total', placement: '100%' }
-      ]
-    };
-  }
+  // 3. MBBS Data
+  const mbbsData = {
+    id: 'mbbs',
+    name: 'MBBS',
+    title: 'Top MBBS Colleges in India',
+    description: 'Find the best Medical colleges in India based on ranking, fees, placements, and reviews.',
+    icon: Target,
+    stats: { totalColleges: '800+', avgPackage: '₹8 - ₹18 LPA', highestPackage: '₹40+ LPA' },
+    filters: {
+      state: ['Delhi NCR', 'Tamil Nadu', 'Maharashtra', 'Karnataka', 'Uttar Pradesh'],
+      city: ['New Delhi', 'Vellore', 'Mumbai', 'Bangalore', 'Lucknow', 'Pune'],
+      exam: ['NEET UG', 'AIIMS', 'JIPMER'],
+      type: ['Private', 'Public/Government'],
+      fees: ['< 5 Lakhs', '5 - 15 Lakhs', '15 - 25 Lakhs', '> 25 Lakhs']
+    },
+    tags: ['MBBS', 'BDS', 'BAMS', 'BHMS'],
+    topColleges: [
+      { id: 'aiims-delhi', name: 'AIIMS New Delhi', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹6.8k (1st Year Fees)', feesCategory: '< 5 Lakhs', numericFees: 6800, tags: ['MBBS'], placement: '₹12.0 LPA (Avg)', rating: 4.9, reviews: 950, type: 'Public/Government', exams: ['NEET UG', 'AIIMS'], approved: 'NMC', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80' },
+      { id: 'cmc-vellore', name: 'CMC Vellore - Christian Medical College', location: 'Vellore, Tamil Nadu', state: 'Tamil Nadu', city: 'Vellore', fees: '₹1.50 Lakhs (1st Year Fees)', feesCategory: '< 5 Lakhs', numericFees: 150000, tags: ['MBBS', 'BDS'], placement: '₹8.5 LPA (Avg)', rating: 4.8, reviews: 520, type: 'Private', exams: ['NEET UG'], approved: 'NMC', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80' },
+      { id: 'afmc-pune', name: 'AFMC Pune - Armed Forces Medical College', location: 'Pune, Maharashtra', state: 'Maharashtra', city: 'Pune', fees: '₹64.4k (1st Year Fees)', feesCategory: '< 5 Lakhs', numericFees: 64400, tags: ['MBBS'], placement: '₹10.0 LPA (Avg)', rating: 4.7, reviews: 410, type: 'Public/Government', exams: ['NEET UG'], approved: 'NMC', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80' }
+    ]
+  };
 
-  if (lowerId.includes('mbbs') || lowerId.includes('dental') || lowerId.includes('pharm')) {
-    return {
-      ...defaultData,
-      degree: 'Bachelors / Medical',
-      duration: '4.5 - 5.5 Years',
-      icon: Target,
-      color: 'from-emerald-600 to-teal-600',
-      image: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1920&q=80',
-      stats: { avgFees: '₹5 L - ₹20 L / yr', startingSalary: '₹8 - ₹18 LPA', topRoles: 'Doctor, Surgeon', growth: '+18% YoY' },
-      subjects: [
-        { name: 'Human Anatomy', desc: 'Detailed study of the structure of the human body.' },
-        { name: 'Physiology', desc: 'Functions and mechanisms of living systems.' },
-        { name: 'Pharmacology', desc: 'Study of drugs, their uses, and side effects.' },
-        { name: 'Pathology', desc: 'Causes and effects of diseases.' }
-      ],
-      careers: [
-        { role: 'General Physician', salary: '₹12 LPA', demand: 'Very High' },
-        { role: 'Surgeon', salary: '₹24 LPA', demand: 'Extremely High' },
-        { role: 'Clinical Researcher', salary: '₹10 LPA', demand: 'Moderate' }
-      ],
-      topColleges: [
-        { id: 'aiims-delhi', name: 'AIIMS Delhi', location: 'New Delhi, Delhi', fees: '₹6k/yr', placement: '100%' },
-        { id: 'cmc-vellore', name: 'CMC Vellore', location: 'Vellore, Tamil Nadu', fees: '₹1.5 L/yr', placement: '100%' },
-        { id: 'afmc-pune', name: 'AFMC Pune', location: 'Pune, Maharashtra', fees: 'N/A', placement: '100%' }
-      ]
-    };
-  }
+  // 4. LLB Data
+  const llbData = {
+    id: 'llb',
+    name: 'LLB / LLM',
+    title: 'Top Law Colleges in India',
+    description: 'Find the best Law universities in India based on ranking, fees, placements, and reviews.',
+    icon: Scale,
+    stats: { totalColleges: '1,200+', avgPackage: '₹6 - ₹12 LPA', highestPackage: '₹40+ LPA' },
+    filters: {
+      state: ['Karnataka', 'Delhi NCR', 'Telangana', 'West Bengal', 'Maharashtra'],
+      city: ['Bangalore', 'New Delhi', 'Hyderabad', 'Kolkata', 'Pune'],
+      exam: ['CLAT', 'LSAT', 'AILET', 'SLAT', 'MH CET Law'],
+      type: ['Private', 'Public/Government'],
+      fees: ['< 2 Lakhs', '2 - 5 Lakhs', '> 5 Lakhs']
+    },
+    tags: ['BA LLB', 'BBA LLB', 'LLM', 'Corporate Law', 'Criminal Law', 'Cyber Law'],
+    topColleges: [
+      { id: 'nlsiu-blr', name: 'NLSIU Bangalore - National Law School', location: 'Bangalore, Karnataka', state: 'Karnataka', city: 'Bangalore', fees: '₹3.30 Lakhs (1st Year Fees)', feesCategory: '2 - 5 Lakhs', numericFees: 330000, tags: ['BA LLB', 'LLM', 'Corporate Law'], placement: '₹16.0 LPA (Avg)', rating: 4.9, reviews: 480, type: 'Public/Government', exams: ['CLAT'], approved: 'BCI, UGC', image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=400&q=80' },
+      { id: 'nlu-delhi', name: 'NLU Delhi - National Law University', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹2.80 Lakhs (1st Year Fees)', feesCategory: '2 - 5 Lakhs', numericFees: 280000, tags: ['BA LLB', 'LLM', 'Criminal Law'], placement: '₹14.0 LPA (Avg)', rating: 4.8, reviews: 390, type: 'Public/Government', exams: ['AILET'], approved: 'BCI, UGC', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80' },
+      { id: 'sls-pune', name: 'Symbiosis Law School', location: 'Pune, Maharashtra', state: 'Maharashtra', city: 'Pune', fees: '₹4.20 Lakhs (1st Year Fees)', feesCategory: '2 - 5 Lakhs', numericFees: 420000, tags: ['BBA LLB', 'Corporate Law', 'Cyber Law'], placement: '₹11.0 LPA (Avg)', rating: 4.6, reviews: 310, type: 'Private', exams: ['SLAT'], approved: 'BCI, UGC', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80' }
+    ]
+  };
 
-  if (lowerId.includes('law') || lowerId.includes('justice') || lowerId.includes('ll.b') || lowerId.includes('ll.m')) {
-    return {
-      ...defaultData,
-      degree: 'LL.B / LL.M',
-      duration: '3 - 5 Years',
-      icon: Scale,
-      color: 'from-amber-600 to-orange-600',
-      image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=1920&q=80',
-      stats: { avgFees: '₹1.5 L - ₹3.5 L / yr', startingSalary: '₹6 - ₹15 LPA', topRoles: 'Lawyer, Legal Advisor', growth: '+12% YoY' },
-      subjects: [
-        { name: 'Constitutional Law', desc: 'Study of the fundamental laws and principles of the state.' },
-        { name: 'Corporate Law', desc: 'Rules, practices, and regulations governing corporations.' },
-        { name: 'Criminal Law', desc: 'Laws concerning crimes and their punishments.' },
-        { name: 'Cyber Law', desc: 'Legal issues related to use of communications technology.' }
-      ],
-      careers: [
-        { role: 'Corporate Lawyer', salary: '₹15 LPA', demand: 'Very High' },
-        { role: 'Litigation Lawyer', salary: '₹8 LPA', demand: 'Moderate' },
-        { role: 'Legal Advisor', salary: '₹12 LPA', demand: 'High' }
-      ],
-      topColleges: [
-        { id: 'nlsiu-bangalore', name: 'NLSIU Bangalore', location: 'Bangalore, Karnataka', fees: '₹3 L/yr', placement: '100%' },
-        { id: 'nlu-delhi', name: 'NLU Delhi', location: 'New Delhi, Delhi', fees: '₹1.8 L/yr', placement: '98%' },
-        { id: 'nalsar-hyderabad', name: 'NALSAR Hyderabad', location: 'Hyderabad, Telangana', fees: '₹2.5 L/yr', placement: '99%' }
-      ]
-    };
-  }
-
-  if (lowerId.includes('design') || lowerId.includes('fashion') || lowerId.includes('ui') || lowerId.includes('graphic')) {
-    return {
-      ...defaultData,
-      degree: 'B.Des / M.Des',
-      duration: '4 Years',
-      icon: Palette,
-      color: 'from-pink-600 to-rose-600',
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1920&q=80',
-      stats: { avgFees: '₹2 L - ₹4 L / yr', startingSalary: '₹6 - ₹12 LPA', topRoles: 'UI/UX Designer, Art Director', growth: '+25% YoY' },
-      subjects: [
-        { name: 'Visual Design', desc: 'Principles of layout, typography, and color theory.' },
-        { name: 'Human-Computer Interaction', desc: 'Studying how users interact with digital interfaces.' },
-        { name: 'Prototyping & Wireframing', desc: 'Figma, Adobe XD, and translating ideas to screens.' },
-        { name: 'Design Thinking', desc: 'Solving complex problems through user-centric approaches.' }
-      ],
-      careers: [
-        { role: 'Product Designer (UI/UX)', salary: '₹14 LPA', demand: 'Extremely High' },
-        { role: 'Graphic Designer', salary: '₹6 LPA', demand: 'Moderate' },
-        { role: 'Art Director', salary: '₹18 LPA', demand: 'High' }
-      ],
-      topColleges: [
-        { id: 'nid-ahmedabad', name: 'NID Ahmedabad', location: 'Ahmedabad, Gujarat', fees: '₹3.5 L/yr', placement: '95%' },
-        { id: 'nift-delhi', name: 'NIFT Delhi', location: 'New Delhi, Delhi', fees: '₹2.8 L/yr', placement: '90%' },
-        { id: 'iit-bombay-idc', name: 'IDC IIT Bombay', location: 'Mumbai, Maharashtra', fees: '₹2.2 L/yr', placement: '98%' }
-      ]
-    };
-  }
-
-  if (lowerId.includes('commerce') || lowerId.includes('accountancy') || lowerId.includes('b.com')) {
-    return {
-      ...defaultData,
-      degree: 'B.Com / CA',
-      duration: '3 - 5 Years',
-      icon: BarChart3,
-      color: 'from-cyan-600 to-blue-600',
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1920&q=80',
-      stats: { avgFees: '₹20k - ₹1.5 L / yr', startingSalary: '₹4 - ₹10 LPA', topRoles: 'Auditor, Financial Analyst', growth: '+10% YoY' },
-      subjects: [
-        { name: 'Financial Accounting', desc: 'Recording, summarizing, and reporting corporate transactions.' },
-        { name: 'Taxation Law', desc: 'Income tax, GST, and corporate tax regulations.' },
-        { name: 'Auditing', desc: 'Verifying financial statements and ensuring compliance.' },
-        { name: 'Business Economics', desc: 'Macro and microeconomic principles affecting markets.' }
-      ],
-      careers: [
-        { role: 'Chartered Accountant', salary: '₹12 LPA', demand: 'Extremely High' },
-        { role: 'Financial Analyst', salary: '₹7 LPA', demand: 'High' },
-        { role: 'Auditor', salary: '₹8 LPA', demand: 'High' }
-      ],
-      topColleges: [
-        { id: 'srcc-delhi', name: 'SRCC Delhi', location: 'New Delhi, Delhi', fees: '₹30k/yr', placement: '95%' },
-        { id: 'lsr-delhi', name: 'Lady Shri Ram College', location: 'New Delhi, Delhi', fees: '₹20k/yr', placement: '90%' },
-        { id: 'loyola-chennai', name: 'Loyola College', location: 'Chennai, Tamil Nadu', fees: '₹15k/yr', placement: '85%' }
-      ]
-    };
-  }
-
-  if (lowerId.includes('abroad') || lowerId.includes('ms')) {
-    return {
-      ...defaultData,
-      degree: 'MS / Global Bachelors',
-      duration: '1.5 - 4 Years',
-      icon: Globe2,
-      color: 'from-indigo-600 to-purple-600',
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=80',
-      stats: { avgFees: '$30k - $60k / yr', startingSalary: '$80k - $130k', topRoles: 'Global Engineer, Analyst', growth: '+20% YoY' },
-      subjects: [
-        { name: 'Advanced Algorithms', desc: 'Solving highly complex computational problems.' },
-        { name: 'Global Supply Chain', desc: 'International logistics, operations, and trade.' },
-        { name: 'Cross-cultural Management', desc: 'Leading diverse teams in multinational corporations.' },
-        { name: 'Quantitative Finance', desc: 'Mathematical modeling of global financial markets.' }
-      ],
-      careers: [
-        { role: 'Software Engineer (US/UK)', salary: '$120k', demand: 'Extremely High' },
-        { role: 'Data Analyst (Global)', salary: '$90k', demand: 'High' },
-        { role: 'Product Manager', salary: '$130k', demand: 'Very High' }
-      ],
-      topColleges: [
-        { id: 'mit-usa', name: 'MIT', location: 'Cambridge, USA', fees: '$55k/yr', placement: '100%' },
-        { id: 'stanford-usa', name: 'Stanford University', location: 'Stanford, USA', fees: '$57k/yr', placement: '99%' },
-        { id: 'oxford-uk', name: 'University of Oxford', location: 'Oxford, UK', fees: '£30k/yr', placement: '98%' }
-      ]
-    };
-  }
-
-  return defaultData;
+  if (lowerId.includes('mba') || lowerId.includes('business') || lowerId.includes('bba')) return mbaData;
+  if (lowerId.includes('medical') || lowerId.includes('mbbs')) return mbbsData;
+  if (lowerId.includes('law') || lowerId.includes('llb')) return llbData;
+  
+  return btechData; // Default to B.Tech
 };
 
 export default function CourseDetail() {
   const { courseId } = useParams();
   const course = getMockCourseData(courseId);
-  const Icon = course.icon;
+  
   const [isApplyOpen, setIsApplyOpen] = useState(false);
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
+  // Filter State
+  const [activeFilters, setActiveFilters] = useState({
+    state: [],
+    city: [],
+    exam: [],
+    type: [],
+    fees: []
+  });
+
+  const [searchQueries, setSearchQueries] = useState({
+    state: '',
+    city: '',
+    exam: ''
+  });
+
+  const [activeTag, setActiveTag] = useState(null);
+  const [sortBy, setSortBy] = useState('popularity');
+
+  const [collapsedFilters, setCollapsedFilters] = useState({
+    state: false,
+    city: false,
+    exam: false,
+    type: false,
+    fees: false
+  });
+
+  const toggleFilterCollapse = (category) => {
+    setCollapsedFilters(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
+
+  // Reset filters when course changes
   useEffect(() => {
     window.scrollTo(0, 0);
+    clearFilters();
+    setActiveTag(null);
+    setSortBy('popularity');
   }, [courseId]);
 
+  const handleFilterChange = (category, value) => {
+    setActiveFilters(prev => {
+      const current = prev[category];
+      if (current.includes(value)) {
+        return { ...prev, [category]: current.filter(item => item !== value) };
+      } else {
+        return { ...prev, [category]: [...current, value] };
+      }
+    });
+  };
+
+  const clearFilters = () => {
+    setActiveFilters({
+      state: [],
+      city: [],
+      exam: [],
+      type: [],
+      fees: []
+    });
+  };
+
+  const handleSearchChange = (category, e) => {
+    setSearchQueries(prev => ({
+      ...prev,
+      [category]: e.target.value.toLowerCase()
+    }));
+  };
+
+  // Derived filtered colleges
+  const filteredColleges = useMemo(() => {
+    let result = course.topColleges.filter(college => {
+      if (activeFilters.state.length > 0 && !activeFilters.state.includes(college.state)) return false;
+      if (activeFilters.city.length > 0 && !activeFilters.city.includes(college.city)) return false;
+      if (activeFilters.type.length > 0 && !activeFilters.type.includes(college.type)) return false;
+      if (activeFilters.fees.length > 0 && !activeFilters.fees.includes(college.feesCategory)) return false;
+      if (activeFilters.exam.length > 0 && !college.exams?.some(e => activeFilters.exam.includes(e))) return false;
+      if (activeTag && !college.tags?.includes(activeTag)) return false;
+      return true;
+    });
+
+    if (sortBy === 'rating') {
+      result.sort((a, b) => b.rating - a.rating);
+    } else if (sortBy === 'fees-asc') {
+      result.sort((a, b) => a.numericFees - b.numericFees);
+    } else if (sortBy === 'fees-desc') {
+      result.sort((a, b) => b.numericFees - a.numericFees);
+    } else {
+      result.sort((a, b) => b.reviews - a.reviews);
+    }
+
+    return result;
+  }, [course.topColleges, activeFilters, activeTag, sortBy]);
+
   return (
-    <div className="min-h-screen bg-slate-50 font-sans selection:bg-brand-200 selection:text-brand-900">
+    <div className="min-h-screen bg-slate-50 font-sans">
       <Navbar />
 
       {/* Breadcrumbs */}
-      <div className="bg-slate-900 border-b border-white/10 pt-24 pb-4">
+      <div className="bg-white border-b border-slate-200 pt-24 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center text-sm text-slate-400 gap-2 overflow-x-auto whitespace-nowrap hide-scrollbar">
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+          <div className="flex items-center text-sm text-slate-500 gap-2 overflow-x-auto whitespace-nowrap hide-scrollbar">
+            <Link to="/" className="hover:text-brand-600 transition-colors">Home</Link>
             <ChevronRight size={14} />
-            <span className="text-white font-medium">Courses</span>
+            <span className="text-slate-900 font-medium">Courses</span>
             <ChevronRight size={14} />
-            <span className="text-brand-400 font-medium">{course.name}</span>
+            <span className="text-slate-900 font-medium">{course.name}</span>
           </div>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-16 pb-24 overflow-hidden bg-slate-900">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={course.image} 
-            alt={course.name} 
-            className="w-full h-full object-cover opacity-20 scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
-            <div className={`w-24 h-24 rounded-3xl bg-gradient-to-br ${course.color} flex items-center justify-center text-white shadow-2xl flex-shrink-0`}>
-              <Icon size={48} />
-            </div>
+      <section className="bg-white border-b border-slate-200 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="px-3 py-1 bg-white/10 backdrop-blur-md text-white text-xs font-bold rounded-full border border-white/20">
-                  {course.degree}
-                </span>
-                <span className="px-3 py-1 bg-white/10 backdrop-blur-md text-white text-xs font-bold rounded-full border border-white/20 flex items-center gap-1">
-                  <Clock size={12} /> {course.duration}
-                </span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mb-4 drop-shadow-lg">
-                {course.name}
+              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
+                {course.title}
               </h1>
-              <p className="text-lg text-slate-300 max-w-3xl font-medium leading-relaxed mb-8">
+              <p className="text-slate-500 text-sm md:text-base max-w-2xl">
                 {course.description}
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Strip */}
-      <section className="relative z-20 -mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-slate-100">
-            <div className="px-4 text-center">
-              <p className="text-sm font-semibold text-slate-500 mb-1 flex items-center justify-center gap-1.5"><DollarSign size={16} className="text-brand-500"/> Avg Fees</p>
-              <h3 className="text-xl font-black text-slate-900">{course.stats.avgFees}</h3>
-            </div>
-            <div className="px-4 text-center">
-              <p className="text-sm font-semibold text-slate-500 mb-1 flex items-center justify-center gap-1.5"><TrendingUp size={16} className="text-green-500"/> Starting Salary</p>
-              <h3 className="text-xl font-black text-slate-900">{course.stats.startingSalary}</h3>
-            </div>
-            <div className="px-4 text-center hidden md:block">
-              <p className="text-sm font-semibold text-slate-500 mb-1 flex items-center justify-center gap-1.5"><Briefcase size={16} className="text-purple-500"/> Top Roles</p>
-              <h3 className="text-xl font-black text-slate-900">{course.stats.topRoles}</h3>
-            </div>
-            <div className="px-4 text-center hidden md:block">
-              <p className="text-sm font-semibold text-slate-500 mb-1 flex items-center justify-center gap-1.5"><Award size={16} className="text-blue-500"/> Industry Growth</p>
-              <h3 className="text-xl font-black text-slate-900">{course.stats.growth}</h3>
+            <div className="flex gap-4">
+              <div className="bg-brand-50 rounded-xl p-4 text-center border border-brand-100">
+                <p className="text-xl font-bold text-brand-700">{course.stats.totalColleges}</p>
+                <p className="text-xs font-semibold text-brand-600 uppercase tracking-wide">Colleges</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      {/* Main Layout: Sidebar + Listings */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        {/* Mobile Filter Toggle */}
+        <div className="lg:hidden flex items-center justify-between mb-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+          <span className="font-bold text-slate-800">Filter Colleges</span>
+          <button 
+            onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
+            className="flex items-center gap-2 bg-brand-50 text-brand-600 px-4 py-2 rounded-lg font-semibold"
+          >
+            <Filter size={18} /> Filters
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
-          <div className="lg:col-span-8 space-y-16">
+          {/* Left Sidebar - Filters */}
+          <div className={`lg:col-span-1 space-y-6 ${mobileFilterOpen ? 'block' : 'hidden lg:block'}`}>
+            <div className="bg-white border border-slate-200 rounded-2xl p-5 lg:sticky lg:top-24 shadow-sm max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                  <Filter size={20} className="text-brand-600" /> Filters
+                </h2>
+                <button 
+                  onClick={clearFilters}
+                  className="text-sm font-semibold text-brand-600 hover:text-brand-700"
+                >
+                  Clear All
+                </button>
+              </div>
+
+              {/* Dynamic Filter Sections based on Course */}
+              {Object.entries(course.filters).map(([key, options]) => {
+                // Apply search filter if applicable
+                const visibleOptions = (key === 'state' || key === 'city' || key === 'exam') 
+                  ? options.filter(opt => opt.toLowerCase().includes(searchQueries[key]))
+                  : options;
+
+                return (
+                  <div key={key} className="mb-6 last:mb-0">
+                    <button 
+                      onClick={() => toggleFilterCollapse(key)}
+                      className="w-full font-bold text-slate-800 uppercase tracking-wider text-xs mb-3 flex items-center justify-between hover:text-brand-600 transition-colors"
+                    >
+                      {key} <ChevronDown size={14} className={`text-slate-400 transition-transform duration-300 ${collapsedFilters[key] ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    <div className={`transition-all duration-300 overflow-hidden ${collapsedFilters[key] ? 'max-h-0 opacity-0 hidden' : 'max-h-[500px] opacity-100 block'}`}>
+                      {/* Small Search for State/City/Exam */}
+                      {(key === 'state' || key === 'city' || key === 'exam') && (
+                        <div className="relative mb-3">
+                          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                          <input 
+                            type="text" 
+                            placeholder={`Search ${key}...`} 
+                            value={searchQueries[key]}
+                            onChange={(e) => handleSearchChange(key, e)}
+                            className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-500"
+                          />
+                        </div>
+                      )}
+
+                      <div className="space-y-2.5 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                        {visibleOptions.length > 0 ? visibleOptions.map((opt, i) => (
+                          <label key={i} className="flex items-center gap-3 cursor-pointer group">
+                            <div className="relative flex items-center justify-center">
+                              <input 
+                                type="checkbox" 
+                                checked={activeFilters[key].includes(opt)}
+                                onChange={() => handleFilterChange(key, opt)}
+                                className="w-4 h-4 border-slate-300 rounded text-brand-600 focus:ring-brand-500 peer" 
+                              />
+                            </div>
+                            <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors">{opt}</span>
+                          </label>
+                        )) : (
+                          <p className="text-xs text-slate-400">No matches found.</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Column - College Listings */}
+          <div className="lg:col-span-3 space-y-6">
             
-            {/* Curriculum Highlights */}
-            <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">
-                  <BookOpen size={20} />
-                </div>
-                <h2 className="text-3xl font-black text-slate-900">Curriculum Highlights</h2>
+            {/* Quick Specialization Tags */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 hide-scrollbar">
+              {course.tags.map((tag, i) => (
+                <button 
+                  key={i} 
+                  onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                  className={`whitespace-nowrap px-4 py-2 border rounded-full text-sm font-medium transition-colors shadow-sm ${activeTag === tag ? 'bg-brand-600 text-white border-brand-600' : 'bg-white border-slate-200 text-slate-600 hover:border-brand-600 hover:text-brand-600'}`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+
+            {/* Sort & Count Header */}
+            <div className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+              <p className="text-sm text-slate-500 font-medium">Found <span className="font-bold text-slate-900">{filteredColleges.length}</span> Colleges</p>
+              <div className="flex items-center gap-3">
+                <span className="hidden sm:inline text-sm text-slate-500">Sort By:</span>
+                <select 
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="text-sm font-semibold text-slate-900 bg-slate-50 border border-slate-200 py-1.5 px-3 rounded-lg focus:outline-none focus:border-brand-500"
+                >
+                  <option value="popularity">Popularity</option>
+                  <option value="rating">Rating (High to Low)</option>
+                  <option value="fees-asc">Fees (Low to High)</option>
+                  <option value="fees-desc">Fees (High to Low)</option>
+                </select>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {course.subjects.map((sub, i) => (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    key={i} 
-                    className="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-brand-300 transition-all"
+            </div>
+
+            {/* College Cards List */}
+            <div className="space-y-5">
+              {filteredColleges.length > 0 ? filteredColleges.map((college, i) => (
+                <div key={i} className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col md:flex-row">
+                  
+                  {/* Image/Logo area (Left) */}
+                  <div className="md:w-64 h-48 md:h-auto relative bg-slate-100 flex-shrink-0">
+                    <img src={college.image} alt={college.name} className="w-full h-full object-cover" />
+                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 flex items-center gap-1 shadow-sm">
+                       <Star size={12} className="text-orange-500 fill-orange-500" /> {college.rating} ({college.reviews})
+                    </div>
+                  </div>
+
+                  {/* Content Area (Right) */}
+                  <div className="p-5 md:p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex justify-between items-start gap-4 mb-2">
+                        <Link to={`/colleges/${college.id}`} className="hover:text-brand-600 transition-colors">
+                          <h3 className="text-xl font-bold text-slate-900 leading-tight">{college.name}</h3>
+                        </Link>
+                      </div>
+                      
+                      <div className="flex items-center gap-4 text-sm text-slate-500 mb-4 flex-wrap">
+                        <span className="flex items-center gap-1"><MapPin size={14} className="text-slate-400" /> {college.location}</span>
+                        <span className="flex items-center gap-1"><ShieldCheck size={14} className="text-green-500" /> {college.approved}</span>
+                        <span className="flex items-center gap-1"><Building2 size={14} className="text-blue-500" /> {college.type}</span>
+                      </div>
+
+                      <div className="flex items-center gap-4 sm:gap-6 mb-6">
+                        <div className="bg-brand-50/50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-brand-100 flex-1">
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-brand-600/70 mb-0.5 flex items-center gap-1"><Banknote size={12}/> First Year Fees</p>
+                          <p className="font-black text-brand-900 text-sm sm:text-base">{college.fees}</p>
+                        </div>
+                        <div className="bg-emerald-50/50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-emerald-100 flex-1">
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-emerald-600/70 mb-0.5 flex items-center gap-1"><Award size={12}/> Average Package</p>
+                          <p className="font-black text-emerald-900 text-sm sm:text-base">{college.placement}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-slate-100">
+                      <button onClick={() => setIsApplyOpen(true)} className="w-full sm:flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-sm">
+                        Apply Now <ArrowRight size={16} />
+                      </button>
+                      <button className="w-full sm:flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
+                        <Download size={16} /> Download Brochure
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              )) : (
+                <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center shadow-sm">
+                  <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
+                    <Search size={24} />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">No colleges found</h3>
+                  <p className="text-slate-500 mb-6">Try adjusting your filters or search criteria.</p>
+                  <button 
+                    onClick={clearFilters}
+                    className="bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold py-2.5 px-6 rounded-xl transition-colors"
                   >
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-7 h-7 rounded-lg bg-brand-50 flex items-center justify-center text-brand-600 flex-shrink-0 border border-brand-100">
-                        <ChevronRight size={14} strokeWidth={3} />
-                      </div>
-                      <h3 className="text-lg font-bold text-slate-900">{sub.name}</h3>
-                    </div>
-                    <p className="text-sm text-slate-500 font-medium pl-10">{sub.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Career Opportunities */}
-            <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600">
-                  <TrendingUp size={20} />
+                    Clear All Filters
+                  </button>
                 </div>
-                <h2 className="text-3xl font-black text-slate-900">Career Opportunities</h2>
-              </div>
-              <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-slate-50 border-b border-slate-200">
-                      <th className="py-4 px-6 font-bold text-slate-800">Job Role</th>
-                      <th className="py-4 px-6 font-bold text-slate-800">Expected Salary</th>
-                      <th className="py-4 px-6 font-bold text-slate-800 text-right">Market Demand</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    {course.careers.map((career, i) => (
-                      <tr key={i} className="hover:bg-slate-50 transition-colors">
-                        <td className="py-4 px-6 font-bold text-slate-900">{career.role}</td>
-                        <td className="py-4 px-6 font-semibold text-brand-600">{career.salary}</td>
-                        <td className="py-4 px-6 text-right">
-                          <span className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full border border-slate-200">
-                            {career.demand}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              )}
             </div>
 
-            {/* Top Colleges */}
-            <div id="colleges" className="scroll-mt-32">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600">
-                  <Building2 size={20} />
-                </div>
-                <h2 className="text-3xl font-black text-slate-900">Top Colleges for {course.name}</h2>
+            {/* Pagination / Load More */}
+            {filteredColleges.length > 0 && (
+              <div className="py-8 text-center">
+                <button className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold py-3 px-8 rounded-xl shadow-sm transition-colors inline-flex items-center gap-2">
+                  Load More Colleges <ChevronDown size={18} />
+                </button>
               </div>
-
-              <div className="space-y-4">
-                {course.topColleges.map((college, i) => (
-                  <Link to={`/colleges/${college.id}`} key={i} className="block bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 hover:shadow-xl hover:border-brand-300 transition-all group">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center flex-shrink-0">
-                           <Building2 className="text-slate-400 group-hover:text-brand-500 transition-colors" size={24} />
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition-colors">{college.name}</h3>
-                          <p className="text-sm text-slate-500 font-medium flex items-center gap-1 mt-1">
-                             <MapPin size={14} /> {college.location}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex sm:flex-col items-center sm:items-end gap-4 w-full sm:w-auto pt-4 sm:pt-0 border-t sm:border-0 border-slate-100">
-                        <div className="text-left sm:text-right flex-1 sm:flex-none">
-                          <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-0.5">Average Fees</p>
-                          <p className="font-bold text-slate-900">{college.fees}</p>
-                        </div>
-                        <div className="text-right">
-                          <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full">
-                            <TrendingUp size={12} /> {college.placement} Placed
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
+            )}
 
           </div>
-
-          {/* Right Sidebar */}
-          <div className="lg:col-span-4">
-            {/* Quick Enquiry Widget */}
-            <div className="sticky top-24 bg-white rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-200 p-6 sm:p-8 overflow-hidden">
-              <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-brand-500 to-purple-500"></div>
-              <h3 className="text-xl font-black text-slate-900 mb-2 mt-2">Interested in {course.name}?</h3>
-              <p className="text-sm text-slate-500 mb-6 font-medium">Get free admission guidance from our academic experts.</p>
-              
-              <button onClick={() => setIsApplyOpen(true)} className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-brand-500/30 transition-all flex items-center justify-center gap-2 mt-4 hover:-translate-y-1">
-                <Send size={18} /> Get Free Counselling
-              </button>
-              
-              <p className="text-xs text-center text-slate-400 mt-4 flex items-center justify-center gap-1.5">
-                <CheckCircle size={14} className="text-green-500" /> 100% Free & Secure
-              </p>
-            </div>
-          </div>
-
         </div>
       </section>
 
-      <CounsellingCTA />
       <Footer />
 
       <CounsellingModal 

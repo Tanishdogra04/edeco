@@ -99,7 +99,7 @@ export default function Home() {
         <TopCities />
 
         {/* Explore Future */}
-        <ExploreFuture />
+        <ExploreFuture onCompareClick={() => handleScrollToSection('colleges')} />
 
         {/* Featured Colleges */}
         <FeaturedColleges 

@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import CounsellingCTA from '../components/CounsellingCTA';
+
 import CounsellingModal from '../components/CounsellingModal';
 
 // Mock Data
@@ -254,108 +254,92 @@ export default function CityDetail() {
       
       <main className="flex-1">
         
-        {/* Breadcrumbs */}
-        <div className="bg-slate-50 border-b border-slate-200 pt-24 pb-4">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center text-sm text-slate-500 gap-2">
-              <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
-              <ChevronRight size={14} />
-              <Link to="/cities" className="hover:text-slate-900 transition-colors">Cities</Link>
-              <ChevronRight size={14} />
-              <span className="text-brand-600 font-medium">{cityName}</span>
+        {/* Premium Full-Width Hero Section */}
+        <div className="relative bg-slate-900 pt-32 pb-24 overflow-hidden">
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1920&q=80" 
+              alt={`${cityName} Skyline`} 
+              className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/30"></div>
+            <div className="absolute inset-0 bg-brand-900/20 mix-blend-multiply"></div>
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            {/* Breadcrumbs */}
+            <div className="flex justify-center items-center text-sm text-slate-300 gap-2 mb-8 font-medium">
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              <ChevronRight size={14} className="text-slate-500" />
+              <Link to="/cities" className="hover:text-white transition-colors">Cities</Link>
+              <ChevronRight size={14} className="text-slate-500" />
+              <span className="text-brand-400 font-bold">{cityName}</span>
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-100 mb-6 shadow-sm">
+                <MapPin size={16} />
+                <span className="text-xs font-bold tracking-widest uppercase">Top Educational Hub</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight mb-6 leading-tight drop-shadow-sm">
+                Top Colleges in <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-100">{cityName}</span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+                Explore the best engineering, management, medical, and technology institutes in {cityName}. Discover fees, placements, and rankings.
+              </p>
+
+              {/* Premium Glassmorphic Search Bar */}
+              <div className="max-w-2xl mx-auto bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-2 shadow-2xl flex items-center gap-2 mb-10 transition-all hover:bg-white/20 focus-within:bg-white/20 focus-within:border-white/40 group">
+                <div className="pl-4 text-white/70 group-focus-within:text-white transition-colors">
+                  <Search size={24} />
+                </div>
+                <input 
+                  type="text" 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={`Search in ${cityName}...`}
+                  className="w-full py-3 px-2 bg-transparent border-none outline-none text-white placeholder:text-white/60 text-lg font-medium"
+                />
+                <button className="bg-white text-brand-900 hover:bg-brand-50 px-8 py-3 rounded-xl font-bold transition-colors whitespace-nowrap shadow-lg">
+                  Search
+                </button>
+              </div>
+
+              {/* Quick Category Pills */}
+              <div className="flex flex-wrap justify-center gap-3">
+                {categories.map((cat, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleCategoryClick(cat)}
+                    className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 backdrop-blur-md border ${
+                      activeCategory === cat 
+                        ? 'bg-brand-600 text-white border-brand-500 shadow-lg shadow-brand-500/40' 
+                        : 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30 shadow-sm'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+          
+          {/* Bottom SVG Wave connecting to slate-50 background */}
+          <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+            <svg className="relative block w-full h-12 md:h-16 lg:h-20" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.3,191.7,106.8Z" className="fill-slate-50"></path>
+            </svg>
           </div>
         </div>
-
-        {/* Hero Section */}
-        <section className="pt-4 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-slate-900 pt-16 pb-16 px-6 sm:px-12 text-center">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-              <img 
-                src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1920&q=80" 
-                alt={`${cityName} Skyline`} 
-                className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-slate-900/40"></div>
-            </div>
-
-            <div className="relative z-10">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-3xl mx-auto"
-              >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-200 mb-6 shadow-sm">
-                  <MapPin size={16} />
-                  <span className="text-sm font-semibold tracking-wide uppercase">Top Educational Hub</span>
-                </div>
-                
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
-                  Top Colleges in <span className="text-white">{cityName}</span>
-                </h1>
-                
-                <p className="text-base sm:text-lg text-slate-200 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                  Explore the best engineering, management, medical, and technology institutes. Discover fees, placements, rankings, and more.
-                </p>
-
-                {/* Search Bar */}
-                <div className="max-w-2xl mx-auto bg-white rounded-2xl p-2 shadow-2xl flex items-center gap-2 relative z-20">
-                  <div className="pl-4 text-slate-400">
-                    <Search size={24} />
-                  </div>
-                  <input 
-                    type="text" 
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder={`Search for colleges, courses, or exams in ${cityName}...`}
-                    className="w-full py-3 px-2 bg-transparent border-none outline-none text-slate-800 placeholder:text-slate-400 text-lg font-medium"
-                  />
-                  <button className="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors whitespace-nowrap hidden sm:block">
-                    Search
-                  </button>
-                </div>
-
-                {/* Quick Category Pills */}
-                <div className="mt-10 flex flex-wrap justify-center gap-3">
-                  {categories.map((cat, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleCategoryClick(cat)}
-                      className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 backdrop-blur-md border ${
-                        activeCategory === cat 
-                          ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white border-transparent shadow-lg shadow-brand-500/40' 
-                          : 'bg-white/10 text-white border-white/20 hover:bg-white/20 hover:border-white/30 shadow-sm'
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Scroll Down Button */}
-                <div className="mt-12 flex justify-center animate-bounce">
-                  <button 
-                    onClick={() => {
-                      const collegeSection = document.getElementById('colleges-grid');
-                      if (collegeSection) {
-                        const yOffset = -100;
-                        const y = collegeSection.getBoundingClientRect().top + window.scrollY + yOffset;
-                        window.scrollTo({ top: y, behavior: 'smooth' });
-                      }
-                    }}
-                    className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-all border border-white/20 shadow-lg"
-                    aria-label="Scroll to colleges"
-                  >
-                    <ChevronDown size={24} />
-                  </button>
-                </div>
-
-              </motion.div>
-            </div>
-          </div>
-        </section>
 
 
 
@@ -683,7 +667,7 @@ export default function CityDetail() {
         </section>
 
         {/* Counselling CTA */}
-        <CounsellingCTA onCounsellingClick={() => {}} />
+
 
       </main>
 

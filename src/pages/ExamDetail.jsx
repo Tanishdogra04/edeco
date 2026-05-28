@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import CounsellingCTA from '../components/CounsellingCTA';
+
 import { Calendar, Users, Target, BookOpen, AlertCircle, BadgeCheck, ChevronRight, FileText, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -163,7 +163,19 @@ const getMockExamData = (id) => {
   };
   
   // Default fallback if ID doesn't exactly match
-  return exams[id] || exams['jee-main'];
+  const selectedExam = exams[id] || exams['jee-main'];
+  selectedExam.eligibility = selectedExam.eligibility || [
+    "Candidates must have passed 10+2 or equivalent examination from a recognized board.",
+    "Minimum qualifying marks required in board exams (relaxation applies for reserved categories).",
+    "Specific age limits or limits on the number of attempts may apply as per the latest bulletin."
+  ];
+  selectedExam.coaching = selectedExam.coaching || [
+    "Offline Coaching: Top institutes available in major educational hubs like Kota, Delhi, and Hyderabad.",
+    "Online Prep: Live classes, recorded lectures, and test series by leading ed-tech platforms.",
+    "Self-Study: Highly recommended to stick to standard NCERTs and specialized reference books.",
+    "Mock Tests: Regular practice of previous year papers and mock tests is essential for time management."
+  ];
+  return selectedExam;
 };
 
 export default function ExamDetail() {
@@ -177,8 +189,10 @@ export default function ExamDetail() {
 
   const tabs = [
     { id: 'overview', label: 'Overview' },
-    { id: 'dates', label: 'Important Dates' },
+    { id: 'eligibility', label: 'Eligibility' },
     { id: 'syllabus', label: 'Syllabus & Pattern' },
+    { id: 'dates', label: 'Important Dates' },
+    { id: 'coaching', label: 'Coaching & Prep' },
   ];
 
   return (
@@ -356,6 +370,49 @@ export default function ExamDetail() {
                 </div>
               </motion.div>
             )}
+
+            {/* ELIGIBILITY TAB */}
+            {activeTab === 'eligibility' && (
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                <h2 className="text-2xl font-black text-slate-900 mb-6">Eligibility Criteria</h2>
+                <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                  <ul className="space-y-4">
+                    {exam.eligibility.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <BadgeCheck size={20} className="text-brand-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-700 font-medium text-lg">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            )}
+
+            {/* COACHING TAB */}
+            {activeTab === 'coaching' && (
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                <h2 className="text-2xl font-black text-slate-900 mb-6">Coaching & Preparation Strategy</h2>
+                <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                  <ul className="space-y-4">
+                    {exam.coaching.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <Target size={20} className="text-brand-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-700 font-medium text-lg">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-8 p-6 bg-brand-50 rounded-2xl border border-brand-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                      <h4 className="font-bold text-brand-900 mb-1">Looking for personalized guidance?</h4>
+                      <p className="text-sm text-brand-700">Get connected with top educators and counselors.</p>
+                    </div>
+                    <button className="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-md w-full sm:w-auto">
+                      Get Free Counseling
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
             
           </div>
 
@@ -401,7 +458,7 @@ export default function ExamDetail() {
         </div>
       </div>
 
-      <CounsellingCTA />
+
       <Footer />
     </div>
   );
