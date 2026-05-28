@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User, ArrowUpRight } from 'lucide-react';
 
 export default function LatestNews() {
   const articles = [
     {
+      id: "jee-main-cutoff",
       title: "JEE Main Session 1 Cutoff Analysis & Tier-1 College Trends",
       desc: "An in-depth review of score-versus-percentile shifts this season and what it means for admissions into top NITs/IIITs.",
       tag: "Admission News",
@@ -13,6 +15,7 @@ export default function LatestNews() {
       image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80"
     },
     {
+      id: "ugc-guidelines",
       title: "UGC Guidelines Issued for Foreign University Campuses in India",
       desc: "Everything you need to know about double degrees, credit transfer policy, and the top international universities establishing hubs.",
       tag: "Policy Update",
@@ -21,6 +24,7 @@ export default function LatestNews() {
       image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=400&q=80"
     },
     {
+      id: "gen-ai-mba",
       title: "How Gen-AI is Reshaping MBA Curriculums: Top Skills in Demand",
       desc: "Top business institutions are integrating prompt engineering and LLM analytics into management majors. Here is our report.",
       tag: "Career Guide",
@@ -48,23 +52,23 @@ export default function LatestNews() {
             </p>
           </div>
 
-          <button className="flex items-center gap-1 text-[13px] font-extrabold text-brand-600 hover:text-brand-700 mt-4 md:mt-0 group cursor-pointer">
+          <Link to="/news/jee-main-cutoff" className="flex items-center gap-1 text-[13px] font-extrabold text-brand-600 hover:text-brand-700 mt-4 md:mt-0 group cursor-pointer">
             <span>Visit the Blog Bulletin</span>
             <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </button>
+          </Link>
         </div>
 
         {/* Blog Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((art, idx) => (
-            <motion.article
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group flex flex-col justify-between rounded-3xl overflow-hidden bg-slate-50/30 border border-slate-100 hover:border-brand-200/50 hover:bg-white hover:shadow-xl hover:shadow-slate-100/80 transition-all duration-300"
-            >
+            <Link to={`/news/${art.id}`} key={idx}>
+              <motion.article
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="group flex flex-col justify-between h-full rounded-3xl overflow-hidden bg-slate-50/30 border border-slate-100 hover:border-brand-200/50 hover:bg-white hover:shadow-xl hover:shadow-slate-100/80 transition-all duration-300 cursor-pointer"
+              >
               <div>
                 {/* Thumbnail Image */}
                 <div className="relative h-48 w-full overflow-hidden">
@@ -108,16 +112,14 @@ export default function LatestNews() {
 
               {/* Read More footer link */}
               <div className="px-6 pb-6 pt-2 text-left">
-                <a 
-                  href="#counselling" 
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 group-hover:text-brand-600 transition-colors cursor-pointer"
-                >
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 group-hover:text-brand-600 transition-colors">
                   <span>Read Article</span>
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </a>
+                </span>
               </div>
 
-            </motion.article>
+              </motion.article>
+            </Link>
           ))}
         </div>
 

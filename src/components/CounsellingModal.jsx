@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sparkles, User, Phone, Mail, Award, CheckCircle2, ChevronRight, ChevronLeft, ArrowRight, Star } from 'lucide-react';
+import { X, Sparkles, User, Phone, Mail, Award, BadgeCheck, ChevronRight, ChevronLeft, ArrowRight, Star } from 'lucide-react';
 
 export default function CounsellingModal({ isOpen, onClose }) {
   const [step, setStep] = useState(1);
@@ -348,7 +348,7 @@ export default function CounsellingModal({ isOpen, onClose }) {
                 className="text-center py-8 space-y-6"
               >
                 <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mx-auto border border-emerald-100 shadow-md">
-                  <CheckCircle2 size={36} className="animate-bounce" />
+                  <BadgeCheck size={36} className="animate-bounce" />
                 </div>
 
                 <div className="space-y-2">

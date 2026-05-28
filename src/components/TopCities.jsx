@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, MapPin, Building2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function TopCities() {
   const scrollContainerRef = useRef(null);
+  const navigate = useNavigate();
 
   const cities = [
     { 
@@ -92,6 +94,7 @@ export default function TopCities() {
           {cities.map((city, idx) => (
             <motion.div
               key={idx}
+              onClick={() => navigate(`/cities/${city.name.toLowerCase().replace(/ /g, '-')}`)}
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}

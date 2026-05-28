@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, GitCompare, HelpCircle, Check, ArrowRight, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import { X, GitCompare, HelpCircle, Check, ArrowRight, ShieldAlert, BadgeCheck } from 'lucide-react';
 
 export default function CompareDrawer({ comparedColleges, onRemove, onClearAll }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -205,7 +205,7 @@ export default function CompareDrawer({ comparedColleges, onRemove, onClearAll }
                       {comparedColleges.map((c) => (
                         <td key={c.id} className="py-4 px-4 text-xs font-semibold text-emerald-600">
                           <div className="flex items-start gap-1.5">
-                            <CheckCircle2 size={14} className="mt-0.5 flex-shrink-0" />
+                            <BadgeCheck size={14} className="mt-0.5 flex-shrink-0" />
                             <span>
                               {c.id === 'iitb' && "World-class incubation & tech hub, top research output."}
                               {c.id === 'iima' && "Triple Crown accreditation, case study methodology."}

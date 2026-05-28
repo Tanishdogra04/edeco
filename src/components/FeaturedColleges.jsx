@@ -1,6 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 import { Star, MapPin, BadgePercent, GraduationCap, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -234,12 +235,12 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                         </button>
 
                         {/* View Details */}
-                        <button 
-                          onClick={() => onViewDetails(college)}
-                          className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold hover:shadow-lg transition-all cursor-pointer"
+                        <Link 
+                          to={`/colleges/${college.id}`}
+                          className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold hover:shadow-lg transition-all cursor-pointer text-center"
                         >
                           View Details
-                        </button>
+                        </Link>
                       </div>
 
                     </div>

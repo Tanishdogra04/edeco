@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, PhoneCall, ShieldCheck, HeartHandshake, Users2, Star } from 'lucide-react';
+import CounsellingModal from './CounsellingModal';
 
 export default function CounsellingCTA({ onCounsellingClick }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClick = () => {
+    if (onCounsellingClick) {
+      onCounsellingClick();
+    } else {
+      setIsModalOpen(true);
+    }
+  };
+
   return (
     <section id="counselling" className="py-16 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,13 +62,13 @@ export default function CounsellingCTA({ onCounsellingClick }) {
               {/* Buttons */}
               <div className="flex flex-wrap gap-4 pt-6">
                 <button
-                  onClick={onCounsellingClick}
+                  onClick={handleClick}
                   className="px-8 py-4 rounded-2xl bg-white text-brand-600 font-extrabold text-sm shadow-xl shadow-slate-950/10 hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
                 >
                   Book Free Counselling
                 </button>
                 <button
-                  onClick={onCounsellingClick}
+                  onClick={handleClick}
                   className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-brand-700/40 border border-white/15 text-white font-bold text-sm hover:bg-brand-700/60 transition-all duration-200 cursor-pointer"
                 >
                   <PhoneCall size={14} />
@@ -124,6 +135,7 @@ export default function CounsellingCTA({ onCounsellingClick }) {
 
         </div>
       </div>
+      <CounsellingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

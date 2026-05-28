@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Sparkles, Star, ShieldCheck, Users, ChevronRight, Award, MessageCircle, Play, CheckCircle2, TrendingUp } from 'lucide-react';
+import { Search, Sparkles, Star, ShieldCheck, Users, ChevronRight, Award, MessageCircle, Play, BadgeCheck, TrendingUp } from 'lucide-react';
 
 export default function Hero({ onSearchSubmit, onCounsellingClick }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -324,7 +324,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               className="absolute -top-4 -left-10 bg-white/95 border border-slate-100 rounded-2xl p-4 shadow-xl shadow-slate-100 flex items-center gap-3 w-48"
             >
               <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center">
-                <CheckCircle2 size={20} />
+                <BadgeCheck size={20} />
               </div>
               <div className="text-left">
                 <span className="text-[10px] text-slate-400 font-semibold uppercase">Verified Stats</span>

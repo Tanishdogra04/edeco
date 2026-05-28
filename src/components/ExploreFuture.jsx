@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
   Laptop, Briefcase, HeartPulse, Scale, 
   Palette, BarChart3, Globe2, ArrowRight 
@@ -100,9 +101,11 @@ export default function ExploreFuture({ onSelectDomain }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                onClick={() => onSelectDomain(dom.name)}
-                className="group relative bg-slate-50/50 hover:bg-white rounded-3xl p-6 border border-slate-100 hover:border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-slate-100/50 cursor-pointer flex flex-col justify-between h-72 transition-all duration-300"
               >
+                <Link
+                  to={`/stream/${dom.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                  className="group relative bg-slate-50/50 hover:bg-white rounded-3xl p-6 border border-slate-100 hover:border-brand-200/50 shadow-sm hover:shadow-xl hover:shadow-slate-100/50 cursor-pointer flex flex-col justify-between h-72 transition-all duration-300 block"
+                >
                 <div>
                   {/* Icon with linear gradient overlay */}
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-gradient-to-tr ${dom.color} text-white shadow-md shadow-slate-100 mb-6 group-hover:scale-110 transition-transform duration-300`}>
@@ -130,6 +133,7 @@ export default function ExploreFuture({ onSelectDomain }) {
                   </div>
                 </div>
 
+                </Link>
               </motion.div>
             );
           })}
