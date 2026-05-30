@@ -111,19 +111,19 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
             <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
               <TrendingUp size={12} className="text-slate-400" /> Placements
             </span>
-            <span className="text-sm font-black text-orange-600">{placementPercent}</span>
+            <span className="text-sm font-black text-brand-600">{placementPercent}</span>
           </div>
           <div className="flex flex-col items-center flex-1 border-r border-slate-200 last:border-0">
             <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
               <Banknote size={12} className="text-slate-400" /> Avg Pkg
             </span>
-            <span className="text-sm font-black text-orange-600">{college.placement}</span>
+            <span className="text-sm font-black text-brand-600">{college.placement}</span>
           </div>
           <div className="flex flex-col items-center flex-1">
             <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
-              <CalendarDays size={12} className="text-slate-400" /> Est. Year
+              <Banknote size={12} className="text-slate-400" /> Fees
             </span>
-            <span className="text-sm font-black text-orange-600">{estYear}</span>
+            <span className="text-sm font-black text-brand-600">{college.fees || college.avgFees || "₹2.0 L/Yr"}</span>
           </div>
         </div>
 
@@ -134,6 +134,9 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
           {/* Base type badge */}
           <span className="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 text-xs font-bold rounded-lg shadow-sm">
             {college.type}
+          </span>
+          <span className="px-2.5 py-1 bg-white border border-slate-200 text-slate-600 text-xs font-bold rounded-lg shadow-sm">
+            Estd {estYear}
           </span>
           {/* Other approvals */}
           {college.approved && college.approved.split(',').map((badge, i) => (

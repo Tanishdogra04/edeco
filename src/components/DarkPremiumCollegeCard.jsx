@@ -114,9 +114,9 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
           </div>
           <div className="flex flex-col items-center flex-1">
             <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
-               Est. Year
+               Fees
             </span>
-            <span className="text-sm font-black text-brand-600">{estYear}</span>
+            <span className="text-sm font-black text-brand-600">{college.fees || college.avgFees || "₹2.0 L/Yr"}</span>
           </div>
         </div>
 
@@ -126,6 +126,9 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
         <div className="flex flex-wrap gap-2 mb-6">
           <span className="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-700 text-[10px] uppercase tracking-wider font-bold rounded-lg">
             {college.type}
+          </span>
+          <span className="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-700 text-[10px] uppercase tracking-wider font-bold rounded-lg">
+            Estd {estYear}
           </span>
           {college.approved && college.approved.split(',').map((badge, i) => (
             <span key={i} className="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-700 text-[10px] uppercase tracking-wider font-bold rounded-lg flex items-center gap-1">
