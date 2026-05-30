@@ -11,7 +11,7 @@ export default function TrendingCourses({ onExploreColleges }) {
       duration: "4 Years (8 Semesters)",
       salary: "₹8.5 LPA - ₹28 LPA+",
       demand: "Extreme High",
-      demandColor: "bg-rose-50 text-rose-600 border-rose-100",
+      demandColor: "bg-emerald-50 text-emerald-600 border-emerald-100",
       eligibility: "12th with Physics, Chemistry & Math",
       jobs: "Software Architect, AI Engineer, Fullstack Developer"
     },
@@ -22,7 +22,7 @@ export default function TrendingCourses({ onExploreColleges }) {
       duration: "2 Years (4 Semesters)",
       salary: "₹10.2 LPA - ₹35 LPA+",
       demand: "High",
-      demandColor: "bg-purple-50 text-purple-600 border-purple-100",
+      demandColor: "bg-teal-50 text-teal-600 border-teal-100",
       eligibility: "Graduation (Any stream) + CAT/XAT",
       jobs: "Investment Banker, Product Manager, Consultant"
     },
@@ -33,7 +33,7 @@ export default function TrendingCourses({ onExploreColleges }) {
       duration: "3-5 Years",
       salary: "₹5.0 LPA - ₹15 LPA+",
       demand: "Rising",
-      demandColor: "bg-blue-50 text-blue-600 border-blue-100",
+      demandColor: "bg-lime-50 text-lime-600 border-lime-100",
       eligibility: "12th Pass with Mathematics/IP",
       jobs: "Cloud Specialist, System Admin, App Developer"
     },
@@ -44,7 +44,7 @@ export default function TrendingCourses({ onExploreColleges }) {
       duration: "5.5 Years (Incl. Internship)",
       salary: "₹9.0 LPA - ₹24 LPA+",
       demand: "Constant High",
-      demandColor: "bg-emerald-50 text-emerald-600 border-emerald-100",
+      demandColor: "bg-green-50 text-green-600 border-green-100",
       eligibility: "12th with Biology + NEET Score",
       jobs: "Resident Medical Officer, Cardiologist, Surgeon"
     },
@@ -55,7 +55,7 @@ export default function TrendingCourses({ onExploreColleges }) {
       duration: "3 Years (6 Semesters)",
       salary: "₹4.8 LPA - ₹12 LPA+",
       demand: "Rising",
-      demandColor: "bg-blue-50 text-blue-600 border-blue-100",
+      demandColor: "bg-lime-50 text-lime-600 border-lime-100",
       eligibility: "12th Pass in any stream (Commerce pref.)",
       jobs: "Data Analyst, HR Business Partner, Marketing Head"
     },
@@ -66,7 +66,7 @@ export default function TrendingCourses({ onExploreColleges }) {
       duration: "3 or 5 Years",
       salary: "₹6.0 LPA - ₹18 LPA+",
       demand: "Moderate-High",
-      demandColor: "bg-amber-50 text-amber-600 border-amber-100",
+      demandColor: "bg-emerald-50 text-emerald-700 border-emerald-100",
       eligibility: "12th Pass (for 5 Yr) or Grad (for 3 Yr) + CLAT",
       jobs: "Corporate Legal Advisor, Litigator, Cyber Law Expert"
     }

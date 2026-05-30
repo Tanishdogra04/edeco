@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Laptop, Briefcase, HeartPulse, Scale, 
-  Palette, BarChart3, Globe2, ArrowRight,
-  MapPin, Building2, Download, Search, Filter,
-  ChevronDown, Star, ChevronRight,
-  Award, ShieldCheck, Banknote
+  Search, Filter, ChevronDown, ChevronRight, Sparkles, MapPin,
+  MessageCircle, PhoneCall, ArrowRight
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
 import CounsellingModal from '../components/CounsellingModal';
+import DarkPremiumCollegeCard from '../components/DarkPremiumCollegeCard';
+import CompareDrawer from '../components/CompareDrawer';
 
 // Mock Data Generator for all streams
 const getMockStreamData = (id) => {
@@ -21,8 +20,8 @@ const getMockStreamData = (id) => {
   const engineeringData = {
     id: 'engineering',
     name: 'Engineering',
-    title: 'Top Engineering Colleges in India',
-    description: 'Find the best Engineering colleges in India based on ranking, fees, placements, and reviews.',
+    title: 'Explore Engineering Colleges',
+    description: 'Discover top engineering colleges across India. Filter by state, category, and placements to find your ideal institution.',
     icon: Laptop,
     stats: { totalColleges: '4,200+', avgPackage: '₹6 - ₹12 LPA', highestPackage: '₹50+ LPA' },
     filters: {
@@ -34,179 +33,118 @@ const getMockStreamData = (id) => {
     },
     tags: ['Computer Science', 'Mechanical', 'Electrical', 'Civil', 'AI & ML', 'Data Science'],
     topColleges: [
-      { id: 'iit-bombay', name: 'IIT Bombay - Indian Institute of Technology', location: 'Mumbai, Maharashtra', state: 'Maharashtra', city: 'Mumbai', fees: '₹2.30 Lakhs (1st Year Fees)', feesCategory: '2 - 3 Lakhs', numericFees: 230000, tags: ['Computer Science', 'Mechanical', 'Civil'], placement: '₹36.9 LPA (Avg)', rating: 4.8, reviews: 450, type: 'Public/Government', exams: ['JEE Advanced'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80' },
-      { id: 'iit-delhi', name: 'IIT Delhi - Indian Institute of Technology', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹2.20 Lakhs (1st Year Fees)', feesCategory: '2 - 3 Lakhs', numericFees: 220000, tags: ['Mechanical', 'Electrical', 'Civil'], placement: '₹32.5 LPA (Avg)', rating: 4.7, reviews: 380, type: 'Public/Government', exams: ['JEE Advanced'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80' },
-      { id: 'bits-pilani', name: 'BITS Pilani - Birla Institute of Technology', location: 'Pilani, Rajasthan', state: 'Rajasthan', city: 'Pilani', fees: '₹5.50 Lakhs (1st Year Fees)', feesCategory: '> 5 Lakhs', numericFees: 550000, tags: ['Computer Science', 'Data Science', 'Electrical'], placement: '₹30.3 LPA (Avg)', rating: 4.6, reviews: 520, type: 'Private', exams: ['BITSAT'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80' },
-      { id: 'nit-trichy', name: 'NIT Trichy - National Institute of Technology', location: 'Tiruchirappalli, Tamil Nadu', state: 'Tamil Nadu', city: 'Tiruchirappalli', fees: '₹1.80 Lakhs (1st Year Fees)', feesCategory: '1 - 2 Lakhs', numericFees: 180000, tags: ['Mechanical', 'Civil', 'Electrical'], placement: '₹27.5 LPA (Avg)', rating: 4.5, reviews: 310, type: 'Public/Government', exams: ['JEE Main'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80' },
-      { id: 'vit-vellore', name: 'VIT Vellore - Vellore Institute of Technology', location: 'Vellore, Tamil Nadu', state: 'Tamil Nadu', city: 'Vellore', fees: '₹1.98 Lakhs (1st Year Fees)', feesCategory: '1 - 2 Lakhs', numericFees: 198000, tags: ['Computer Science', 'AI & ML', 'Data Science'], placement: '₹9.2 LPA (Avg)', rating: 4.2, reviews: 1200, type: 'Private', exams: ['VITEEE'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80' }
+      { id: 'iit-bombay', name: 'IIT Bombay - Indian Institute of Technology', location: 'Mumbai, Maharashtra', state: 'Maharashtra', city: 'Mumbai', fees: '₹2.30 Lakhs/yr', feesCategory: '2 - 3 Lakhs', numericFees: 230000, tags: ['Computer Science', 'Mechanical', 'Civil'], placement: '₹36.9 LPA', rating: 4.8, reviews: 450, type: 'Public', exams: ['JEE Advanced'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80', placementPercentage: '98%', estYear: '1958', rank: 1 },
+      { id: 'iit-delhi', name: 'IIT Delhi - Indian Institute of Technology', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹2.20 Lakhs/yr', feesCategory: '2 - 3 Lakhs', numericFees: 220000, tags: ['Mechanical', 'Electrical', 'Civil'], placement: '₹32.5 LPA', rating: 4.7, reviews: 380, type: 'Public', exams: ['JEE Advanced'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80', placementPercentage: '96%', estYear: '1961', rank: 2 },
+      { id: 'bits-pilani', name: 'BITS Pilani - Birla Institute of Technology', location: 'Pilani, Rajasthan', state: 'Rajasthan', city: 'Pilani', fees: '₹5.50 Lakhs/yr', feesCategory: '> 5 Lakhs', numericFees: 550000, tags: ['Computer Science', 'Data Science', 'Electrical'], placement: '₹30.3 LPA', rating: 4.6, reviews: 520, type: 'Private', exams: ['BITSAT'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80', placementPercentage: '94%', estYear: '1964', rank: 5 },
+      { id: 'nit-trichy', name: 'NIT Trichy - National Institute of Technology', location: 'Tiruchirappalli, Tamil Nadu', state: 'Tamil Nadu', city: 'Tiruchirappalli', fees: '₹1.80 Lakhs/yr', feesCategory: '1 - 2 Lakhs', numericFees: 180000, tags: ['Mechanical', 'Civil', 'Electrical'], placement: '₹27.5 LPA', rating: 4.5, reviews: 310, type: 'Public', exams: ['JEE Main'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80', placementPercentage: '92%', estYear: '1964', rank: 9 },
+      { id: 'vit-vellore', name: 'VIT Vellore - Vellore Institute of Technology', location: 'Vellore, Tamil Nadu', state: 'Tamil Nadu', city: 'Vellore', fees: '₹1.98 Lakhs/yr', feesCategory: '1 - 2 Lakhs', numericFees: 198000, tags: ['Computer Science', 'AI & ML', 'Data Science'], placement: '₹9.2 LPA', rating: 4.2, reviews: 1200, type: 'Private', exams: ['VITEEE'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80', placementPercentage: '89%', estYear: '1984', rank: 11 },
+      { id: 'srm-chennai', name: 'SRM Institute of Science and Technology', location: 'Chennai, Tamil Nadu', state: 'Tamil Nadu', city: 'Chennai', fees: '₹2.50 Lakhs/yr', feesCategory: '2 - 3 Lakhs', numericFees: 250000, tags: ['Computer Science', 'IT'], placement: '₹7.5 LPA', rating: 4.1, reviews: 800, type: 'Private', exams: ['SRMJEEE'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80', placementPercentage: '85%', estYear: '1985', rank: 24 }
     ]
   };
 
-  // 2. Business Data
-  const businessData = {
-    id: 'business',
-    name: 'Management',
-    title: 'Top Business Schools in India',
-    description: 'Find the best MBA and PGDM colleges in India based on ranking, fees, placements, and reviews.',
-    icon: Briefcase,
-    stats: { totalColleges: '3,100+', avgPackage: '₹8 - ₹15 LPA', highestPackage: '₹60+ LPA' },
-    filters: {
-      state: ['Gujarat', 'Karnataka', 'Telangana', 'Maharashtra', 'Delhi NCR', 'West Bengal'],
-      city: ['Ahmedabad', 'Bangalore', 'Hyderabad', 'Mumbai', 'New Delhi', 'Kolkata'],
-      exam: ['CAT', 'XAT', 'MAT', 'CMAT', 'GMAT', 'SNAP'],
-      type: ['Private', 'Public/Government'],
-      fees: ['< 5 Lakhs', '5 - 10 Lakhs', '10 - 20 Lakhs', '> 20 Lakhs']
-    },
-    tags: ['Finance', 'Marketing', 'HR', 'Operations', 'International Business', 'Business Analytics'],
+  const businessData = { 
+    ...engineeringData, 
+    id: 'business', 
+    name: 'Management', 
+    title: 'Explore MBA Colleges', 
+    tags: ['Finance', 'Marketing', 'HR'],
     topColleges: [
-      { id: 'iim-a', name: 'IIM Ahmedabad - Indian Institute of Management', location: 'Ahmedabad, Gujarat', state: 'Gujarat', city: 'Ahmedabad', fees: '₹31.50 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 3150000, tags: ['Finance', 'Marketing', 'Operations', 'Business Analytics'], placement: '₹32.8 LPA (Avg)', rating: 4.9, reviews: 850, type: 'Public/Government', exams: ['CAT'], approved: 'AICTE', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80' },
-      { id: 'iim-b', name: 'IIM Bangalore - Indian Institute of Management', location: 'Bangalore, Karnataka', state: 'Karnataka', city: 'Bangalore', fees: '₹24.50 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 2450000, tags: ['Marketing', 'HR', 'Operations'], placement: '₹35.3 LPA (Avg)', rating: 4.9, reviews: 720, type: 'Public/Government', exams: ['CAT'], approved: 'AICTE', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80' },
-      { id: 'isb-hyd', name: 'ISB Hyderabad - Indian School of Business', location: 'Hyderabad, Telangana', state: 'Telangana', city: 'Hyderabad', fees: '₹39.00 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 3900000, tags: ['Finance', 'International Business'], placement: '₹34.2 LPA (Avg)', rating: 4.8, reviews: 640, type: 'Private', exams: ['GMAT'], approved: 'AMBA, EQUIS, AACSB', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80' },
-      { id: 'xlri', name: 'XLRI Xavier School of Management', location: 'Jamshedpur, Jharkhand', state: 'Jharkhand', city: 'Jamshedpur', fees: '₹27.40 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 2740000, tags: ['HR', 'Business Analytics'], placement: '₹32.7 LPA (Avg)', rating: 4.8, reviews: 510, type: 'Private', exams: ['XAT'], approved: 'AICTE', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80' },
-      { id: 'spjimr', name: 'SPJIMR - SP Jain Institute', location: 'Mumbai, Maharashtra', state: 'Maharashtra', city: 'Mumbai', fees: '₹20.40 Lakhs (Total Fees)', feesCategory: '> 20 Lakhs', numericFees: 2040000, tags: ['Finance', 'Operations', 'Marketing'], placement: '₹32.0 LPA (Avg)', rating: 4.7, reviews: 460, type: 'Private', exams: ['CAT', 'GMAT'], approved: 'AICTE, NBA', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80' }
+      { id: 'iim-ahmedabad', name: 'IIM Ahmedabad - Indian Institute of Management', location: 'Ahmedabad, Gujarat', state: 'Gujarat', city: 'Ahmedabad', fees: '₹25.0 Lakhs/yr', feesCategory: '> 5 Lakhs', numericFees: 2500000, tags: ['Finance', 'Marketing', 'Strategy'], placement: '₹32.8 LPA', rating: 4.9, reviews: 600, type: 'Public', exams: ['CAT'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80', placementPercentage: '100%', estYear: '1961', rank: 1 },
+      { id: 'iim-bangalore', name: 'IIM Bangalore - Indian Institute of Management', location: 'Bangalore, Karnataka', state: 'Karnataka', city: 'Bangalore', fees: '₹24.5 Lakhs/yr', feesCategory: '> 5 Lakhs', numericFees: 2450000, tags: ['Marketing', 'Operations', 'Finance'], placement: '₹35.3 LPA', rating: 4.8, reviews: 550, type: 'Public', exams: ['CAT'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80', placementPercentage: '100%', estYear: '1973', rank: 2 },
+      { id: 'isb-hyderabad', name: 'ISB Hyderabad - Indian School of Business', location: 'Hyderabad, Telangana', state: 'Telangana', city: 'Hyderabad', fees: '₹38.0 Lakhs/yr', feesCategory: '> 5 Lakhs', numericFees: 3800000, tags: ['Strategy', 'Leadership', 'Finance'], placement: '₹34.0 LPA', rating: 4.7, reviews: 400, type: 'Private', exams: ['GMAT', 'GRE'], approved: 'AACSB, EQUIS', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80', placementPercentage: '98%', estYear: '2001', rank: 6 },
     ]
   };
-
-  // 3. Medical Data
-  const medicalData = {
-    id: 'medical',
-    name: 'Medical Science',
-    title: 'Top Medical Institutes in India',
-    description: 'Find the best Medical and Dental colleges in India based on ranking, fees, placements, and reviews.',
-    icon: HeartPulse,
-    stats: { totalColleges: '800+', avgPackage: '₹8 - ₹18 LPA', highestPackage: '₹40+ LPA' },
-    filters: {
-      state: ['Delhi NCR', 'Tamil Nadu', 'Maharashtra', 'Karnataka', 'Uttar Pradesh'],
-      city: ['New Delhi', 'Vellore', 'Mumbai', 'Bangalore', 'Lucknow', 'Pune'],
-      exam: ['NEET UG', 'NEET PG', 'AIIMS', 'JIPMER'],
-      type: ['Private', 'Public/Government'],
-      fees: ['< 5 Lakhs', '5 - 15 Lakhs', '15 - 25 Lakhs', '> 25 Lakhs']
-    },
-    tags: ['MBBS', 'BDS', 'BAMS', 'BHMS', 'Nursing', 'Pharmacy'],
+  
+  const medicalData = { 
+    ...engineeringData, 
+    id: 'medical', 
+    name: 'Medical Science', 
+    title: 'Explore Medical Institutes', 
+    tags: ['MBBS', 'BDS', 'Nursing'],
     topColleges: [
-      { id: 'aiims-delhi', name: 'AIIMS New Delhi', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹6.8k (1st Year Fees)', feesCategory: '< 5 Lakhs', numericFees: 6800, tags: ['MBBS', 'Nursing'], placement: '₹12.0 LPA (Avg)', rating: 4.9, reviews: 950, type: 'Public/Government', exams: ['NEET UG', 'AIIMS'], approved: 'NMC', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80' },
-      { id: 'cmc-vellore', name: 'CMC Vellore - Christian Medical College', location: 'Vellore, Tamil Nadu', state: 'Tamil Nadu', city: 'Vellore', fees: '₹1.50 Lakhs (1st Year Fees)', feesCategory: '< 5 Lakhs', numericFees: 150000, tags: ['MBBS', 'Nursing', 'BDS'], placement: '₹8.5 LPA (Avg)', rating: 4.8, reviews: 520, type: 'Private', exams: ['NEET UG'], approved: 'NMC', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80' },
-      { id: 'afmc-pune', name: 'AFMC Pune - Armed Forces Medical College', location: 'Pune, Maharashtra', state: 'Maharashtra', city: 'Pune', fees: '₹64.4k (1st Year Fees)', feesCategory: '< 5 Lakhs', numericFees: 64400, tags: ['MBBS', 'Nursing'], placement: '₹10.0 LPA (Avg)', rating: 4.7, reviews: 410, type: 'Public/Government', exams: ['NEET UG'], approved: 'NMC', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80' }
+      { id: 'aiims-delhi', name: 'AIIMS Delhi - All India Institute of Medical Sciences', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹1.60 Thousands/yr', feesCategory: '< 1 Lakh', numericFees: 1600, tags: ['MBBS', 'MD', 'MS'], placement: '₹12.0 LPA', rating: 4.9, reviews: 750, type: 'Public', exams: ['NEET'], approved: 'MCI', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80', placementPercentage: '100%', estYear: '1956', rank: 1 },
+      { id: 'cmc-vellore', name: 'CMC Vellore - Christian Medical College', location: 'Vellore, Tamil Nadu', state: 'Tamil Nadu', city: 'Vellore', fees: '₹1.50 Lakhs/yr', feesCategory: '1 - 2 Lakhs', numericFees: 150000, tags: ['MBBS', 'Nursing'], placement: '₹10.5 LPA', rating: 4.8, reviews: 520, type: 'Private', exams: ['NEET'], approved: 'MCI', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80', placementPercentage: '99%', estYear: '1900', rank: 3 },
     ]
   };
 
-  // 4. Law Data
-  const lawData = {
-    id: 'law',
-    name: 'Law',
-    title: 'Top Law Institutes in India',
-    description: 'Find the best Law universities in India based on ranking, fees, placements, and reviews.',
-    icon: Scale,
-    stats: { totalColleges: '1,200+', avgPackage: '₹6 - ₹12 LPA', highestPackage: '₹40+ LPA' },
-    filters: {
-      state: ['Karnataka', 'Delhi NCR', 'Telangana', 'West Bengal', 'Maharashtra'],
-      city: ['Bangalore', 'New Delhi', 'Hyderabad', 'Kolkata', 'Pune'],
-      exam: ['CLAT', 'LSAT', 'AILET', 'SLAT', 'MH CET Law'],
-      type: ['Private', 'Public/Government'],
-      fees: ['< 2 Lakhs', '2 - 5 Lakhs', '> 5 Lakhs']
-    },
-    tags: ['BA LLB', 'BBA LLB', 'LLM', 'Corporate Law', 'Criminal Law', 'Cyber Law'],
+  const lawData = { 
+    ...engineeringData, 
+    id: 'law', 
+    name: 'Law', 
+    title: 'Explore Law Academies', 
+    tags: ['BA LLB', 'LLM', 'Corporate Law'],
     topColleges: [
-      { id: 'nlsiu-blr', name: 'NLSIU Bangalore - National Law School', location: 'Bangalore, Karnataka', state: 'Karnataka', city: 'Bangalore', fees: '₹3.30 Lakhs (1st Year Fees)', feesCategory: '2 - 5 Lakhs', numericFees: 330000, tags: ['BA LLB', 'LLM', 'Corporate Law'], placement: '₹16.0 LPA (Avg)', rating: 4.9, reviews: 480, type: 'Public/Government', exams: ['CLAT'], approved: 'BCI, UGC', image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=400&q=80' },
-      { id: 'nlu-delhi', name: 'NLU Delhi - National Law University', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹2.80 Lakhs (1st Year Fees)', feesCategory: '2 - 5 Lakhs', numericFees: 280000, tags: ['BA LLB', 'LLM', 'Criminal Law'], placement: '₹14.0 LPA (Avg)', rating: 4.8, reviews: 390, type: 'Public/Government', exams: ['AILET'], approved: 'BCI, UGC', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80' },
-      { id: 'sls-pune', name: 'Symbiosis Law School', location: 'Pune, Maharashtra', state: 'Maharashtra', city: 'Pune', fees: '₹4.20 Lakhs (1st Year Fees)', feesCategory: '2 - 5 Lakhs', numericFees: 420000, tags: ['BBA LLB', 'Corporate Law', 'Cyber Law'], placement: '₹11.0 LPA (Avg)', rating: 4.6, reviews: 310, type: 'Private', exams: ['SLAT'], approved: 'BCI, UGC', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80' }
+      { id: 'nlsiu-bangalore', name: 'NLSIU Bangalore - National Law School of India', location: 'Bangalore, Karnataka', state: 'Karnataka', city: 'Bangalore', fees: '₹3.20 Lakhs/yr', feesCategory: '3 - 5 Lakhs', numericFees: 320000, tags: ['BA LLB', 'Corporate Law'], placement: '₹16.0 LPA', rating: 4.8, reviews: 310, type: 'Public', exams: ['CLAT'], approved: 'BCI', image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=400&q=80', placementPercentage: '95%', estYear: '1986', rank: 1 },
+      { id: 'nlu-delhi', name: 'NLU Delhi - National Law University', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹1.80 Lakhs/yr', feesCategory: '1 - 2 Lakhs', numericFees: 180000, tags: ['BA LLB', 'LLM'], placement: '₹14.5 LPA', rating: 4.7, reviews: 290, type: 'Public', exams: ['AILET'], approved: 'BCI', image: 'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?auto=format&fit=crop&w=400&q=80', placementPercentage: '92%', estYear: '2008', rank: 2 },
     ]
   };
 
-  if (lowerId.includes('mba') || lowerId.includes('business')) return businessData;
+  const designData = { 
+    ...engineeringData, 
+    id: 'design', 
+    name: 'Design', 
+    title: 'Explore Design Colleges', 
+    tags: ['B.Des', 'M.Des', 'Fashion'],
+    topColleges: [
+      { id: 'nid-ahmedabad', name: 'NID Ahmedabad - National Institute of Design', location: 'Ahmedabad, Gujarat', state: 'Gujarat', city: 'Ahmedabad', fees: '₹3.80 Lakhs/yr', feesCategory: '3 - 5 Lakhs', numericFees: 380000, tags: ['Product Design', 'Animation'], placement: '₹18.0 LPA', rating: 4.8, reviews: 210, type: 'Public', exams: ['NID DAT'], approved: 'UGC', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=400&q=80', placementPercentage: '90%', estYear: '1961', rank: 1 },
+      { id: 'nift-delhi', name: 'NIFT Delhi - National Institute of Fashion Technology', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹2.90 Lakhs/yr', feesCategory: '2 - 3 Lakhs', numericFees: 290000, tags: ['Fashion Design', 'Textile'], placement: '₹8.5 LPA', rating: 4.6, reviews: 340, type: 'Public', exams: ['NIFT Entrance'], approved: 'UGC', image: 'https://images.unsplash.com/photo-1558769132-cb1fac08c04c?auto=format&fit=crop&w=400&q=80', placementPercentage: '88%', estYear: '1986', rank: 1 },
+    ]
+  };
+
+  if (lowerId.includes('mba') || lowerId.includes('business') || lowerId.includes('management')) return businessData;
   if (lowerId.includes('medical') || lowerId.includes('mbbs')) return medicalData;
   if (lowerId.includes('law') || lowerId.includes('llb')) return lawData;
+  if (lowerId.includes('design')) return designData;
   
   return engineeringData;
 };
 
 export default function StreamDetail() {
   const { streamId } = useParams();
+  const navigate = useNavigate();
   const stream = getMockStreamData(streamId);
   
   const [isApplyOpen, setIsApplyOpen] = useState(false);
-  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
-
-  // Filter State
-  const [activeFilters, setActiveFilters] = useState({
-    state: [],
-    city: [],
-    exam: [],
-    type: [],
-    fees: []
-  });
-
-  const [searchQueries, setSearchQueries] = useState({
-    state: '',
-    city: '',
-    exam: ''
-  });
-
-  const [activeTag, setActiveTag] = useState(null);
   const [sortBy, setSortBy] = useState('popularity');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [stateFilter, setStateFilter] = useState('');
+  const [courseFilter, setCourseFilter] = useState(stream.name);
+  const [comparedColleges, setComparedColleges] = useState([]);
 
-  const [collapsedFilters, setCollapsedFilters] = useState({
-    state: false,
-    city: false,
-    exam: false,
-    type: false,
-    fees: false
-  });
-
-  const toggleFilterCollapse = (category) => {
-    setCollapsedFilters(prev => ({
-      ...prev,
-      [category]: !prev[category]
-    }));
-  };
-
-  // Reset filters when stream changes
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    clearFilters();
-    setActiveTag(null);
-    setSortBy('popularity');
-  }, [streamId]);
-
-  const handleFilterChange = (category, value) => {
-    setActiveFilters(prev => {
-      const current = prev[category];
-      if (current.includes(value)) {
-        return { ...prev, [category]: current.filter(item => item !== value) };
+  const handleToggleCompare = (college) => {
+    setComparedColleges((prev) => {
+      const exists = prev.some((c) => c.id === college.id);
+      if (exists) {
+        return prev.filter((c) => c.id !== college.id);
       } else {
-        return { ...prev, [category]: [...current, value] };
+        if (prev.length >= 3) {
+          alert("You can compare up to 3 colleges at a time.");
+          return prev;
+        }
+        return [...prev, college];
       }
     });
   };
 
-  const clearFilters = () => {
-    setActiveFilters({
-      state: [],
-      city: [],
-      exam: [],
-      type: [],
-      fees: []
-    });
+  const handleRemoveCompare = (college) => {
+    setComparedColleges((prev) => prev.filter((c) => c.id !== college.id));
   };
 
-  const handleSearchChange = (category, e) => {
-    setSearchQueries(prev => ({
-      ...prev,
-      [category]: e.target.value.toLowerCase()
-    }));
+  const handleClearAllCompare = () => {
+    setComparedColleges([]);
   };
 
-  // Derived filtered colleges
+  // Sorting and Filtering logic
   const filteredColleges = useMemo(() => {
-    let result = stream.topColleges.filter(college => {
-      if (activeFilters.state.length > 0 && !activeFilters.state.includes(college.state)) return false;
-      if (activeFilters.city.length > 0 && !activeFilters.city.includes(college.city)) return false;
-      if (activeFilters.type.length > 0 && !activeFilters.type.includes(college.type)) return false;
-      if (activeFilters.fees.length > 0 && !activeFilters.fees.includes(college.feesCategory)) return false;
-      if (activeFilters.exam.length > 0 && !college.exams?.some(e => activeFilters.exam.includes(e))) return false;
-      if (activeTag && !college.tags?.includes(activeTag)) return false;
-      return true;
-    });
+    let result = [...stream.topColleges];
+
+    if (searchQuery) {
+      result = result.filter(c => c.name.toLowerCase().includes(searchQuery.toLowerCase()) || c.location.toLowerCase().includes(searchQuery.toLowerCase()));
+    }
+    
+    if (stateFilter) {
+      result = result.filter(c => c.state === stateFilter);
+    }
 
     if (sortBy === 'rating') {
       result.sort((a, b) => b.rating - a.rating);
@@ -214,253 +152,237 @@ export default function StreamDetail() {
       result.sort((a, b) => a.numericFees - b.numericFees);
     } else if (sortBy === 'fees-desc') {
       result.sort((a, b) => b.numericFees - a.numericFees);
-    } else {
-      result.sort((a, b) => b.reviews - a.reviews);
     }
-
     return result;
-  }, [stream.topColleges, activeFilters, activeTag, sortBy]);
+  }, [stream, sortBy, searchQuery, stateFilter]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [streamId]);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans">
-      <Navbar />
-
-      {/* Breadcrumbs */}
-      <div className="bg-white border-b border-slate-200 pt-24 pb-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center text-sm text-slate-500 gap-2 overflow-x-auto whitespace-nowrap hide-scrollbar">
-            <Link to="/" className="hover:text-brand-600 transition-colors">Home</Link>
-            <ChevronRight size={14} />
-            <Link to="/" className="hover:text-brand-600 transition-colors">Streams</Link>
-            <ChevronRight size={14} />
-            <span className="text-slate-900 font-medium">{stream.name}</span>
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-brand-500/30 selection:text-brand-900">
+      
+      {/* Navbar with default light theme */}
+      <Navbar 
+        compareCount={comparedColleges.length} 
+        onCompareClick={() => {
+          // Simply scroll down a bit if they click the compare icon in the header
+          window.scrollTo({ top: 400, behavior: 'smooth' });
+        }}
+      />
+      
+      <main className="flex-1 pb-24">
+        
+        {/* ====================================================
+            HERO BANNER SECTION
+        ==================================================== */}
+        <div className="relative pt-32 pb-20 lg:pt-36 lg:pb-24 overflow-hidden border-b border-white/5">
+          {/* Background Image & Overlay */}
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80" 
+              alt="University Campus" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-slate-900/80"></div>
           </div>
-        </div>
-      </div>
 
-      {/* Hero Section */}
-      <section className="bg-white border-b border-slate-200 py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mx-auto"
+            >
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4">
                 {stream.title}
               </h1>
-              <p className="text-slate-500 text-sm md:text-base max-w-2xl">
+              <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto font-medium">
                 {stream.description}
               </p>
-            </div>
-            <div className="flex gap-4">
-              <div className="bg-brand-50 rounded-xl p-4 text-center border border-brand-100">
-                <p className="text-xl font-bold text-brand-700">{stream.stats.totalColleges}</p>
-                <p className="text-xs font-semibold text-brand-600 uppercase tracking-wide">Colleges</p>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
 
-      {/* Main Layout: Sidebar + Listings */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        {/* Mobile Filter Toggle */}
-        <div className="lg:hidden flex items-center justify-between mb-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <span className="font-bold text-slate-800">Filter Colleges</span>
-          <button 
-            onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-            className="flex items-center gap-2 bg-brand-50 text-brand-600 px-4 py-2 rounded-lg font-semibold"
-          >
-            <Filter size={18} /> Filters
-          </button>
+        {/* ====================================================
+            FILTER BAR
+        ==================================================== */}
+        <div className="bg-white border-b border-slate-200 relative z-20 mb-8 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex flex-col md:flex-row items-center gap-4"
+            >
+            {/* Search */}
+            <div className="flex-1 w-full bg-slate-50 rounded-xl px-4 py-3 flex items-center gap-3 border border-slate-200 focus-within:border-brand-500/50 focus-within:bg-white transition-colors">
+              <Search size={20} className="text-slate-400" />
+              <input 
+                type="text" 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search colleges by name, city, state..."
+                className="w-full bg-transparent border-none outline-none text-slate-900 placeholder:text-slate-500 text-sm font-medium"
+              />
+            </div>
+
+            {/* State Filter */}
+            <div className="w-full md:w-48 relative">
+              <select 
+                value={stateFilter}
+                onChange={(e) => setStateFilter(e.target.value)}
+                className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-900 py-3 pl-4 pr-10 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500/50 cursor-pointer"
+              >
+                <option value="">All States</option>
+                {stream.filters.state.map(state => <option key={state} value={state}>{state}</option>)}
+              </select>
+              <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+            </div>
+
+            {/* Course Filter */}
+            <div className="w-full md:w-48 relative">
+              <select 
+                value={stream.name}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  let route = 'engineering';
+                  if (val === 'Management') route = 'management';
+                  if (val === 'Medical Science') route = 'medical';
+                  if (val === 'Law') route = 'law';
+                  if (val === 'Design') route = 'design';
+                  // Navigate and scroll to top
+                  navigate(`/stream/${route}`);
+                }}
+                className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-900 py-3 pl-4 pr-10 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500/50 cursor-pointer"
+              >
+                <option value="Engineering">Engineering</option>
+                <option value="Management">MBA</option>
+                <option value="Medical Science">Medical</option>
+                <option value="Law">Law</option>
+                <option value="Design">Design</option>
+              </select>
+              <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+            </div>
+
+            {/* Clear Button */}
+            <button 
+              onClick={() => { setSearchQuery(''); setStateFilter(''); }}
+              className="w-full md:w-auto px-6 py-3 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl text-sm font-bold transition-colors border border-slate-200 whitespace-nowrap"
+            >
+              Clear
+            </button>
+            </motion.div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          
-          {/* Left Sidebar - Filters */}
-          <div className={`lg:col-span-1 space-y-6 ${mobileFilterOpen ? 'block' : 'hidden lg:block'}`}>
-            <div className="bg-white border border-slate-200 rounded-2xl p-5 lg:sticky lg:top-24 shadow-sm max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
-                <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                  <Filter size={20} className="text-brand-600" /> Filters
-                </h2>
-                <button 
-                  onClick={clearFilters}
-                  className="text-sm font-semibold text-brand-600 hover:text-brand-700"
-                >
-                  Clear All
-                </button>
-              </div>
-
-              {/* Dynamic Filter Sections based on Stream */}
-              {Object.entries(stream.filters).map(([key, options]) => {
-                // Apply search filter if applicable
-                const visibleOptions = (key === 'state' || key === 'city' || key === 'exam') 
-                  ? options.filter(opt => opt.toLowerCase().includes(searchQueries[key]))
-                  : options;
-
-                return (
-                  <div key={key} className="mb-6 last:mb-0">
-                    <button 
-                      onClick={() => toggleFilterCollapse(key)}
-                      className="w-full font-bold text-slate-800 uppercase tracking-wider text-xs mb-3 flex items-center justify-between hover:text-brand-600 transition-colors"
-                    >
-                      {key} <ChevronDown size={14} className={`text-slate-400 transition-transform duration-300 ${collapsedFilters[key] ? 'rotate-180' : ''}`} />
-                    </button>
-                    
-                    <div className={`transition-all duration-300 overflow-hidden ${collapsedFilters[key] ? 'max-h-0 opacity-0 hidden' : 'max-h-[500px] opacity-100 block'}`}>
-                      {/* Small Search for State/City/Exam */}
-                      {(key === 'state' || key === 'city' || key === 'exam') && (
-                        <div className="relative mb-3">
-                          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                          <input 
-                            type="text" 
-                            placeholder={`Search ${key}...`} 
-                            value={searchQueries[key]}
-                            onChange={(e) => handleSearchChange(key, e)}
-                            className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-500"
-                          />
-                        </div>
-                      )}
-
-                      <div className="space-y-2.5 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
-                        {visibleOptions.length > 0 ? visibleOptions.map((opt, i) => (
-                          <label key={i} className="flex items-center gap-3 cursor-pointer group">
-                            <div className="relative flex items-center justify-center">
-                              <input 
-                                type="checkbox" 
-                                checked={activeFilters[key].includes(opt)}
-                                onChange={() => handleFilterChange(key, opt)}
-                                className="w-4 h-4 border-slate-300 rounded text-brand-600 focus:ring-brand-500 peer" 
-                              />
-                            </div>
-                            <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors">{opt}</span>
-                          </label>
-                        )) : (
-                          <p className="text-xs text-slate-400">No matches found.</p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right Column - College Listings */}
-          <div className="lg:col-span-3 space-y-6">
+        {/* ====================================================
+            RESULTS HEADER
+        ==================================================== */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pb-6 border-b border-slate-200">
+            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <Sparkles className="text-brand-600" size={20} />
+              Showing <span className="text-brand-600">{filteredColleges.length}</span> Colleges
+            </h2>
             
-            {/* Quick Specialization Tags */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 hide-scrollbar">
-              {stream.tags.map((tag, i) => (
-                <button 
-                  key={i} 
-                  onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                  className={`whitespace-nowrap px-4 py-2 border rounded-full text-sm font-medium transition-colors shadow-sm ${activeTag === tag ? 'bg-brand-600 text-white border-brand-600' : 'bg-white border-slate-200 text-slate-600 hover:border-brand-600 hover:text-brand-600'}`}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-
-            {/* Sort & Count Header */}
-            <div className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-              <p className="text-sm text-slate-500 font-medium">Found <span className="font-bold text-slate-900">{filteredColleges.length}</span> Colleges</p>
-              <div className="flex items-center gap-3">
-                <span className="hidden sm:inline text-sm text-slate-500">Sort By:</span>
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-slate-500 font-medium hidden sm:block">Sort By:</span>
+              <div className="relative">
                 <select 
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="text-sm font-semibold text-slate-900 bg-slate-50 border border-slate-200 py-1.5 px-3 rounded-lg focus:outline-none focus:border-brand-500"
+                  className="appearance-none bg-white border border-slate-200 text-slate-900 py-2 pl-4 pr-10 rounded-lg text-sm font-medium focus:outline-none focus:border-brand-500/50 cursor-pointer shadow-sm"
                 >
                   <option value="popularity">Popularity</option>
-                  <option value="rating">Rating (High to Low)</option>
-                  <option value="fees-asc">Fees (Low to High)</option>
-                  <option value="fees-desc">Fees (High to Low)</option>
+                  <option value="highest-package">Highest Package</option>
+                  <option value="fees-asc">Lowest Fees</option>
+                  <option value="rating">Top Rated</option>
                 </select>
+                <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
               </div>
             </div>
-
-            {/* College Cards List */}
-            <div className="space-y-5">
-              {filteredColleges.length > 0 ? filteredColleges.map((college, i) => (
-                <div key={i} className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col md:flex-row">
-                  
-                  {/* Image/Logo area (Left) */}
-                  <div className="md:w-64 h-48 md:h-auto relative bg-slate-100 flex-shrink-0">
-                    <img src={college.image} alt={college.name} className="w-full h-full object-cover" />
-                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 flex items-center gap-1 shadow-sm">
-                       <Star size={12} className="text-orange-500 fill-orange-500" /> {college.rating} ({college.reviews})
-                    </div>
-                  </div>
-
-                  {/* Content Area (Right) */}
-                  <div className="p-5 md:p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-start gap-4 mb-2">
-                        <Link to={`/colleges/${college.id}`} className="hover:text-brand-600 transition-colors">
-                          <h3 className="text-xl font-bold text-slate-900 leading-tight">{college.name}</h3>
-                        </Link>
-                      </div>
-                      
-                      <div className="flex items-center gap-4 text-sm text-slate-500 mb-4 flex-wrap">
-                        <span className="flex items-center gap-1"><MapPin size={14} className="text-slate-400" /> {college.location}</span>
-                        <span className="flex items-center gap-1"><ShieldCheck size={14} className="text-green-500" /> {college.approved}</span>
-                        <span className="flex items-center gap-1"><Building2 size={14} className="text-blue-500" /> {college.type}</span>
-                      </div>
-
-                      <div className="flex items-center gap-4 sm:gap-6 mb-6">
-                        <div className="bg-brand-50/50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-brand-100 flex-1">
-                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-brand-600/70 mb-0.5 flex items-center gap-1"><Banknote size={12}/> First Year Fees</p>
-                          <p className="font-black text-brand-900 text-sm sm:text-base">{college.fees}</p>
-                        </div>
-                        <div className="bg-emerald-50/50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-emerald-100 flex-1">
-                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-emerald-600/70 mb-0.5 flex items-center gap-1"><Award size={12}/> Average Package</p>
-                          <p className="font-black text-emerald-900 text-sm sm:text-base">{college.placement}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-slate-100">
-                      <button onClick={() => setIsApplyOpen(true)} className="w-full sm:flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-sm">
-                        Apply Now <ArrowRight size={16} />
-                      </button>
-                      <button className="w-full sm:flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
-                        <Download size={16} /> Download Brochure
-                      </button>
-                    </div>
-                  </div>
-
-                </div>
-              )) : (
-                <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center shadow-sm">
-                  <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
-                    <Search size={24} />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">No colleges found</h3>
-                  <p className="text-slate-500 mb-6">Try adjusting your filters or search criteria.</p>
-                  <button 
-                    onClick={clearFilters}
-                    className="bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold py-2.5 px-6 rounded-xl transition-colors"
-                  >
-                    Clear All Filters
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Pagination / Load More */}
-            {filteredColleges.length > 0 && (
-              <div className="py-8 text-center">
-                <button className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold py-3 px-8 rounded-xl shadow-sm transition-colors inline-flex items-center gap-2">
-                  Load More Colleges <ChevronDown size={18} />
-                </button>
-              </div>
-            )}
-
           </div>
         </div>
-      </section>
 
+        {/* ====================================================
+            COLLEGE LISTING GRID
+        ==================================================== */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredColleges.length > 0 ? filteredColleges.map((college, i) => (
+              <DarkPremiumCollegeCard 
+                key={i}
+                college={college}
+                streamName={stream.name}
+                onCompareClick={() => handleToggleCompare(college)}
+              />
+            )) : (
+              <div className="col-span-full py-20 text-center bg-white rounded-[2rem] border border-slate-200 shadow-sm">
+                <Search size={48} className="mx-auto text-slate-300 mb-4" />
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">No colleges found</h3>
+                <p className="text-slate-500">Try adjusting your filters to discover more institutions.</p>
+              </div>
+            )}
+          </div>
+
+          {/* ====================================================
+              PAGINATION
+          ==================================================== */}
+          {filteredColleges.length > 0 && (
+            <div className="mt-16 flex justify-center gap-2">
+              <button className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors shadow-sm">1</button>
+              <button className="w-10 h-10 rounded-xl bg-brand-600 text-white font-bold shadow-[0_0_15px_rgba(37,99,235,0.4)]">2</button>
+              <button className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors shadow-sm">3</button>
+              <span className="w-10 h-10 flex items-center justify-center text-slate-400 font-bold">...</span>
+              <button className="px-4 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors shadow-sm flex items-center gap-1">
+                Next <ChevronRight size={16} />
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* ====================================================
+            COUNSELLING CTA SECTION
+        ==================================================== */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-32">
+          <div className="relative bg-gradient-brand rounded-[2.5rem] border border-brand-500/20 p-10 md:p-16 overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-10">
+            {/* Particles / Glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] pointer-events-none"></div>
+            
+            <div className="relative z-10 max-w-xl text-center md:text-left">
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight drop-shadow-md">
+                Need Help Choosing The Right College?
+              </h2>
+              <p className="text-brand-100 text-lg mb-8 font-medium">
+                Our expert counselors are here to guide you through the admission process, scholarships, and career choices.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <button 
+                  onClick={() => setIsApplyOpen(true)}
+                  className="px-8 py-4 bg-white hover:bg-slate-50 text-brand-700 font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2"
+                >
+                  Book Free Counselling <ArrowRight size={18} />
+                </button>
+                <button className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl border border-white/20 transition-all flex items-center justify-center gap-2 backdrop-blur-md">
+                  <PhoneCall size={18} /> Talk To Expert
+                </button>
+              </div>
+            </div>
+
+            <div className="relative z-10 hidden md:block">
+              <div className="w-64 h-64 bg-white/10 rounded-full border-8 border-white/20 flex items-center justify-center relative overflow-hidden shadow-2xl backdrop-blur-md">
+                <MessageCircle size={80} className="text-white" />
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-xl z-20 border-4 border-brand-600">
+                  <span className="text-3xl font-black text-brand-600">24/7</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
 
       <Footer />
 
@@ -468,6 +390,13 @@ export default function StreamDetail() {
         isOpen={isApplyOpen}
         onClose={() => setIsApplyOpen(false)}
       />
+
+      <CompareDrawer 
+        comparedColleges={comparedColleges}
+        onRemove={handleRemoveCompare}
+        onClearAll={handleClearAllCompare}
+      />
+
     </div>
   );
 }

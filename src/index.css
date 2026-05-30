@@ -5,15 +5,18 @@
   --font-sans: "Plus Jakarta Sans", sans-serif;
   --font-display: "Outfit", sans-serif;
 
-  --color-brand-50: #f0f7ff;
-  --color-brand-100: #e0effe;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
-  --color-brand-purple: #8b5cf6;
-  --color-brand-indigo: #6366f1;
+  --color-brand-50: #f0fdf4;
+  --color-brand-100: #dcfce7;
+  --color-brand-200: #bbf7d0;
+  --color-brand-300: #86efac;
+  --color-brand-400: #4ade80;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-brand-800: #065f46;
+  --color-brand-900: #064e3b;
+  --color-brand-purple: #14b8a6;
+  --color-brand-indigo: #0d9488;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-delayed: float-delayed 8s ease-in-out infinite;
@@ -63,8 +66,8 @@ body {
 
 .glass-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.08);
-  border-color: rgba(59, 130, 246, 0.2);
+  box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.2);
 }
 
 /* Scrollbar Styles */
@@ -103,7 +106,7 @@ body {
 }
 
 .bg-gradient-premium {
-  background: linear-gradient(135deg, #eff6ff 0%, #faf5ff 50%, #ffffff 100%);
+  background: linear-gradient(135deg, #f0fdf4 0%, #f0fdfa 50%, #ffffff 100%);
 }
 
 .bg-gradient-brand {
@@ -111,7 +114,7 @@ body {
 }
 
 .bg-gradient-brand-dark {
-  background: linear-gradient(135deg, var(--color-brand-700) 0%, #6d28d9 100%);
+  background: linear-gradient(135deg, var(--color-brand-700) 0%, #064e3b 100%);
 }
 
 /* Swiper overrides for premium indicators */

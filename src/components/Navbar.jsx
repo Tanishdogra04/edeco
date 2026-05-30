@@ -7,7 +7,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
 
-export default function Navbar({ onCounsellingClick, onCompareClick, compareCount }) {
+export default function Navbar({ onCounsellingClick, onCompareClick, compareCount, darkTheme = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -127,7 +127,7 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
   return (
     <>
       <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
-          ? 'bg-white/85 backdrop-blur-md border-b border-slate-100 shadow-sm py-3'
+          ? (darkTheme ? 'bg-slate-950/85 backdrop-blur-md border-b border-white/10 shadow-sm py-3' : 'bg-white/85 backdrop-blur-md border-b border-slate-100 shadow-sm py-3')
           : 'bg-transparent py-5'
         }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -148,7 +148,7 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
               </div>
               <span className="font-display font-bold text-xl tracking-tight">
                 <span className="text-gradient">Ed</span>
-                <span className="text-slate-800">Evolving</span>
+                <span className={darkTheme ? "text-white" : "text-slate-800"}>Evolving</span>
               </span>
             </div>
 
@@ -162,7 +162,7 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
                     onMouseEnter={() => handleDropdownHover(key)}
                     onMouseLeave={handleDropdownLeave}
                   >
-                    <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[15px] font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition-all duration-200">
+                    <button className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-[15px] font-medium transition-all duration-200 ${darkTheme ? 'text-slate-300 hover:text-orange-400 hover:bg-white/5' : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'}`}>
                       <span>{item.title}</span>
                       <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === key ? 'rotate-180' : ''}`} />
                     </button>
@@ -262,7 +262,7 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
 
               <button
                 onClick={onCompareClick}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[15px] font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition-all duration-200"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[15px] font-medium transition-all duration-200 ${darkTheme ? 'text-slate-300 hover:text-orange-400 hover:bg-white/5' : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'}`}
               >
                 <span>Compare</span>
                 {compareCount > 0 && (
@@ -272,14 +272,14 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
                 )}
               </button>
 
-              <Link to="/contact" className="px-3 py-1.5 rounded-lg text-[15px] font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition-all">
+              <Link to="/contact" className={`px-3 py-1.5 rounded-lg text-[15px] font-medium transition-all ${darkTheme ? 'text-slate-300 hover:text-orange-400 hover:bg-white/5' : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'}`}>
                 Contact
               </Link>
             </div>
 
             {/* Navbar actions */}
             <div className="hidden lg:flex items-center gap-4">
-              <Link to="/login" className="flex items-center gap-1.5 text-[15px] font-semibold text-slate-700 hover:text-brand-600 transition-colors py-2 px-3">
+              <Link to="/login" className={`flex items-center gap-1.5 text-[15px] font-semibold transition-colors py-2 px-3 ${darkTheme ? 'text-slate-200 hover:text-orange-400' : 'text-slate-700 hover:text-brand-600'}`}>
                 <LogIn size={16} />
                 <span>Login</span>
               </Link>
@@ -300,7 +300,7 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
             <div className="flex items-center gap-3 lg:hidden">
               <button
                 onClick={onCompareClick}
-                className="relative p-2 rounded-xl text-slate-600 hover:text-brand-600 hover:bg-slate-50"
+                className={`relative p-2 rounded-xl transition-colors ${darkTheme ? 'text-slate-300 hover:text-orange-400 hover:bg-white/5' : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'}`}
               >
                 <GitCompare size={20} />
                 {compareCount > 0 && (
@@ -312,7 +312,7 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
 
               <button
                 onClick={toggleMenu}
-                className="p-2 rounded-xl text-slate-700 hover:text-brand-600 hover:bg-slate-50 transition-colors"
+                className={`p-2 rounded-xl transition-colors ${darkTheme ? 'text-slate-200 hover:text-orange-400 hover:bg-white/5' : 'text-slate-700 hover:text-brand-600 hover:bg-slate-50'}`}
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>

@@ -275,7 +275,7 @@ export default function NewsDetail() {
 
       {/* Reading Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-500 to-purple-500 origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-500 to-brand-purple origin-left z-50"
         style={{ scaleX }}
       />
 
@@ -341,7 +341,7 @@ export default function NewsDetail() {
 
             {/* Right Hero Image */}
             <div className="lg:col-span-6 relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-brand-500/20 to-purple-500/20 blur-3xl -z-10 rounded-full scale-110"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-500/20 to-brand-purple/20 blur-3xl -z-10 rounded-full scale-110"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-100 transform rotate-1 hover:rotate-0 transition-transform duration-500 bg-white p-2">
                 <img src={article.image} alt={article.title} className="w-full h-[400px] object-cover rounded-2xl" />
               </div>

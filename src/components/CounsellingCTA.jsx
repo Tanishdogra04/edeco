@@ -109,7 +109,7 @@ export default function CounsellingCTA({ onCounsellingClick }) {
 
                   {/* Expert card 2 */}
                   <div className="flex items-center gap-3 p-3 bg-white/5 rounded-2xl border border-white/5">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center text-xs font-bold text-white">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-400 to-teal-500 flex items-center justify-center text-xs font-bold text-white">
                       RK
                     </div>
                     <div className="flex-1">

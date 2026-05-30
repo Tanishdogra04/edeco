@@ -47,7 +47,7 @@ export default function Stats() {
       suffix: "+",
       desc: "Top Universities nationwide", 
       icon: School, 
-      color: "bg-blue-50 text-blue-600 border-blue-100/50" 
+      color: "bg-emerald-50 text-emerald-600 border-emerald-100/50" 
     },
     { 
       label: "Students Guided", 
@@ -55,7 +55,7 @@ export default function Stats() {
       suffix: "K+",
       desc: "Admissions finalized", 
       icon: Users, 
-      color: "bg-purple-50 text-purple-600 border-purple-100/50" 
+      color: "bg-teal-50 text-teal-600 border-teal-100/50" 
     },
     { 
       label: "Expert Counsellors", 
@@ -63,7 +63,7 @@ export default function Stats() {
       suffix: "+",
       desc: "Industry-certified guides", 
       icon: UserCheck, 
-      color: "bg-indigo-50 text-indigo-600 border-indigo-100/50" 
+      color: "bg-lime-50 text-lime-600 border-lime-100/50" 
     },
     { 
       label: "Success Rate", 
@@ -71,7 +71,7 @@ export default function Stats() {
       suffix: "%",
       desc: "Top preference college matches", 
       icon: Award, 
-      color: "bg-emerald-50 text-emerald-600 border-emerald-100/50" 
+      color: "bg-green-50 text-green-600 border-green-100/50" 
     }
   ];
 

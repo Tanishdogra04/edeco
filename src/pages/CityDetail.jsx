@@ -17,10 +17,10 @@ import CounsellingModal from '../components/CounsellingModal';
 const categories = ['Engineering', 'MBA', 'Medical', 'Law', 'Design', 'Commerce', 'Science', 'Arts'];
 
 const stats = [
-  { label: "Total Colleges", value: "500+", icon: Building2, color: "text-blue-500", bg: "bg-blue-50" },
-  { label: "Engineering", value: "120+", icon: GraduationCap, color: "text-purple-500", bg: "bg-purple-50" },
-  { label: "Highest Package", value: "₹54 LPA", icon: TrendingUp, color: "text-emerald-500", bg: "bg-emerald-50" },
-  { label: "Top Recruiters", value: "200+", icon: Briefcase, color: "text-orange-500", bg: "bg-orange-50" },
+  { label: "Total Colleges", value: "500+", icon: Building2, color: "text-emerald-600", bg: "bg-emerald-50" },
+  { label: "Engineering", value: "120+", icon: GraduationCap, color: "text-teal-600", bg: "bg-teal-50" },
+  { label: "Highest Package", value: "₹54 LPA", icon: TrendingUp, color: "text-green-600", bg: "bg-green-50" },
+  { label: "Top Recruiters", value: "200+", icon: Briefcase, color: "text-lime-600", bg: "bg-lime-50" },
 ];
 
 const getMockColleges = (city, category) => [
@@ -29,7 +29,7 @@ const getMockColleges = (city, category) => [
     name: `Indian Institute of Technology (IIT) ${city}`,
     location: `${city}, India`,
     image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=IIT+${city}&background=0D8ABC&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=IIT+${city}&background=059669&color=fff`,
     description: `Premier ${category.toLowerCase()} institute in ${city} with global recognition and top-tier placement records.`,
     nirf: 1,
     avgPackage: "₹25.5 LPA",
@@ -43,7 +43,7 @@ const getMockColleges = (city, category) => [
     name: `${city} College of ${category}`,
     location: `Central District, ${city}`,
     image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=C${category.charAt(0)}&background=7E22CE&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=C${category.charAt(0)}&background=0d9488&color=fff`,
     description: `Top private ${category.toLowerCase()} college in ${city} known for excellence in education.`,
     nirf: 89,
     avgPackage: "₹12.4 LPA",
@@ -57,7 +57,7 @@ const getMockColleges = (city, category) => [
     name: `${city} ${category} University`,
     location: `University Road, ${city}`,
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=U&background=E11D48&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=U&background=10b981&color=fff`,
     description: `Leading private university offering multi-disciplinary programs with industry tie-ups in ${city}.`,
     nirf: 100,
     avgPackage: "₹10.8 LPA",
@@ -85,7 +85,7 @@ const getMockColleges = (city, category) => [
     name: `${city} Institute of ${category}`,
     location: `Tech Park, ${city}`,
     image: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=IT&background=D97706&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=IT&background=84cc16&color=fff`,
     description: `One of the oldest and most respected ${category.toLowerCase()} colleges in ${city}.`,
     nirf: 73,
     avgPackage: "₹9.2 LPA",
@@ -99,7 +99,7 @@ const getMockColleges = (city, category) => [
     name: `Symbiosis Institute of ${category === 'MBA' ? 'Business Management' : category} ${city}`,
     location: `Electronic City, ${city}`,
     image: "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=SI&background=2563EB&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=SI&background=047857&color=fff`,
     description: `Premier institute offering world-class ${category.toLowerCase()} education and corporate exposure in ${city}.`,
     nirf: 35,
     avgPackage: "₹18.5 LPA",

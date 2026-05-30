@@ -404,7 +404,7 @@ export default function CourseDetail() {
                       <div className="flex items-center gap-4 text-sm text-slate-500 mb-4 flex-wrap">
                         <span className="flex items-center gap-1"><MapPin size={14} className="text-slate-400" /> {college.location}</span>
                         <span className="flex items-center gap-1"><ShieldCheck size={14} className="text-green-500" /> {college.approved}</span>
-                        <span className="flex items-center gap-1"><Building2 size={14} className="text-blue-500" /> {college.type}</span>
+                        <span className="flex items-center gap-1"><Building2 size={14} className="text-emerald-500" /> {college.type}</span>
                       </div>
 
                       <div className="flex items-center gap-4 sm:gap-6 mb-6">

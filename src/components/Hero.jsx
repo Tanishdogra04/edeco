@@ -297,7 +297,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                 <div className="flex items-center justify-between p-2.5 bg-slate-50/50 rounded-2xl border border-slate-100">
                   <div className="flex items-center gap-2">
                     <div className="relative">
-                      <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-xs font-bold text-indigo-700">
+                      <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-xs font-bold text-emerald-700">
                         SK
                       </div>
                       <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></div>

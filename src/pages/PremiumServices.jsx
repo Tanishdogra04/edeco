@@ -18,8 +18,8 @@ export default function PremiumServices() {
       icon: BrainCircuit,
       title: 'AI College Finder',
       description: 'Our proprietary algorithm analyzes your profile, scores, and preferences to predict admission chances with 94% accuracy.',
-      color: 'text-purple-500',
-      bg: 'bg-purple-500/10'
+      color: 'text-teal-600',
+      bg: 'bg-teal-50'
     },
     {
       icon: PhoneCall,

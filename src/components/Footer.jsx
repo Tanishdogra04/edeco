@@ -69,35 +69,35 @@ export default function Footer() {
   };
 
   return (
-    <footer id="footer" className="bg-slate-950 text-slate-400 pt-20 pb-28 lg:pb-16 border-t border-slate-900 relative overflow-hidden">
+    <footer id="footer" className="bg-slate-50 text-slate-500 pt-20 pb-28 lg:pb-16 border-t border-slate-200 relative overflow-hidden">
 
       {/* Top Border Glow Line */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-500/30 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent"></div>
 
       {/* Decorative Glows */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-brand-purple/5 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-brand-purple/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Top Section: Brand & Newsletter Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-16 border-b border-slate-900 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-16 border-b border-slate-200 items-start">
 
           {/* Logo & Value Proposition */}
           <div className="lg:col-span-5 text-left space-y-6">
             <div 
-              className="inline-flex items-center gap-2.5 cursor-pointer px-4 py-2 rounded-full bg-slate-900/40 hover:bg-slate-900/80 border border-slate-800/40 hover:border-slate-850 transition-all duration-300 group" 
+              className="inline-flex items-center gap-2.5 cursor-pointer px-4 py-2 rounded-full bg-white hover:bg-slate-100 border border-slate-200/60 shadow-sm transition-all duration-300 group" 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <div className="w-9 h-9 rounded-full bg-gradient-brand flex items-center justify-center text-white shadow-lg shadow-brand-500/10 group-hover:scale-105 transition-transform duration-300">
                 <GraduationCap size={20} />
               </div>
               <span className="font-display font-bold text-xl tracking-tight">
-                <span className="text-white group-hover:text-brand-400 transition-colors">Ed</span>
+                <span className="text-slate-800 group-hover:text-brand-600 transition-colors">Ed</span>
                 <span className="text-gradient">Evolving</span>
               </span>
             </div>
-            <p className="text-sm text-slate-400 max-w-sm font-medium leading-relaxed">
+            <p className="text-sm text-slate-500 max-w-sm font-medium leading-relaxed">
               India's leading career matching ecosystem. We pair student goals with college statistics using deep recruitment analytics, personalized guidance, and modern technology.
             </p>
 
@@ -116,7 +116,7 @@ export default function Footer() {
                     href={soc.href}
                     title={soc.name}
                     aria-label={`Follow us on ${soc.name}`}
-                    className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-gradient-brand text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-brand-500/10 border border-slate-800"
+                    className="w-9 h-9 rounded-xl bg-white hover:bg-gradient-brand text-slate-500 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-brand-500/10 border border-slate-200 shadow-sm"
                   >
                     <Icon />
                   </a>
@@ -127,29 +127,29 @@ export default function Footer() {
 
           {/* Newsletter subscription Card */}
           <div className="lg:col-span-7 text-left w-full">
-            <div className="relative overflow-hidden bg-slate-900/40 backdrop-blur-md border border-slate-900 p-6 sm:p-8 rounded-3xl shadow-2xl max-w-xl lg:ml-auto">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-purple/10 rounded-full blur-2xl"></div>
+            <div className="relative overflow-hidden bg-white border border-slate-200/80 p-6 sm:p-8 rounded-3xl shadow-lg max-w-xl lg:ml-auto">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-purple/20 rounded-full blur-2xl"></div>
               <div className="relative z-10 space-y-4">
                 <div className="flex items-center gap-2">
-                  <span className="p-1.5 rounded-lg bg-brand-500/10 text-brand-400">
+                  <span className="p-1.5 rounded-lg bg-brand-50 text-brand-600">
                     <Mail size={16} />
                   </span>
-                  <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">
+                  <h4 className="text-sm font-bold text-slate-800 uppercase tracking-widest">
                     Admission Alerts & Newsletter
                   </h4>
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">
                   Stay updated with deadlines, cutoffs, exam schedules, and exclusive tips. No spam, unsubscribe anytime.
                 </p>
-                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 bg-slate-950/80 border border-slate-800 p-1.5 rounded-2xl focus-within:border-brand-500/50 transition-colors">
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 bg-white border border-slate-200 p-1.5 rounded-2xl focus-within:border-brand-500/50 transition-colors shadow-sm">
                   <div className="flex-1 flex items-center gap-2.5 px-3 py-2 text-slate-400">
-                    <Mail size={16} className="text-slate-500" />
+                    <Mail size={16} className="text-slate-400" />
                     <input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address"
-                      className="w-full bg-transparent text-sm text-slate-200 outline-none placeholder-slate-500 font-medium"
+                      className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder-slate-400 font-medium"
                       required
                     />
                   </div>
@@ -159,7 +159,7 @@ export default function Footer() {
                   >
                     {subscribed ? (
                       <>
-                        <ShieldCheck size={14} className="animate-bounce" />
+                         <ShieldCheck size={14} className="animate-bounce" />
                         <span>Subscribed</span>
                       </>
                     ) : (
@@ -177,21 +177,21 @@ export default function Footer() {
         </div>
 
         {/* Stats Row Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 py-12 border-b border-slate-900 text-left">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 py-12 border-b border-slate-200 text-left">
           {[
             { icon: Star, value: "4.9/5", label: "Student Rating", color: "text-amber-500" },
-            { icon: Building2, value: "500+", label: "Partner Colleges", color: "text-blue-500" },
-            { icon: Users, value: "2.5M+", label: "Annual Aspirants", color: "text-purple-500" },
+            { icon: Building2, value: "500+", label: "Partner Colleges", color: "text-emerald-500" },
+            { icon: Users, value: "2.5M+", label: "Annual Aspirants", color: "text-lime-500" },
             { icon: Sparkles, value: "100% Free", label: "Expert Counseling", color: "text-emerald-500" }
           ].map((stat, idx) => {
             const StatIcon = stat.icon;
             return (
-              <div key={idx} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-900/20 transition-colors duration-300">
-                <div className={`p-3 rounded-xl bg-slate-900 border border-slate-800/80 ${stat.color}`}>
+              <div key={idx} className="flex items-center gap-4 p-4 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300">
+                <div className={`p-3 rounded-xl bg-white border border-slate-200/60 shadow-sm ${stat.color}`}>
                   <StatIcon size={20} />
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-white font-display tracking-tight">{stat.value}</div>
+                  <div className="text-lg font-bold text-slate-900 font-display tracking-tight">{stat.value}</div>
                   <div className="text-xs text-slate-500 font-semibold">{stat.label}</div>
                 </div>
               </div>
@@ -204,13 +204,13 @@ export default function Footer() {
 
           {/* Colleges links */}
           <div className="space-y-5">
-            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-widest">Top Domains</h4>
+            <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest">Top Domains</h4>
             <ul className="space-y-3">
               {footerLinks.colleges.map((item, idx) => (
                 <li key={idx}>
                   <a
                     href={item.href}
-                    className="group flex items-center gap-1.5 text-xs text-slate-500 hover:text-white transition-all duration-300 hover:translate-x-1"
+                    className="group flex items-center gap-1.5 text-xs text-slate-600 hover:text-brand-600 transition-all duration-300 hover:translate-x-1"
                   >
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 text-brand-500 transition-all duration-300 -ml-3 group-hover:ml-0" />
                     <span>{item.name}</span>
@@ -227,13 +227,13 @@ export default function Footer() {
 
           {/* Exams links */}
           <div className="space-y-5">
-            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-widest">National Exams</h4>
+            <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest">National Exams</h4>
             <ul className="space-y-3">
               {footerLinks.exams.map((item, idx) => (
                 <li key={idx}>
                   <a
                     href={item.href}
-                    className="group flex items-center gap-1.5 text-xs text-slate-500 hover:text-white transition-all duration-300 hover:translate-x-1"
+                    className="group flex items-center gap-1.5 text-xs text-slate-600 hover:text-brand-600 transition-all duration-300 hover:translate-x-1"
                   >
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 text-brand-500 transition-all duration-300 -ml-3 group-hover:ml-0" />
                     <span>{item.name}</span>
@@ -250,13 +250,13 @@ export default function Footer() {
 
           {/* Courses links */}
           <div className="space-y-5">
-            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-widest">Hot Courses</h4>
+            <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest">Hot Courses</h4>
             <ul className="space-y-3">
               {footerLinks.courses.map((item, idx) => (
                 <li key={idx}>
                   <a
                     href={item.href}
-                    className="group flex items-center gap-1.5 text-xs text-slate-500 hover:text-white transition-all duration-300 hover:translate-x-1"
+                    className="group flex items-center gap-1.5 text-xs text-slate-650 hover:text-brand-600 transition-all duration-300 hover:translate-x-1"
                   >
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 text-brand-500 transition-all duration-300 -ml-3 group-hover:ml-0" />
                     <span>{item.name}</span>
@@ -273,10 +273,10 @@ export default function Footer() {
 
           {/* Contact details */}
           <div className="space-y-5">
-            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-widest">Contact & Office</h4>
+            <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest">Contact & Office</h4>
             <ul className="space-y-4 text-xs text-slate-500 font-medium">
               <li className="flex items-start gap-2.5">
-                <div className="p-1 rounded-lg bg-slate-900 text-slate-400 border border-slate-800 mt-0.5">
+                <div className="p-1 rounded-lg bg-brand-50 text-brand-600 border border-brand-100 mt-0.5">
                   <MapPin size={14} />
                 </div>
                 <span className="leading-relaxed">
@@ -286,16 +286,16 @@ export default function Footer() {
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
-                <div className="p-1 rounded-lg bg-slate-900 text-slate-400 border border-slate-800">
+                <div className="p-1 rounded-lg bg-brand-50 text-brand-600 border border-brand-100">
                   <Phone size={14} />
                 </div>
                 <span>+91 80 4912 3456</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <div className="p-1 rounded-lg bg-slate-900 text-slate-400 border border-slate-800">
+                <div className="p-1 rounded-lg bg-brand-50 text-brand-600 border border-brand-100">
                   <Mail size={14} />
                 </div>
-                <span className="hover:text-white transition-colors cursor-pointer">guidance@edevolving.edu</span>
+                <span className="hover:text-brand-600 transition-colors cursor-pointer">guidance@edevolving.edu</span>
               </li>
             </ul>
           </div>
@@ -303,9 +303,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section: Socials & Copyright */}
-        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
 
-          <div className="text-xs text-slate-600 font-semibold flex items-center gap-1">
+          <div className="text-xs text-slate-500 font-semibold flex items-center gap-1">
             <span>© 2026 EdEvolving Platforms Pvt Ltd. Built with</span>
             <Heart size={10} className="text-rose-500 fill-rose-500 animate-pulse" />
             <span>for Gen-Z Aspirants.</span>
@@ -313,10 +313,10 @@ export default function Footer() {
 
           {/* Scroll to top button */}
           <div className="flex items-center gap-4">
-            <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider hidden sm:inline">Back to Top</span>
+            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider hidden sm:inline">Back to Top</span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="group p-3 rounded-xl bg-slate-900 hover:bg-gradient-brand text-slate-400 hover:text-white border border-slate-800 hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-xl hover:shadow-brand-500/10 cursor-pointer hover:-translate-y-1"
+              className="group p-3 rounded-xl bg-white hover:bg-gradient-brand text-slate-500 hover:text-white border border-slate-200 hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-brand-500/20 cursor-pointer hover:-translate-y-1"
               aria-label="Scroll to top"
             >
               <ArrowUp size={16} className="group-hover:-translate-y-0.5 transition-transform" />

@@ -1,165 +1,255 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, CheckCircle, Clock, AlertCircle, FileText, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ArrowRight, Heart, Bell, Calendar, Monitor, BookOpen, Bookmark, ArrowUpRight, Scale
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function TopExams({ onCounsellingClick }) {
-  const exams = [
-    {
-      id: "jee-main",
-      name: "JEE Main / Advanced",
-      fullForm: "Joint Entrance Examination",
-      date: "Session 1: Jan 2026 | Session 2: Apr 2026",
-      status: "Closed",
-      statusColor: "bg-red-50 text-red-600 border-red-100",
-      result: "Results Declared",
-      resultColor: "bg-emerald-50 text-emerald-700",
-      difficulty: "Very High",
-      applicants: "1.2 Million"
-    },
-    {
-      id: "neet",
-      name: "NEET UG",
-      fullForm: "National Eligibility cum Entrance Test",
-      date: "Exam Date: May 3, 2026",
-      status: "Ongoing",
-      statusColor: "bg-emerald-50 text-emerald-600 border-emerald-100",
-      result: "Answer Key Released",
-      resultColor: "bg-amber-50 text-amber-700",
-      difficulty: "High",
-      applicants: "2.1 Million"
-    },
-    {
-      id: "cat",
-      name: "CAT",
-      fullForm: "Common Admission Test (IIMs)",
-      date: "Registration: Aug - Sep 2026",
-      status: "Upcoming",
-      statusColor: "bg-blue-50 text-blue-600 border-blue-100",
-      result: "Exam in Nov 2026",
-      resultColor: "bg-slate-100 text-slate-700",
-      difficulty: "High",
-      applicants: "250K+"
-    },
-    {
-      id: "cuet",
-      name: "CUET UG",
-      fullForm: "Common University Entrance Test",
-      date: "Exam Dates: May 15 - 31, 2026",
-      status: "Ongoing",
-      statusColor: "bg-emerald-50 text-emerald-600 border-emerald-100",
-      result: "Admit Cards Out",
-      resultColor: "bg-indigo-50 text-indigo-700",
-      difficulty: "Medium",
-      applicants: "1.4 Million"
-    },
-    {
-      id: "gate",
-      name: "GATE",
-      fullForm: "Graduate Aptitude Test in Engineering",
-      date: "Registration starts: Sep 2026",
-      status: "Upcoming",
-      statusColor: "bg-blue-50 text-blue-600 border-blue-100",
-      result: "Exam in Feb 2027",
-      resultColor: "bg-slate-100 text-slate-700",
-      difficulty: "Very High",
-      applicants: "800K+"
-    },
-    {
-      id: "clat",
-      name: "CLAT",
-      fullForm: "Common Law Admission Test",
-      date: "Exam Date: Dec 7, 2026",
-      status: "Upcoming",
-      statusColor: "bg-blue-50 text-blue-600 border-blue-100",
-      result: "Reg. starting July",
-      resultColor: "bg-slate-100 text-slate-700",
-      difficulty: "Medium-High",
-      applicants: "80K+"
-    }
-  ];
+const CATEGORIES = [
+  "All", "Engineering", "Management", "Law", "Medical", "Design", "Science", "Arts"
+];
+
+const EXAMS_DATA = [
+  {
+    id: "jee-main",
+    category: "Engineering",
+    name: "JEE Main",
+    fullTitle: "Joint Entrance Examination Main",
+    desc: "National level exam for admission to NITs, IIITs, and CFTIs across India.",
+    appOpen: "Registration Closed",
+    mode: "Online (CBT)",
+    level: "National Level",
+  },
+  {
+    id: "cat",
+    category: "Management",
+    name: "CAT",
+    fullTitle: "Common Admission Test",
+    desc: "Premier management entrance exam for admission into the prestigious IIMs and other top B-schools.",
+    appOpen: "Aug - Sep 2026",
+    mode: "Online (CBT)",
+    level: "National Level",
+  },
+  {
+    id: "neet",
+    category: "Medical",
+    name: "NEET UG",
+    fullTitle: "National Eligibility cum Entrance Test",
+    desc: "Sole entrance test for admission to MBBS and BDS courses in India.",
+    appOpen: "May 3, 2026",
+    mode: "Pen & Paper",
+    level: "National Level",
+  },
+  {
+    id: "gate",
+    category: "Engineering",
+    name: "GATE",
+    fullTitle: "Graduate Aptitude Test in Engineering",
+    desc: "Comprehensive understanding of various undergraduate subjects in engineering and science.",
+    appOpen: "Starts Sep 2026",
+    mode: "Online (CBT)",
+    level: "National Level",
+  },
+  {
+    id: "clat",
+    category: "Law",
+    name: "CLAT",
+    fullTitle: "Common Law Admission Test",
+    desc: "Centralized national level entrance test for admissions to 22 National Law Universities.",
+    appOpen: "Dec 7, 2026",
+    mode: "Offline",
+    level: "National Level",
+  },
+  {
+    id: "xat",
+    category: "Management",
+    name: "XAT",
+    fullTitle: "Xavier Aptitude Test",
+    desc: "National-level management entrance examination conducted by XLRI, Jamshedpur.",
+    appOpen: "Jan 2027",
+    mode: "Online (CBT)",
+    level: "National Level",
+  },
+  {
+    id: "nift",
+    category: "Design",
+    name: "NIFT",
+    fullTitle: "National Institute of Fashion Technology",
+    desc: "Entrance exam for admission to bachelor's programs in design and fashion technology.",
+    appOpen: "Feb 2027",
+    mode: "CBT & PBT",
+    level: "National Level",
+  },
+  {
+    id: "cuet",
+    category: "Science",
+    name: "CUET UG",
+    fullTitle: "Common University Entrance Test",
+    desc: "All-India test for admission into various Undergraduate and Integrated programs.",
+    appOpen: "May 2026",
+    mode: "Online (CBT)",
+    level: "National Level",
+  },
+];
+
+export default function TopExams() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [comparedExams, setComparedExams] = useState([]);
+
+  const handleToggleCompare = (examId) => {
+    setComparedExams(prev => 
+      prev.includes(examId) 
+        ? prev.filter(id => id !== examId)
+        : [...prev, examId]
+    );
+  };
+
+  const filteredExams = activeCategory === "All" 
+    ? EXAMS_DATA 
+    : EXAMS_DATA.filter(exam => exam.category === activeCategory);
 
   return (
-    <section id="exams" className="py-20 bg-slate-50 relative border-y border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-32 bg-slate-900 overflow-hidden border-y border-white/10">
+      {/* Background Ambience & 3D Elements */}
+      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png" alt="3D Books" className="absolute top-20 left-10 w-48 h-48 opacity-[0.15] blur-sm pointer-events-none animate-[bounce_8s_ease-in-out_infinite]" />
+      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Graduation%20Cap.png" alt="3D Cap" className="absolute bottom-20 right-10 w-64 h-64 opacity-[0.15] blur-[2px] pointer-events-none animate-[pulse_6s_ease-in-out_infinite]" />
+      
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02]"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <span className="text-[12px] font-bold text-brand-600 uppercase tracking-widest block">
-            National Entrance Hub
-          </span>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
-            Top Entrance Exams Calendar
-          </h2>
-          <p className="text-[14px] text-slate-400 font-medium">
-            Stay updated with registration timelines, counseling cut-offs, and critical exam parameters.
-          </p>
+        {/* ====================================================
+            SECTION HEADER
+        ==================================================== */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-4">
+              Top Entrance Exams
+              <span className="block mt-2 h-1.5 w-24 bg-gradient-brand rounded-full"></span>
+            </h2>
+            <p className="text-slate-400 font-medium text-lg">
+              Don’t miss important exam dates and deadlines. Stay ahead of your application timeline.
+            </p>
+          </div>
+          <button className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold border border-white/10 backdrop-blur-sm transition-all group">
+            View All Exams <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
 
-        {/* Exams Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {exams.map((exam, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="glass-card p-6 rounded-3xl bg-white border border-slate-200 shadow-lg shadow-slate-100/50 flex flex-col justify-between h-80 text-left"
+        {/* ====================================================
+            CATEGORY PILLS NAVIGATION
+        ==================================================== */}
+        <div className="flex overflow-x-auto hide-scrollbar gap-3 pb-8 mb-4 snap-x">
+          {CATEGORIES.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`snap-start whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm ${
+                activeCategory === category
+                  ? "bg-gradient-brand text-white shadow-brand-500/25"
+                  : "bg-white/5 text-slate-300 border border-white/10 hover:bg-white/10 hover:text-white"
+              }`}
             >
-              <div>
-                {/* Header: Exam title & Status pill */}
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="font-display font-extrabold text-[17px] text-slate-800 tracking-tight leading-snug">
-                      {exam.name}
-                    </h3>
-                    <span className="text-[11px] text-slate-400 font-medium">{exam.fullForm}</span>
-                  </div>
-                  
-                  {/* Status Pill */}
-                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase border ${exam.statusColor}`}>
-                    {exam.status}
-                  </span>
-                </div>
-
-                {/* Calendar row */}
-                <div className="flex items-center gap-2 mt-6 text-slate-600">
-                  <Calendar size={14} className="text-brand-600" />
-                  <span className="text-xs font-semibold">{exam.date}</span>
-                </div>
-
-                {/* Additional metrics */}
-                <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-slate-50">
-                  <div>
-                    <span className="text-[10px] text-slate-400 font-bold uppercase block">Difficulty</span>
-                    <span className="text-xs font-bold text-slate-700">{exam.difficulty}</span>
-                  </div>
-                  <div>
-                    <span className="text-[10px] text-slate-400 font-bold uppercase block">Applicants</span>
-                    <span className="text-xs font-bold text-slate-700">{exam.applicants}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Footer: Result badge & CTA */}
-              <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-50">
-                <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${exam.resultColor}`}>
-                  {exam.result}
-                </span>
-
-                <Link 
-                  to={`/exam/${exam.id}`}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-brand-200 hover:bg-brand-50 text-xs font-bold text-brand-600 transition-colors group cursor-pointer shadow-sm"
-                >
-                  <span>View Details</span>
-                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
-
-            </motion.div>
+              {category}
+            </button>
           ))}
         </div>
+
+        {/* ====================================================
+            EXAMS GRID
+        ==================================================== */}
+        <motion.div 
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredExams.map((exam) => (
+              <motion.div
+                layout
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.3 }}
+                key={exam.id}
+                className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-2xl rounded-[2rem] p-6 shadow-2xl border border-white/10 relative group hover:-translate-y-2 hover:shadow-[0_0_50px_rgba(99,102,241,0.2)] hover:border-brand-500/40 transition-all duration-500 flex flex-col h-full overflow-hidden"
+              >
+                {/* Glow Effect inside card on hover */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-brand-500 opacity-0 group-hover:opacity-[0.15] blur-[60px] rounded-full transition-opacity duration-700 pointer-events-none"></div>
+
+                {/* Top Section */}
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 text-white font-black text-xl flex items-center justify-center border border-white/10 group-hover:bg-gradient-brand group-hover:border-transparent group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-brand-500/30 transition-all">
+                    {exam.name.substring(0, 3).toUpperCase()}
+                  </div>
+                  <div className="flex flex-col items-end gap-3">
+                    <button className="text-slate-400 hover:text-rose-500 transition-colors">
+                      <Bookmark size={20} className="hover:fill-current" />
+                    </button>
+                    <span className="px-3 py-1 bg-white/10 text-slate-300 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-white/5 group-hover:bg-brand-500/10 group-hover:text-brand-300 group-hover:border-brand-500/20 transition-colors">
+                      {exam.category}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Exam Info */}
+                <div className="mb-6 flex-1">
+                  <h3 className="text-2xl font-black text-white tracking-tight mb-1">{exam.name}</h3>
+                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wide mb-3 group-hover:text-brand-300 transition-colors">{exam.fullTitle}</p>
+                  <p className="text-sm text-slate-300 font-medium leading-relaxed line-clamp-2">{exam.desc}</p>
+                </div>
+
+                {/* Key Info Strip (Redesigned Grid) */}
+                <div className="grid grid-cols-2 gap-2 mb-8 mt-auto">
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/5 group-hover:bg-white/10 transition-colors flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5 text-slate-400">
+                      <Calendar size={12} className="text-brand-400" />
+                      <span className="text-[10px] font-bold uppercase tracking-wider">Date</span>
+                    </div>
+                    <span className="text-xs font-black text-white">{exam.appOpen}</span>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/5 group-hover:bg-white/10 transition-colors flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5 text-slate-400">
+                      <Monitor size={12} className="text-brand-400" />
+                      <span className="text-[10px] font-bold uppercase tracking-wider">Mode</span>
+                    </div>
+                    <span className="text-xs font-black text-white">{exam.mode}</span>
+                  </div>
+                  <div className="col-span-2 p-3 rounded-xl bg-gradient-to-r from-brand-500/10 to-purple-500/10 border border-brand-500/20 flex items-center justify-between group-hover:border-brand-500/40 transition-colors">
+                    <div className="flex items-center gap-1.5 text-brand-300">
+                      <BookOpen size={12} />
+                      <span className="text-[10px] font-bold uppercase tracking-wider">Level</span>
+                    </div>
+                    <span className="text-xs font-black text-white">{exam.level}</span>
+                  </div>
+                </div>
+
+                {/* Bottom Action Area (Solid Button) */}
+                <div className="flex items-center gap-2 pt-5 border-t border-white/10">
+                  <Link 
+                    to={`/exam/${exam.id}`}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/10 hover:bg-gradient-brand text-white font-bold text-sm rounded-xl transition-all shadow-sm group-hover:shadow-brand-500/25 border border-white/10 hover:border-transparent"
+                  >
+                    View Details <ArrowRight size={16} />
+                  </Link>
+                  <button 
+                    onClick={() => handleToggleCompare(exam.id)}
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors border shrink-0 ${
+                      comparedExams.includes(exam.id)
+                        ? 'bg-brand-500/20 text-brand-400 border-brand-500/30'
+                        : 'bg-white/5 text-slate-400 hover:bg-white/20 hover:text-white border-white/10 group-hover:border-white/30'
+                    }`} 
+                    title="Compare Exam"
+                  >
+                    <Scale size={18} />
+                  </button>
+                </div>
+
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
       </div>
     </section>
