@@ -52,7 +52,7 @@ export default function TopCities() {
   };
 
   return (
-    <section className="py-16 bg-slate-50 relative overflow-hidden">
+    <section className="py-16 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -61,10 +61,10 @@ export default function TopCities() {
             <span className="text-[12px] font-bold text-brand-600 uppercase tracking-widest block">
               Study Destinations
             </span>
-            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-brand-800 tracking-tight">
               Explore Colleges by City
             </h2>
-            <p className="text-[14px] text-slate-400 max-w-md font-medium">
+            <p className="text-[14px] text-brand-800/60 max-w-md font-medium">
               Discover top educational hubs across the country with active recruiting networks.
             </p>
           </div>

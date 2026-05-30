@@ -17,10 +17,10 @@ import CounsellingModal from '../components/CounsellingModal';
 const categories = ['Engineering', 'MBA', 'Medical', 'Law', 'Design', 'Commerce', 'Science', 'Arts'];
 
 const stats = [
-  { label: "Total Colleges", value: "500+", icon: Building2, color: "text-emerald-600", bg: "bg-emerald-50" },
-  { label: "Engineering", value: "120+", icon: GraduationCap, color: "text-teal-600", bg: "bg-teal-50" },
-  { label: "Highest Package", value: "₹54 LPA", icon: TrendingUp, color: "text-green-600", bg: "bg-green-50" },
-  { label: "Top Recruiters", value: "200+", icon: Briefcase, color: "text-lime-600", bg: "bg-lime-50" },
+  { label: "Total Colleges", value: "500+", icon: Building2, color: "text-slate-700", bg: "bg-slate-50" },
+  { label: "Engineering", value: "120+", icon: GraduationCap, color: "text-slate-600", bg: "bg-slate-100/50" },
+  { label: "Highest Package", value: "₹54 LPA", icon: TrendingUp, color: "text-zinc-700", bg: "bg-zinc-50" },
+  { label: "Top Recruiters", value: "200+", icon: Briefcase, color: "text-zinc-600", bg: "bg-zinc-100/50" },
 ];
 
 const getMockColleges = (city, category) => [
@@ -29,7 +29,7 @@ const getMockColleges = (city, category) => [
     name: `Indian Institute of Technology (IIT) ${city}`,
     location: `${city}, India`,
     image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=IIT+${city}&background=059669&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=IIT+${city}&background=1e293b&color=fff`,
     description: `Premier ${category.toLowerCase()} institute in ${city} with global recognition and top-tier placement records.`,
     nirf: 1,
     avgPackage: "₹25.5 LPA",
@@ -43,7 +43,7 @@ const getMockColleges = (city, category) => [
     name: `${city} College of ${category}`,
     location: `Central District, ${city}`,
     image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=C${category.charAt(0)}&background=0d9488&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=C${category.charAt(0)}&background=334155&color=fff`,
     description: `Top private ${category.toLowerCase()} college in ${city} known for excellence in education.`,
     nirf: 89,
     avgPackage: "₹12.4 LPA",
@@ -57,7 +57,7 @@ const getMockColleges = (city, category) => [
     name: `${city} ${category} University`,
     location: `University Road, ${city}`,
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=U&background=10b981&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=U&background=475569&color=fff`,
     description: `Leading private university offering multi-disciplinary programs with industry tie-ups in ${city}.`,
     nirf: 100,
     avgPackage: "₹10.8 LPA",
@@ -71,7 +71,7 @@ const getMockColleges = (city, category) => [
     name: `National Institute of ${category} (NIT) ${city}`,
     location: `Campus Road, ${city}`,
     image: "https://images.unsplash.com/photo-1592289658098-b80c102b5e28?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=NIT&background=059669&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=NIT&background=1f2937&color=fff`,
     description: `Renowned multi-disciplinary government university famous for its ${category.toLowerCase()} programs.`,
     nirf: 60,
     avgPackage: "₹15.5 LPA",
@@ -85,7 +85,7 @@ const getMockColleges = (city, category) => [
     name: `${city} Institute of ${category}`,
     location: `Tech Park, ${city}`,
     image: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=IT&background=84cc16&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=IT&background=374151&color=fff`,
     description: `One of the oldest and most respected ${category.toLowerCase()} colleges in ${city}.`,
     nirf: 73,
     avgPackage: "₹9.2 LPA",
@@ -99,7 +99,7 @@ const getMockColleges = (city, category) => [
     name: `Symbiosis Institute of ${category === 'MBA' ? 'Business Management' : category} ${city}`,
     location: `Electronic City, ${city}`,
     image: "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=SI&background=047857&color=fff`,
+    logo: `https://ui-avatars.com/api/?name=SI&background=4b5563&color=fff`,
     description: `Premier institute offering world-class ${category.toLowerCase()} education and corporate exposure in ${city}.`,
     nirf: 35,
     avgPackage: "₹18.5 LPA",
@@ -168,7 +168,7 @@ export default function CityDetail() {
       if (navigator.share) {
         await navigator.share({
           title: collegeName,
-          text: `Check out ${collegeName} on EdEvolving!`,
+          text: `Check out ${collegeName} on edeco.!`,
           url: window.location.href,
         });
       } else {
@@ -447,7 +447,7 @@ export default function CityDetail() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-brand-200 transition-all duration-300 group flex flex-col"
+                    className="bg-white rounded-2xl overflow-hidden border border-brand-200 shadow-sm hover:shadow-xl hover:border-brand-500/40 transition-all duration-300 group flex flex-col text-left"
                   >
                     {/* Card Header (Image) */}
                     <div className="relative h-48 overflow-hidden">
@@ -462,14 +462,14 @@ export default function CityDetail() {
                       <div className="absolute top-4 right-4 flex gap-2">
                         <button 
                           onClick={(e) => handleShare(e, college.name)}
-                          className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-brand-600 transition-colors"
+                          className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-brand-600 transition-colors cursor-pointer"
                           title="Share"
                         >
                           <Share2 size={16} />
                         </button>
                         <button 
                           onClick={(e) => toggleFavorite(e, college.id)}
-                          className={`w-8 h-8 rounded-full backdrop-blur-md flex items-center justify-center transition-colors ${
+                          className={`w-8 h-8 rounded-full backdrop-blur-md flex items-center justify-center transition-colors cursor-pointer ${
                             favorites.has(college.id) 
                               ? 'bg-red-500 text-white shadow-lg shadow-red-500/30' 
                               : 'bg-white/20 text-white hover:bg-white hover:text-red-500'
@@ -489,43 +489,43 @@ export default function CityDetail() {
                     {/* Card Body */}
                     <div className="p-6 pt-10 flex-1 flex flex-col">
                       <div className="mb-2">
-                        <h3 className="font-bold text-lg text-slate-900 leading-tight group-hover:text-brand-600 transition-colors">
+                        <h3 className="font-bold text-lg text-brand-800 leading-tight group-hover:text-brand-500 transition-colors line-clamp-1">
                           {college.name}
                         </h3>
-                        <p className="text-sm text-slate-500 font-medium flex items-center gap-1 mt-1">
-                          <MapPin size={14} />
+                        <p className="text-sm text-brand-800/60 font-medium flex items-center gap-1 mt-1">
+                          <MapPin size={14} className="text-brand-800/40" />
                           {college.location}
                         </p>
                       </div>
 
-                      <p className="text-sm text-slate-600 line-clamp-2 mb-4 flex-1">
+                      <p className="text-sm text-brand-800/70 line-clamp-2 mb-4 flex-1">
                         {college.description}
                       </p>
 
                       {/* Key Stats Grid */}
-                      <div className="grid grid-cols-2 gap-3 mb-4 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                      <div className="grid grid-cols-2 gap-3 mb-4 bg-brand-50 p-3 rounded-xl border border-brand-200/50">
                         <div>
-                          <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">Avg Package</span>
-                          <span className="text-sm font-extrabold text-slate-900">{college.avgPackage}</span>
+                          <span className="text-[11px] text-brand-800/50 font-bold uppercase tracking-wider block">Avg Package</span>
+                          <span className="text-sm font-extrabold text-brand-800">{college.avgPackage}</span>
                         </div>
                         <div>
-                          <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">Placement</span>
+                          <span className="text-[11px] text-brand-800/50 font-bold uppercase tracking-wider block">Placement</span>
                           <span className="text-sm font-extrabold text-brand-600">{college.placement}</span>
                         </div>
                         <div>
-                          <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">Fees/Yr</span>
-                          <span className="text-sm font-extrabold text-slate-900">{college.fees}</span>
+                          <span className="text-[11px] text-brand-800/50 font-bold uppercase tracking-wider block">Fees/Yr</span>
+                          <span className="text-sm font-extrabold text-brand-800">{college.fees}</span>
                         </div>
                         <div>
-                          <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">NIRF Rank</span>
-                          <span className="text-sm font-extrabold text-slate-900">#{college.nirf}</span>
+                          <span className="text-[11px] text-brand-800/50 font-bold uppercase tracking-wider block">NIRF Rank</span>
+                          <span className="text-sm font-extrabold text-brand-800">#{college.nirf}</span>
                         </div>
                       </div>
 
                       {/* Badges */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         {college.badges.slice(0, 3).map((badge, i) => (
-                          <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-slate-100 text-slate-600 rounded-md">
+                          <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-white border border-brand-200 text-brand-800/80 rounded-md">
                             {badge}
                           </span>
                         ))}
@@ -533,10 +533,10 @@ export default function CityDetail() {
 
                       {/* CTA Buttons */}
                       <div className="flex gap-3 mt-auto">
-                        <Link to={`/colleges/${college.id}`} className="flex-1 text-center py-2.5 rounded-xl border-2 border-brand-100 text-brand-700 font-bold text-sm hover:bg-brand-50 transition-colors">
+                        <Link to={`/colleges/${college.id}`} className="flex-1 text-center py-2.5 rounded-xl border border-brand-200 text-brand-800 font-bold text-sm hover:bg-brand-50 transition-all duration-300">
                           View Details
                         </Link>
-                        <button onClick={() => setIsApplyOpen(true)} className="flex-1 py-2.5 rounded-xl bg-brand-600 text-white font-bold text-sm hover:bg-brand-700 transition-colors shadow-md shadow-brand-500/20">
+                        <button onClick={() => setIsApplyOpen(true)} className="flex-1 py-2.5 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold text-sm transition-all duration-300 shadow-sm cursor-pointer">
                           Apply Now
                         </button>
                       </div>

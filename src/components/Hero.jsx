@@ -57,7 +57,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-premium pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-premium pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
       {/* Decorative Blur Background Blobs */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-brand-500/10 rounded-full blur-[100px] animate-pulse-slow"></div>
       <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-brand-purple/10 rounded-full blur-[120px] animate-pulse-slow delay-2000"></div>
@@ -90,11 +90,11 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-4"
             >
-              <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-[1.1] tracking-tight">
+              <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-brand-800 leading-[1.1] tracking-tight">
                 Find The Right College. <br />
                 <span className="text-gradient">Shape Your Future.</span>
               </h1>
-              <p className="text-lg text-slate-500 max-w-xl font-normal leading-relaxed">
+              <p className="text-lg text-brand-800/80 max-w-xl font-normal leading-relaxed">
                 Connect with institutional partners, compare placement statistics, and get personalized counseling driven by career analytics.
               </p>
             </motion.div>
@@ -126,7 +126,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                 
                 <button 
                   onClick={() => onSearchSubmit(searchTerm)}
-                  className="px-6 py-3.5 rounded-xl bg-gradient-brand text-white text-[15px] font-semibold hover:shadow-lg hover:shadow-brand-500/20 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-[rgb(106,255,217)] text-[#110051] hover:text-white hover:bg-[#110051] text-[15px] font-bold shadow-md shadow-brand-mint/10 hover:shadow-indigo-950/20 active:scale-[0.98] transition-all duration-300 cursor-pointer"
                 >
                   Search
                 </button>
@@ -189,8 +189,8 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                     }}
                     className={`flex items-center gap-1.5 px-4.5 py-2.5 rounded-xl border text-[13px] font-bold transition-all duration-200 cursor-pointer ${
                       selectedCategory === cat.name
-                        ? 'bg-brand-600 border-brand-600 text-white shadow-md shadow-brand-500/25'
-                        : 'bg-white border-slate-100 text-slate-600 hover:border-brand-200 hover:bg-slate-50'
+                        ? 'bg-[#110051] border-[#110051] text-white shadow-md shadow-indigo-950/25'
+                        : 'bg-white border-slate-200 text-slate-900 hover:text-white hover:bg-[#110051] hover:border-[#110051]'
                     }`}
                   >
                     <span>{cat.icon}</span>
@@ -209,13 +209,13 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             >
               <a 
                 href="#colleges"
-                className="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-[15px] font-semibold hover:shadow-lg transition-all duration-200"
+                className="px-6 py-3.5 rounded-xl bg-[rgb(106,255,217)] hover:bg-[#110051] text-[#110051] hover:text-white text-[15px] font-bold shadow-md shadow-brand-mint/15 hover:shadow-indigo-950/20 transition-all duration-300"
               >
                 Start Exploring
               </a>
               <button 
                 onClick={onCounsellingClick}
-                className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-[15px] font-semibold transition-all duration-200"
+                className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl border border-slate-200 bg-white hover:bg-[#110051] text-slate-900 hover:text-white hover:border-[#110051] text-[15px] font-semibold transition-all duration-300 cursor-pointer"
               >
                 <div className="w-6 h-6 rounded-full bg-brand-50 flex items-center justify-center text-brand-600">
                   <Play size={12} fill="currentColor" />
@@ -244,7 +244,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               {/* Header */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-brand-500 animate-ping"></div>
                   <span className="text-xs font-bold text-slate-500">College Match Analytics</span>
                 </div>
                 <div className="px-2 py-0.5 rounded bg-slate-100 text-[9px] font-bold text-slate-500">
@@ -281,7 +281,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                     <span className="text-xs text-slate-400 font-medium">Top Match Recommended</span>
                     <p className="text-[14px] font-bold text-slate-800">IIT Bombay (CSE)</p>
                   </div>
-                  <div className="flex items-center gap-1 text-emerald-500 text-xs font-bold">
+                  <div className="flex items-center gap-1 text-brand-500 text-xs font-bold">
                     <TrendingUp size={14} />
                     <span>#1 Choice</span>
                   </div>
@@ -297,10 +297,10 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                 <div className="flex items-center justify-between p-2.5 bg-slate-50/50 rounded-2xl border border-slate-100">
                   <div className="flex items-center gap-2">
                     <div className="relative">
-                      <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-xs font-bold text-emerald-700">
+                      <div className="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-700">
                         SK
                       </div>
-                      <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white"></div>
+                      <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-brand-500 border-2 border-white"></div>
                     </div>
                     <div className="text-left">
                       <p className="text-xs font-bold text-slate-800">Dr. Sunita K.</p>
@@ -309,7 +309,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                   </div>
                   <button 
                     onClick={onCounsellingClick}
-                    className="px-3 py-1.5 rounded-xl bg-brand-600 text-[11px] font-bold text-white shadow-sm shadow-brand-500/20 cursor-pointer"
+                    className="px-3 py-1.5 rounded-xl bg-[rgb(106,255,217)] hover:bg-[#110051] text-[#110051] hover:text-white text-[11px] font-bold shadow-sm transition-all duration-300 cursor-pointer"
                   >
                     Connect Now
                   </button>
@@ -323,7 +323,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -top-4 -left-10 bg-white/95 border border-slate-100 rounded-2xl p-4 shadow-xl shadow-slate-100 flex items-center gap-3 w-48"
             >
-              <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
                 <BadgeCheck size={20} />
               </div>
               <div className="text-left">

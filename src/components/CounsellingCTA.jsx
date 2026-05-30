@@ -63,13 +63,13 @@ export default function CounsellingCTA({ onCounsellingClick }) {
               <div className="flex flex-wrap gap-4 pt-6">
                 <button
                   onClick={handleClick}
-                  className="px-8 py-4 rounded-2xl bg-white text-brand-600 font-extrabold text-sm shadow-xl shadow-slate-950/10 hover:bg-slate-50 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+                  className="px-8 py-4 rounded-2xl bg-brand-mint text-brand-800 hover:text-white hover:bg-brand-blue font-extrabold text-sm shadow-xl transition-all duration-300 cursor-pointer"
                 >
                   Book Free Counselling
                 </button>
                 <button
                   onClick={handleClick}
-                  className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-brand-700/40 border border-white/15 text-white font-bold text-sm hover:bg-brand-700/60 transition-all duration-200 cursor-pointer"
+                  className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition-all duration-300 cursor-pointer"
                 >
                   <PhoneCall size={14} />
                   <span>Talk to Expert Now</span>
@@ -88,7 +88,7 @@ export default function CounsellingCTA({ onCounsellingClick }) {
               >
                 <div className="flex items-center justify-between mb-6">
                   <span className="text-xs font-bold text-white/80 uppercase">Guaranteed Response</span>
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-brand-400 animate-pulse"></div>
                 </div>
 
                 <div className="space-y-4">
@@ -109,7 +109,7 @@ export default function CounsellingCTA({ onCounsellingClick }) {
 
                   {/* Expert card 2 */}
                   <div className="flex items-center gap-3 p-3 bg-white/5 rounded-2xl border border-white/5">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-400 to-teal-500 flex items-center justify-center text-xs font-bold text-white">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-400 to-brand-600 flex items-center justify-center text-xs font-bold text-white">
                       RK
                     </div>
                     <div className="flex-1">

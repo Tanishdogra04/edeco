@@ -99,7 +99,7 @@ export const collegesData = [
 
 export default function FeaturedColleges({ onToggleCompare, comparedColleges, onViewDetails, onCounsellingClick }) {
   return (
-    <section id="colleges" className="py-20 bg-slate-50 relative overflow-hidden">
+    <section id="colleges" className="py-20 bg-white relative overflow-hidden">
       {/* Decorative Blob */}
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-purple/5 rounded-full blur-[100px]"></div>
 
@@ -111,20 +111,20 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
             <span className="text-[12px] font-bold text-brand-600 uppercase tracking-widest block">
               Curated Selection
             </span>
-            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-brand-800 tracking-tight">
               Featured Partners & Institutions
             </h2>
-            <p className="text-[14px] text-slate-400 max-w-lg font-medium">
+            <p className="text-[14px] text-brand-800/60 max-w-lg font-medium">
               Highly ranked universities verified for placements, faculty excellence, and student environment.
             </p>
           </div>
 
           {/* Slider controls */}
           <div className="flex items-center gap-3 mt-6 md:mt-0">
-            <div className="swiper-prev-btn p-3 rounded-xl bg-white border border-slate-100 text-slate-600 hover:text-brand-600 shadow-sm hover:border-brand-200 active:scale-95 transition-all cursor-pointer">
+            <div className="swiper-prev-btn p-3 rounded-xl bg-white border border-brand-200 text-brand-800 hover:text-brand-600 shadow-sm active:scale-95 transition-all cursor-pointer">
               <ChevronLeft size={18} />
             </div>
-            <div className="swiper-next-btn p-3 rounded-xl bg-white border border-slate-100 text-slate-600 hover:text-brand-600 shadow-sm hover:border-brand-200 active:scale-95 transition-all cursor-pointer">
+            <div className="swiper-next-btn p-3 rounded-xl bg-white border border-brand-200 text-brand-800 hover:text-brand-600 shadow-sm active:scale-95 transition-all cursor-pointer">
               <ChevronRight size={18} />
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
               
               return (
                 <SwiperSlide key={college.id} className="h-auto">
-                  <div className="glass-card h-full flex flex-col justify-between rounded-3xl overflow-hidden bg-white border border-slate-100 shadow-lg shadow-slate-100/50">
+                  <div className="glass-card h-full flex flex-col justify-between rounded-3xl overflow-hidden bg-white border border-brand-200 shadow-sm hover:shadow-md transition-all duration-300">
                     
                     {/* Header Image Area */}
                     <div className="relative h-48 w-full overflow-hidden">
@@ -165,7 +165,7 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
                       
                       {/* NIRF Rank Badges */}
-                      <div className="absolute top-4 left-4 px-3 py-1 rounded-lg bg-slate-900/80 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold tracking-wide uppercase">
+                      <div className="absolute top-4 left-4 px-3 py-1 rounded-lg bg-brand-800/90 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold tracking-wide uppercase">
                         NIRF {college.nirf}
                       </div>
 
@@ -176,7 +176,7 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                       </div>
 
                       {/* Logo tag floating */}
-                      <div className="absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-white border border-slate-100 flex items-center justify-center font-display font-black text-xs text-brand-600 shadow-md">
+                      <div className="absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-white border border-brand-200 flex items-center justify-center font-display font-black text-xs text-brand-600 shadow-md">
                         {college.logo}
                       </div>
                     </div>
@@ -185,30 +185,30 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                     <div className="p-6 text-left flex-1 flex flex-col justify-between">
                       <div>
                         {/* Domain name */}
-                        <span className="text-[10px] font-bold text-brand-600 uppercase tracking-widest block mb-1">
+                        <span className="text-[10px] font-bold text-brand-500 uppercase tracking-widest block mb-1">
                           {college.stream}
                         </span>
 
                         {/* College Name */}
-                        <h3 className="font-display font-extrabold text-lg text-slate-800 tracking-tight line-clamp-1 hover:text-brand-600 transition-colors">
+                        <h3 className="font-display font-extrabold text-lg text-brand-800 tracking-tight line-clamp-1 hover:text-brand-500 transition-colors">
                           {college.name}
                         </h3>
 
                         {/* Location */}
-                        <div className="flex items-center gap-1 text-slate-400 mt-1 mb-4">
+                        <div className="flex items-center gap-1 text-brand-800/40 mt-1 mb-4">
                           <MapPin size={12} />
                           <span className="text-xs font-semibold">{college.location}</span>
                         </div>
 
                         {/* College Key Stats Grid */}
-                        <div className="grid grid-cols-2 gap-3 p-3.5 bg-slate-50 rounded-2xl border border-slate-100 mb-6">
+                        <div className="grid grid-cols-2 gap-3 p-3.5 bg-brand-50 rounded-2xl border border-brand-200 mb-6">
                           <div>
-                            <span className="text-[10px] text-slate-400 font-semibold uppercase block">Avg Placement</span>
-                            <span className="text-[14px] font-extrabold text-slate-800">{college.package}</span>
+                            <span className="text-[10px] text-brand-800/50 font-semibold uppercase block">Avg Placement</span>
+                            <span className="text-[14px] font-extrabold text-brand-800">{college.package}</span>
                           </div>
                           <div>
-                            <span className="text-[10px] text-slate-400 font-semibold uppercase block">Fees (Estimate)</span>
-                            <span className="text-[14px] font-extrabold text-slate-800">{college.fees}</span>
+                            <span className="text-[10px] text-brand-800/50 font-semibold uppercase block">Highest Pkg</span>
+                            <span className="text-[14px] font-extrabold text-brand-800">{college.highestPackage}</span>
                           </div>
                         </div>
                       </div>
@@ -218,10 +218,10 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                         {/* Compare toggle */}
                         <button
                           onClick={() => onToggleCompare(college)}
-                          className={`flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${
+                          className={`flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
                             isCompared 
-                              ? 'bg-emerald-50 text-emerald-600 border border-emerald-200'
-                              : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                              ? 'bg-brand-50 text-brand-700 border border-brand-200'
+                              : 'bg-white text-brand-800/80 border border-brand-200 hover:bg-brand-50/50'
                           }`}
                         >
                           {isCompared ? (
@@ -237,7 +237,7 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                         {/* View Details */}
                         <Link 
                           to={`/colleges/${college.id}`}
-                          className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold hover:shadow-lg transition-all cursor-pointer text-center"
+                          className="flex-1 py-3 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white text-xs font-bold transition-all duration-300 cursor-pointer text-center"
                         >
                           View Details
                         </Link>

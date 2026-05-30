@@ -177,7 +177,7 @@ export default function CollegeDetail() {
   }, [collegeId]);
 
   const handleDownloadBrochure = () => {
-    const content = "This is a sample brochure downloaded from EdEvolving.";
+    const content = "This is a sample brochure downloaded from edeco.";
     const blob = new Blob([content], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -263,13 +263,13 @@ export default function CollegeDetail() {
 
             {/* Right side: Action Buttons */}
             <div className="flex flex-row lg:flex-col gap-3 w-full lg:w-auto">
-              <button onClick={() => setIsApplyOpen(true)} className="flex-1 lg:w-56 bg-gradient-brand hover:shadow-brand-500/40 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-brand-500/30 transition-all flex items-center justify-center gap-2">
+              <button onClick={() => setIsApplyOpen(true)} className="flex-1 lg:w-56 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm">
                 <Send size={18} /> Apply Now
               </button>
-              <button onClick={handleDownloadBrochure} className="flex-1 lg:w-56 bg-white hover:bg-slate-50 text-brand-600 border border-brand-200 font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm">
+              <button onClick={handleDownloadBrochure} className="flex-1 lg:w-56 bg-white hover:bg-slate-50 text-brand-600 border border-brand-200 font-bold py-3.5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm cursor-pointer">
                 <Download size={18} /> Download Brochure
               </button>
-              <button onClick={() => handleToggleCompare(college)} className="hidden lg:flex w-56 bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 font-bold py-3.5 px-6 rounded-xl transition-all items-center justify-center gap-2 shadow-sm">
+              <button onClick={() => handleToggleCompare(college)} className="hidden lg:flex w-56 bg-brand-50 hover:bg-brand-105 text-brand-800 border border-brand-200 font-bold py-3.5 px-6 rounded-xl transition-all duration-300 items-center justify-center gap-2 shadow-sm cursor-pointer">
                 <Scale size={18} /> {comparedColleges.find(c => c.id === college.id) ? 'Added to Compare' : 'Compare'}
               </button>
             </div>
@@ -567,7 +567,7 @@ export default function CollegeDetail() {
                   <input type="email" placeholder="Email Address" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-sm font-medium transition-all" />
                   <input type="tel" placeholder="Mobile Number" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-sm font-medium transition-all" />
                   
-                  <button type="button" onClick={() => setIsApplyOpen(true)} className="w-full bg-gradient-brand hover:shadow-brand-500/40 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-brand-500/30 transition-all mt-2">
+                  <button type="button" onClick={() => setIsApplyOpen(true)} className="w-full bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3.5 rounded-xl transition-all duration-300 mt-2 cursor-pointer shadow-sm">
                     Request Callback
                   </button>
                   <p className="text-xs text-center text-slate-400 mt-3 flex items-center justify-center gap-1.5 font-medium">
@@ -623,10 +623,10 @@ export default function CollegeDetail() {
             <p className="text-lg text-slate-600 mb-10 font-medium max-w-2xl mx-auto leading-relaxed">Our expert counselors are here to guide you through admission processes, scholarships, and career choices based on your profile.</p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button onClick={() => setIsApplyOpen(true)} className="px-8 py-4 bg-gradient-brand hover:shadow-brand-500/40 text-white font-black rounded-2xl shadow-lg shadow-brand-500/30 transition-all text-lg">
+              <button onClick={() => setIsApplyOpen(true)} className="px-8 py-4 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-black rounded-2xl transition-all duration-300 text-lg cursor-pointer shadow-md">
                 Book Free Counselling
               </button>
-              <button className="px-8 py-4 bg-white hover:bg-slate-50 border-2 border-brand-200 hover:border-brand-300 text-brand-600 font-bold rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2 text-lg">
+              <button className="px-8 py-4 bg-white hover:bg-brand-50 border-2 border-brand-200 hover:border-brand-500 text-brand-800 font-bold rounded-2xl shadow-sm transition-all duration-300 flex items-center justify-center gap-2 text-lg cursor-pointer">
                 <PhoneCall size={20} /> Talk to Expert
               </button>
             </div>
@@ -637,11 +637,11 @@ export default function CollegeDetail() {
       <Footer />
       
       {/* Mobile Sticky CTA */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 p-4 shadow-[0_-10px_20px_rgba(0,0,0,0.1)] z-50 flex gap-3">
-        <button onClick={handleDownloadBrochure} className="flex-1 bg-white border border-slate-300 text-slate-700 font-bold py-3 rounded-xl flex justify-center items-center gap-2">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-white border-t border-brand-200 p-4 shadow-[0_-10px_20px_rgba(0,0,0,0.1)] z-50 flex gap-3">
+        <button onClick={handleDownloadBrochure} className="flex-1 bg-white border border-brand-200 text-brand-800 font-bold py-3 rounded-xl flex justify-center items-center gap-2 cursor-pointer">
           <Download size={16} /> Brochure
         </button>
-        <button onClick={() => setIsApplyOpen(true)} className="flex-[2] bg-gradient-brand text-white font-bold py-3 rounded-xl shadow-lg shadow-brand-500/30">
+        <button onClick={() => setIsApplyOpen(true)} className="flex-[2] bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-sm cursor-pointer">
           Apply Now
         </button>
       </div>

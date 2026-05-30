@@ -1,22 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-display: "Outfit", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Poppins", sans-serif;
 
-  --color-brand-50: #f0fdf4;
-  --color-brand-100: #dcfce7;
-  --color-brand-200: #bbf7d0;
-  --color-brand-300: #86efac;
-  --color-brand-400: #4ade80;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
-  --color-brand-700: #047857;
-  --color-brand-800: #065f46;
-  --color-brand-900: #064e3b;
-  --color-brand-purple: #14b8a6;
-  --color-brand-indigo: #0d9488;
+  --color-brand-50: #F5F5F7;
+  --color-brand-100: #EAEAEE;
+  --color-brand-200: #D1D0E5;
+  --color-brand-300: #B8B6D9;
+  --color-brand-400: #938FED;
+  --color-brand-500: #6C63FF;
+  --color-brand-600: #554EC7;
+  --color-brand-700: #3B33A0;
+  --color-brand-800: #2B247A;
+  --color-brand-900: #1B164F;
+  --color-brand-purple: #6C63FF;
+  --color-brand-indigo: #2B247A;
+  --color-brand-mint: #5EEAD4;
+  --color-brand-blue: #110051;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-delayed: float-delayed 8s ease-in-out infinite;
@@ -42,8 +44,8 @@
 /* Custom Base Styling overrides */
 body {
   font-family: var(--font-sans);
-  background-color: #fafafa;
-  color: #1f2937;
+  background-color: #FFFFFF;
+  color: var(--color-brand-800);
   overflow-x: hidden;
 }
 
@@ -66,8 +68,8 @@ body {
 
 .glass-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.08);
-  border-color: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 20px 40px -15px rgba(55, 65, 81, 0.08);
+  border-color: rgba(55, 65, 81, 0.2);
 }
 
 /* Scrollbar Styles */
@@ -106,7 +108,7 @@ body {
 }
 
 .bg-gradient-premium {
-  background: linear-gradient(135deg, #f0fdf4 0%, #f0fdfa 50%, #ffffff 100%);
+  background: linear-gradient(135deg, #F5F5F7 0%, #EAEAEE 50%, #FFFFFF 100%);
 }
 
 .bg-gradient-brand {
@@ -114,7 +116,7 @@ body {
 }
 
 .bg-gradient-brand-dark {
-  background: linear-gradient(135deg, var(--color-brand-700) 0%, #064e3b 100%);
+  background: linear-gradient(135deg, var(--color-brand-700) 0%, var(--color-brand-900) 100%);
 }
 
 /* Swiper overrides for premium indicators */

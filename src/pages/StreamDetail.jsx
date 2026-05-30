@@ -161,7 +161,7 @@ export default function StreamDetail() {
   }, [streamId]);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-brand-500/30 selection:text-brand-900">
+    <div className="min-h-screen bg-brand-50 flex flex-col font-sans selection:bg-brand-200 selection:text-brand-800">
       
       {/* Navbar with default light theme */}
       <Navbar 
@@ -178,7 +178,7 @@ export default function StreamDetail() {
         {/* ====================================================
             HERO BANNER SECTION
         ==================================================== */}
-        <div className="relative pt-32 pb-20 lg:pt-36 lg:pb-24 overflow-hidden border-b border-white/5">
+        <div className="relative pt-32 pb-20 lg:pt-36 lg:pb-24 overflow-hidden border-b border-white/5 text-center">
           {/* Background Image & Overlay */}
           <div className="absolute inset-0 z-0">
             <img 
@@ -186,20 +186,20 @@ export default function StreamDetail() {
               alt="University Campus" 
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-slate-900/80"></div>
+            <div className="absolute inset-0 bg-brand-900/85"></div>
           </div>
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="max-w-4xl mx-auto"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-4 font-display">
                 {stream.title}
               </h1>
-              <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto font-medium">
+              <p className="text-base md:text-lg text-brand-100/90 max-w-2xl mx-auto font-medium">
                 {stream.description}
               </p>
             </motion.div>
@@ -209,7 +209,7 @@ export default function StreamDetail() {
         {/* ====================================================
             FILTER BAR
         ==================================================== */}
-        <div className="bg-white border-b border-slate-200 relative z-20 mb-8 shadow-sm">
+        <div className="bg-white border-b border-brand-200 relative z-20 mb-8 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
@@ -218,14 +218,14 @@ export default function StreamDetail() {
               className="flex flex-col md:flex-row items-center gap-4"
             >
             {/* Search */}
-            <div className="flex-1 w-full bg-slate-50 rounded-xl px-4 py-3 flex items-center gap-3 border border-slate-200 focus-within:border-brand-500/50 focus-within:bg-white transition-colors">
-              <Search size={20} className="text-slate-400" />
+            <div className="flex-1 w-full bg-brand-50 rounded-xl px-4 py-3 flex items-center gap-3 border border-brand-200 focus-within:border-brand-500 focus-within:bg-white transition-colors">
+              <Search size={20} className="text-brand-800/40" />
               <input 
                 type="text" 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search colleges by name, city, state..."
-                className="w-full bg-transparent border-none outline-none text-slate-900 placeholder:text-slate-500 text-sm font-medium"
+                className="w-full bg-transparent border-none outline-none text-brand-800 placeholder:text-brand-800/40 text-sm font-medium"
               />
             </div>
 
@@ -234,12 +234,12 @@ export default function StreamDetail() {
               <select 
                 value={stateFilter}
                 onChange={(e) => setStateFilter(e.target.value)}
-                className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-900 py-3 pl-4 pr-10 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500/50 cursor-pointer"
+                className="w-full appearance-none bg-brand-50 border border-brand-200 text-brand-800 py-3 pl-4 pr-10 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500 cursor-pointer"
               >
                 <option value="">All States</option>
                 {stream.filters.state.map(state => <option key={state} value={state}>{state}</option>)}
               </select>
-              <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+              <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-800/40 pointer-events-none" />
             </div>
 
             {/* Course Filter */}
@@ -256,7 +256,7 @@ export default function StreamDetail() {
                   // Navigate and scroll to top
                   navigate(`/stream/${route}`);
                 }}
-                className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-900 py-3 pl-4 pr-10 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500/50 cursor-pointer"
+                className="w-full appearance-none bg-brand-50 border border-brand-200 text-brand-800 py-3 pl-4 pr-10 rounded-xl text-sm font-medium focus:outline-none focus:border-brand-500 cursor-pointer"
               >
                 <option value="Engineering">Engineering</option>
                 <option value="Management">MBA</option>
@@ -264,13 +264,13 @@ export default function StreamDetail() {
                 <option value="Law">Law</option>
                 <option value="Design">Design</option>
               </select>
-              <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+              <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-brand-800/40 pointer-events-none" />
             </div>
 
             {/* Clear Button */}
             <button 
               onClick={() => { setSearchQuery(''); setStateFilter(''); }}
-              className="w-full md:w-auto px-6 py-3 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl text-sm font-bold transition-colors border border-slate-200 whitespace-nowrap"
+              className="w-full md:w-auto px-6 py-3 bg-white hover:bg-brand-50 text-brand-800 rounded-xl text-sm font-bold transition-all border border-brand-200 whitespace-nowrap cursor-pointer shadow-sm"
             >
               Clear
             </button>
@@ -282,26 +282,26 @@ export default function StreamDetail() {
             RESULTS HEADER
         ==================================================== */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pb-6 border-b border-slate-200">
-            <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-              <Sparkles className="text-brand-600" size={20} />
-              Showing <span className="text-brand-600">{filteredColleges.length}</span> Colleges
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pb-6 border-b border-brand-200">
+            <h2 className="text-xl font-bold text-brand-800 flex items-center gap-2 font-display">
+              <Sparkles className="text-brand-500" size={20} />
+              Showing <span className="text-brand-500">{filteredColleges.length}</span> Colleges
             </h2>
             
             <div className="flex items-center gap-3">
-              <span className="text-sm text-slate-500 font-medium hidden sm:block">Sort By:</span>
+              <span className="text-sm text-brand-800/60 font-medium hidden sm:block">Sort By:</span>
               <div className="relative">
                 <select 
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-white border border-slate-200 text-slate-900 py-2 pl-4 pr-10 rounded-lg text-sm font-medium focus:outline-none focus:border-brand-500/50 cursor-pointer shadow-sm"
+                  className="appearance-none bg-white border border-brand-200 text-brand-800 py-2 pl-4 pr-10 rounded-lg text-sm font-medium focus:outline-none focus:border-brand-500 cursor-pointer shadow-sm"
                 >
                   <option value="popularity">Popularity</option>
                   <option value="highest-package">Highest Package</option>
                   <option value="fees-asc">Lowest Fees</option>
                   <option value="rating">Top Rated</option>
                 </select>
-                <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-800/40 pointer-events-none" />
               </div>
             </div>
           </div>
@@ -320,10 +320,10 @@ export default function StreamDetail() {
                 onCompareClick={() => handleToggleCompare(college)}
               />
             )) : (
-              <div className="col-span-full py-20 text-center bg-white rounded-[2rem] border border-slate-200 shadow-sm">
-                <Search size={48} className="mx-auto text-slate-300 mb-4" />
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">No colleges found</h3>
-                <p className="text-slate-500">Try adjusting your filters to discover more institutions.</p>
+              <div className="col-span-full py-20 text-center bg-white rounded-[2rem] border border-brand-200 shadow-sm">
+                <Search size={48} className="mx-auto text-brand-800/30 mb-4" />
+                <h3 className="text-2xl font-bold text-brand-800 mb-2 font-display">No colleges found</h3>
+                <p className="text-brand-800/70">Try adjusting your filters to discover more institutions.</p>
               </div>
             )}
           </div>
@@ -333,11 +333,11 @@ export default function StreamDetail() {
           ==================================================== */}
           {filteredColleges.length > 0 && (
             <div className="mt-16 flex justify-center gap-2">
-              <button className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors shadow-sm">1</button>
-              <button className="w-10 h-10 rounded-xl bg-brand-600 text-white font-bold shadow-[0_0_15px_rgba(37,99,235,0.4)]">2</button>
-              <button className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors shadow-sm">3</button>
-              <span className="w-10 h-10 flex items-center justify-center text-slate-400 font-bold">...</span>
-              <button className="px-4 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors shadow-sm flex items-center gap-1">
+              <button className="w-10 h-10 rounded-xl bg-white border border-brand-200 text-brand-800 font-bold hover:bg-brand-50 transition-all shadow-sm cursor-pointer">1</button>
+              <button className="w-10 h-10 rounded-xl bg-brand-500 text-white font-bold shadow-sm">2</button>
+              <button className="w-10 h-10 rounded-xl bg-white border border-brand-200 text-brand-800 font-bold hover:bg-brand-50 transition-all shadow-sm cursor-pointer">3</button>
+              <span className="w-10 h-10 flex items-center justify-center text-brand-800/40 font-bold">...</span>
+              <button className="px-4 h-10 rounded-xl bg-white border border-brand-200 text-brand-800 font-bold hover:bg-brand-50 transition-all shadow-sm flex items-center gap-1 cursor-pointer">
                 Next <ChevronRight size={16} />
               </button>
             </div>
@@ -347,26 +347,29 @@ export default function StreamDetail() {
         {/* ====================================================
             COUNSELLING CTA SECTION
         ==================================================== */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-32">
-          <div className="relative bg-gradient-brand rounded-[2.5rem] border border-brand-500/20 p-10 md:p-16 overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-32 text-left">
+          <div className="relative bg-gradient-brand rounded-[2.5rem] border border-brand-200 p-10 md:p-16 overflow-hidden shadow-lg flex flex-col md:flex-row items-center justify-between gap-10">
             {/* Particles / Glow */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] pointer-events-none"></div>
             
             <div className="relative z-10 max-w-xl text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight drop-shadow-md">
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight drop-shadow-md font-display">
                 Need Help Choosing The Right College?
               </h2>
-              <p className="text-brand-100 text-lg mb-8 font-medium">
+              <p className="text-brand-100/90 text-lg mb-8 font-medium">
                 Our expert counselors are here to guide you through the admission process, scholarships, and career choices.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <button 
                   onClick={() => setIsApplyOpen(true)}
-                  className="px-8 py-4 bg-white hover:bg-slate-50 text-brand-700 font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2"
+                  className="px-8 py-4 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold rounded-2xl shadow-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border border-brand-200/50 hover:border-transparent"
                 >
                   Book Free Counselling <ArrowRight size={18} />
                 </button>
-                <button className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl border border-white/20 transition-all flex items-center justify-center gap-2 backdrop-blur-md">
+                <button 
+                  onClick={() => setIsApplyOpen(true)}
+                  className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl border border-white/20 transition-all flex items-center justify-center gap-2 backdrop-blur-md cursor-pointer"
+                >
                   <PhoneCall size={18} /> Talk To Expert
                 </button>
               </div>
@@ -375,8 +378,8 @@ export default function StreamDetail() {
             <div className="relative z-10 hidden md:block">
               <div className="w-64 h-64 bg-white/10 rounded-full border-8 border-white/20 flex items-center justify-center relative overflow-hidden shadow-2xl backdrop-blur-md">
                 <MessageCircle size={80} className="text-white" />
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-xl z-20 border-4 border-brand-600">
-                  <span className="text-3xl font-black text-brand-600">24/7</span>
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-xl z-20 border-4 border-brand-500">
+                  <span className="text-3xl font-black text-brand-500">24/7</span>
                 </div>
               </div>
             </div>

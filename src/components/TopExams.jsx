@@ -109,47 +109,43 @@ export default function TopExams() {
     : EXAMS_DATA.filter(exam => exam.category === activeCategory);
 
   return (
-    <section className="relative py-32 bg-slate-900 overflow-hidden border-y border-white/10">
+    <section className="relative py-32 bg-brand-50 overflow-hidden border-y border-brand-200">
       {/* Background Ambience & 3D Elements */}
-      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png" alt="3D Books" className="absolute top-20 left-10 w-48 h-48 opacity-[0.15] blur-sm pointer-events-none animate-[bounce_8s_ease-in-out_infinite]" />
-      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Graduation%20Cap.png" alt="3D Cap" className="absolute bottom-20 right-10 w-64 h-64 opacity-[0.15] blur-[2px] pointer-events-none animate-[pulse_6s_ease-in-out_infinite]" />
+      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png" alt="3D Books" className="absolute top-20 left-10 w-48 h-48 opacity-[0.05] blur-sm pointer-events-none animate-[bounce_8s_ease-in-out_infinite]" />
+      <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Graduation%20Cap.png" alt="3D Cap" className="absolute bottom-20 right-10 w-64 h-64 opacity-[0.05] blur-[2px] pointer-events-none animate-[pulse_6s_ease-in-out_infinite]" />
       
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
-      <div className="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02]"></div>
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-600/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.01]"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* ====================================================
-            SECTION HEADER
-        ==================================================== */}
+        {/* SECTION HEADER */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight mb-4">
+          <div className="max-w-2xl text-left">
+            <h2 className="text-4xl sm:text-5xl font-black text-brand-800 tracking-tight mb-4 font-display">
               Top Entrance Exams
-              <span className="block mt-2 h-1.5 w-24 bg-gradient-brand rounded-full"></span>
+              <span className="block mt-2.5 h-1.5 w-24 bg-gradient-brand rounded-full"></span>
             </h2>
-            <p className="text-slate-400 font-medium text-lg">
+            <p className="text-brand-800/70 font-medium text-lg">
               Don’t miss important exam dates and deadlines. Stay ahead of your application timeline.
             </p>
           </div>
-          <button className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold border border-white/10 backdrop-blur-sm transition-all group">
+          <button className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-brand-800 font-bold border border-brand-200 transition-all group shadow-sm cursor-pointer">
             View All Exams <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
-        {/* ====================================================
-            CATEGORY PILLS NAVIGATION
-        ==================================================== */}
+        {/* CATEGORY PILLS NAVIGATION */}
         <div className="flex overflow-x-auto hide-scrollbar gap-3 pb-8 mb-4 snap-x">
           {CATEGORIES.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`snap-start whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm ${
+              className={`snap-start whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm cursor-pointer ${
                 activeCategory === category
-                  ? "bg-gradient-brand text-white shadow-brand-500/25"
-                  : "bg-white/5 text-slate-300 border border-white/10 hover:bg-white/10 hover:text-white"
+                  ? "bg-brand-800 text-white shadow-md shadow-brand-800/10"
+                  : "bg-white text-brand-800/70 border border-brand-200 hover:bg-slate-50 hover:text-brand-800"
               }`}
             >
               {category}
@@ -157,9 +153,7 @@ export default function TopExams() {
           ))}
         </div>
 
-        {/* ====================================================
-            EXAMS GRID
-        ==================================================== */}
+        {/* EXAMS GRID */}
         <motion.div 
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -173,72 +167,72 @@ export default function TopExams() {
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.3 }}
                 key={exam.id}
-                className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-2xl rounded-[2rem] p-6 shadow-2xl border border-white/10 relative group hover:-translate-y-2 hover:shadow-[0_0_50px_rgba(99,102,241,0.2)] hover:border-brand-500/40 transition-all duration-500 flex flex-col h-full overflow-hidden"
+                className="bg-white rounded-[2rem] p-6 shadow-sm border border-brand-200 relative group hover:-translate-y-2 hover:shadow-xl hover:border-brand-500/40 transition-all duration-500 flex flex-col h-full overflow-hidden"
               >
                 {/* Glow Effect inside card on hover */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-brand-500 opacity-0 group-hover:opacity-[0.15] blur-[60px] rounded-full transition-opacity duration-700 pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-48 h-48 bg-brand-500 opacity-0 group-hover:opacity-[0.06] blur-[60px] rounded-full transition-opacity duration-700 pointer-events-none"></div>
 
                 {/* Top Section */}
                 <div className="flex items-start justify-between mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 text-white font-black text-xl flex items-center justify-center border border-white/10 group-hover:bg-gradient-brand group-hover:border-transparent group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-brand-500/30 transition-all">
+                  <div className="w-14 h-14 rounded-2xl bg-brand-50 text-brand-800 font-black text-xl flex items-center justify-center border border-brand-200 group-hover:bg-brand-500 group-hover:text-white group-hover:border-transparent group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-brand-500/20 transition-all">
                     {exam.name.substring(0, 3).toUpperCase()}
                   </div>
                   <div className="flex flex-col items-end gap-3">
-                    <button className="text-slate-400 hover:text-rose-500 transition-colors">
+                    <button className="text-brand-800/40 hover:text-rose-500 transition-colors cursor-pointer">
                       <Bookmark size={20} className="hover:fill-current" />
                     </button>
-                    <span className="px-3 py-1 bg-white/10 text-slate-300 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-white/5 group-hover:bg-brand-500/10 group-hover:text-brand-300 group-hover:border-brand-500/20 transition-colors">
+                    <span className="px-3 py-1 bg-brand-50 text-brand-800/70 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-brand-200 group-hover:bg-brand-500/10 group-hover:text-brand-600 group-hover:border-brand-500/20 transition-colors">
                       {exam.category}
                     </span>
                   </div>
                 </div>
 
                 {/* Exam Info */}
-                <div className="mb-6 flex-1">
-                  <h3 className="text-2xl font-black text-white tracking-tight mb-1">{exam.name}</h3>
-                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wide mb-3 group-hover:text-brand-300 transition-colors">{exam.fullTitle}</p>
-                  <p className="text-sm text-slate-300 font-medium leading-relaxed line-clamp-2">{exam.desc}</p>
+                <div className="mb-6 flex-1 text-left">
+                  <h3 className="text-2xl font-black text-brand-800 tracking-tight mb-1">{exam.name}</h3>
+                  <p className="text-[11px] font-bold text-brand-800/50 uppercase tracking-wide mb-3 group-hover:text-brand-500 transition-colors">{exam.fullTitle}</p>
+                  <p className="text-sm text-brand-800/70 font-medium leading-relaxed line-clamp-2">{exam.desc}</p>
                 </div>
 
-                {/* Key Info Strip (Redesigned Grid) */}
+                {/* Key Info Strip */}
                 <div className="grid grid-cols-2 gap-2 mb-8 mt-auto">
-                  <div className="p-3 rounded-xl bg-white/5 border border-white/5 group-hover:bg-white/10 transition-colors flex flex-col gap-1">
-                    <div className="flex items-center gap-1.5 text-slate-400">
-                      <Calendar size={12} className="text-brand-400" />
+                  <div className="p-3 rounded-xl bg-brand-50 border border-brand-100 group-hover:bg-brand-50/50 transition-colors flex flex-col gap-1 text-left">
+                    <div className="flex items-center gap-1.5 text-brand-800/50">
+                      <Calendar size={12} className="text-brand-500" />
                       <span className="text-[10px] font-bold uppercase tracking-wider">Date</span>
                     </div>
-                    <span className="text-xs font-black text-white">{exam.appOpen}</span>
+                    <span className="text-xs font-black text-brand-800">{exam.appOpen}</span>
                   </div>
-                  <div className="p-3 rounded-xl bg-white/5 border border-white/5 group-hover:bg-white/10 transition-colors flex flex-col gap-1">
-                    <div className="flex items-center gap-1.5 text-slate-400">
-                      <Monitor size={12} className="text-brand-400" />
+                  <div className="p-3 rounded-xl bg-brand-50 border border-brand-100 group-hover:bg-brand-50/50 transition-colors flex flex-col gap-1 text-left">
+                    <div className="flex items-center gap-1.5 text-brand-800/50">
+                      <Monitor size={12} className="text-brand-500" />
                       <span className="text-[10px] font-bold uppercase tracking-wider">Mode</span>
                     </div>
-                    <span className="text-xs font-black text-white">{exam.mode}</span>
+                    <span className="text-xs font-black text-brand-800">{exam.mode}</span>
                   </div>
-                  <div className="col-span-2 p-3 rounded-xl bg-gradient-to-r from-brand-500/10 to-purple-500/10 border border-brand-500/20 flex items-center justify-between group-hover:border-brand-500/40 transition-colors">
-                    <div className="flex items-center gap-1.5 text-brand-300">
-                      <BookOpen size={12} />
+                  <div className="col-span-2 p-3 rounded-xl bg-brand-50 border border-brand-200 flex items-center justify-between transition-colors">
+                    <div className="flex items-center gap-1.5 text-brand-800/60">
+                      <BookOpen size={12} className="text-brand-500" />
                       <span className="text-[10px] font-bold uppercase tracking-wider">Level</span>
                     </div>
-                    <span className="text-xs font-black text-white">{exam.level}</span>
+                    <span className="text-xs font-black text-brand-800">{exam.level}</span>
                   </div>
                 </div>
 
-                {/* Bottom Action Area (Solid Button) */}
-                <div className="flex items-center gap-2 pt-5 border-t border-white/10">
+                {/* Bottom Action Area */}
+                <div className="flex items-center gap-2 pt-5 border-t border-brand-200">
                   <Link 
                     to={`/exam/${exam.id}`}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-white/10 hover:bg-gradient-brand text-white font-bold text-sm rounded-xl transition-all shadow-sm group-hover:shadow-brand-500/25 border border-white/10 hover:border-transparent"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold text-sm rounded-xl transition-all duration-300 shadow-sm border border-brand-200/50 hover:border-transparent"
                   >
                     View Details <ArrowRight size={16} />
                   </Link>
                   <button 
                     onClick={() => handleToggleCompare(exam.id)}
-                    className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors border shrink-0 ${
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 border shrink-0 cursor-pointer ${
                       comparedExams.includes(exam.id)
-                        ? 'bg-brand-500/20 text-brand-400 border-brand-500/30'
-                        : 'bg-white/5 text-slate-400 hover:bg-white/20 hover:text-white border-white/10 group-hover:border-white/30'
+                        ? 'bg-brand-500 text-white border-transparent shadow-md shadow-brand-500/25'
+                        : 'bg-brand-50 text-brand-800 hover:bg-brand-100 hover:text-brand-900 border-brand-200'
                     }`} 
                     title="Compare Exam"
                   >

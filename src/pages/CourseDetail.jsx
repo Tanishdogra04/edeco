@@ -382,7 +382,7 @@ export default function CourseDetail() {
             {/* College Cards List */}
             <div className="space-y-5">
               {filteredColleges.length > 0 ? filteredColleges.map((college, i) => (
-                <div key={i} className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col md:flex-row">
+                <div key={i} className="bg-white rounded-2xl border border-brand-200 shadow-sm hover:shadow-xl hover:border-brand-500/40 transition-all overflow-hidden flex flex-col md:flex-row text-left group">
                   
                   {/* Image/Logo area (Left) */}
                   <div className="md:w-64 h-48 md:h-auto relative bg-slate-100 flex-shrink-0">
@@ -396,34 +396,34 @@ export default function CourseDetail() {
                   <div className="p-5 md:p-6 flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-start gap-4 mb-2">
-                        <Link to={`/colleges/${college.id}`} className="hover:text-brand-600 transition-colors">
-                          <h3 className="text-xl font-bold text-slate-900 leading-tight">{college.name}</h3>
+                        <Link to={`/colleges/${college.id}`} className="hover:text-brand-500 transition-colors">
+                          <h3 className="text-xl font-bold text-brand-800 leading-tight group-hover:text-brand-500 transition-colors">{college.name}</h3>
                         </Link>
                       </div>
                       
-                      <div className="flex items-center gap-4 text-sm text-slate-500 mb-4 flex-wrap">
-                        <span className="flex items-center gap-1"><MapPin size={14} className="text-slate-400" /> {college.location}</span>
-                        <span className="flex items-center gap-1"><ShieldCheck size={14} className="text-green-500" /> {college.approved}</span>
-                        <span className="flex items-center gap-1"><Building2 size={14} className="text-emerald-500" /> {college.type}</span>
+                      <div className="flex items-center gap-4 text-sm text-brand-800/60 mb-4 flex-wrap">
+                        <span className="flex items-center gap-1"><MapPin size={14} className="text-brand-800/40" /> {college.location}</span>
+                        <span className="flex items-center gap-1"><ShieldCheck size={14} className="text-brand-500" /> {college.approved}</span>
+                        <span className="flex items-center gap-1"><Building2 size={14} className="text-brand-500" /> {college.type}</span>
                       </div>
 
                       <div className="flex items-center gap-4 sm:gap-6 mb-6">
-                        <div className="bg-brand-50/50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-brand-100 flex-1">
-                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-brand-600/70 mb-0.5 flex items-center gap-1"><Banknote size={12}/> First Year Fees</p>
-                          <p className="font-black text-brand-900 text-sm sm:text-base">{college.fees}</p>
+                        <div className="bg-brand-50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-brand-200 flex-1">
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-brand-800/50 mb-0.5 flex items-center gap-1"><Banknote size={12}/> First Year Fees</p>
+                          <p className="font-black text-brand-800 text-sm sm:text-base">{college.fees}</p>
                         </div>
-                        <div className="bg-emerald-50/50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-emerald-100 flex-1">
-                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-emerald-600/70 mb-0.5 flex items-center gap-1"><Award size={12}/> Average Package</p>
-                          <p className="font-black text-emerald-900 text-sm sm:text-base">{college.placement}</p>
+                        <div className="bg-brand-50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-brand-200 flex-1">
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-brand-800/50 mb-0.5 flex items-center gap-1"><Award size={12}/> Average Package</p>
+                          <p className="font-black text-brand-800 text-sm sm:text-base">{college.placement}</p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-slate-100">
-                      <button onClick={() => setIsApplyOpen(true)} className="w-full sm:flex-1 bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-sm">
+                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-brand-200">
+                      <button onClick={() => setIsApplyOpen(true)} className="w-full sm:flex-1 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm cursor-pointer">
                         Apply Now <ArrowRight size={16} />
                       </button>
-                      <button className="w-full sm:flex-1 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
+                      <button className="w-full sm:flex-1 bg-white hover:bg-brand-50 text-brand-800 border border-brand-200 font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer">
                         <Download size={16} /> Download Brochure
                       </button>
                     </div>

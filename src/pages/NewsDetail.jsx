@@ -270,69 +270,69 @@ export default function NewsDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans selection:bg-brand-200 selection:text-brand-900">
+    <div className="min-h-screen bg-brand-50 font-sans selection:bg-brand-200 selection:text-brand-800">
       <Navbar />
 
       {/* Reading Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-500 to-brand-purple origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-500 to-brand-800 origin-left z-50"
         style={{ scaleX }}
       />
 
       {/* Breadcrumbs */}
-      <div className="bg-white border-b border-slate-200 pt-24 pb-4 sticky top-0 z-40 shadow-sm">
+      <div className="bg-white border-b border-brand-200 pt-24 pb-4 sticky top-0 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center text-sm text-slate-500 gap-2 overflow-x-auto whitespace-nowrap hide-scrollbar font-medium">
-            <Link to="/" className="hover:text-brand-600 transition-colors">Home</Link>
+          <div className="flex items-center text-sm text-brand-800/60 gap-2 overflow-x-auto whitespace-nowrap hide-scrollbar font-medium">
+            <Link to="/" className="hover:text-brand-500 transition-colors">Home</Link>
             <ChevronRight size={14} />
-            <Link to="/" className="hover:text-brand-600 transition-colors">News & Insights</Link>
+            <Link to="/" className="hover:text-brand-500 transition-colors">News & Insights</Link>
             <ChevronRight size={14} />
-            <span className="text-slate-900 font-bold truncate max-w-[300px]">{article.title}</span>
+            <span className="text-brand-800 font-bold truncate max-w-[300px]">{article.title}</span>
           </div>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="bg-white border-b border-slate-200 pb-16 pt-12 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-white border-b border-brand-200 pb-16 pt-12 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Content */}
             <div className="lg:col-span-6 space-y-6">
               <div className="flex items-center gap-4">
-                <span className="px-3 py-1 rounded-full bg-brand-50 text-brand-600 text-xs font-bold uppercase tracking-widest border border-brand-100">
+                <span className="px-3 py-1 rounded-full bg-brand-50 text-brand-500 text-xs font-bold uppercase tracking-widest border border-brand-200">
                   {article.category}
                 </span>
-                <span className="flex items-center gap-1.5 text-xs font-bold text-slate-400">
+                <span className="flex items-center gap-1.5 text-xs font-bold text-brand-800/40">
                   <Clock size={14} /> {article.readTime}
                 </span>
               </div>
               
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-800 tracking-tight leading-tight font-display">
                 {article.title}
               </h1>
               
-              <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-2xl">
+              <p className="text-lg text-brand-800/70 font-medium leading-relaxed max-w-2xl">
                 {article.subtitle}
               </p>
 
-              <div className="flex flex-wrap items-center justify-between pt-6 border-t border-slate-100 gap-6">
+              <div className="flex flex-wrap items-center justify-between pt-6 border-t border-brand-200 gap-6">
                 <div className="flex items-center gap-4">
                   <img src={article.author.avatar} alt={article.author.name} className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md" />
                   <div>
-                    <p className="font-bold text-slate-900">{article.author.name}</p>
-                    <p className="text-xs text-slate-500 font-medium">{article.author.role} • {article.date}</p>
+                    <p className="font-bold text-brand-800">{article.author.name}</p>
+                    <p className="text-xs text-brand-800/60 font-medium">{article.author.role} • {article.date}</p>
                   </div>
                 </div>
                 
                 <div className="flex gap-2">
                   <button 
                     onClick={() => setIsSaved(!isSaved)}
-                    className={`p-2.5 rounded-xl border flex items-center justify-center transition-all ${isSaved ? 'bg-brand-50 border-brand-200 text-brand-600' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300'}`}
+                    className={`p-2.5 rounded-xl border flex items-center justify-center transition-all cursor-pointer ${isSaved ? 'bg-brand-50 border-brand-200 text-brand-500' : 'bg-white border-brand-200 text-brand-800/70 hover:bg-brand-50 hover:border-brand-300'}`}
                   >
                     <Bookmark size={20} fill={isSaved ? "currentColor" : "none"} />
                   </button>
-                  <button className="p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 hover:border-slate-300 transition-all flex items-center justify-center shadow-sm">
+                  <button className="p-2.5 rounded-xl border border-brand-200 bg-white hover:bg-brand-50 text-brand-800/70 hover:border-brand-300 transition-all flex items-center justify-center shadow-sm cursor-pointer">
                     <Share2 size={20} />
                   </button>
                 </div>
@@ -341,8 +341,8 @@ export default function NewsDetail() {
 
             {/* Right Hero Image */}
             <div className="lg:col-span-6 relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-brand-500/20 to-brand-purple/20 blur-3xl -z-10 rounded-full scale-110"></div>
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-100 transform rotate-1 hover:rotate-0 transition-transform duration-500 bg-white p-2">
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-500/20 to-brand-800/20 blur-3xl -z-10 rounded-full scale-110"></div>
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-brand-200 transform rotate-1 hover:rotate-0 transition-transform duration-500 bg-white p-2">
                 <img src={article.image} alt={article.title} className="w-full h-[400px] object-cover rounded-2xl" />
               </div>
             </div>
@@ -356,13 +356,13 @@ export default function NewsDetail() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Main Content (70%) */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 text-left">
             <div className="prose prose-lg prose-slate max-w-none">
               
               {article.content.map((block, idx) => {
                 if (block.type === 'h2') {
                   return (
-                    <h2 key={idx} id={block.id} className="text-3xl font-black text-slate-900 mt-12 mb-6 scroll-mt-32">
+                    <h2 key={idx} id={block.id} className="text-3xl font-black text-brand-800 mt-12 mb-6 scroll-mt-32 font-display">
                       {block.text}
                     </h2>
                   );
@@ -370,7 +370,7 @@ export default function NewsDetail() {
                 
                 if (block.type === 'p') {
                   return (
-                    <p key={idx} className="text-lg text-slate-700 leading-relaxed font-medium mb-6">
+                    <p key={idx} className="text-lg text-brand-800/80 leading-relaxed font-medium mb-6">
                       {block.text}
                     </p>
                   );
@@ -378,20 +378,20 @@ export default function NewsDetail() {
 
                 if (block.type === 'highlight') {
                   return (
-                    <div key={idx} id={block.id} className="my-10 bg-gradient-to-br from-brand-50 to-white rounded-3xl p-8 border border-brand-100 shadow-sm relative overflow-hidden scroll-mt-32">
-                      <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
+                    <div key={idx} id={block.id} className="my-10 bg-gradient-to-br from-brand-50 to-white rounded-3xl p-8 border border-brand-200 shadow-sm relative overflow-hidden scroll-mt-32">
+                      <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none text-brand-200">
                         <TrendingUp size={120} />
                       </div>
-                      <h3 className="text-xl font-black text-brand-900 mb-6 flex items-center gap-2">
+                      <h3 className="text-xl font-black text-brand-800 mb-6 flex items-center gap-2 font-display">
                         <BadgeCheck className="text-brand-500" /> {block.title}
                       </h3>
                       <ul className="space-y-4 relative z-10 list-none pl-0">
                         {block.items.map((item, i) => (
                           <li key={i} className="flex items-start gap-3 pl-0 before:hidden">
-                            <div className="w-6 h-6 rounded-full bg-white border border-brand-200 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm text-brand-600">
+                            <div className="w-6 h-6 rounded-full bg-white border border-brand-200 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm text-brand-500">
                               <span className="text-xs font-bold">{i+1}</span>
                             </div>
-                            <span className="text-slate-700 font-medium leading-relaxed m-0">{item}</span>
+                            <span className="text-brand-800/80 font-medium leading-relaxed m-0">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -402,11 +402,11 @@ export default function NewsDetail() {
                 if (block.type === 'quote') {
                   return (
                     <blockquote key={idx} className="my-10 pl-6 sm:pl-8 border-l-4 border-brand-500">
-                      <p className="text-xl sm:text-2xl font-medium text-slate-800 leading-relaxed italic mb-4 mt-0">
+                      <p className="text-xl sm:text-2xl font-medium text-brand-800 leading-relaxed italic mb-4 mt-0">
                         "{block.text}"
                       </p>
-                      <footer className="text-sm font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                        <div className="w-6 h-[2px] bg-slate-300 rounded-full"></div> {block.author}
+                      <footer className="text-sm font-bold text-brand-800/60 uppercase tracking-widest flex items-center gap-2">
+                        <div className="w-6 h-[2px] bg-brand-200 rounded-full"></div> {block.author}
                       </footer>
                     </blockquote>
                   );
@@ -418,15 +418,15 @@ export default function NewsDetail() {
             </div>
 
             {/* Tags and Action */}
-            <div className="mt-16 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="mt-16 pt-8 border-t border-brand-200 flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-3">
-                <span className="text-sm font-bold text-slate-500">Tags:</span>
-                <span className="px-3 py-1 bg-slate-100 hover:bg-slate-200 transition-colors rounded-lg text-xs font-bold text-slate-600 cursor-pointer">Exams</span>
-                <span className="px-3 py-1 bg-slate-100 hover:bg-slate-200 transition-colors rounded-lg text-xs font-bold text-slate-600 cursor-pointer">Admissions</span>
-                <span className="px-3 py-1 bg-slate-100 hover:bg-slate-200 transition-colors rounded-lg text-xs font-bold text-slate-600 cursor-pointer">2026</span>
+                <span className="text-sm font-bold text-brand-800/60 font-sans">Tags:</span>
+                <span className="px-3 py-1 bg-brand-100 hover:bg-brand-200 transition-colors rounded-lg text-xs font-bold text-brand-800 cursor-pointer">Exams</span>
+                <span className="px-3 py-1 bg-brand-100 hover:bg-brand-200 transition-colors rounded-lg text-xs font-bold text-brand-800 cursor-pointer">Admissions</span>
+                <span className="px-3 py-1 bg-brand-100 hover:bg-brand-200 transition-colors rounded-lg text-xs font-bold text-brand-800 cursor-pointer">2026</span>
               </div>
               <div className="flex gap-2">
-                <button className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-600 font-bold text-sm transition-all shadow-sm">
+                <button className="flex items-center gap-2 px-4 py-2 rounded-xl border border-brand-200 hover:border-brand-300 hover:bg-brand-50 text-brand-800/80 font-bold text-sm transition-all shadow-sm cursor-pointer">
                   <Link2 size={16} /> Copy Link
                 </button>
               </div>
@@ -437,17 +437,17 @@ export default function NewsDetail() {
           <div className="lg:col-span-4 space-y-8">
             
             {/* Table of Contents */}
-            <div className="sticky top-40 bg-white rounded-3xl border border-slate-200 p-6 shadow-xl shadow-slate-200/40">
-              <h4 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-6">In this article</h4>
+            <div className="sticky top-40 bg-white rounded-3xl border border-brand-200 p-6 shadow-sm">
+              <h4 className="text-xs font-black uppercase tracking-widest text-brand-800/40 mb-6">In this article</h4>
               <nav className="space-y-1">
                 {article.content.filter(b => b.type === 'h2' || b.type === 'highlight').map((b, i) => (
                   <button
                     key={i}
                     onClick={() => scrollToSection(b.id)}
-                    className={`block w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
+                    className={`block w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold transition-all cursor-pointer ${
                       activeSection === b.id 
-                      ? 'bg-brand-50 text-brand-700' 
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      ? 'bg-brand-50 text-brand-800 border-l-4 border-brand-500 pl-3' 
+                      : 'text-brand-800/70 hover:bg-brand-50 hover:text-brand-800'
                     }`}
                   >
                     {b.text || b.title}
@@ -457,19 +457,19 @@ export default function NewsDetail() {
             </div>
 
             {/* Newsletter Subscription */}
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/20 rounded-full blur-3xl"></div>
+            <div className="bg-white rounded-3xl p-8 border border-brand-200 shadow-sm relative overflow-hidden text-left">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500/10 rounded-full blur-3xl"></div>
                <div className="relative z-10">
-                 <Mail className="text-brand-400 mb-4" size={32} />
-                 <h4 className="text-xl font-black text-white mb-2">Get Latest Updates</h4>
-                 <p className="text-sm text-slate-400 font-medium mb-6">Join 50,000+ students receiving weekly admission insights directly in their inbox.</p>
+                 <Mail className="text-brand-500 mb-4" size={32} />
+                 <h4 className="text-xl font-black text-brand-800 mb-2 font-display">Get Latest Updates</h4>
+                 <p className="text-sm text-brand-800/70 font-medium mb-6">Join 50,000+ students receiving weekly admission insights directly in their inbox.</p>
                  <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
                    <input 
                     type="email" 
                     placeholder="Enter your email" 
-                    className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium text-sm transition-all"
+                    className="w-full bg-brand-50 border border-brand-200 rounded-xl px-4 py-3 text-brand-800 placeholder:text-brand-800/40 focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium text-sm transition-all"
                    />
-                   <button className="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-brand-500/25">
+                   <button className="w-full bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-sm cursor-pointer">
                      Subscribe Now
                    </button>
                  </form>
@@ -482,35 +482,35 @@ export default function NewsDetail() {
       </section>
 
       {/* Related Articles Horizontal Slider */}
-      <section className="bg-slate-100 py-20 border-y border-slate-200">
+      <section className="bg-brand-50 py-20 border-y border-brand-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-10">
-            <div>
-              <h2 className="text-3xl font-black text-slate-900">Read Next</h2>
-              <p className="text-slate-500 font-medium mt-2">More insights picked for you</p>
+            <div className="text-left">
+              <h2 className="text-3xl font-black text-brand-800 font-display">Read Next</h2>
+              <p className="text-brand-800/60 font-medium mt-2">More insights picked for you</p>
             </div>
-            <Link to="/" className="hidden sm:flex items-center gap-1.5 text-sm font-bold text-brand-600 hover:text-brand-700 transition-colors">
+            <Link to="/" className="hidden sm:flex items-center gap-1.5 text-sm font-bold text-brand-500 hover:text-brand-800 transition-colors">
               View All <ArrowRight size={16} />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedArticles.map((rel, idx) => (
-              <Link to={`/news/${rel.id}`} key={idx} className="group bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-brand-300 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 flex flex-col h-full">
+              <Link to={`/news/${rel.id}`} key={idx} className="group bg-white rounded-3xl overflow-hidden border border-brand-200 hover:border-brand-500 hover:shadow-md transition-all duration-300 flex flex-col h-full">
                 <div className="h-48 overflow-hidden relative">
                   <img src={rel.image} alt={rel.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 rounded-lg bg-white/95 backdrop-blur-sm text-slate-800 text-[10px] font-bold uppercase shadow-sm">{rel.category}</span>
                   </div>
                 </div>
-                <div className="p-6 flex-1 flex flex-col justify-between">
+                <div className="p-6 flex-1 flex flex-col justify-between text-left">
                   <div>
-                    <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-3">
+                    <div className="flex items-center gap-2 text-xs font-bold text-brand-800/40 mb-3">
                       <Calendar size={14} /> {rel.date}
                     </div>
-                    <h3 className="font-bold text-lg text-slate-900 group-hover:text-brand-600 transition-colors leading-snug">{rel.title}</h3>
+                    <h3 className="font-bold text-lg text-brand-800 group-hover:text-brand-500 transition-colors leading-snug font-display">{rel.title}</h3>
                   </div>
-                  <div className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-slate-500 group-hover:text-brand-600 transition-colors">
+                  <div className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-brand-800/70 group-hover:text-brand-500 transition-colors">
                     Read Article <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -520,9 +520,6 @@ export default function NewsDetail() {
         </div>
       </section>
 
-      {/* Global CTA */}
-
-      
       <Footer />
     </div>
   );

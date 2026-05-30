@@ -316,7 +316,7 @@ export default function CounsellingModal({ isOpen, onClose }) {
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="flex items-center gap-1.5 px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold shadow-md shadow-brand-500/10 cursor-pointer"
+                      className="flex items-center gap-1.5 px-6 py-3 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white text-xs font-bold transition-all duration-300 shadow-md cursor-pointer"
                     >
                       Continue
                       <ChevronRight size={16} />
@@ -325,7 +325,7 @@ export default function CounsellingModal({ isOpen, onClose }) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex items-center gap-1.5 px-8 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-md cursor-pointer"
+                      className="flex items-center gap-1.5 px-8 py-3 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white text-xs font-bold shadow-md transition-all duration-300 cursor-pointer disabled:opacity-50"
                     >
                       {isSubmitting ? (
                         <span>Submitting...</span>
@@ -347,7 +347,7 @@ export default function CounsellingModal({ isOpen, onClose }) {
                 animate={{ scale: 1, opacity: 1 }}
                 className="text-center py-8 space-y-6"
               >
-                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mx-auto border border-emerald-100 shadow-md">
+                <div className="w-16 h-16 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center mx-auto border border-brand-100 shadow-md">
                   <BadgeCheck size={36} className="animate-bounce" />
                 </div>
 
@@ -367,7 +367,7 @@ export default function CounsellingModal({ isOpen, onClose }) {
                       <div className="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">
                         AM
                       </div>
-                      <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white"></div>
+                      <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-brand-500 rounded-full border-2 border-white"></div>
                     </div>
                     <div>
                       <p className="text-xs font-bold text-slate-800">Assigning Counselor...</p>
@@ -375,7 +375,7 @@ export default function CounsellingModal({ isOpen, onClose }) {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-1.5 text-[11px] text-emerald-600 font-bold">
+                  <div className="flex items-center gap-1.5 text-[11px] text-brand-600 font-bold">
                     <Star size={12} fill="currentColor" className="text-yellow-400" />
                     <span>Avg rating 4.9 • WhatsApp callback in 10 mins</span>
                   </div>

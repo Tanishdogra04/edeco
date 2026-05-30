@@ -47,7 +47,7 @@ export default function Stats() {
       suffix: "+",
       desc: "Top Universities nationwide", 
       icon: School, 
-      color: "bg-emerald-50 text-emerald-600 border-emerald-100/50" 
+      color: "bg-brand-50 text-brand-800 border-brand-200" 
     },
     { 
       label: "Students Guided", 
@@ -55,7 +55,7 @@ export default function Stats() {
       suffix: "K+",
       desc: "Admissions finalized", 
       icon: Users, 
-      color: "bg-teal-50 text-teal-600 border-teal-100/50" 
+      color: "bg-brand-50 text-brand-800 border-brand-200" 
     },
     { 
       label: "Expert Counsellors", 
@@ -63,7 +63,7 @@ export default function Stats() {
       suffix: "+",
       desc: "Industry-certified guides", 
       icon: UserCheck, 
-      color: "bg-lime-50 text-lime-600 border-lime-100/50" 
+      color: "bg-brand-50 text-brand-800 border-brand-200" 
     },
     { 
       label: "Success Rate", 
@@ -71,12 +71,12 @@ export default function Stats() {
       suffix: "%",
       desc: "Top preference college matches", 
       icon: Award, 
-      color: "bg-green-50 text-green-600 border-green-100/50" 
+      color: "bg-brand-50 text-brand-800 border-brand-200" 
     }
   ];
 
   return (
-    <section className="py-12 bg-white relative">
+    <section className="py-12 bg-brand-50 relative border-y border-brand-200/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {statItems.map((item, idx) => {
@@ -88,7 +88,7 @@ export default function Stats() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="glass-card p-6 rounded-2xl text-center flex flex-col items-center justify-between border border-slate-100/70"
+                className="bg-white p-6 rounded-2xl text-center flex flex-col items-center justify-between border border-brand-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Icon wrapper */}
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${item.color} mb-4 shadow-sm`}>
@@ -96,14 +96,14 @@ export default function Stats() {
                 </div>
 
                 {/* Stat value */}
-                <div className="text-3xl sm:text-4xl font-display font-extrabold text-slate-800 tracking-tight">
+                <div className="text-3xl sm:text-4xl font-display font-extrabold text-brand-800 tracking-tight">
                   <AnimatedCounter value={item.value} suffix={item.suffix} />
                 </div>
 
                 {/* Label and description */}
                 <div className="mt-2 text-left w-full text-center">
-                  <h4 className="text-[14px] font-bold text-slate-700">{item.label}</h4>
-                  <p className="text-[12px] text-slate-400 mt-0.5">{item.desc}</p>
+                  <h4 className="text-[14px] font-bold text-brand-800">{item.label}</h4>
+                  <p className="text-[12px] text-brand-800/60 mt-0.5">{item.desc}</p>
                 </div>
               </motion.div>
             );

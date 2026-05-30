@@ -18,22 +18,22 @@ export default function PremiumServices() {
       icon: BrainCircuit,
       title: 'AI College Finder',
       description: 'Our proprietary algorithm analyzes your profile, scores, and preferences to predict admission chances with 94% accuracy.',
-      color: 'text-teal-600',
-      bg: 'bg-teal-50'
+      color: 'text-brand-600',
+      bg: 'bg-brand-100'
     },
     {
       icon: PhoneCall,
       title: 'Expert Consultation',
       description: '1-on-1 sessions with admission veterans who have helped thousands of students get into top-tier institutes.',
       color: 'text-brand-500',
-      bg: 'bg-brand-500/10'
+      bg: 'bg-brand-100'
     },
     {
       icon: Sparkles,
       title: 'Admission Guidance',
       description: 'End-to-end support from university shortlisting to application essays, interview prep, and final enrollment.',
-      color: 'text-emerald-500',
-      bg: 'bg-emerald-500/10'
+      color: 'text-brand-700',
+      bg: 'bg-brand-200/60'
     }
   ];
 
@@ -91,11 +91,11 @@ export default function PremiumServices() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans selection:bg-brand-500 selection:text-white">
+    <div className="min-h-screen bg-brand-50 font-sans selection:bg-brand-200 selection:text-brand-800">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden border-b border-slate-200">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden border-b border-brand-200">
         {/* Banner Image with Light Overlay */}
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center" />
         <div className="absolute inset-0 bg-white/85 backdrop-blur-[2px]" />
@@ -104,27 +104,27 @@ export default function PremiumServices() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-200 mb-8"
           >
-            <Sparkles size={16} className="text-brand-600" />
-            <span className="text-sm font-bold tracking-wide text-brand-700 uppercase">EdEvolving Premium</span>
+            <Sparkles size={16} className="text-brand-500" />
+            <span className="text-sm font-bold tracking-wide text-brand-800 uppercase">edeco Premium</span>
           </motion.div>
           
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold font-display text-slate-900 mb-6 leading-tight"
+            className="text-4xl md:text-6xl font-bold font-display text-brand-800 mb-6 leading-tight"
           >
             Your Dream College, <br className="hidden md:block" />
-            <span className="text-brand-600">Guaranteed.</span>
+            <span className="text-brand-500">Guaranteed.</span>
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-10"
+            className="text-lg md:text-xl text-brand-800/70 max-w-2xl mx-auto mb-10"
           >
             Unlock data-driven AI insights, 1-on-1 expert mentorship, and end-to-end admission support.
           </motion.p>
@@ -136,7 +136,7 @@ export default function PremiumServices() {
           >
             <button 
               onClick={handlePricingScroll}
-              className="bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-brand-600/20 transition-all duration-300 flex items-center gap-2 mx-auto"
+              className="bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-4 px-8 rounded-xl shadow-sm transition-all duration-300 flex items-center gap-2 mx-auto cursor-pointer"
             >
               View Pricing <ArrowRight size={20} />
             </button>
@@ -145,13 +145,13 @@ export default function PremiumServices() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 bg-white relative" id="features">
+      <section className="py-24 bg-white relative text-left" id="features">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 font-display">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-800 mb-4 font-display">
               Unfair Advantage in Admissions
             </h2>
-            <p className="text-lg text-slate-500">
+            <p className="text-lg text-brand-800/70">
               Stop guessing. Use our premium tools and experts to navigate the complex admission landscape with certainty.
             </p>
           </div>
@@ -164,13 +164,13 @@ export default function PremiumServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-xl transition-all duration-300 group"
+                className="bg-brand-50 rounded-3xl p-8 border border-brand-200 hover:shadow-md transition-all duration-300 group"
               >
                 <div className={`w-14 h-14 rounded-2xl ${feature.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                   <feature.icon size={28} className={feature.color} />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                <p className="text-slate-500 leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl font-bold text-brand-800 mb-3 font-display">{feature.title}</h3>
+                <p className="text-brand-800/70 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -178,13 +178,13 @@ export default function PremiumServices() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-24 bg-slate-50 relative" id="pricing">
+      <section className="py-24 bg-brand-50 relative text-left" id="pricing">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 font-display">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-800 mb-4 font-display">
               Simple, Transparent Pricing
             </h2>
-            <p className="text-lg text-slate-500">
+            <p className="text-lg text-brand-800/70">
               Invest in your future. Choose the tier that matches your ambition.
             </p>
           </div>
@@ -197,32 +197,40 @@ export default function PremiumServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className={`relative bg-white rounded-3xl p-8 border ${plan.popular ? 'border-brand-500 shadow-2xl shadow-brand-500/10 lg:scale-105 z-10' : 'border-slate-200 shadow-lg'}`}
+                className={`relative bg-white rounded-3xl p-8 border flex flex-col justify-between h-full ${plan.popular ? 'border-brand-500 shadow-lg lg:scale-105 z-10' : 'border-brand-200 shadow-sm'}`}
               >
-                {plan.popular && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-500 text-white text-xs font-bold uppercase tracking-wider py-1 px-4 rounded-full">
-                    Most Popular
+                <div>
+                  {plan.popular && (
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-500 text-white text-xs font-bold uppercase tracking-wider py-1 px-4 rounded-full">
+                      Most Popular
+                    </div>
+                  )}
+                  
+                  <h3 className="text-xl font-bold text-brand-800 mb-2 font-display">{plan.name}</h3>
+                  <p className="text-brand-800/60 text-sm mb-6 h-10">{plan.description}</p>
+                  
+                  <div className="mb-8">
+                    <span className="text-4xl font-black text-brand-800">{plan.price}</span>
+                    {plan.period && <span className="text-brand-800/60 font-medium">{plan.period}</span>}
                   </div>
-                )}
-                
-                <h3 className="text-xl font-bold text-slate-900 mb-2">{plan.name}</h3>
-                <p className="text-slate-500 text-sm mb-6 h-10">{plan.description}</p>
-                
-                <div className="mb-8">
-                  <span className="text-4xl font-black text-slate-900">{plan.price}</span>
-                  {plan.period && <span className="text-slate-500 font-medium">{plan.period}</span>}
+
+                  <ul className="space-y-4 mb-8">
+                    {plan.features.map((feat, fIdx) => (
+                      <li key={fIdx} className="flex items-start gap-3">
+                        <CheckCircle2 size={20} className={plan.popular ? 'text-brand-500 shrink-0' : 'text-brand-800/40 shrink-0'} />
+                        <span className="text-brand-800/70 font-medium">{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feat, fIdx) => (
-                    <li key={fIdx} className="flex items-start gap-3">
-                      <CheckCircle2 size={20} className={plan.popular ? 'text-brand-500 shrink-0' : 'text-slate-400 shrink-0'} />
-                      <span className="text-slate-600 font-medium">{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button className={`w-full py-4 rounded-xl font-bold transition-colors ${plan.popular ? 'bg-brand-500 hover:bg-brand-600 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-800'}`}>
+                <button 
+                  className={`w-full py-4 rounded-xl font-bold transition-all duration-300 cursor-pointer ${
+                    plan.popular 
+                      ? 'bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white shadow-sm' 
+                      : 'bg-white hover:bg-brand-50 text-brand-800 border border-brand-200'
+                  }`}
+                >
                   {plan.buttonText}
                 </button>
               </motion.div>
@@ -232,24 +240,24 @@ export default function PremiumServices() {
       </section>
 
       {/* Trust Banner */}
-      <section className="bg-brand-50 py-16 border-t border-brand-100">
+      <section className="bg-white py-16 border-t border-brand-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-brand-200/50">
             <div>
-              <p className="text-4xl font-black text-brand-700 mb-2">50k+</p>
-              <p className="text-slate-600 font-medium text-sm md:text-base">Students Mentored</p>
+              <p className="text-4xl font-black text-brand-500 mb-2 font-display">50k+</p>
+              <p className="text-brand-800/70 font-medium text-sm md:text-base">Students Mentored</p>
             </div>
             <div>
-              <p className="text-4xl font-black text-brand-700 mb-2">94%</p>
-              <p className="text-slate-600 font-medium text-sm md:text-base">Success Rate</p>
+              <p className="text-4xl font-black text-brand-500 mb-2 font-display">94%</p>
+              <p className="text-brand-800/70 font-medium text-sm md:text-base">Success Rate</p>
             </div>
             <div>
-              <p className="text-4xl font-black text-brand-700 mb-2">200+</p>
-              <p className="text-slate-600 font-medium text-sm md:text-base">Partner Colleges</p>
+              <p className="text-4xl font-black text-brand-500 mb-2 font-display">200+</p>
+              <p className="text-brand-800/70 font-medium text-sm md:text-base">Partner Colleges</p>
             </div>
             <div>
-              <p className="text-4xl font-black text-brand-700 mb-2">4.9/5</p>
-              <p className="text-slate-600 font-medium text-sm md:text-base">Student Rating</p>
+              <p className="text-4xl font-black text-brand-500 mb-2 font-display">4.9/5</p>
+              <p className="text-brand-800/70 font-medium text-sm md:text-base">Student Rating</p>
             </div>
           </div>
         </div>

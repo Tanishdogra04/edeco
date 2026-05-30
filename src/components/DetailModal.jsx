@@ -86,7 +86,7 @@ export default function DetailModal({ college, isOpen, onClose, onCounsellingCli
               </div>
               <div className="bg-slate-50 border border-slate-100 p-3 rounded-2xl text-left">
                 <span className="text-[10px] text-slate-400 font-bold uppercase block">Highest Package</span>
-                <span className="text-sm font-extrabold text-emerald-600">{college.highestPackage}</span>
+                <span className="text-sm font-extrabold text-brand-600">{college.highestPackage}</span>
               </div>
             </div>
 

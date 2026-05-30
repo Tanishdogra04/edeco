@@ -89,12 +89,8 @@ export default function Footer() {
               className="inline-flex items-center gap-2.5 cursor-pointer px-4 py-2 rounded-full bg-white hover:bg-slate-100 border border-slate-200/60 shadow-sm transition-all duration-300 group" 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
-              <div className="w-9 h-9 rounded-full bg-gradient-brand flex items-center justify-center text-white shadow-lg shadow-brand-500/10 group-hover:scale-105 transition-transform duration-300">
-                <GraduationCap size={20} />
-              </div>
-              <span className="font-display font-bold text-xl tracking-tight">
-                <span className="text-slate-800 group-hover:text-brand-600 transition-colors">Ed</span>
-                <span className="text-gradient">Evolving</span>
+              <span className="font-display font-black text-2xl tracking-tight text-slate-800">
+                edeco<span className="text-emerald-500 font-black">.</span>
               </span>
             </div>
             <p className="text-sm text-slate-500 max-w-sm font-medium leading-relaxed">
@@ -180,9 +176,9 @@ export default function Footer() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 py-12 border-b border-slate-200 text-left">
           {[
             { icon: Star, value: "4.9/5", label: "Student Rating", color: "text-amber-500" },
-            { icon: Building2, value: "500+", label: "Partner Colleges", color: "text-emerald-500" },
-            { icon: Users, value: "2.5M+", label: "Annual Aspirants", color: "text-lime-500" },
-            { icon: Sparkles, value: "100% Free", label: "Expert Counseling", color: "text-emerald-500" }
+            { icon: Building2, value: "500+", label: "Partner Colleges", color: "text-brand-600" },
+            { icon: Users, value: "2.5M+", label: "Annual Aspirants", color: "text-brand-500" },
+            { icon: Sparkles, value: "100% Free", label: "Expert Counseling", color: "text-brand-600" }
           ].map((stat, idx) => {
             const StatIcon = stat.icon;
             return (
@@ -295,7 +291,7 @@ export default function Footer() {
                 <div className="p-1 rounded-lg bg-brand-50 text-brand-600 border border-brand-100">
                   <Mail size={14} />
                 </div>
-                <span className="hover:text-brand-600 transition-colors cursor-pointer">guidance@edevolving.edu</span>
+                 <span className="hover:text-brand-600 transition-colors cursor-pointer">guidance@edeco.edu</span>
               </li>
             </ul>
           </div>
@@ -306,7 +302,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
 
           <div className="text-xs text-slate-500 font-semibold flex items-center gap-1">
-            <span>© 2026 EdEvolving Platforms Pvt Ltd. Built with</span>
+             <span>© 2026 Edeco Platforms Pvt Ltd. Built with</span>
             <Heart size={10} className="text-rose-500 fill-rose-500 animate-pulse" />
             <span>for Gen-Z Aspirants.</span>
           </div>
