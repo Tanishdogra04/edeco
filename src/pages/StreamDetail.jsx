@@ -170,6 +170,7 @@ export default function StreamDetail() {
           // Simply scroll down a bit if they click the compare icon in the header
           window.scrollTo({ top: 400, behavior: 'smooth' });
         }}
+        onCounsellingClick={() => setIsApplyOpen(true)}
       />
       
       <main className="flex-1 pb-24">

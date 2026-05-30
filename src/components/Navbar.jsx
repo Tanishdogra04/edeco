@@ -6,11 +6,18 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
+import CounsellingModal from './CounsellingModal';
 
-export default function Navbar({ onCounsellingClick, onCompareClick, compareCount, darkTheme = false }) {
+export default function Navbar({ 
+  onCounsellingClick, 
+  onCompareClick, 
+  compareCount = 0, 
+  darkTheme = false 
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [localCounsellingOpen, setLocalCounsellingOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +29,31 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
   }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const handleCounsellingClick = () => {
+    if (onCounsellingClick) {
+      onCounsellingClick();
+    } else {
+      setLocalCounsellingOpen(true);
+    }
+  };
+
+  const handleCompareClick = () => {
+    if (onCompareClick) {
+      onCompareClick();
+    } else {
+      if (window.location.pathname === '/') {
+        const el = document.getElementById('colleges');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        navigate('/');
+        localStorage.setItem('scrollToColleges', 'true');
+      }
+    }
+  };
+
+  const isActive = (path) => window.location.pathname === path;
+  const isExamsActive = () => window.location.pathname.startsWith('/exam/');
 
   const menuItems = {
     explore: {
@@ -219,9 +251,9 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
                                         <button
                                           onClick={() => {
                                             setActiveDropdown(null);
-                                            onCounsellingClick();
+                                            handleCounsellingClick();
                                           }}
-                                          className="w-full text-left group/item flex items-start gap-3 p-2 rounded-xl hover:bg-brand-50/50 transition-all duration-200"
+                                          className="w-full text-left group/item flex items-start gap-3 p-2 rounded-xl hover:bg-brand-50/50 transition-all duration-200 cursor-pointer"
                                         >
                                           {LinkContent}
                                         </button>
@@ -248,7 +280,7 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
                           {/* Dropdown footer info banner */}
                           <div className="col-span-2 pt-4 border-t border-slate-50 flex items-center justify-between text-xs text-slate-400">
                             <span>{item.subtitle}</span>
-                            <button onClick={() => { setActiveDropdown(null); onCounsellingClick(); }} className="flex items-center gap-1 font-semibold text-brand-600 hover:text-brand-700 transition-colors group/link cursor-pointer">
+                            <button onClick={() => { setActiveDropdown(null); handleCounsellingClick(); }} className="flex items-center gap-1 font-semibold text-brand-600 hover:text-brand-700 transition-colors group/link cursor-pointer">
                               Talk to Counselors
                               <ArrowRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
                             </button>
@@ -261,8 +293,8 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
               })}
 
               <button
-                onClick={onCompareClick}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[15px] font-medium transition-all duration-200 ${darkTheme ? 'text-slate-300 hover:text-orange-400 hover:bg-white/5' : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'}`}
+                onClick={handleCompareClick}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[15px] font-medium transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-orange-400 hover:bg-white/5' : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'}`}
               >
                 <span>Compare</span>
                 {compareCount > 0 && (
@@ -285,7 +317,7 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
               </Link>
 
               <button
-                onClick={onCounsellingClick}
+                onClick={handleCounsellingClick}
                 className="relative group overflow-hidden px-5 py-2.5 rounded-xl bg-gradient-brand text-white text-[15px] font-semibold shadow-lg shadow-brand-600/20 hover:shadow-brand-600/35 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
               >
                 <span className="relative z-10 flex items-center gap-1.5">
@@ -297,10 +329,10 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
             </div>
 
             {/* Mobile Actions and Hamburger */}
-            <div className="flex items-center gap-3 lg:hidden">
+            <div className="flex items-center gap-3 lg:hidden relative z-[60]">
               <button
-                onClick={onCompareClick}
-                className={`relative p-2 rounded-xl transition-colors ${darkTheme ? 'text-slate-300 hover:text-orange-400 hover:bg-white/5' : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'}`}
+                onClick={handleCompareClick}
+                className={`relative p-2 rounded-xl transition-colors cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-orange-400 hover:bg-white/5' : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'}`}
               >
                 <GitCompare size={20} />
                 {compareCount > 0 && (
@@ -312,7 +344,7 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
 
               <button
                 onClick={toggleMenu}
-                className={`p-2 rounded-xl transition-colors ${darkTheme ? 'text-slate-200 hover:text-orange-400 hover:bg-white/5' : 'text-slate-700 hover:text-brand-600 hover:bg-slate-50'}`}
+                className={`p-2 rounded-xl transition-colors cursor-pointer ${darkTheme ? 'text-slate-200 hover:text-orange-400 hover:bg-white/5' : 'text-slate-700 hover:text-brand-600 hover:bg-slate-50'}`}
               >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -343,9 +375,6 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
               >
                 <div className="flex items-center justify-between pb-6 border-b border-slate-100">
                   <span className="font-display font-bold text-xl text-slate-800">Navigation</span>
-                  <button onClick={toggleMenu} className="p-1 rounded-lg text-slate-500 hover:bg-slate-50">
-                    <X size={20} />
-                  </button>
                 </div>
 
                 <div className="flex-1 py-6 space-y-5">
@@ -359,8 +388,8 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
                           <li key={idx}>
                             {link.isAction ? (
                               <button
-                                onClick={() => { toggleMenu(); onCounsellingClick(); }}
-                                className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 text-[14px] text-slate-700 font-medium hover:text-brand-600 transition-colors"
+                                onClick={() => { toggleMenu(); handleCounsellingClick(); }}
+                                className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 text-[14px] text-slate-700 font-medium hover:text-brand-600 transition-colors cursor-pointer"
                               >
                                 <span>{link.name}</span>
                                 {link.badge && (
@@ -391,8 +420,8 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
 
                   <div className="pt-4 border-t border-slate-100">
                     <button
-                      onClick={() => { toggleMenu(); onCompareClick(); }}
-                      className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 text-[14px] text-slate-700 font-semibold hover:text-brand-600"
+                      onClick={() => { toggleMenu(); handleCompareClick(); }}
+                      className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 text-[14px] text-slate-700 font-semibold hover:text-brand-600 cursor-pointer"
                     >
                       <span>Compare Colleges</span>
                       <span className="bg-brand-100 text-brand-600 text-[11px] px-2 py-0.5 rounded-full font-bold">
@@ -404,8 +433,8 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
 
                 <div className="pt-6 border-t border-slate-100 space-y-3">
                   <button
-                    onClick={() => { toggleMenu(); onCounsellingClick(); }}
-                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-brand text-white font-semibold text-sm shadow-md shadow-brand-500/25"
+                    onClick={() => { toggleMenu(); handleCounsellingClick(); }}
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-brand text-white font-semibold text-sm shadow-md shadow-brand-500/25 cursor-pointer"
                   >
                     <Sparkles size={16} />
                     Free Counselling
@@ -429,18 +458,18 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
       <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-lg border-t border-slate-100 py-2.5 px-4 flex items-center justify-around z-40 shadow-[0_-4px_16px_rgba(0,0,0,0.03)]">
         <Link
           to="/"
-          className="flex flex-col items-center gap-0.5 text-slate-400 hover:text-brand-600 transition-colors"
+          className={`flex flex-col items-center gap-0.5 transition-colors ${isActive('/') ? 'text-brand-600 font-bold' : 'text-slate-500 hover:text-brand-600'}`}
         >
-          <Compass size={20} className="text-slate-600 hover:text-brand-600" />
-          <span className="text-[10px] font-semibold text-slate-500">Home</span>
+          <Compass size={20} className="transition-colors text-current" />
+          <span className="text-[10px] font-semibold">Home</span>
         </Link>
 
         <button
-          onClick={onCompareClick}
-          className="relative flex flex-col items-center gap-0.5 text-slate-400 hover:text-brand-600 transition-colors"
+          onClick={handleCompareClick}
+          className="relative flex flex-col items-center gap-0.5 text-slate-500 hover:text-brand-600 transition-colors cursor-pointer"
         >
-          <GitCompare size={20} className="text-slate-600 hover:text-brand-600" />
-          <span className="text-[10px] font-semibold text-slate-500">Compare</span>
+          <GitCompare size={20} className="transition-colors text-current" />
+          <span className="text-[10px] font-semibold">Compare</span>
           {compareCount > 0 && (
             <span className="absolute -top-1.5 right-1.5 flex items-center justify-center w-4 h-4 rounded-full bg-brand-600 text-[9px] font-bold text-white shadow-sm shadow-brand-500/30">
               {compareCount}
@@ -450,20 +479,22 @@ export default function Navbar({ onCounsellingClick, onCompareClick, compareCoun
 
         <Link
           to="/exam/jee-main"
-          className="flex flex-col items-center gap-0.5 text-slate-400 hover:text-brand-600 transition-colors"
+          className={`flex flex-col items-center gap-0.5 transition-colors ${isExamsActive() ? 'text-brand-600 font-bold' : 'text-slate-500 hover:text-brand-600'}`}
         >
-          <BookOpenCheck size={20} className="text-slate-600 hover:text-brand-600" />
-          <span className="text-[10px] font-semibold text-slate-500">Exams</span>
+          <BookOpenCheck size={20} className="transition-colors text-current" />
+          <span className="text-[10px] font-semibold">Exams</span>
         </Link>
 
         <button
-          onClick={onCounsellingClick}
-          className="flex flex-col items-center gap-0.5 text-slate-400 hover:text-brand-600 transition-colors"
+          onClick={handleCounsellingClick}
+          className="flex flex-col items-center gap-0.5 text-slate-500 hover:text-brand-600 transition-colors cursor-pointer"
         >
-          <User size={20} className="text-slate-600 hover:text-brand-600" />
-          <span className="text-[10px] font-semibold text-slate-500">Counselling</span>
+          <User size={20} className="transition-colors text-current" />
+          <span className="text-[10px] font-semibold">Counselling</span>
         </button>
       </div>
+
+      <CounsellingModal isOpen={localCounsellingOpen} onClose={() => setLocalCounsellingOpen(false)} />
     </>
   );
 }

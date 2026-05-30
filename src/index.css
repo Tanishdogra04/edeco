@@ -139,3 +139,10 @@ body {
   font-size: 18px !important;
   font-weight: bold;
 }
+
+/* Mobile viewports bottom navigation padding spacing to avoid content overlap */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 72px;
+  }
+}

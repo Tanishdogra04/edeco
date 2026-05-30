@@ -250,7 +250,7 @@ export default function CityDetail() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-brand-200 selection:text-brand-900">
-      <Navbar />
+      <Navbar onCounsellingClick={() => setIsApplyOpen(true)} />
       
       <main className="flex-1">
         

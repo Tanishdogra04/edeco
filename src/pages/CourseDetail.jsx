@@ -222,7 +222,7 @@ export default function CourseDetail() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
-      <Navbar />
+      <Navbar onCounsellingClick={() => setIsApplyOpen(true)} />
 
       {/* Breadcrumbs */}
       <div className="bg-white border-b border-slate-200 pt-24 pb-4">

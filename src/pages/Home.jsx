@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Stats from '../components/Stats';
@@ -19,6 +19,18 @@ export default function Home() {
   const [isCounsellingOpen, setIsCounsellingOpen] = useState(false);
   const [selectedDetailCollege, setSelectedDetailCollege] = useState(null);
   const [activeColleges, setActiveColleges] = useState(collegesData);
+
+  useEffect(() => {
+    if (localStorage.getItem('scrollToColleges') === 'true') {
+      localStorage.removeItem('scrollToColleges');
+      const el = document.getElementById('colleges');
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, []);
 
   const handleToggleCompare = (college) => {
     setComparedColleges((prev) => {
