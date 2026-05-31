@@ -166,8 +166,8 @@ export default function Navbar({
   return (
     <>
       <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${darkTheme
-          ? 'bg-slate-950/95 backdrop-blur-md border-b border-white/10 shadow-sm'
-          : 'bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)]'
+        ? 'bg-slate-950/95 backdrop-blur-md border-b border-white/10 shadow-sm'
+        : 'bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)]'
         }`}>
         {/* Upper Header */}
         <div className={`hidden lg:block border-b transition-colors duration-300 ${darkTheme ? 'border-white/5 bg-slate-950/40' : 'border-purple-100/30 bg-purple-50/45'
@@ -227,11 +227,11 @@ export default function Navbar({
             <div className="flex items-center gap-3">
               {/* Phone Pill */}
               <a
-                href="tel:18005724422"
+                href="tel:8278713791"
                 className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[rgb(106,255,217)] hover:bg-[rgb(17,0,81)] text-[#110051] hover:text-white border border-[rgb(106,255,217)]/35 font-display font-bold text-[14px] transition-all duration-200 shadow-xs group/phone"
               >
                 <PhoneCall size={12} className="text-[#110051] group-hover/phone:text-white transition-colors" />
-                <span>1800 572 4422</span>
+                <span>8278713791</span>
               </a>
 
               {/* WhatsApp Pill */}
@@ -239,7 +239,7 @@ export default function Navbar({
                 className="inline-flex items-center justify-center whitespace-nowrap rounded-full text-[14px] font-display font-bold transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-offset-2 focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer bg-[rgb(106,255,217)] text-[#110051] hover:bg-[rgb(17,0,81)] hover:text-white h-8 gap-1.5 px-4.5 hover:opacity-100 shadow-none border border-[rgb(106,255,217)]/35 flex items-center group/wa"
                 data-slot="button"
                 id="whatsappBtn"
-                href="/api/whatsapp?phone=918130784777&amp;url=https%3A%2F%2Fwww.aeccglobal.com%2Fin"
+                href="tel:8278713791"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
               >
@@ -502,8 +502,8 @@ export default function Navbar({
                   <Link
                     to="/login"
                     className={`flex items-center gap-1.5 text-[14.5px] font-display font-normal transition-all py-2 px-4 rounded-xl border cursor-pointer group/login ${darkTheme
-                        ? 'border-white/10 hover:border-orange-400 bg-white/5 hover:bg-orange-400 text-slate-200 hover:text-slate-950'
-                        : 'border-[#110051]/20 hover:border-[#110051] bg-[#110051]/5 hover:bg-[#110051] text-[#110051] hover:text-white'
+                      ? 'border-white/10 hover:border-orange-400 bg-white/5 hover:bg-orange-400 text-slate-200 hover:text-slate-950'
+                      : 'border-[#110051]/20 hover:border-[#110051] bg-[#110051]/5 hover:bg-[#110051] text-[#110051] hover:text-white'
                       }`}
                   >
                     <LogIn size={16} className={`transition-colors ${darkTheme ? 'text-slate-400 group-hover/login:text-slate-950' : 'text-[#110051] group-hover/login:text-white'}`} />
@@ -530,8 +530,8 @@ export default function Navbar({
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   className={`p-2 rounded-xl transition-colors cursor-pointer flex items-center justify-center ${darkTheme
-                      ? 'text-slate-300 hover:text-[rgb(106,255,217)] hover:bg-white/5'
-                      : 'text-slate-600 hover:text-[rgb(17,0,81)] hover:bg-slate-50'
+                    ? 'text-slate-300 hover:text-[rgb(106,255,217)] hover:bg-white/5'
+                    : 'text-slate-600 hover:text-[rgb(17,0,81)] hover:bg-slate-50'
                     }`}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
@@ -575,8 +575,8 @@ export default function Navbar({
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className={`fixed top-0 right-0 w-80 max-w-[85vw] h-full z-50 shadow-2xl p-6 overflow-y-auto flex flex-col lg:hidden transition-colors duration-300 ${darkTheme
-                ? 'bg-slate-950 text-white border-l border-white/10'
-                : 'bg-white text-slate-800'
+              ? 'bg-slate-950 text-white border-l border-white/10'
+              : 'bg-white text-slate-800'
               }`}
           >
             {/* Drawer Header with themed logo and close button */}
@@ -601,8 +601,8 @@ export default function Navbar({
               <button
                 onClick={toggleMenu}
                 className={`p-2 rounded-xl transition-colors cursor-pointer ${darkTheme
-                    ? 'text-slate-400 hover:text-white hover:bg-white/5'
-                    : 'text-slate-500 hover:text-slate-950 hover:bg-slate-50'
+                  ? 'text-slate-400 hover:text-white hover:bg-white/5'
+                  : 'text-slate-500 hover:text-slate-950 hover:bg-slate-50'
                   }`}
               >
                 <X size={20} />
@@ -631,8 +631,8 @@ export default function Navbar({
                           <div className="flex items-start gap-3 w-full">
                             {LinkIcon && (
                               <div className={`p-1.5 rounded-lg shrink-0 transition-colors ${darkTheme
-                                  ? 'bg-white/5 text-slate-400 group-hover/drawerlink:bg-white/10 group-hover/drawerlink:text-white'
-                                  : 'bg-slate-50 text-slate-500 group-hover/drawerlink:bg-slate-100 group-hover/drawerlink:text-[#110051]'
+                                ? 'bg-white/5 text-slate-400 group-hover/drawerlink:bg-white/10 group-hover/drawerlink:text-white'
+                                : 'bg-slate-50 text-slate-500 group-hover/drawerlink:bg-slate-100 group-hover/drawerlink:text-[#110051]'
                                 }`}>
                                 <LinkIcon size={14} />
                               </div>
@@ -664,8 +664,8 @@ export default function Navbar({
                               <button
                                 onClick={() => { toggleMenu(); handleCounsellingClick(); }}
                                 className={`w-full group/drawerlink flex items-start p-2.5 rounded-xl transition-colors cursor-pointer ${darkTheme
-                                    ? 'text-slate-300 hover:bg-white/5 hover:text-white'
-                                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                                  ? 'text-slate-300 hover:bg-white/5 hover:text-white'
+                                  : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
                                   }`}
                               >
                                 {LinkContent}
@@ -675,8 +675,8 @@ export default function Navbar({
                                 to={link.href}
                                 onClick={toggleMenu}
                                 className={`group/drawerlink flex items-start p-2.5 rounded-xl transition-colors ${darkTheme
-                                    ? 'text-slate-300 hover:bg-white/5 hover:text-white'
-                                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                                  ? 'text-slate-300 hover:bg-white/5 hover:text-white'
+                                  : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
                                   }`}
                               >
                                 {LinkContent}
@@ -696,8 +696,8 @@ export default function Navbar({
                 <button
                   onClick={() => { toggleMenu(); handleCompareClick(); }}
                   className={`w-full flex items-center justify-between p-2.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer ${darkTheme
-                      ? 'text-slate-300 hover:bg-white/5 hover:text-white'
-                      : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                    ? 'text-slate-300 hover:bg-white/5 hover:text-white'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
                     }`}
                 >
                   <span className="flex items-center gap-2">
@@ -718,8 +718,8 @@ export default function Navbar({
               <button
                 onClick={() => { toggleMenu(); handleCounsellingClick(); }}
                 className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm shadow-md transition-all duration-300 cursor-pointer ${darkTheme
-                    ? 'bg-[rgb(106,255,217)] hover:bg-[rgb(106,255,217)]/90 text-[#110051] shadow-brand-mint/10'
-                    : 'bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white'
+                  ? 'bg-[rgb(106,255,217)] hover:bg-[rgb(106,255,217)]/90 text-[#110051] shadow-brand-mint/10'
+                  : 'bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white'
                   }`}
               >
                 <Sparkles size={16} />
@@ -728,8 +728,8 @@ export default function Navbar({
 
               {isLoggedIn && user ? (
                 <div className={`p-4 border rounded-2xl flex flex-col gap-3 transition-colors ${darkTheme
-                    ? 'bg-slate-900 border-white/5'
-                    : 'bg-slate-50 border-slate-200'
+                  ? 'bg-slate-900 border-white/5'
+                  : 'bg-slate-50 border-slate-200'
                   }`}>
                   <div className="flex items-center gap-3">
                     <img
@@ -746,8 +746,8 @@ export default function Navbar({
                   <button
                     onClick={() => { toggleMenu(); logout(); navigate('/'); }}
                     className={`w-full py-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${darkTheme
-                        ? 'bg-red-500/10 hover:bg-red-500/20 text-red-400 border-red-500/10'
-                        : 'bg-red-55/70 hover:bg-red-100 text-red-600 border-red-100'
+                      ? 'bg-red-500/10 hover:bg-red-500/20 text-red-400 border-red-500/10'
+                      : 'bg-red-55/70 hover:bg-red-100 text-red-600 border-red-100'
                       }`}
                   >
                     <LogOut size={14} />
@@ -759,8 +759,8 @@ export default function Navbar({
                   to="/login"
                   onClick={toggleMenu}
                   className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl border font-semibold text-sm transition-all duration-200 ${darkTheme
-                      ? 'border-white/10 text-slate-300 hover:bg-white hover:text-[#110051] hover:border-white'
-                      : 'border-slate-200 text-slate-700 hover:bg-[#110051] hover:text-white hover:border-[#110051]'
+                    ? 'border-white/10 text-slate-300 hover:bg-white hover:text-[#110051] hover:border-white'
+                    : 'border-slate-200 text-slate-700 hover:bg-[#110051] hover:text-white hover:border-[#110051]'
                     }`}
                 >
                   <LogIn size={16} />
@@ -774,14 +774,14 @@ export default function Navbar({
 
       {/* Mobile Bottom Navigation Bar (Home | Search | Compare | Exams | Profile) */}
       <div className={`lg:hidden fixed bottom-0 left-0 w-full py-2.5 px-4 flex items-center justify-around z-40 shadow-[0_-4px_16px_rgba(0,0,0,0.03)] backdrop-blur-lg border-t transition-colors duration-300 ${darkTheme
-          ? 'bg-slate-950/90 border-white/10 text-slate-400'
-          : 'bg-white/90 border-slate-100 text-slate-500'
+        ? 'bg-slate-950/90 border-white/10 text-slate-400'
+        : 'bg-white/90 border-slate-100 text-slate-500'
         }`}>
         <Link
           to="/"
           className={`flex flex-col items-center gap-0.5 transition-colors ${isActive('/')
-              ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold')
-              : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
+            ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold')
+            : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
             }`}
         >
           <Compass size={20} className="transition-colors text-current" />
@@ -806,8 +806,8 @@ export default function Navbar({
         <Link
           to="/exam/jee-main"
           className={`flex flex-col items-center gap-0.5 transition-colors ${isExamsActive()
-              ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold')
-              : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
+            ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold')
+            : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
             }`}
         >
           <BookOpenCheck size={20} className="transition-colors text-current" />
