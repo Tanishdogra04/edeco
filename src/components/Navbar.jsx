@@ -20,6 +20,7 @@ export default function Navbar({
   const [isScrolled, setIsScrolled] = useState(false);
   const [localCounsellingOpen, setLocalCounsellingOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState(null);
   const navigate = useNavigate();
   const { user, isLoggedIn, logout } = useAuth();
 
@@ -31,7 +32,10 @@ export default function Navbar({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+    setExpandedCategory(null);
+  };
 
   const handleCounsellingClick = () => {
     if (onCounsellingClick) {
@@ -299,7 +303,9 @@ export default function Navbar({
                   }
                 }}
               >
-                <span className="font-display font-extrabold text-3xl tracking-tight text-[#110051] leading-none">
+                <span className={`font-display font-extrabold text-3xl tracking-tight leading-none transition-colors duration-300 ${
+                  darkTheme ? 'text-white' : 'text-[#110051]'
+                }`}>
                   edeco
                 </span>
               </div>
@@ -430,7 +436,9 @@ export default function Navbar({
               </div>
 
               {/* Navbar actions */}
-              <div className="hidden lg:flex items-center gap-4">
+              <div className={`hidden lg:flex items-center gap-4 pl-6 border-l ${
+                darkTheme ? 'border-white/10' : 'border-slate-200'
+              }`}>
                 {isLoggedIn && user ? (
                   <div className="relative">
                     <button
@@ -522,17 +530,23 @@ export default function Navbar({
 
               {/* Mobile Actions and Hamburger */}
               <div className="flex items-center gap-3 lg:hidden relative z-[60]">
-                <button
-                  onClick={handleCompareClick}
-                  className={`relative p-2 rounded-xl transition-colors cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-orange-400 hover:bg-white/5' : 'text-slate-600 hover:text-brand-800 hover:bg-slate-50'}`}
+                <a
+                  href="/api/whatsapp?phone=918130784777&amp;url=https%3A%2F%2Fwww.aeccglobal.com%2Fin"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className={`p-2 rounded-xl transition-colors cursor-pointer flex items-center justify-center ${
+                    darkTheme 
+                      ? 'text-slate-300 hover:text-[rgb(106,255,217)] hover:bg-white/5' 
+                      : 'text-slate-600 hover:text-[rgb(17,0,81)] hover:bg-slate-50'
+                  }`}
                 >
-                  <GitCompare size={20} />
-                  {compareCount > 0 && (
-                    <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 rounded-full bg-brand-600 text-[10px] font-bold text-white">
-                      {compareCount}
-                    </span>
-                  )}
-                </button>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                    <g>
+                      <path d="M11.8392 9.19396C11.8081 9.17899 10.6416 8.6046 10.4344 8.53001C10.3497 8.49962 10.2591 8.46996 10.1627 8.46996C10.0052 8.46996 9.87285 8.54845 9.76978 8.70263C9.65326 8.87582 9.30054 9.28814 9.19155 9.41131C9.17732 9.42757 9.15789 9.44699 9.14625 9.44699C9.13581 9.44699 8.95529 9.37266 8.90064 9.34892C7.64937 8.80538 6.6996 7.49832 6.56937 7.2779C6.55077 7.24621 6.54999 7.23183 6.54984 7.23183C6.55441 7.21505 6.59649 7.17286 6.6182 7.1511C6.68173 7.08824 6.75056 7.00538 6.81716 6.92523C6.84869 6.88725 6.88028 6.84923 6.91129 6.81338C7.00791 6.70097 7.05093 6.6137 7.1008 6.5126L7.12693 6.46008C7.24869 6.21816 7.14469 6.01401 7.11108 5.94808C7.0835 5.89292 6.59098 4.70424 6.53862 4.57936C6.41269 4.27801 6.2463 4.1377 6.01508 4.1377C5.99363 4.1377 6.01508 4.1377 5.92511 4.14149C5.81555 4.14611 5.21893 4.22466 4.95514 4.39094C4.6754 4.56731 4.20215 5.12949 4.20215 6.11816C4.20215 7.00798 4.76682 7.84814 5.00927 8.16767C5.01529 8.17572 5.02636 8.19209 5.04241 8.21557C5.97088 9.57151 7.12833 10.5764 8.30168 11.0451C9.43129 11.4963 9.9662 11.5485 10.2703 11.5485H10.2704C10.3981 11.5485 10.5004 11.5385 10.5907 11.5296L10.6479 11.5241C11.0381 11.4895 11.8957 11.0452 12.0908 10.5031C12.2444 10.0761 12.285 9.60964 12.1827 9.44034C12.1127 9.32523 11.992 9.26731 11.8392 9.19396Z"/>
+                      <path d="M8.14201 0C3.80871 0 0.283313 3.49891 0.283313 7.79964C0.283313 9.19065 0.655572 10.5523 1.36077 11.7439L0.0110009 15.7255C-0.0141419 15.7997 0.00455936 15.8818 0.0594684 15.9377C0.0991048 15.9782 0.152871 16 0.20778 16C0.228819 16 0.250014 15.9968 0.270689 15.9902L4.42238 14.671C5.55848 15.278 6.84253 15.5984 8.14207 15.5984C12.4749 15.5984 16 12.0999 16 7.79964C16 3.49891 12.4749 0 8.14201 0ZM8.14201 13.9737C6.91921 13.9737 5.73484 13.6206 4.71677 12.9526C4.68253 12.9301 4.64279 12.9185 4.60279 12.9185C4.58165 12.9185 4.56045 12.9218 4.53983 12.9283L2.46009 13.5894L3.13147 11.6087C3.15318 11.5446 3.14233 11.4739 3.10233 11.4192C2.32705 10.3599 1.91723 9.10831 1.91723 7.79964C1.91723 4.39481 4.70965 1.62473 8.14196 1.62473C11.5739 1.62473 14.366 4.39481 14.366 7.79964C14.366 11.2041 11.574 13.9737 8.14201 13.9737Z"/>
+                    </g>
+                  </svg>
+                </a>
 
                 <button
                   onClick={toggleMenu}
@@ -544,181 +558,319 @@ export default function Navbar({
             </div>
           </div>
         </div>
-
-        {/* Mobile Slide Drawer */}
-        <AnimatePresence>
-          {isOpen && (
-            <>
-              {/* Overlay */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.5 }}
-                exit={{ opacity: 0 }}
-                onClick={toggleMenu}
-                className="fixed inset-0 bg-slate-900 z-40 lg:hidden"
-              />
-
-              {/* Drawer Container */}
-              <motion.div
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "100%" }}
-                transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                className="fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl p-6 overflow-y-auto flex flex-col lg:hidden"
-              >
-                <div className="flex items-center justify-between pb-6 border-b border-slate-100">
-                  <span className="font-display font-bold text-xl text-slate-800">Navigation</span>
-                </div>
-
-                <div className="flex-1 py-6 space-y-5">
-                  {Object.entries(menuItems).map(([key, item]) => (
-                    <div key={key} className="space-y-2">
-                      <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
-                        {item.title}
-                      </span>
-                      <ul className="space-y-1 pl-1">
-                        {item.columns.flatMap(c => c.links).map((link, idx) => (
-                          <li key={idx}>
-                            {link.isAction ? (
-                              <button
-                                onClick={() => { toggleMenu(); handleCounsellingClick(); }}
-                                className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 text-[14px] text-slate-700 font-medium hover:text-[#110051] transition-colors cursor-pointer"
-                              >
-                                <span>{link.name}</span>
-                                {link.badge && (
-                                  <span className="px-1.5 py-0.5 text-[8px] font-bold bg-slate-50 text-[#110051] rounded">
-                                    {link.badge}
-                                  </span>
-                                )}
-                              </button>
-                            ) : (
-                              <Link
-                                to={link.href}
-                                onClick={toggleMenu}
-                                className="flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 text-[14px] text-slate-700 font-medium hover:text-[#110051] transition-colors"
-                              >
-                                <span>{link.name}</span>
-                                {link.badge && (
-                                  <span className="px-1.5 py-0.5 text-[8px] font-bold bg-slate-50 text-[#110051] rounded">
-                                    {link.badge}
-                                  </span>
-                                )}
-                              </Link>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-
-                  <div className="pt-4 border-t border-slate-100">
-                    <button
-                      onClick={() => { toggleMenu(); handleCompareClick(); }}
-                      className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 text-[14px] text-slate-700 font-semibold hover:text-[#110051] cursor-pointer"
-                    >
-                      <span>Compare Colleges</span>
-                      <span className="bg-slate-100 text-[#110051] text-[11px] px-2 py-0.5 rounded-full font-bold">
-                        {compareCount} Selected
-                      </span>
-                    </button>
-                  </div>
-                </div>
-
-                <div className="pt-6 border-t border-slate-100 space-y-3">
-                  <button
-                    onClick={() => { toggleMenu(); handleCounsellingClick(); }}
-                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[rgb(106,255,217)] hover:bg-[#110051] text-[#110051] hover:text-white font-semibold text-sm shadow-md transition-all duration-300 cursor-pointer"
-                  >
-                    <Sparkles size={16} />
-                    Free Counselling
-                  </button>
-                  {isLoggedIn && user ? (
-                    <div className="p-4 bg-slate-50 border border-slate-250 rounded-2xl flex flex-col gap-3">
-                      <div className="flex items-center gap-3">
-                        <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-xl object-cover border border-slate-200" />
-                        <div className="min-w-0 flex-1">
-                          <h4 className="font-extrabold text-sm text-slate-900 truncate">{user.name}</h4>
-                          <p className="text-xs text-slate-500 font-semibold truncate">{user.email}</p>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => { toggleMenu(); logout(); navigate('/'); }}
-                        className="w-full py-2.5 rounded-xl bg-red-55/70 hover:bg-red-100 text-red-600 border border-red-100 text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5"
-                      >
-                        <LogOut size={14} />
-                        Sign Out
-                      </button>
-                    </div>
-                  ) : (
-                    <Link 
-                      to="/login"
-                      onClick={toggleMenu}
-                      className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-[#110051] hover:text-white hover:border-[#110051] transition-all duration-200"
-                    >
-                      <LogIn size={16} />
-                      Log In
-                    </Link>
-                  )}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
       </nav>
 
-      {/* Mobile Bottom Navigation Bar (Home | Search | Compare | Exams | Profile) */}
-      <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-lg border-t border-slate-100 py-2.5 px-4 flex items-center justify-around z-40 shadow-[0_-4px_16px_rgba(0,0,0,0.03)]">
-        <Link
-          to="/"
-          className={`flex flex-col items-center gap-0.5 transition-colors ${isActive('/') ? 'text-[#110051] font-bold' : 'text-slate-500 hover:text-[#110051]'}`}
-        >
-          <Compass size={20} className="transition-colors text-current" />
-          <span className="text-[10px] font-semibold">Home</span>
-        </Link>
-
-        <button
-          onClick={handleCompareClick}
-          className="relative flex flex-col items-center gap-0.5 text-slate-500 hover:text-[#110051] transition-colors cursor-pointer"
-        >
-          <GitCompare size={20} className="transition-colors text-current" />
-          <span className="text-[10px] font-semibold">Compare</span>
-          {compareCount > 0 && (
-            <span className="absolute -top-1.5 right-1.5 flex items-center justify-center w-4 h-4 rounded-full bg-[#110051] text-[9px] font-bold text-white shadow-sm shadow-brand-500/30">
-              {compareCount}
-            </span>
+      {/* Side Drawer Menu */}
+      <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              key="drawer-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMenu}
+              className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-40 lg:hidden"
+            />
           )}
-        </button>
 
-        <Link
-          to="/exam/jee-main"
-          className={`flex flex-col items-center gap-0.5 transition-colors ${isExamsActive() ? 'text-[#110051] font-bold' : 'text-slate-500 hover:text-[#110051]'}`}
-        >
-          <BookOpenCheck size={20} className="transition-colors text-current" />
-          <span className="text-[10px] font-semibold">Exams</span>
-        </Link>
+          {isOpen && (
+            <motion.div
+              key="drawer-container"
+              initial={{ x: "100%" }}
+              animate={{ x: "0%" }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className={`fixed top-0 right-0 w-80 max-w-[85vw] h-full z-50 shadow-2xl p-6 overflow-y-auto flex flex-col lg:hidden transition-colors duration-300 ${
+                darkTheme 
+                  ? 'bg-slate-950 text-white border-l border-white/10' 
+                  : 'bg-white text-slate-800'
+              }`}
+            >
+              {/* Drawer Header with themed logo and close button */}
+              <div className={`flex items-center justify-between pb-6 border-b transition-colors ${
+                darkTheme ? 'border-white/10' : 'border-slate-100'
+              }`}>
+                <div 
+                  className="flex items-center cursor-pointer" 
+                  onClick={() => {
+                    toggleMenu();
+                    if (window.location.pathname === '/') {
+                      window.scrollTo({top:0, behavior:'smooth'});
+                    } else {
+                      navigate('/');
+                    }
+                  }}
+                >
+                  <span className={`font-display font-extrabold text-2xl tracking-tight leading-none ${
+                    darkTheme ? 'text-white' : 'text-[#110051]'
+                  }`}>
+                    edeco
+                  </span>
+                </div>
+                <button 
+                  onClick={toggleMenu}
+                  className={`p-2 rounded-xl transition-colors cursor-pointer ${
+                    darkTheme 
+                      ? 'text-slate-400 hover:text-white hover:bg-white/5' 
+                      : 'text-slate-500 hover:text-slate-950 hover:bg-slate-50'
+                  }`}
+                >
+                  <X size={20} />
+                </button>
+              </div>
 
-        {isLoggedIn && user ? (
-          <button
-            onClick={() => {
-              navigate('/login');
-            }}
-            className="flex flex-col items-center gap-0.5 text-slate-500 hover:text-[#110051] transition-colors cursor-pointer"
+              {/* Drawer Navigation Links */}
+              <div className="flex-1 py-6 space-y-6">
+                {Object.entries(menuItems).map(([key, item]) => {
+                  const ItemIcon = item.icon;
+                  return (
+                    <div key={key} className="space-y-2.5">
+                      {/* Category Title */}
+                      <div className={`flex items-center gap-2 px-1 text-[11px] font-bold uppercase tracking-wider ${
+                        darkTheme ? 'text-slate-500' : 'text-slate-400'
+                      }`}>
+                        {ItemIcon && <ItemIcon size={14} className={darkTheme ? 'text-slate-500' : 'text-slate-400'} />}
+                        <span>{item.title}</span>
+                      </div>
+
+                      {/* Category Links List */}
+                      <ul className="space-y-1">
+                        {item.columns.flatMap(c => c.links).map((link, idx) => {
+                          const LinkIcon = link.icon;
+                          
+                          const LinkContent = (
+                            <div className="flex items-start gap-3 w-full">
+                              {LinkIcon && (
+                                <div className={`p-1.5 rounded-lg shrink-0 transition-colors ${
+                                  darkTheme 
+                                    ? 'bg-white/5 text-slate-400 group-hover/drawerlink:bg-white/10 group-hover/drawerlink:text-white' 
+                                    : 'bg-slate-50 text-slate-500 group-hover/drawerlink:bg-slate-100 group-hover/drawerlink:text-[#110051]'
+                                }`}>
+                                  <LinkIcon size={14} />
+                                </div>
+                              )}
+                              <div className="flex-1 min-w-0 text-left">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-[13.5px] font-semibold truncate">
+                                    {link.name}
+                                  </span>
+                                  {link.badge && (
+                                    <span className={`px-1.5 py-0.5 text-[8px] font-bold rounded shrink-0 uppercase tracking-wider ${
+                                      darkTheme ? 'bg-white/10 text-white' : 'bg-[#110051]/10 text-[#110051]'
+                                    }`}>
+                                      {link.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                {link.desc && (
+                                  <p className="text-[11px] text-slate-400 mt-0.5 font-normal truncate">
+                                    {link.desc}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+
+                          return (
+                            <li key={idx}>
+                              {link.isAction ? (
+                                <button
+                                  onClick={() => { toggleMenu(); handleCounsellingClick(); }}
+                                  className={`w-full group/drawerlink flex items-start p-2.5 rounded-xl transition-colors cursor-pointer ${
+                                    darkTheme 
+                                      ? 'text-slate-300 hover:bg-white/5 hover:text-white' 
+                                      : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                                  }`}
+                                >
+                                  {LinkContent}
+                                </button>
+                              ) : (
+                                <Link
+                                  to={link.href}
+                                  onClick={toggleMenu}
+                                  className={`group/drawerlink flex items-start p-2.5 rounded-xl transition-colors ${
+                                    darkTheme 
+                                      ? 'text-slate-300 hover:bg-white/5 hover:text-white' 
+                                      : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                                  }`}
+                                >
+                                  {LinkContent}
+                                </Link>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  );
+                })}
+
+                {/* Compare Colleges Shortcut */}
+                <div className={`pt-4 border-t transition-colors ${
+                  darkTheme ? 'border-white/10' : 'border-slate-100'
+                }`}>
+                  <button
+                    onClick={() => { toggleMenu(); handleCompareClick(); }}
+                    className={`w-full flex items-center justify-between p-2.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer ${
+                      darkTheme 
+                        ? 'text-slate-300 hover:bg-white/5 hover:text-white' 
+                        : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <GitCompare size={16} />
+                      Compare Colleges
+                    </span>
+                    <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${
+                      darkTheme ? 'bg-white/10 text-white' : 'bg-slate-100 text-[#110051]'
+                    }`}>
+                      {compareCount} Selected
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Bottom Drawer Actions */}
+              <div className={`pt-6 border-t space-y-3 transition-colors ${
+                darkTheme ? 'border-white/10' : 'border-slate-100'
+              }`}>
+                <button
+                  onClick={() => { toggleMenu(); handleCounsellingClick(); }}
+                  className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm shadow-md transition-all duration-300 cursor-pointer ${
+                    darkTheme 
+                      ? 'bg-[rgb(106,255,217)] hover:bg-[rgb(106,255,217)]/90 text-[#110051] shadow-brand-mint/10' 
+                      : 'bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white'
+                  }`}
+                >
+                  <Sparkles size={16} />
+                  Free Counselling
+                </button>
+
+                {isLoggedIn && user ? (
+                  <div className={`p-4 border rounded-2xl flex flex-col gap-3 transition-colors ${
+                    darkTheme 
+                      ? 'bg-slate-900 border-white/5' 
+                      : 'bg-slate-50 border-slate-200'
+                  }`}>
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src={user.avatar} 
+                        alt={user.name} 
+                        className={`w-10 h-10 rounded-xl object-cover border ${
+                          darkTheme ? 'border-white/10' : 'border-slate-200'
+                        }`} 
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h4 className={`font-extrabold text-sm truncate ${darkTheme ? 'text-white' : 'text-slate-900'}`}>{user.name}</h4>
+                        <p className="text-xs text-slate-500 font-semibold truncate">{user.email}</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => { toggleMenu(); logout(); navigate('/'); }}
+                      className={`w-full py-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                        darkTheme 
+                          ? 'bg-red-500/10 hover:bg-red-500/20 text-red-400 border-red-500/10' 
+                          : 'bg-red-55/70 hover:bg-red-100 text-red-600 border-red-100'
+                      }`}
+                    >
+                      <LogOut size={14} />
+                      Sign Out
+                    </button>
+                  </div>
+                ) : (
+                  <Link 
+                    to="/login"
+                    onClick={toggleMenu}
+                    className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl border font-semibold text-sm transition-all duration-200 ${
+                      darkTheme 
+                        ? 'border-white/10 text-slate-300 hover:bg-white hover:text-[#110051] hover:border-white' 
+                        : 'border-slate-200 text-slate-700 hover:bg-[#110051] hover:text-white hover:border-[#110051]'
+                    }`}
+                  >
+                    <LogIn size={16} />
+                    Log In
+                  </Link>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+      {/* Mobile Bottom Navigation Bar (Home | Search | Compare | Exams | Profile) */}
+        <div className={`lg:hidden fixed bottom-0 left-0 w-full py-2.5 px-4 flex items-center justify-around z-40 shadow-[0_-4px_16px_rgba(0,0,0,0.03)] backdrop-blur-lg border-t transition-colors duration-300 ${
+          darkTheme 
+            ? 'bg-slate-950/90 border-white/10 text-slate-400' 
+            : 'bg-white/90 border-slate-100 text-slate-500'
+        }`}>
+          <Link
+            to="/"
+            className={`flex flex-col items-center gap-0.5 transition-colors ${
+              isActive('/') 
+                ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold') 
+                : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
+            }`}
           >
-            <img src={user.avatar} alt="Profile" className="w-5 h-5 rounded-lg object-cover border border-slate-300" />
-            <span className="text-[10px] font-bold">Profile</span>
-          </button>
-        ) : (
-          <button
-            onClick={handleCounsellingClick}
-            className="flex flex-col items-center gap-0.5 text-slate-500 hover:text-[#110051] transition-colors cursor-pointer"
-          >
-            <User size={20} className="transition-colors text-current" />
-            <span className="text-[10px] font-bold">Counselling</span>
-          </button>
-        )}
-      </div>
+            <Compass size={20} className="transition-colors text-current" />
+            <span className="text-[10px] font-semibold">Home</span>
+          </Link>
 
-      <CounsellingModal isOpen={localCounsellingOpen} onClose={() => setLocalCounsellingOpen(false)} />
-    </>
-  );
-}
+          <button
+            onClick={handleCompareClick}
+            className={`relative flex flex-col items-center gap-0.5 transition-colors cursor-pointer ${
+              darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]'
+            }`}
+          >
+            <GitCompare size={20} className="transition-colors text-current" />
+            <span className="text-[10px] font-semibold">Compare</span>
+            {compareCount > 0 && (
+              <span className={`absolute -top-1.5 right-1.5 flex items-center justify-center w-4 h-4 rounded-full text-[9px] font-bold text-white shadow-sm ${
+                darkTheme ? 'bg-[rgb(106,255,217)] text-slate-950 shadow-brand-mint/30' : 'bg-[#110051] shadow-brand-500/30'
+              }`}>
+                {compareCount}
+              </span>
+            )}
+          </button>
+
+          <Link
+            to="/exam/jee-main"
+            className={`flex flex-col items-center gap-0.5 transition-colors ${
+              isExamsActive() 
+                ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold') 
+                : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
+            }`}
+          >
+            <BookOpenCheck size={20} className="transition-colors text-current" />
+            <span className="text-[10px] font-semibold">Exams</span>
+          </Link>
+
+          {isLoggedIn && user ? (
+            <button
+              onClick={() => {
+                navigate('/login');
+              }}
+              className={`flex flex-col items-center gap-0.5 transition-colors cursor-pointer ${
+                darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]'
+              }`}
+            >
+              <img src={user.avatar} alt="Profile" className={`w-5 h-5 rounded-lg object-cover border ${
+                darkTheme ? 'border-white/20' : 'border-slate-300'
+              }`} />
+              <span className="text-[10px] font-bold">Profile</span>
+            </button>
+          ) : (
+            <button
+              onClick={handleCounsellingClick}
+              className={`flex flex-col items-center gap-0.5 transition-colors cursor-pointer ${
+                darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]'
+              }`}
+            >
+              <User size={20} className="transition-colors text-current" />
+              <span className="text-[10px] font-bold">Counselling</span>
+            </button>
+          )}
+        </div>
+
+        <CounsellingModal isOpen={localCounsellingOpen} onClose={() => setLocalCounsellingOpen(false)} />
+      </>
+    );
+  }

@@ -178,7 +178,7 @@ export default function StreamDetail() {
         {/* ====================================================
             HERO BANNER SECTION
         ==================================================== */}
-        <div className="relative pt-32 pb-20 lg:pt-36 lg:pb-24 overflow-hidden border-b border-white/5 text-center">
+        <div className="relative pt-44 pb-20 lg:pt-56 lg:pb-24 overflow-hidden border-b border-white/5 text-center">
           {/* Background Image & Overlay */}
           <div className="absolute inset-0 z-0">
             <img 
@@ -209,7 +209,7 @@ export default function StreamDetail() {
         {/* ====================================================
             FILTER BAR
         ==================================================== */}
-        <div className="bg-white border-b border-brand-200 relative z-20 mb-8 shadow-sm">
+        <div id="filter-section" className="scroll-mt-24 bg-white border-b border-brand-200 relative z-20 mb-8 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
