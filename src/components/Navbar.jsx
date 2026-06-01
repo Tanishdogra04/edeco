@@ -63,8 +63,8 @@ export default function Navbar({
   const isExamsActive = () => window.location.pathname.startsWith('/exam/');
 
   const menuItems = {
-    explore: {
-      title: "Explore",
+    institution: {
+      title: "Institution",
       subtitle: "Discover colleges & paths",
       icon: Compass,
       columns: [
@@ -83,6 +83,7 @@ export default function Navbar({
             { name: "Admission Guidance", href: "/premium", icon: Sparkles, badge: "Popular" },
             { name: "AI College Finder", href: "/premium#features", icon: Award },
             { name: "Expert Consultation", href: "/premium#features", icon: PhoneCall },
+            { name: "Compare Colleges", isAction: true, actionType: "compare", icon: GitCompare },
           ]
         }
       ]
@@ -135,24 +136,6 @@ export default function Navbar({
         }
       ]
     },
-
-    blogs: {
-      title: "Resources",
-      subtitle: "Latest news & insights",
-      icon: BookOpen,
-      columns: [
-        {
-          title: "Latest Content",
-          links: [
-            { name: "All Resources", href: "/resources" },
-            { name: "College Comparison Guides", href: "/resources?category=Guides" },
-            { name: "Exam Strategy & Preparation", href: "/resources?category=Strategies" },
-            { name: "Admission Policy Updates", href: "/resources?category=Updates", badge: "New" },
-            { name: "Student Success Stories", href: "/resources?category=Success+Stories" },
-          ]
-        }
-      ]
-    }
   };
 
   const handleDropdownHover = (key) => {
@@ -169,123 +152,6 @@ export default function Navbar({
         ? 'bg-slate-950/95 backdrop-blur-md border-b border-white/10 shadow-sm'
         : 'bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)]'
         }`}>
-        {/* Upper Header */}
-        <div className={`hidden lg:block border-b transition-colors duration-300 ${darkTheme ? 'border-white/5 bg-slate-950/40' : 'border-purple-100/30 bg-purple-50/45'
-          }`}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between gap-6 text-[13.5px] font-normal text-slate-500">
-            {/* Links aligned on the right next to contacts */}
-            <div className="flex items-center gap-2 ml-auto">
-              <Link to="/premium" className={`font-display font-normal px-2 py-1 rounded-md transition-all duration-200 ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}>
-                Advice
-              </Link>
-              <Link to="/resources" className={`font-display font-normal px-2 py-1 rounded-md transition-all duration-200 ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}>
-                Events
-              </Link>
-              <div className="relative group py-1">
-                <button className={`flex items-center gap-1 px-2 py-1 rounded-md transition-all duration-200 cursor-pointer font-display font-normal ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}>
-                  <span>Find us</span>
-                  <ChevronDown size={12} className="text-slate-450 group-hover:text-white transition-colors" />
-                </button>
-                {/* Dropdown list */}
-                <div className="absolute right-0 mt-2 w-64 bg-white border border-slate-200/85 rounded-2xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50 overflow-hidden text-left">
-                  {/* Dropdown Heading */}
-                  <div className="px-4 py-3 bg-slate-50/50 border-b border-slate-100 flex items-center gap-2">
-                    <Compass size={14} className="text-[#110051]" />
-                    <span className="font-display font-bold text-[13px] text-[#110051]">
-                      Find nearest Edeco office
-                    </span>
-                  </div>
-                  {/* Dropdown Options */}
-                  <div className="max-h-72 overflow-y-auto">
-                    {[
-                      "Andhra Pradesh",
-                      "Delhi",
-                      "Gujarat",
-                      "Haryana",
-                      "Karnataka",
-                      "Kerala",
-                      "Maharashtra",
-                      "Punjab",
-                      "Tamil Nadu",
-                      "Telangana"
-                    ].map((state) => (
-                      <Link
-                        key={state}
-                        to="/contact"
-                        className="flex items-center justify-between px-4 py-2.5 hover:bg-slate-50 text-[13px] text-slate-700 hover:text-[#110051] transition-colors font-sans border-b border-slate-50 last:border-b-0"
-                      >
-                        <span>{state}</span>
-                        <ChevronRight size={12} className="text-slate-400" />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right side contact links & country selector */}
-            <div className="flex items-center gap-3">
-              {/* Phone Pill */}
-              <a
-                href="tel:8278713791"
-                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[rgb(106,255,217)] hover:bg-[rgb(17,0,81)] text-[#110051] hover:text-white border border-[rgb(106,255,217)]/35 font-display font-bold text-[14px] transition-all duration-200 shadow-xs group/phone"
-              >
-                <PhoneCall size={12} className="text-[#110051] group-hover/phone:text-white transition-colors" />
-                <span>8278713791</span>
-              </a>
-
-              {/* WhatsApp Pill */}
-              <a
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-full text-[14px] font-display font-bold transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-offset-2 focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer bg-[rgb(106,255,217)] text-[#110051] hover:bg-[rgb(17,0,81)] hover:text-white h-8 gap-1.5 px-4.5 hover:opacity-100 shadow-none border border-[rgb(106,255,217)]/35 flex items-center group/wa"
-                data-slot="button"
-                id="whatsappBtn"
-                href="tel:8278713791"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" className="fill-[#110051] group-hover/wa:fill-white transition-colors">
-                  <g clipPath="url(#clip0_1_11374)">
-                    <path d="M11.8392 9.19396C11.8081 9.17899 10.6416 8.6046 10.4344 8.53001C10.3497 8.49962 10.2591 8.46996 10.1627 8.46996C10.0052 8.46996 9.87285 8.54845 9.76978 8.70263C9.65326 8.87582 9.30054 9.28814 9.19155 9.41131C9.17732 9.42757 9.15789 9.44699 9.14625 9.44699C9.13581 9.44699 8.95529 9.37266 8.90064 9.34892C7.64937 8.80538 6.6996 7.49832 6.56937 7.2779C6.55077 7.24621 6.54999 7.23183 6.54984 7.23183C6.55441 7.21505 6.59649 7.17286 6.6182 7.1511C6.68173 7.08824 6.75056 7.00538 6.81716 6.92523C6.84869 6.88725 6.88028 6.84923 6.91129 6.81338C7.00791 6.70097 7.05093 6.6137 7.1008 6.5126L7.12693 6.46008C7.24869 6.21816 7.14469 6.01401 7.11108 5.94808C7.0835 5.89292 6.59098 4.70424 6.53862 4.57936C6.41269 4.27801 6.2463 4.1377 6.01508 4.1377C5.99363 4.1377 6.01508 4.1377 5.92511 4.14149C5.81555 4.14611 5.21893 4.22466 4.95514 4.39094C4.6754 4.56731 4.20215 5.12949 4.20215 6.11816C4.20215 7.00798 4.76682 7.84814 5.00927 8.16767C5.01529 8.17572 5.02636 8.19209 5.04241 8.21557C5.97088 9.57151 7.12833 10.5764 8.30168 11.0451C9.43129 11.4963 9.9662 11.5485 10.2703 11.5485H10.2704C10.3981 11.5485 10.5004 11.5385 10.5907 11.5296L10.6479 11.5241C11.0381 11.4895 11.8957 11.0452 12.0908 10.5031C12.2444 10.0761 12.285 9.60964 12.1827 9.44034C12.1127 9.32523 11.992 9.26731 11.8392 9.19396Z" fill="currentColor"></path>
-                    <path d="M8.14201 0C3.80871 0 0.283313 3.49891 0.283313 7.79964C0.283313 9.19065 0.655572 10.5523 1.36077 11.7439L0.0110009 15.7255C-0.0141419 15.7997 0.00455936 15.8818 0.0594684 15.9377C0.0991048 15.9782 0.152871 16 0.20778 16C0.228819 16 0.250014 15.9968 0.270689 15.9902L4.42238 14.671C5.55848 15.278 6.84253 15.5984 8.14207 15.5984C12.4749 15.5984 16 12.0999 16 7.79964C16 3.49891 12.4749 0 8.14201 0ZM8.14201 13.9737C6.91921 13.9737 5.73484 13.6206 4.71677 12.9526C4.68253 12.9301 4.64279 12.9185 4.60279 12.9185C4.58165 12.9185 4.56045 12.9218 4.53983 12.9283L2.46009 13.5894L3.13147 11.6087C3.15318 11.5446 3.14233 11.4739 3.10233 11.4192C2.32705 10.3599 1.91723 9.10831 1.91723 7.79964C1.91723 4.39481 4.70965 1.62473 8.14196 1.62473C11.5739 1.62473 14.366 4.39481 14.366 7.79964C14.366 11.2041 11.574 13.9737 8.14201 13.9737Z" fill="currentColor"></path>
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_1_11374">
-                      <rect width="16" height="16" fill="white"></rect>
-                    </clipPath>
-                  </defs>
-                </svg>
-                <span>WhatsApp</span>
-              </a>
-
-              {/* Country Selector Pill */}
-              <div className="relative group py-1">
-                <button
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-[rgb(17,0,81)] border border-slate-200 hover:border-[rgb(17,0,81)] text-slate-900 hover:text-white font-display font-bold text-[14px] transition-all duration-200 shadow-xs cursor-pointer group/country"
-                >
-                  <span className="text-[12px] leading-none" role="img" aria-label="India flag">🇮🇳</span>
-                  <span>India</span>
-                  <ChevronDown size={12} className="text-slate-450 group-hover/country:text-white transition-colors" />
-                </button>
-                {/* Country selector dropdown */}
-                <div className="absolute right-0 mt-2 w-44 bg-white border border-slate-100 rounded-xl shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50 py-1.5 text-slate-700 text-left">
-                  <button className="w-full flex items-center gap-2.5 px-4 py-2 hover:bg-slate-50 text-[13px] font-semibold text-slate-800 text-left">
-                    <span>🇮🇳</span> India
-                  </button>
-                  <button className="w-full flex items-center gap-2.5 px-4 py-2 hover:bg-slate-50 text-[13px] font-semibold text-slate-800 text-left">
-                    <span>🇳🇵</span> Nepal
-                  </button>
-                  <button className="w-full flex items-center gap-2.5 px-4 py-2 hover:bg-slate-50 text-[13px] font-semibold text-slate-800 text-left">
-                    <span>🇧🇩</span> Bangladesh
-                  </button>
-                  <button className="w-full flex items-center gap-2.5 px-4 py-2 hover:bg-slate-50 text-[13px] font-semibold text-slate-800 text-left">
-                    <span>🇱🇰</span> Sri Lanka
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Main Navbar */}
         <div className="py-3.5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -358,6 +224,11 @@ export default function Navbar({
                                                 {link.badge}
                                               </span>
                                             )}
+                                            {link.actionType === "compare" && compareCount > 0 && (
+                                              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-wide bg-[#110051] text-white rounded-md flex items-center justify-center min-w-5 h-5 shadow-xs">
+                                                {compareCount}
+                                              </span>
+                                            )}
                                           </div>
                                           {link.desc && (
                                             <p className="text-[12px] text-slate-400 mt-0.5 line-clamp-1">
@@ -374,7 +245,11 @@ export default function Navbar({
                                           <button
                                             onClick={() => {
                                               setActiveDropdown(null);
-                                              handleCounsellingClick();
+                                              if (link.actionType === "compare") {
+                                                handleCompareClick();
+                                              } else {
+                                                handleCounsellingClick();
+                                              }
                                             }}
                                             className="w-full text-left group/item flex items-start gap-3 p-2 rounded-xl hover:bg-slate-50 transition-all duration-200 cursor-pointer"
                                           >
@@ -415,17 +290,63 @@ export default function Navbar({
                   );
                 })}
 
-                <button
-                  onClick={handleCompareClick}
+                <Link
+                  to="/resources"
                   className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}
                 >
-                  <span>Compare</span>
-                  {compareCount > 0 && (
-                    <span className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-600 text-[11px] font-bold text-white shadow-sm shadow-brand-500/35 animate-bounce">
-                      {compareCount}
-                    </span>
-                  )}
-                </button>
+                  Resources
+                </Link>
+
+                <Link
+                  to="/resources"
+                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}
+                >
+                  Events
+                </Link>
+
+                <div className="relative group py-2">
+                  <Link to="/find-us" className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}>
+                    <span>Find us</span>
+                    <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
+                  </Link>
+                  {/* Dropdown list */}
+                  <div className="absolute right-0 mt-2 w-64 bg-white border border-slate-200/85 rounded-2xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50 overflow-hidden text-left">
+                    {/* Dropdown Heading */}
+                    <Link
+                      to="/find-us"
+                      className="w-full px-4 py-3 bg-slate-50/50 hover:bg-slate-100/70 border-b border-slate-100 flex items-center gap-2 transition-colors cursor-pointer"
+                    >
+                      <Compass size={14} className="text-[#110051]" />
+                      <span className="font-display font-bold text-[13px] text-[#110051]">
+                        Find nearest Edeco office
+                      </span>
+                    </Link>
+                    {/* Dropdown Options */}
+                    <div className="max-h-72 overflow-y-auto">
+                      {[
+                        "Andhra Pradesh",
+                        "Delhi",
+                        "Gujarat",
+                        "Haryana",
+                        "Karnataka",
+                        "Kerala",
+                        "Maharashtra",
+                        "Punjab",
+                        "Tamil Nadu",
+                        "Telangana"
+                      ].map((state) => (
+                        <Link
+                          key={state}
+                          to={`/find-us?state=${encodeURIComponent(state === 'Delhi' ? 'Delhi NCR' : state === 'Punjab' ? 'Punjab & Chandigarh' : state)}`}
+                          className="flex items-center justify-between px-4 py-2.5 hover:bg-slate-50 text-[13px] text-slate-700 hover:text-[#110051] transition-colors font-sans border-b border-slate-50 last:border-b-0"
+                        >
+                          <span>{state}</span>
+                          <ChevronRight size={12} className="text-slate-400" />
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
 
                 <Link to="/contact" className={`px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}>
                   Contact
@@ -648,6 +569,11 @@ export default function Navbar({
                                     {link.badge}
                                   </span>
                                 )}
+                                {link.actionType === "compare" && compareCount > 0 && (
+                                  <span className={`px-1.5 py-0.5 text-[9px] font-bold rounded-full text-white ${darkTheme ? 'bg-[rgb(106,255,217)] text-slate-950' : 'bg-[#110051]'}`}>
+                                    {compareCount}
+                                  </span>
+                                )}
                               </div>
                               {link.desc && (
                                 <p className="text-[11px] text-slate-400 mt-0.5 font-normal truncate">
@@ -662,7 +588,14 @@ export default function Navbar({
                           <li key={idx}>
                             {link.isAction ? (
                               <button
-                                onClick={() => { toggleMenu(); handleCounsellingClick(); }}
+                                onClick={() => {
+                                  toggleMenu();
+                                  if (link.actionType === "compare") {
+                                    handleCompareClick();
+                                  } else {
+                                    handleCounsellingClick();
+                                  }
+                                }}
                                 className={`w-full group/drawerlink flex items-start p-2.5 rounded-xl transition-colors cursor-pointer ${darkTheme
                                   ? 'text-slate-300 hover:bg-white/5 hover:text-white'
                                   : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
@@ -690,6 +623,36 @@ export default function Navbar({
                 );
               })}
 
+              {/* Resources Shortcut */}
+              <div className={`pt-4 border-t transition-colors ${darkTheme ? 'border-white/10' : 'border-slate-100'}`}>
+                <Link
+                  to="/resources"
+                  onClick={toggleMenu}
+                  className={`w-full flex items-center gap-2 p-2.5 rounded-xl text-[14px] font-semibold transition-colors ${darkTheme
+                    ? 'text-slate-300 hover:bg-white/5 hover:text-white'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                    }`}
+                >
+                  <BookOpen size={16} className={darkTheme ? 'text-slate-400' : 'text-slate-500'} />
+                  <span>Resources</span>
+                </Link>
+              </div>
+
+              {/* Events Shortcut */}
+              <div className="pt-1">
+                <Link
+                  to="/resources"
+                  onClick={toggleMenu}
+                  className={`w-full flex items-center gap-2 p-2.5 rounded-xl text-[14px] font-semibold transition-colors ${darkTheme
+                    ? 'text-slate-300 hover:bg-white/5 hover:text-white'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                    }`}
+                >
+                  <Sparkles size={16} className={darkTheme ? 'text-slate-400' : 'text-slate-500'} />
+                  <span>Events</span>
+                </Link>
+              </div>
+
               {/* Compare Colleges Shortcut */}
               <div className={`pt-4 border-t transition-colors ${darkTheme ? 'border-white/10' : 'border-slate-100'
                 }`}>
@@ -709,6 +672,63 @@ export default function Navbar({
                     {compareCount} Selected
                   </span>
                 </button>
+              </div>
+
+              {/* Collapsible Find us accordion */}
+              <div className={`border-t pt-4 transition-colors ${darkTheme ? 'border-white/10' : 'border-slate-100'}`}>
+                <button
+                  onClick={() => setExpandedCategory(expandedCategory === 'find-us' ? null : 'find-us')}
+                  className={`w-full flex items-center justify-between p-2.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer ${darkTheme
+                    ? 'text-slate-300 hover:bg-white/5 hover:text-white'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                    }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <Compass size={16} />
+                    Find us
+                  </span>
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform duration-200 ${expandedCategory === 'find-us' ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {expandedCategory === 'find-us' && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden pl-4 pr-2 mt-1 space-y-1"
+                    >
+                      {[
+                        "Andhra Pradesh",
+                        "Delhi",
+                        "Gujarat",
+                        "Haryana",
+                        "Karnataka",
+                        "Kerala",
+                        "Maharashtra",
+                        "Punjab",
+                        "Tamil Nadu",
+                        "Telangana"
+                      ].map((state) => (
+                        <Link
+                          key={state}
+                          to={`/find-us?state=${encodeURIComponent(state === 'Delhi' ? 'Delhi NCR' : state === 'Punjab' ? 'Punjab & Chandigarh' : state)}`}
+                          onClick={toggleMenu}
+                          className={`flex items-center justify-between px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${darkTheme
+                            ? 'text-slate-400 hover:text-white hover:bg-white/5'
+                            : 'text-slate-600 hover:text-[#110051] hover:bg-slate-50'
+                            }`}
+                        >
+                          <span>{state}</span>
+                          <ChevronRight size={12} className="text-slate-400" />
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
 
@@ -788,20 +808,16 @@ export default function Navbar({
           <span className="text-[10px] font-semibold">Home</span>
         </Link>
 
-        <button
-          onClick={handleCompareClick}
-          className={`relative flex flex-col items-center gap-0.5 transition-colors cursor-pointer ${darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]'
+        <Link
+          to="/resources"
+          className={`flex flex-col items-center gap-0.5 transition-colors ${isActive('/resources')
+            ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold')
+            : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
             }`}
         >
-          <GitCompare size={20} className="transition-colors text-current" />
-          <span className="text-[10px] font-semibold">Compare</span>
-          {compareCount > 0 && (
-            <span className={`absolute -top-1.5 right-1.5 flex items-center justify-center w-4 h-4 rounded-full text-[9px] font-bold text-white shadow-sm ${darkTheme ? 'bg-[rgb(106,255,217)] text-slate-950 shadow-brand-mint/30' : 'bg-[#110051] shadow-brand-500/30'
-              }`}>
-              {compareCount}
-            </span>
-          )}
-        </button>
+          <BookOpen size={20} className="transition-colors text-current" />
+          <span className="text-[10px] font-semibold">Events</span>
+        </Link>
 
         <Link
           to="/exam/jee-main"
