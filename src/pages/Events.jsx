@@ -430,9 +430,9 @@ export default function Events() {
         <div className="bg-slate-100/50 py-20 border-t border-b border-slate-200/40 text-left">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
-              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5">Student Reviews</h2>
+              <h2 className="text-xs font-bold text-[#6C63FF] uppercase tracking-widest mb-2.5">Student Reviews</h2>
               <h3 className="text-3xl font-black text-[#110051] font-display mb-3">Hear From Our Students</h3>
-              <p className="text-slate-500 font-semibold text-sm max-w-xl">
+              <p className="text-slate-600 font-semibold text-sm max-w-xl">
                 Thousands of students have trusted Edeco on their learning and study abroad journey. Their success stories inspire us every day.
               </p>
             </div>
@@ -442,21 +442,17 @@ export default function Events() {
               {testimonials.map((test, i) => (
                 <div
                   key={i}
-                  className="bg-[#6C63FF] rounded-[28px] p-6 text-white flex flex-col justify-between shadow-xl relative overflow-hidden group hover:scale-[1.01] transition-transform duration-300"
+                  className="bg-white rounded-[28px] p-6 flex flex-col justify-between shadow-xl relative overflow-hidden group hover:scale-[1.02] hover:shadow-[#6C63FF]/10 transition-all duration-300 border border-slate-100 hover:border-[#6C63FF]/20"
                 >
-                  <div className="absolute -top-3 -right-3 text-white/5 scale-150 rotate-12 pointer-events-none">
-                    <Quote size={80} />
-                  </div>
-                  
-                  <p className="text-sm font-semibold leading-relaxed mb-8 relative z-10">
+                  <p className="text-sm font-semibold leading-relaxed mb-8 relative z-10 text-slate-700">
                     "{test.quote}"
                   </p>
 
                   <div className="flex items-center gap-3 relative z-10">
-                    <img src={test.avatar} alt={test.name} className="w-10 h-10 rounded-xl object-cover border border-white/20" />
+                    <img src={test.avatar} alt={test.name} className="w-10 h-10 rounded-xl object-cover border border-slate-100" />
                     <div>
-                      <h4 className="text-sm font-extrabold font-display leading-tight">{test.name}</h4>
-                      <p className="text-[11px] text-white/70 font-semibold">{test.country}</p>
+                      <h4 className="text-sm font-extrabold font-display leading-tight text-[#110051]">{test.name}</h4>
+                      <p className="text-[11px] text-[#6C63FF] font-bold">{test.country}</p>
                     </div>
                   </div>
                 </div>
@@ -472,23 +468,25 @@ export default function Events() {
               <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5 font-display">Aspirant Videos</h2>
               <h3 className="text-3xl font-black text-[#110051] font-display mb-3">Your Success Story Starts Here</h3>
               <p className="text-slate-500 font-semibold text-sm max-w-xl">
-                Join students who achieved their dream college admissions with Edeco. Discover their journeys and begin yours today.
+                Join students who achieved their dream college admissions with Edeco. Discover their journeys and begin your today.
               </p>
             </div>
 
             {/* Navigation buttons */}
-            <div className="flex gap-2 shrink-0">
+            <div className="flex gap-3 shrink-0">
               <button
                 onClick={() => scrollSlider('left')}
-                className="w-11 h-11 rounded-xl bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center justify-center transition-all cursor-pointer"
+                className="w-12 h-12 rounded-full bg-white hover:bg-[#110051] text-[#110051] hover:text-white border-2 border-[#110051]/10 hover:border-transparent flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-md hover:shadow-[#110051]/10 cursor-pointer group"
+                aria-label="Previous videos"
               >
-                <ChevronLeft size={18} />
+                <ChevronLeft size={20} className="transition-transform duration-300 group-hover:-translate-x-0.5" />
               </button>
               <button
                 onClick={() => scrollSlider('right')}
-                className="w-11 h-11 rounded-xl bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center justify-center transition-all cursor-pointer"
+                className="w-12 h-12 rounded-full bg-white hover:bg-[#110051] text-[#110051] hover:text-white border-2 border-[#110051]/10 hover:border-transparent flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-md hover:shadow-[#110051]/10 cursor-pointer group"
+                aria-label="Next videos"
               >
-                <ChevronRight size={18} />
+                <ChevronRight size={20} className="transition-transform duration-300 group-hover:translate-x-0.5" />
               </button>
             </div>
           </div>
