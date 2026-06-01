@@ -298,7 +298,7 @@ export default function Navbar({
                 </Link>
 
                 <Link
-                  to="/resources"
+                  to="/events"
                   className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}
                 >
                   Events
@@ -641,7 +641,7 @@ export default function Navbar({
               {/* Events Shortcut */}
               <div className="pt-1">
                 <Link
-                  to="/resources"
+                  to="/events"
                   onClick={toggleMenu}
                   className={`w-full flex items-center gap-2 p-2.5 rounded-xl text-[14px] font-semibold transition-colors ${darkTheme
                     ? 'text-slate-300 hover:bg-white/5 hover:text-white'
@@ -809,8 +809,8 @@ export default function Navbar({
         </Link>
 
         <Link
-          to="/resources"
-          className={`flex flex-col items-center gap-0.5 transition-colors ${isActive('/resources')
+          to="/events"
+          className={`flex flex-col items-center gap-0.5 transition-colors ${isActive('/events')
             ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold')
             : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
             }`}
