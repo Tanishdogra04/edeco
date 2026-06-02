@@ -317,7 +317,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -left-10 bg-white/95 border border-slate-100 rounded-2xl p-4 shadow-xl shadow-slate-100 flex items-center gap-3 w-48"
+              className="absolute -top-4 -right-10 bg-white/95 border border-slate-100 rounded-2xl p-4 shadow-xl shadow-slate-100 flex items-center gap-3 w-48"
             >
               <div className="w-9 h-9 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
                 <BadgeCheck size={20} />
