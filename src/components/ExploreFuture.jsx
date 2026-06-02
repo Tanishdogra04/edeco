@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Laptop, Briefcase, HeartPulse, Scale,
@@ -22,12 +21,7 @@ export default function ExploreFuture({ onCompareClick }) {
     <section className="py-20 bg-brand-50 relative border-y border-brand-200/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16 space-y-3"
-        >
+        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
           <span className="text-[12px] font-bold text-brand-600 uppercase tracking-widest block">
             Domain Index
           </span>
@@ -37,20 +31,13 @@ export default function ExploreFuture({ onCompareClick }) {
           <p className="text-[14px] text-brand-800/60 font-medium">
             Choose from a wide range of academic streams and discover the perfect career path tailored for you.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-6">
           {domains.map((dom, index) => {
             const Icon = dom.icon;
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="h-full animate-hover"
-              >
+              <div key={index} className="h-full animate-hover">
                 {dom.isAction ? (
                   <button
                     onClick={onCompareClick}
@@ -76,7 +63,7 @@ export default function ExploreFuture({ onCompareClick }) {
                     </h3>
                   </Link>
                 )}
-              </motion.div>
+              </div>
             );
           })}
         </div>

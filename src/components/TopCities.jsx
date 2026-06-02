@@ -133,8 +133,8 @@ export default function TopCities() {
                   <span className="text-[13px] font-semibold">{city.colleges}</span>
                 </div>
 
-                {/* Hover line separator and CTA */}
-                <div className="mt-4 pt-4 border-t border-white/10 overflow-hidden h-0 group-hover:h-12 transition-all duration-300 flex items-center justify-between text-white">
+                {/* Card CTA Footer - Seen by default */}
+                <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-white transition-all duration-300">
                   <span className="text-xs font-bold uppercase tracking-wider">Explore Colleges</span>
                   <ChevronRight size={16} className="text-brand-500 group-hover:translate-x-1 transition-transform" />
                 </div>

@@ -28,7 +28,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
     { name: "Symbiosis Institute of Design", type: "Design", rating: "4.4", location: "Pune" }
   ];
 
-  const filteredSuggestions = collegeSuggestions.filter(item => 
+  const filteredSuggestions = collegeSuggestions.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.type.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -61,12 +61,12 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* Left Column: Heading and Search */}
           <div className="lg:col-span-7 text-left space-y-8">
-            
+
             {/* Trust badge */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -87,9 +87,9 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-4"
             >
-              <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-brand-800 leading-[1.1] tracking-tight">
-                Find The Right College. <br />
-                <span className="text-gradient">Shape Your Future.</span>
+              <h1 className="font-sans font-bold text-4xl sm:text-5xl lg:text-[56px] text-brand-800 leading-[1.15] tracking-tight">
+                Find the right college. <br />
+                <span className="text-gradient">Shape your future.</span>
               </h1>
               <p className="text-lg text-brand-800/80 max-w-xl font-normal leading-relaxed">
                 Connect with institutional partners, compare placement statistics, and get personalized counseling driven by career analytics.
@@ -97,7 +97,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             </motion.div>
 
             {/* Large Search Bar */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -108,8 +108,8 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                 <div className="pl-3 text-slate-400">
                   <Search size={22} />
                 </div>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   value={searchTerm}
                   onChange={(e) => {
                     setSearchTerm(e.target.value);
@@ -120,10 +120,10 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                   placeholder="Search for colleges, exams (e.g. IIT, MBA, NEET)..."
                   className="w-full py-3.5 px-2 bg-transparent text-slate-800 placeholder-slate-400 text-[15px] font-medium outline-none"
                 />
-                
-                <button 
+
+                <button
                   onClick={() => onSearchSubmit(searchTerm)}
-                  className="px-6 py-3.5 rounded-xl bg-[rgb(106,255,217)] text-[#110051] hover:text-white hover:bg-[#110051] text-[15px] font-bold shadow-md shadow-brand-mint/10 hover:shadow-indigo-950/20 active:scale-[0.98] transition-all duration-300 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-[#110051] text-white hover:bg-[#1a0073] text-[15px] font-bold shadow-md shadow-indigo-950/10 hover:shadow-indigo-950/20 active:scale-[0.98] transition-all duration-300 cursor-pointer"
                 >
                   Search
                 </button>
@@ -132,7 +132,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               {/* Suggestions Dropdown */}
               <AnimatePresence>
                 {showSuggestions && searchTerm && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
@@ -140,7 +140,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                   >
                     {filteredSuggestions.length > 0 ? (
                       filteredSuggestions.map((item, idx) => (
-                        <div 
+                        <div
                           key={idx}
                           onClick={() => handleSuggestionClick(item.name)}
                           className="flex items-center justify-between p-4 hover:bg-brand-50/30 cursor-pointer transition-colors"
@@ -166,7 +166,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             </motion.div>
 
             {/* Category Pills */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -184,11 +184,10 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                       setSearchTerm(cat.name);
                       onSearchSubmit(cat.name);
                     }}
-                    className={`flex items-center gap-1.5 px-4.5 py-2.5 rounded-xl border text-[13px] font-bold transition-all duration-200 cursor-pointer ${
-                      selectedCategory === cat.name
-                        ? 'bg-[#110051] border-[#110051] text-white shadow-md shadow-indigo-950/25'
-                        : 'bg-white border-slate-200 text-slate-900 hover:text-white hover:bg-[#110051] hover:border-[#110051]'
-                    }`}
+                    className={`flex items-center gap-1.5 px-4.5 py-2.5 rounded-xl border text-[13px] font-bold transition-all duration-200 cursor-pointer ${selectedCategory === cat.name
+                      ? 'bg-[#110051] border-[#110051] text-white shadow-md shadow-indigo-950/25'
+                      : 'bg-white border-slate-200 text-slate-900 hover:text-white hover:bg-[#110051] hover:border-[#110051]'
+                      }`}
                   >
                     <span>{cat.icon}</span>
                     <span>{cat.name}</span>
@@ -198,40 +197,31 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             </motion.div>
 
             {/* CTA Buttons */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-wrap gap-4 items-center"
             >
-              <a 
+              <a
                 href="#colleges"
-                className="px-6 py-3.5 rounded-xl bg-[rgb(106,255,217)] hover:bg-[#110051] text-[#110051] hover:text-white text-[15px] font-bold shadow-md shadow-brand-mint/15 hover:shadow-indigo-950/20 transition-all duration-300"
+                className="px-6 py-3.5 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white text-[15px] font-bold shadow-md shadow-indigo-950/15 hover:shadow-indigo-950/20 transition-all duration-300"
               >
                 Start Exploring
               </a>
-              <button 
-                onClick={onCounsellingClick}
-                className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl border border-slate-200 bg-white hover:bg-[#110051] text-slate-900 hover:text-white hover:border-[#110051] text-[15px] font-semibold transition-all duration-300 cursor-pointer"
-              >
-                <div className="w-6 h-6 rounded-full bg-brand-50 flex items-center justify-center text-brand-600">
-                  <Play size={12} fill="currentColor" />
-                </div>
-                <span>Book Call with Expert</span>
-              </button>
             </motion.div>
           </div>
 
           {/* Right Column: Premium App-like UI mockup */}
           <div className="lg:col-span-5 relative w-full flex items-center justify-center lg:justify-end mt-8 lg:mt-0">
-            
+
             {/* Outer rotating decorative border */}
             <div className="absolute w-[440px] h-[440px] rounded-full border-2 border-dashed border-brand-200/50 animate-[spin_40s_linear_infinite]"></div>
 
 
 
             {/* Mock Dashboard container */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -254,11 +244,11 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                   {/* Matching circle path SVG */}
                   <svg className="w-full h-full transform -rotate-90">
                     <circle cx="72" cy="72" r="64" className="stroke-slate-100 fill-transparent" strokeWidth="8" />
-                    <motion.circle 
-                      cx="72" 
-                      cy="72" 
-                      r="64" 
-                      className="stroke-brand-600 fill-transparent" 
+                    <motion.circle
+                      cx="72"
+                      cy="72"
+                      r="64"
+                      className="stroke-brand-600 fill-transparent"
                       strokeWidth="8"
                       strokeDasharray={402}
                       initial={{ strokeDashoffset: 402 }}
@@ -303,9 +293,9 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                       <span className="text-[10px] text-slate-400">Chief Admissions Officer</span>
                     </div>
                   </div>
-                  <button 
+                  <button
                     onClick={onCounsellingClick}
-                    className="px-3 py-1.5 rounded-xl bg-[rgb(106,255,217)] hover:bg-[#110051] text-[#110051] hover:text-white text-[11px] font-bold shadow-sm transition-all duration-300 cursor-pointer"
+                    className="px-3 py-1.5 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white text-[11px] font-bold shadow-sm transition-all duration-300 cursor-pointer"
                   >
                     Connect Now
                   </button>
@@ -314,7 +304,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             </motion.div>
 
             {/* Floating Card 1: AI Match Verification */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -top-4 -right-10 bg-white/95 border border-slate-100 rounded-2xl p-4 shadow-xl shadow-slate-100 flex items-center gap-3 w-48"
@@ -329,7 +319,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             </motion.div>
 
             {/* Floating Card 2: Highest CTC */}
-            <motion.div 
+            <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-1/2 -right-8 bg-white/95 border border-slate-100 rounded-2xl p-4 shadow-xl shadow-slate-100 flex items-center gap-3 w-52"
@@ -344,7 +334,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             </motion.div>
 
             {/* Floating Card 3: Trust Rating */}
-            <motion.div 
+            <motion.div
               animate={{ x: [0, -8, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -bottom-6 left-6 bg-white/95 border border-slate-100 rounded-2xl p-3.5 shadow-xl shadow-slate-100 flex items-center gap-3 w-48"

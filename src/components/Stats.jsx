@@ -76,9 +76,16 @@ export default function Stats() {
   ];
 
   return (
-    <section className="py-12 bg-brand-50 relative border-y border-brand-200/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    <section className="py-16 bg-[#FAFAFA] border-y border-slate-200/50 relative overflow-hidden">
+      {/* Decorative vertical grid lines on desktop */}
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div className="absolute left-[25%] top-0 w-[1px] h-full bg-slate-200/60 hidden lg:block"></div>
+        <div className="absolute left-[50%] top-0 w-[1px] h-full bg-slate-200/60 hidden lg:block"></div>
+        <div className="absolute left-[75%] top-0 w-[1px] h-full bg-slate-200/60 hidden lg:block"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 sm:gap-x-12">
           {statItems.map((item, idx) => {
             const Icon = item.icon;
             return (
@@ -86,24 +93,29 @@ export default function Stats() {
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white p-6 rounded-2xl text-center flex flex-col items-center justify-between border border-brand-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left group"
               >
-                {/* Icon wrapper */}
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${item.color} mb-4 shadow-sm`}>
-                  <Icon size={22} />
+                {/* Icon wrapper with subtle squircle shape and hover glow */}
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-white border border-slate-200/65 text-brand-600 shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 group-hover:scale-105 group-hover:border-brand-500/30 group-hover:shadow-[0_4px_12px_rgba(108,99,255,0.08)] shrink-0">
+                  <Icon size={20} className="stroke-[2]" />
                 </div>
 
-                {/* Stat value */}
-                <div className="text-3xl sm:text-4xl font-display font-extrabold text-brand-800 tracking-tight">
-                  <AnimatedCounter value={item.value} suffix={item.suffix} />
-                </div>
-
-                {/* Label and description */}
-                <div className="mt-2 text-left w-full text-center">
-                  <h4 className="text-[14px] font-bold text-brand-800">{item.label}</h4>
-                  <p className="text-[12px] text-brand-800/60 mt-0.5">{item.desc}</p>
+                {/* Content block */}
+                <div className="space-y-1">
+                  {/* Metric number */}
+                  <div className="text-3.5xl sm:text-4xl lg:text-4.5xl font-sans font-black text-brand-800 tracking-tight transition-transform duration-300 group-hover:translate-x-0.5">
+                    <AnimatedCounter value={item.value} suffix={item.suffix} />
+                  </div>
+                  {/* Label */}
+                  <h4 className="text-[13px] font-bold text-slate-800 tracking-wide uppercase mt-1">
+                    {item.label}
+                  </h4>
+                  {/* Description */}
+                  <p className="text-[12px] text-slate-500 font-medium max-w-[200px] leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               </motion.div>
             );

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   Menu, X, ChevronDown, ChevronRight, GitCompare, Compass,
   GraduationCap, Globe, BookOpen, User, PhoneCall, LogIn, LogOut,
-  Sparkles, Award, BookOpenCheck, ArrowRight, Laptop, HeartPulse, Scale, Palette
+  Sparkles, Award, BookOpenCheck, ArrowRight, Laptop, HeartPulse, Scale, Palette,
+  BarChart3
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
@@ -69,21 +70,19 @@ export default function Navbar({
       icon: Compass,
       columns: [
         {
-          title: "Top Domains",
+          title: "Technical & Medical",
           links: [
             { name: "Engineering Colleges", href: "/stream/engineering", icon: Laptop },
-            { name: "Business Schools", href: "/stream/management", icon: GraduationCap },
             { name: "Medical Institutes", href: "/stream/medical", icon: HeartPulse },
-            { name: "Law Academies", href: "/stream/law", icon: Scale },
+            { name: "Design & Arts Academies", href: "/stream/design-&-arts", icon: Palette },
           ]
         },
         {
-          title: "Premium Services",
+          title: "Business & Professional",
           links: [
-            { name: "Admission Guidance", href: "/premium", icon: Sparkles, badge: "Popular" },
-            { name: "AI College Finder", href: "/premium#features", icon: Award },
-            { name: "Expert Consultation", href: "/premium#features", icon: PhoneCall },
-            { name: "Compare Colleges", isAction: true, actionType: "compare", icon: GitCompare },
+            { name: "Business Schools", href: "/stream/mba-&-business", icon: GraduationCap },
+            { name: "Law Academies", href: "/stream/law-&-justice", icon: Scale },
+            { name: "Commerce & Finance", href: "/stream/commerce-&-finance", icon: BarChart3 },
           ]
         }
       ]
@@ -136,6 +135,27 @@ export default function Navbar({
         }
       ]
     },
+    services: {
+      title: "Services",
+      subtitle: "Premium guidance & tools",
+      icon: Sparkles,
+      columns: [
+        {
+          title: "Admission Guidance",
+          links: [
+            { name: "Admission Guidance", href: "/premium", icon: Sparkles, badge: "Popular" },
+            { name: "AI College Finder", href: "/premium#features", icon: Award },
+          ]
+        },
+        {
+          title: "Student Tools",
+          links: [
+            { name: "Expert Consultation", href: "/premium#features", icon: PhoneCall },
+            { name: "Compare Colleges", isAction: true, actionType: "compare", icon: GitCompare },
+          ]
+        }
+      ]
+    }
   };
 
   const handleDropdownHover = (key) => {
@@ -306,12 +326,22 @@ export default function Navbar({
 
                 <div className="relative group py-2">
                   <Link to="/find-us" className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}>
-                    <span>Find us</span>
+                    <span>Find Us</span>
                     <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
                   </Link>
                   {/* Dropdown list */}
                   <div className="absolute right-0 mt-2 w-64 bg-white border border-slate-200/85 rounded-2xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50 overflow-hidden text-left">
-                    {/* Dropdown Heading */}
+                    {/* General Support Option */}
+                    <Link
+                      to="/contact"
+                      className="w-full px-4 py-3 bg-slate-50/50 hover:bg-slate-100/70 border-b border-slate-100 flex items-center gap-2 transition-colors cursor-pointer"
+                    >
+                      <PhoneCall size={14} className="text-[#110051]" />
+                      <span className="font-display font-bold text-[13px] text-[#110051]">
+                        Get in Touch / Support
+                      </span>
+                    </Link>
+                    {/* Find us Option */}
                     <Link
                       to="/find-us"
                       className="w-full px-4 py-3 bg-slate-50/50 hover:bg-slate-100/70 border-b border-slate-100 flex items-center gap-2 transition-colors cursor-pointer"
@@ -322,7 +352,7 @@ export default function Navbar({
                       </span>
                     </Link>
                     {/* Dropdown Options */}
-                    <div className="max-h-72 overflow-y-auto">
+                    <div className="max-h-60 overflow-y-auto">
                       {[
                         "Andhra Pradesh",
                         "Delhi",
@@ -347,10 +377,6 @@ export default function Navbar({
                     </div>
                   </div>
                 </div>
-
-                <Link to="/contact" className={`px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}>
-                  Contact
-                </Link>
               </div>
 
               {/* Navbar actions */}
@@ -434,13 +460,12 @@ export default function Navbar({
 
                 <button
                   onClick={handleCounsellingClick}
-                  className="whitespace-nowrap relative group overflow-hidden px-5 py-2.5 rounded-xl bg-[rgb(106,255,217)] text-[#110051] hover:text-white text-[14.5px] font-display font-normal shadow-md shadow-brand-mint/20 hover:shadow-lg hover:shadow-[#110051]/35 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                  className="whitespace-nowrap relative group overflow-hidden px-5 py-2.5 rounded-xl bg-[#110051] text-white hover:bg-[#1a0073] text-[14.5px] font-display font-semibold shadow-md shadow-indigo-950/20 hover:shadow-lg hover:shadow-indigo-950/35 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                 >
                   <span className="relative z-10 flex items-center gap-1.5">
-                    <Sparkles size={16} className="transition-transform duration-300 group-hover:rotate-12" />
-                    Free Counselling
+                    <PhoneCall size={16} className="transition-transform duration-300 group-hover:scale-110" />
+                    Book Call with Expert
                   </span>
-                  <div className="absolute inset-0 bg-[#110051] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </button>
               </div>
 
@@ -674,10 +699,10 @@ export default function Navbar({
                 </button>
               </div>
 
-              {/* Collapsible Find us accordion */}
+              {/* Collapsible Find Us & Branches accordion */}
               <div className={`border-t pt-4 transition-colors ${darkTheme ? 'border-white/10' : 'border-slate-100'}`}>
                 <button
-                  onClick={() => setExpandedCategory(expandedCategory === 'find-us' ? null : 'find-us')}
+                  onClick={() => setExpandedCategory(expandedCategory === 'contact' ? null : 'contact')}
                   className={`w-full flex items-center justify-between p-2.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer ${darkTheme
                     ? 'text-slate-300 hover:bg-white/5 hover:text-white'
                     : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
@@ -685,22 +710,40 @@ export default function Navbar({
                 >
                   <span className="flex items-center gap-2">
                     <Compass size={16} />
-                    Find us
+                    Find Us & Branches
                   </span>
                   <ChevronDown
                     size={16}
-                    className={`transition-transform duration-200 ${expandedCategory === 'find-us' ? 'rotate-180' : ''}`}
+                    className={`transition-transform duration-200 ${expandedCategory === 'contact' ? 'rotate-180' : ''}`}
                   />
                 </button>
                 <AnimatePresence>
-                  {expandedCategory === 'find-us' && (
+                  {expandedCategory === 'contact' && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="overflow-hidden pl-4 pr-2 mt-1 space-y-1"
+                      className="overflow-hidden pl-4 pr-2 mt-1 space-y-1 text-left"
                     >
+                      {/* Mobile support link */}
+                      <Link
+                        to="/contact"
+                        onClick={toggleMenu}
+                        className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-[13.5px] font-bold transition-colors ${darkTheme
+                          ? 'text-slate-300 hover:text-white hover:bg-white/5'
+                          : 'text-[#110051] hover:bg-slate-50'
+                          }`}
+                      >
+                        <PhoneCall size={14} />
+                        <span>Get in Touch / Support</span>
+                      </Link>
+
+                      {/* Mobile branches heading */}
+                      <div className={`text-[10px] font-bold uppercase tracking-wider px-3 pt-2 pb-1 ${darkTheme ? 'text-slate-500' : 'text-slate-400'}`}>
+                        Our Branches
+                      </div>
+
                       {[
                         "Andhra Pradesh",
                         "Delhi",
@@ -717,7 +760,7 @@ export default function Navbar({
                           key={state}
                           to={`/find-us?state=${encodeURIComponent(state === 'Delhi' ? 'Delhi NCR' : state === 'Punjab' ? 'Punjab & Chandigarh' : state)}`}
                           onClick={toggleMenu}
-                          className={`flex items-center justify-between px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${darkTheme
+                          className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-[13px] font-medium transition-colors ${darkTheme
                             ? 'text-slate-400 hover:text-white hover:bg-white/5'
                             : 'text-slate-600 hover:text-[#110051] hover:bg-slate-50'
                             }`}
@@ -737,13 +780,10 @@ export default function Navbar({
               }`}>
               <button
                 onClick={() => { toggleMenu(); handleCounsellingClick(); }}
-                className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm shadow-md transition-all duration-300 cursor-pointer ${darkTheme
-                  ? 'bg-[rgb(106,255,217)] hover:bg-[rgb(106,255,217)]/90 text-[#110051] shadow-brand-mint/10'
-                  : 'bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white'
-                  }`}
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm shadow-md transition-all duration-300 cursor-pointer bg-[#110051] hover:bg-[#1a0073] text-white shadow-indigo-950/20"
               >
-                <Sparkles size={16} />
-                Free Counselling
+                <PhoneCall size={16} />
+                Book Call with Expert
               </button>
 
               {isLoggedIn && user ? (
