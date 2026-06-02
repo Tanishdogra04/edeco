@@ -57,10 +57,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-premium pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
-      {/* Decorative Blur Background Blobs */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-brand-500/10 rounded-full blur-[100px] animate-pulse-slow"></div>
-      <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-brand-purple/10 rounded-full blur-[120px] animate-pulse-slow delay-2000"></div>
+    <section className="relative min-h-screen bg-white pt-20 pb-16 lg:pt-24 lg:pb-24 overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -231,8 +228,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             {/* Outer rotating decorative border */}
             <div className="absolute w-[440px] h-[440px] rounded-full border-2 border-dashed border-brand-200/50 animate-[spin_40s_linear_infinite]"></div>
 
-            {/* Inner glow */}
-            <div className="absolute w-[360px] h-[360px] bg-gradient-to-tr from-brand-500/20 to-brand-purple/20 rounded-full blur-3xl"></div>
+
 
             {/* Mock Dashboard container */}
             <motion.div 
