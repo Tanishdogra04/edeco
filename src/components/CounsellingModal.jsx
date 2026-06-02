@@ -316,7 +316,7 @@ export default function CounsellingModal({ isOpen, onClose }) {
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="flex items-center gap-1.5 px-6 py-3 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white text-xs font-bold transition-all duration-300 shadow-md cursor-pointer"
+                      className="flex items-center gap-1.5 px-6 py-3 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white text-xs font-bold transition-all duration-300 shadow-md cursor-pointer"
                     >
                       Continue
                       <ChevronRight size={16} />
@@ -325,7 +325,7 @@ export default function CounsellingModal({ isOpen, onClose }) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex items-center gap-1.5 px-8 py-3 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white text-xs font-bold shadow-md transition-all duration-300 cursor-pointer disabled:opacity-50"
+                      className="flex items-center gap-1.5 px-8 py-3 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white text-xs font-bold shadow-md transition-all duration-300 cursor-pointer disabled:opacity-50"
                     >
                       {isSubmitting ? (
                         <span>Submitting...</span>

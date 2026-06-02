@@ -152,76 +152,76 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
               const isCompared = comparedColleges.some(c => c.id === college.id);
               
               return (
-                <SwiperSlide key={college.id} className="h-auto">
-                  <div className="glass-card h-full flex flex-col justify-between rounded-3xl overflow-hidden bg-white border border-brand-200 shadow-sm hover:shadow-md transition-all duration-300">
+                 <SwiperSlide key={college.id} className="h-auto">
+                  <div className="h-full flex flex-col justify-between rounded-xl overflow-hidden bg-white border border-slate-100 shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(17,0,81,0.05)] hover:border-slate-200/60 transition-all duration-300 group">
                     
                     {/* Header Image Area */}
-                    <div className="relative h-48 w-full overflow-hidden">
+                    <div className="relative h-48 w-full overflow-hidden shrink-0">
                       <img 
                         src={college.image} 
                         alt={college.name} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
                       
                       {/* NIRF Rank Badges */}
-                      <div className="absolute top-4 left-4 px-3 py-1 rounded-lg bg-brand-800/90 backdrop-blur-md border border-white/10 text-white text-[10px] font-bold tracking-wide uppercase">
+                      <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110051]/90 backdrop-blur-xs text-white text-[9px] font-bold tracking-wider uppercase border border-white/10 shadow-sm">
                         NIRF {college.nirf}
                       </div>
 
                       {/* Rating Badge */}
-                      <div className="absolute top-4 right-4 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/95 backdrop-blur-sm text-slate-800 text-[11px] font-bold shadow-sm">
-                        <Star size={12} className="text-yellow-500" fill="currentColor" />
+                      <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 rounded bg-white/95 backdrop-blur-xs text-slate-800 text-[10px] font-bold shadow-sm border border-slate-100/50">
+                        <Star size={10} className="text-yellow-500" fill="currentColor" />
                         <span>{college.rating}</span>
                       </div>
 
                       {/* Logo tag floating */}
-                      <div className="absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-white border border-brand-200 flex items-center justify-center font-display font-black text-xs text-brand-600 shadow-md">
+                      <div className="absolute bottom-3 left-3 w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center font-display font-bold text-xs text-[#110051] shadow-md">
                         {college.logo}
                       </div>
                     </div>
 
                     {/* Card Body */}
-                    <div className="p-6 text-left flex-1 flex flex-col justify-between">
+                    <div className="p-5 text-left flex-1 flex flex-col justify-between">
                       <div>
                         {/* Domain name */}
-                        <span className="text-[10px] font-bold text-brand-500 uppercase tracking-widest block mb-1">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">
                           {college.stream}
                         </span>
 
                         {/* College Name */}
-                        <h3 className="font-display font-extrabold text-lg text-brand-800 tracking-tight line-clamp-1 hover:text-brand-500 transition-colors">
+                        <h3 className="font-display font-bold text-base text-[#110051] tracking-tight line-clamp-1 hover:text-[#1a0073] transition-colors mb-1">
                           {college.name}
                         </h3>
 
                         {/* Location */}
-                        <div className="flex items-center gap-1 text-brand-800/40 mt-1 mb-4">
+                        <div className="flex items-center gap-1 text-slate-400 mt-1 mb-4">
                           <MapPin size={12} />
                           <span className="text-xs font-semibold">{college.location}</span>
                         </div>
 
                         {/* College Key Stats Grid */}
-                        <div className="grid grid-cols-2 gap-3 p-3.5 bg-brand-50 rounded-2xl border border-brand-200 mb-6">
-                          <div>
-                            <span className="text-[10px] text-brand-800/50 font-semibold uppercase block">Avg Placement</span>
-                            <span className="text-[14px] font-extrabold text-brand-800">{college.package}</span>
+                        <div className="grid grid-cols-2 gap-2 p-3 bg-slate-50 border border-slate-100/60 rounded-lg mb-5 text-left">
+                          <div className="pr-2">
+                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Avg Placement</span>
+                            <span className="text-[13px] font-black text-slate-700 block mt-0.5">{college.package}</span>
                           </div>
-                          <div>
-                            <span className="text-[10px] text-brand-800/50 font-semibold uppercase block">Highest Pkg</span>
-                            <span className="text-[14px] font-extrabold text-brand-800">{college.highestPackage}</span>
+                          <div className="pl-4 border-l border-slate-200/60">
+                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Highest Pkg</span>
+                            <span className="text-[13px] font-black text-slate-700 block mt-0.5">{college.highestPackage}</span>
                           </div>
                         </div>
                       </div>
 
                       {/* Action buttons */}
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 mt-auto">
                         {/* Compare toggle */}
                         <button
                           onClick={() => onToggleCompare(college)}
-                          className={`flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                          className={`flex-1 h-9 flex items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-all duration-300 cursor-pointer ${
                             isCompared 
-                              ? 'bg-brand-50 text-brand-700 border border-brand-200'
-                              : 'bg-white text-brand-800/80 border border-brand-200 hover:bg-brand-50/50'
+                              ? 'bg-[#110051] text-white border-transparent shadow-xs'
+                              : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                           }`}
                         >
                           {isCompared ? (
@@ -237,7 +237,7 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                         {/* View Details */}
                         <Link 
                           to={`/colleges/${college.id}`}
-                          className="flex-1 py-3 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white text-xs font-bold transition-all duration-300 cursor-pointer text-center"
+                          className="flex-1 h-9 flex items-center justify-center gap-1.5 bg-[#110051] hover:bg-[#1a0073] text-white text-xs font-bold rounded-lg transition-all duration-300 cursor-pointer text-center"
                         >
                           View Details
                         </Link>

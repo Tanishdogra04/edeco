@@ -63,7 +63,7 @@ export default function CounsellingCTA({ onCounsellingClick }) {
               <div className="flex flex-wrap gap-4 pt-6">
                 <button
                   onClick={handleClick}
-                  className="px-8 py-4 rounded-2xl bg-brand-mint text-brand-800 hover:text-white hover:bg-brand-blue font-extrabold text-sm shadow-xl transition-all duration-300 cursor-pointer"
+                  className="px-8 py-4 rounded-2xl bg-[#110051] text-white hover:bg-[#1a0073] font-extrabold text-sm shadow-xl transition-all duration-300 cursor-pointer"
                 >
                   Book Free Counselling
                 </button>

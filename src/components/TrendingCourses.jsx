@@ -146,7 +146,7 @@ const courses = [
                 <div className="pt-4 mt-6 border-t border-brand-200/50">
                   <button 
                     onClick={onExploreColleges}
-                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white text-xs font-bold transition-all duration-300 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white text-xs font-bold transition-all duration-300 cursor-pointer"
                   >
                     <span>Browse Colleges</span>
                     <ArrowRight size={14} />

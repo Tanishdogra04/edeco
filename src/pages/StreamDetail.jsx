@@ -362,7 +362,7 @@ export default function StreamDetail() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <button 
                   onClick={() => setIsApplyOpen(true)}
-                  className="px-8 py-4 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold rounded-2xl shadow-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border border-brand-200/50 hover:border-transparent"
+                  className="px-8 py-4 bg-[#110051] hover:bg-[#1a0073] text-white font-bold rounded-2xl shadow-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border border-brand-200/50 hover:border-transparent"
                 >
                   Book Free Counselling <ArrowRight size={18} />
                 </button>

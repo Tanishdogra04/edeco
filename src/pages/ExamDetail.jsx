@@ -399,7 +399,7 @@ export default function ExamDetail() {
                     <p className="text-xs font-bold text-brand-800/40 mb-4">PDF • {paper.size}</p>
                     <button 
                       onClick={() => handleDownload(paper.year)} 
-                      className="w-full py-2 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white border border-brand-200 hover:border-transparent font-bold text-sm rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full py-2 bg-[#110051] hover:bg-[#1a0073] text-white border border-brand-200 hover:border-transparent font-bold text-sm rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {downloadingPaper === paper.year ? (
                         <span className="flex items-center gap-2 animate-pulse"><Clock size={14} className="animate-spin" /> Downloading...</span>
@@ -463,7 +463,7 @@ export default function ExamDetail() {
                   <button 
                     type="button" 
                     onClick={() => setIsApplyOpen(true)} 
-                    className="w-full bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3.5 rounded-xl transition-all duration-300 cursor-pointer shadow-sm"
+                    className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3.5 rounded-xl transition-all duration-300 cursor-pointer shadow-sm"
                   >
                     Request Callback
                   </button>
@@ -501,7 +501,7 @@ export default function ExamDetail() {
                 <p className="text-sm text-brand-800/60 font-medium mb-6">Download the official syllabus, pattern, and preparation guide PDF.</p>
                 <button 
                   onClick={() => setIsApplyOpen(true)}
-                  className="w-full bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-black py-3 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer border border-brand-200 hover:border-transparent"
+                  className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-black py-3 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer border border-brand-200 hover:border-transparent"
                 >
                   <Download size={18} /> Download Guide
                 </button>
@@ -531,7 +531,7 @@ export default function ExamDetail() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button 
                 onClick={() => setIsApplyOpen(true)} 
-                className="px-8 py-4 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-black rounded-2xl transition-all text-lg cursor-pointer shadow-sm"
+                className="px-8 py-4 bg-[#110051] hover:bg-[#1a0073] text-white font-black rounded-2xl transition-all text-lg cursor-pointer shadow-sm"
               >
                 Book Free Counselling
               </button>

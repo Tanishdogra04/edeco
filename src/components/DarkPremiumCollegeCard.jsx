@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  MapPin, Heart, Scale, ArrowRight,
+  MapPin, Scale, ArrowRight,
   TrendingUp, Banknote, CalendarDays,
   ShieldCheck, Trophy, Sparkles
 } from 'lucide-react';
@@ -25,7 +25,6 @@ const formatFeeShort = (feeStr) => {
 };
 
 export default function DarkPremiumCollegeCard({ college, streamName = "Engineering", onCompareClick }) {
-  const [isSaved, setIsSaved] = useState(false);
 
   // Parse dummy data or fallback
   const rank = college.rank || Math.floor(Math.random() * 50) + 1;
@@ -33,12 +32,6 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
   const estYear = college.estYear || "1994";
   const logo = college.logo || `https://ui-avatars.com/api/?name=${college.name.replace(/[^a-zA-Z]/g, '+')}&background=0f172a&color=f97316&size=128`;
   const streamBadge = college.streamBadge || streamName;
-
-  const handleSave = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsSaved(!isSaved);
-  };
 
   const handleCompare = (e) => {
     e.preventDefault();
@@ -69,18 +62,9 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
 
         {/* Right Side Badges & Wishlist */}
         <div className="flex flex-col items-end gap-2">
-          <div className="flex items-center gap-2">
-            <div className="bg-brand-50 px-3 py-1 rounded-full border border-brand-200 flex items-center gap-1.5 shadow-sm">
-              <Sparkles size={12} className="text-brand-500" />
-              <span className="text-[10px] font-bold text-brand-800 tracking-wider uppercase font-display">{streamBadge}</span>
-            </div>
-            
-            <button 
-              onClick={handleSave}
-              className="w-8 h-8 rounded-full bg-brand-50 border border-brand-200 flex items-center justify-center text-brand-800/40 hover:bg-brand-100 hover:text-rose-500 hover:border-rose-200 transition-all shadow-sm cursor-pointer"
-            >
-              <Heart size={14} fill={isSaved ? "currentColor" : "none"} className={isSaved ? "text-rose-500" : ""} />
-            </button>
+          <div className="bg-brand-50 px-3 py-1 rounded-full border border-brand-200 flex items-center gap-1.5 shadow-sm">
+            <Sparkles size={12} className="text-brand-500" />
+            <span className="text-[10px] font-bold text-brand-800 tracking-wider uppercase font-display">{streamBadge}</span>
           </div>
 
           <div className="bg-gradient-premium border border-brand-200 px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-sm">
@@ -108,10 +92,23 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
           </p>
         </div>
 
-        {/* Short Description */}
-        <p className="text-sm text-brand-800/70 line-clamp-2 mb-6 flex-1 font-medium leading-relaxed">
-          {college.description || `Leading institution in ${college.location}, recognized for outstanding academics, modern infrastructure, and excellent placement records.`}
-        </p>
+        {/* Badges Section */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          <span className="px-2.5 py-1 bg-brand-50 border border-brand-200 text-brand-800/70 text-[10px] uppercase tracking-wider font-bold rounded-lg font-sans">
+            {college.type}
+          </span>
+          <span className="px-2.5 py-1 bg-brand-50 border border-brand-200 text-brand-800/70 text-[10px] uppercase tracking-wider font-bold rounded-lg font-sans">
+            Estd {estYear}
+          </span>
+          {college.approved && college.approved.split(',').map((badge, i) => (
+            <span key={i} className="px-2.5 py-1 bg-brand-50 border border-brand-200 text-brand-800/70 text-[10px] uppercase tracking-wider font-bold rounded-lg flex items-center gap-1 font-sans">
+              {badge.trim()}
+            </span>
+          ))}
+          <span className="px-2.5 py-1 bg-brand-50 border border-brand-200 text-brand-800/70 text-[10px] uppercase tracking-wider font-bold rounded-lg font-sans">
+            NAAC A+
+          </span>
+        </div>
 
         {/* ====================================================
             MIDDLE HIGHLIGHTS STRIP 
@@ -137,25 +134,7 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
           </div>
         </div>
 
-        {/* ====================================================
-            BADGES SECTION 
-        ==================================================== */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          <span className="px-2.5 py-1 bg-brand-50 border border-brand-200 text-brand-800/70 text-[10px] uppercase tracking-wider font-bold rounded-lg font-sans">
-            {college.type}
-          </span>
-          <span className="px-2.5 py-1 bg-brand-50 border border-brand-200 text-brand-800/70 text-[10px] uppercase tracking-wider font-bold rounded-lg font-sans">
-            Estd {estYear}
-          </span>
-          {college.approved && college.approved.split(',').map((badge, i) => (
-            <span key={i} className="px-2.5 py-1 bg-brand-50 border border-brand-200 text-brand-800/70 text-[10px] uppercase tracking-wider font-bold rounded-lg flex items-center gap-1 font-sans">
-              {badge.trim()}
-            </span>
-          ))}
-          <span className="px-2.5 py-1 bg-brand-50 border border-brand-200 text-brand-800/70 text-[10px] uppercase tracking-wider font-bold rounded-lg font-sans">
-            NAAC A+
-          </span>
-        </div>
+
 
         {/* ====================================================
             BOTTOM ACTIONS 
@@ -163,7 +142,7 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
         <div className="flex items-center gap-3 mt-auto pt-4 border-t border-brand-200">
           <Link 
             to={`/colleges/${college.id}`} 
-            className="flex-1 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm group/btn border border-brand-200/50 hover:border-transparent cursor-pointer"
+            className="flex-1 bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm group/btn border border-brand-200/50 hover:border-transparent cursor-pointer"
           >
             View Details 
             <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />

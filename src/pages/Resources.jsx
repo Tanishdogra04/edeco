@@ -197,7 +197,7 @@ export default function Resources() {
               placeholder="Enter your email address" 
               className="flex-1 bg-brand-50 border border-brand-200 rounded-xl px-5 py-3.5 text-brand-800 placeholder:text-brand-800/40 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 font-medium"
             />
-            <button className="bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold px-8 py-3.5 rounded-xl shadow-sm transition-all whitespace-nowrap cursor-pointer">
+            <button className="bg-[#110051] hover:bg-[#1a0073] text-white font-bold px-8 py-3.5 rounded-xl shadow-sm transition-all whitespace-nowrap cursor-pointer">
               Subscribe Now
             </button>
           </form>

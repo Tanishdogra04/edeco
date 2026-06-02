@@ -263,7 +263,7 @@ export default function CollegeDetail() {
 
             {/* Right side: Action Buttons */}
             <div className="flex flex-row lg:flex-col gap-3 w-full lg:w-auto">
-              <button onClick={() => setIsApplyOpen(true)} className="flex-1 lg:w-56 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm">
+              <button onClick={() => setIsApplyOpen(true)} className="flex-1 lg:w-56 bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm">
                 <Send size={18} /> Apply Now
               </button>
               <button onClick={handleDownloadBrochure} className="flex-1 lg:w-56 bg-white hover:bg-slate-50 text-brand-600 border border-brand-200 font-bold py-3.5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm cursor-pointer">
@@ -567,7 +567,7 @@ export default function CollegeDetail() {
                   <input type="email" placeholder="Email Address" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-sm font-medium transition-all" />
                   <input type="tel" placeholder="Mobile Number" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-sm font-medium transition-all" />
                   
-                  <button type="button" onClick={() => setIsApplyOpen(true)} className="w-full bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3.5 rounded-xl transition-all duration-300 mt-2 cursor-pointer shadow-sm">
+                  <button type="button" onClick={() => setIsApplyOpen(true)} className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3.5 rounded-xl transition-all duration-300 mt-2 cursor-pointer shadow-sm">
                     Request Callback
                   </button>
                   <p className="text-xs text-center text-slate-400 mt-3 flex items-center justify-center gap-1.5 font-medium">
@@ -623,7 +623,7 @@ export default function CollegeDetail() {
             <p className="text-lg text-slate-600 mb-10 font-medium max-w-2xl mx-auto leading-relaxed">Our expert counselors are here to guide you through admission processes, scholarships, and career choices based on your profile.</p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button onClick={() => setIsApplyOpen(true)} className="px-8 py-4 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-black rounded-2xl transition-all duration-300 text-lg cursor-pointer shadow-md">
+              <button onClick={() => setIsApplyOpen(true)} className="px-8 py-4 bg-[#110051] hover:bg-[#1a0073] text-white font-black rounded-2xl transition-all duration-300 text-lg cursor-pointer shadow-md">
                 Book Free Counselling
               </button>
               <button className="px-8 py-4 bg-white hover:bg-brand-50 border-2 border-brand-200 hover:border-brand-500 text-brand-800 font-bold rounded-2xl shadow-sm transition-all duration-300 flex items-center justify-center gap-2 text-lg cursor-pointer">
@@ -641,7 +641,7 @@ export default function CollegeDetail() {
         <button onClick={handleDownloadBrochure} className="flex-1 bg-white border border-brand-200 text-brand-800 font-bold py-3 rounded-xl flex justify-center items-center gap-2 cursor-pointer">
           <Download size={16} /> Brochure
         </button>
-        <button onClick={() => setIsApplyOpen(true)} className="flex-[2] bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-sm cursor-pointer">
+        <button onClick={() => setIsApplyOpen(true)} className="flex-[2] bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-sm cursor-pointer">
           Apply Now
         </button>
       </div>

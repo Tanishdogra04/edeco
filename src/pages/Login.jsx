@@ -197,7 +197,7 @@ export default function Login() {
                       setTimeout(() => setProfileSuccess(false), 2000);
                     }
                   }}
-                  className="w-full bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3 rounded-xl text-xs transition-all duration-300 cursor-pointer"
+                  className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3 rounded-xl text-xs transition-all duration-300 cursor-pointer"
                 >
                   Save Display Name
                 </button>
@@ -585,7 +585,7 @@ export default function Login() {
               <button 
                 type="submit" 
                 disabled={localLoading}
-                className="w-full bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group mt-8 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group mt-8 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
               >
                 {localLoading ? (
                   <>

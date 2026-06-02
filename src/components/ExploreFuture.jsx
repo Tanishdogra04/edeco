@@ -21,7 +21,7 @@ export default function ExploreFuture({ onCompareClick }) {
     <section className="py-20 bg-brand-50 relative border-y border-brand-200/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <span className="text-[12px] font-bold text-brand-600 uppercase tracking-widest block">
             Domain Index
           </span>
@@ -29,7 +29,7 @@ export default function ExploreFuture({ onCompareClick }) {
             Explore Your <span className="text-brand-500">Future Stream</span>
           </h2>
           <p className="text-[14px] text-brand-800/60 font-medium">
-            Choose from a wide range of academic streams and discover the perfect career path tailored for you.
+            Choose from a wide range of academic streams and discover the perfect career path tailored for&nbsp;you.
           </p>
         </div>
 

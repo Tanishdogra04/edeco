@@ -536,7 +536,7 @@ export default function CityDetail() {
                         <Link to={`/colleges/${college.id}`} className="flex-1 text-center py-2.5 rounded-xl border border-brand-200 text-brand-800 font-bold text-sm hover:bg-brand-50 transition-all duration-300">
                           View Details
                         </Link>
-                        <button onClick={() => setIsApplyOpen(true)} className="flex-1 py-2.5 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold text-sm transition-all duration-300 shadow-sm cursor-pointer">
+                        <button onClick={() => setIsApplyOpen(true)} className="flex-1 py-2.5 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white font-bold text-sm transition-all duration-300 shadow-sm cursor-pointer">
                           Apply Now
                         </button>
                       </div>

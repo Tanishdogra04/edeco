@@ -469,7 +469,7 @@ export default function NewsDetail() {
                     placeholder="Enter your email" 
                     className="w-full bg-brand-50 border border-brand-200 rounded-xl px-4 py-3 text-brand-800 placeholder:text-brand-800/40 focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium text-sm transition-all"
                    />
-                   <button className="w-full bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-sm cursor-pointer">
+                   <button className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3 rounded-xl transition-all duration-300 shadow-sm cursor-pointer">
                      Subscribe Now
                    </button>
                  </form>

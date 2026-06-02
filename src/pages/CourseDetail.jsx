@@ -420,7 +420,7 @@ export default function CourseDetail() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-brand-200">
-                      <button onClick={() => setIsApplyOpen(true)} className="w-full sm:flex-1 bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm cursor-pointer">
+                      <button onClick={() => setIsApplyOpen(true)} className="w-full sm:flex-1 bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm cursor-pointer">
                         Apply Now <ArrowRight size={16} />
                       </button>
                       <button className="w-full sm:flex-1 bg-white hover:bg-brand-50 text-brand-800 border border-brand-200 font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer">

@@ -136,7 +136,7 @@ export default function PremiumServices() {
           >
             <button 
               onClick={handlePricingScroll}
-              className="bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold py-4 px-8 rounded-xl shadow-sm transition-all duration-300 flex items-center gap-2 mx-auto cursor-pointer"
+              className="bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-4 px-8 rounded-xl shadow-sm transition-all duration-300 flex items-center gap-2 mx-auto cursor-pointer"
             >
               View Pricing <ArrowRight size={20} />
             </button>
@@ -227,7 +227,7 @@ export default function PremiumServices() {
                 <button 
                   className={`w-full py-4 rounded-xl font-bold transition-all duration-300 cursor-pointer ${
                     plan.popular 
-                      ? 'bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white shadow-sm' 
+                      ? 'bg-[#110051] hover:bg-[#1a0073] text-white shadow-sm' 
                       : 'bg-white hover:bg-brand-50 text-brand-800 border border-brand-200'
                   }`}
                 >

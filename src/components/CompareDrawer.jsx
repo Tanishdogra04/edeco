@@ -68,7 +68,7 @@ export default function CompareDrawer({ comparedColleges, onRemove, onClearAll }
               className={`w-full md:w-auto px-6 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all cursor-pointer ${
                 comparedColleges.length < 2
                   ? 'bg-brand-50 text-brand-800/30 border border-brand-200/50 shadow-none cursor-not-allowed'
-                  : 'bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white hover:-translate-y-0.5 duration-300'
+                  : 'bg-[#110051] hover:bg-[#1a0073] text-white hover:-translate-y-0.5 duration-300'
               }`}
             >
               Compare Now
@@ -230,7 +230,7 @@ export default function CompareDrawer({ comparedColleges, onRemove, onClearAll }
                 </span>
                 <button 
                   onClick={() => { setIsModalOpen(false); }}
-                  className="px-6 py-2.5 rounded-xl bg-brand-mint hover:bg-brand-blue text-brand-800 hover:text-white font-bold text-xs shadow-sm cursor-pointer duration-300 transition-all"
+                  className="px-6 py-2.5 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white font-bold text-xs shadow-sm cursor-pointer duration-300 transition-all"
                 >
                   Book Free Advice
                 </button>
