@@ -24,6 +24,27 @@ app.use('/api/events', require('./routes/events'));
 app.use('/api/news', require('./routes/news'));
 app.use('/api/counselling', require('./routes/counselling'));
 
+// Base root route
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Welcome to the Edeco API Gateway',
+    version: '1.0.0',
+    status: 'active',
+    environment: process.env.NODE_ENV || 'development',
+    endpoints: {
+      auth: '/api/auth',
+      colleges: '/api/colleges',
+      cities: '/api/cities',
+      exams: '/api/exams',
+      events: '/api/events',
+      news: '/api/news',
+      counselling: '/api/counselling',
+      status: '/api/status'
+    }
+  });
+});
+
 // Base status route
 app.get('/api/status', (req, res) => {
   res.json({
