@@ -19,7 +19,10 @@ const sendEmail = async ({ to, subject, code }) => {
   }
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    family: 4, // Force IPv4 to avoid ENETUNREACH on environments without IPv6 routes (like Render)
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
@@ -178,7 +181,10 @@ const sendAdminAlert = async ({ studentName, studentPhone, studentEmail, targetE
   }
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    family: 4, // Force IPv4 to avoid ENETUNREACH on environments without IPv6 routes (like Render)
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
