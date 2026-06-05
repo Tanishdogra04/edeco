@@ -11,6 +11,7 @@ import {
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CounsellingModal from '../components/CounsellingModal';
+import ApplicationModal from '../components/ApplicationModal';
 
 // Mock Data Generator for all courses
 const getMockCourseData = (id) => {
@@ -124,6 +125,8 @@ export default function CourseDetail() {
   const course = getMockCourseData(courseId);
   
   const [isApplyOpen, setIsApplyOpen] = useState(false);
+  const [isCounsellingOpen, setIsCounsellingOpen] = useState(false);
+  const [selectedCollegeForApply, setSelectedCollegeForApply] = useState(null);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   // Filter State
@@ -222,7 +225,7 @@ export default function CourseDetail() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
-      <Navbar onCounsellingClick={() => setIsApplyOpen(true)} />
+      <Navbar onCounsellingClick={() => setIsCounsellingOpen(true)} />
 
       {/* Breadcrumbs */}
       <div className="bg-white border-b border-slate-200 pt-24 pb-4">
@@ -420,7 +423,7 @@ export default function CourseDetail() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-brand-200">
-                      <button onClick={() => setIsApplyOpen(true)} className="w-full sm:flex-1 bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm cursor-pointer">
+                      <button onClick={() => { setSelectedCollegeForApply(college); setIsApplyOpen(true); }} className="w-full sm:flex-1 bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm cursor-pointer">
                         Apply Now <ArrowRight size={16} />
                       </button>
                       <button className="w-full sm:flex-1 bg-white hover:bg-brand-50 text-brand-800 border border-brand-200 font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer">
@@ -462,9 +465,22 @@ export default function CourseDetail() {
 
       <Footer />
 
-      <CounsellingModal 
+      <ApplicationModal 
         isOpen={isApplyOpen}
-        onClose={() => setIsApplyOpen(false)}
+        onClose={() => {
+          setIsApplyOpen(false);
+          setSelectedCollegeForApply(null);
+        }}
+        initialData={{
+          courseName: course.name,
+          collegeName: selectedCollegeForApply?.name,
+          stream: courseId
+        }}
+      />
+
+      <CounsellingModal 
+        isOpen={isCounsellingOpen}
+        onClose={() => setIsCounsellingOpen(false)}
       />
     </div>
   );

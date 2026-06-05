@@ -67,13 +67,13 @@ export default function CounsellingCTA({ onCounsellingClick }) {
                 >
                   Book Free Counselling
                 </button>
-                <button
-                  onClick={handleClick}
+                <a
+                  href="tel:8278713791"
                   className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition-all duration-300 cursor-pointer"
                 >
                   <PhoneCall size={14} />
                   <span>Talk to Expert Now</span>
-                </button>
+                </a>
               </div>
 
             </div>

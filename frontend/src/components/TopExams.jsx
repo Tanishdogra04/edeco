@@ -4,6 +4,7 @@ import {
   ArrowRight, Heart, Bell, Calendar, Monitor, BookOpen, ArrowUpRight, Scale, Globe, X, GitCompare
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useToast } from '../context/ToastContext';
 
 const CATEGORIES = [
   "All", "Engineering", "Management", "Law", "Medical", "Design", "Science", "Arts"
@@ -93,6 +94,7 @@ const EXAMS_DATA = [
 ];
 
 export default function TopExams({ onCounsellingClick }) {
+  const toast = useToast();
   const [activeCategory, setActiveCategory] = useState("All");
   const [comparedExams, setComparedExams] = useState([]);
   const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
@@ -104,7 +106,7 @@ export default function TopExams({ onCounsellingClick }) {
         return prev.filter(id => id !== examId);
       } else {
         if (prev.length >= 3) {
-          alert("You can compare up to 3 exams at a time.");
+          toast.warning("You can compare up to 3 exams at a time.");
           return prev;
         }
         return [...prev, examId];

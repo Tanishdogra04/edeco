@@ -8,7 +8,7 @@ const { protect, admin } = require('../middleware/auth');
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const exams = await Exam.find({});
+    const exams = await Exam.find({}).lean();
     res.json({
       success: true,
       count: exams.length,
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 // @access  Public
 router.get('/:id', async (req, res) => {
   try {
-    const exam = await Exam.findOne({ id: req.params.id.toLowerCase() });
+    const exam = await Exam.findOne({ id: req.params.id.toLowerCase() }).lean();
 
     if (!exam) {
       return res.status(404).json({
@@ -92,7 +92,7 @@ router.post('/', protect, admin, async (req, res) => {
     // Check if ID already exists, if so append unique suffix
     let uniqueId = baseId;
     let count = 1;
-    while (await Exam.findOne({ id: uniqueId })) {
+    while (await Exam.findOne({ id: uniqueId }).lean()) {
       uniqueId = `${baseId}-${count}`;
       count++;
     }

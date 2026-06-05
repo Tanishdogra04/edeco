@@ -280,7 +280,8 @@ const citiesData = [
   { id: "pune", name: "Pune", image: "https://images.unsplash.com/photo-1601999109332-542b18dbec57?auto=format&fit=crop&w=800&q=80", count: "110+ Colleges" },
   { id: "delhi", name: "Delhi", image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80", count: "150+ Colleges" },
   { id: "mumbai", name: "Mumbai", image: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80", count: "90+ Colleges" },
-  { id: "bangalore", name: "Bangalore", image: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80", count: "130+ Colleges" }
+  { id: "bangalore", name: "Bangalore", image: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80", count: "130+ Colleges" },
+  { id: "hyderabad", name: "Hyderabad", image: "https://images.unsplash.com/photo-1605007493699-af65834f8a00?auto=format&fit=crop&w=800&q=80", count: "80+ Colleges" }
 ];
 
 const newsArticles = [
@@ -532,6 +533,16 @@ const seedDB = async () => {
     await User.deleteMany({});
     console.log('Cleared existing database collections.');
 
+    // Seed default admin user
+    await User.create({
+      name: 'System Admin',
+      email: 'admin@gmail.com',
+      password: 'admin123',
+      role: 'admin',
+      avatar: 'https://ui-avatars.com/api/?name=Admin&background=1e293b&color=fff'
+    });
+    console.log('Admin user seeded!');
+
     // Seed Cities
     await City.insertMany(citiesData);
     console.log('Cities seeded!');
@@ -556,7 +567,7 @@ const seedDB = async () => {
     const categories = ['Engineering', 'MBA', 'Medical', 'Law'];
     const cityColleges = [];
     
-    for (const city of ['Pune', 'Delhi', 'Mumbai', 'Bangalore']) {
+    for (const city of ['Pune', 'Delhi', 'Mumbai', 'Bangalore', 'Hyderabad']) {
       for (const category of categories) {
         const generated = generateCityColleges(city, category);
         const detailed = generated.map(c => getCollegeDetails(c.id, c));

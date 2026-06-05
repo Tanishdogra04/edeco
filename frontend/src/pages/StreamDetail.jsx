@@ -11,6 +11,7 @@ import Footer from '../components/Footer';
 import CounsellingModal from '../components/CounsellingModal';
 import DarkPremiumCollegeCard from '../components/DarkPremiumCollegeCard';
 import CompareDrawer from '../components/CompareDrawer';
+import { useToast } from '../context/ToastContext';
 
 // Mock Data Generator for all streams
 const getMockStreamData = (id) => {
@@ -100,6 +101,7 @@ const getMockStreamData = (id) => {
 };
 
 export default function StreamDetail() {
+  const toast = useToast();
   const { streamId } = useParams();
   const navigate = useNavigate();
   const stream = getMockStreamData(streamId);
@@ -118,7 +120,7 @@ export default function StreamDetail() {
         return prev.filter((c) => c.id !== college.id);
       } else {
         if (prev.length >= 3) {
-          alert("You can compare up to 3 colleges at a time.");
+          toast.warning("You can compare up to 3 colleges at a time.");
           return prev;
         }
         return [...prev, college];
@@ -366,12 +368,12 @@ export default function StreamDetail() {
                 >
                   Book Free Counselling <ArrowRight size={18} />
                 </button>
-                <button 
-                  onClick={() => setIsApplyOpen(true)}
+                <a 
+                  href="tel:8278713791"
                   className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl border border-white/20 transition-all flex items-center justify-center gap-2 backdrop-blur-md cursor-pointer"
                 >
                   <PhoneCall size={18} /> Talk To Expert
-                </button>
+                </a>
               </div>
             </div>
 

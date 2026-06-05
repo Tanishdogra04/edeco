@@ -57,11 +57,24 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Send verification code
+  const sendVerificationCode = async (email) => {
+    try {
+      const data = await api.auth.sendVerificationCode(email);
+      if (data.success) {
+        return { success: true, devCode: data.devCode };
+      }
+      return { success: false, error: data.error || 'Failed to send verification code.' };
+    } catch (error) {
+      return { success: false, error: error.message || 'An error occurred while sending verification code.' };
+    }
+  };
+
   // Register / Sign up user
-  const signup = async (name, email, password) => {
+  const signup = async (name, email, password, code) => {
     setLoading(true);
     try {
-      const data = await api.auth.signup(name, email, password);
+      const data = await api.auth.signup(name, email, password, code);
       if (data.success) {
         setUser(data.user);
         setLoading(false);
@@ -122,6 +135,7 @@ export const AuthProvider = ({ children }) => {
     loading,
     login,
     signup,
+    sendVerificationCode,
     logout,
     updateProfile,
     toggleSavedCollege

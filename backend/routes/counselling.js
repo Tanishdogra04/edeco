@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const CounsellingRequest = require('../models/CounsellingRequest');
 const { protect, admin } = require('../middleware/auth');
+const sendEmail = require('../utils/email');
 
 // @desc    Submit a new admissions counselling request
 // @route   POST /api/counselling/request
@@ -28,6 +29,17 @@ router.post('/request', async (req, res) => {
       score,
       query
     });
+
+    // Send admin notification email asynchronously (non-blocking)
+    if (sendEmail.sendAdminAlert) {
+      sendEmail.sendAdminAlert({
+        studentName: name,
+        studentPhone: phone,
+        studentEmail: email,
+        targetExam: exam,
+        query: query
+      }).catch(err => console.error('Silent admin alert email dispatch error:', err));
+    }
 
     res.status(201).json({
       success: true,

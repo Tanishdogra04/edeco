@@ -7,7 +7,7 @@ const News = require('../models/News');
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const news = await News.find({});
+    const news = await News.find({}).lean();
     res.json({
       success: true,
       count: news.length,
@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
 
     if (!article) {
       // Find backup default or standard
-      const defaultArticle = await News.findOne({});
+      const defaultArticle = await News.findOne({}).lean();
       return res.json({
         success: true,
         article: defaultArticle

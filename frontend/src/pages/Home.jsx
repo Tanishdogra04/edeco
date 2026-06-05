@@ -15,7 +15,10 @@ import CounsellingModal from '../components/CounsellingModal';
 import DetailModal from '../components/DetailModal';
 import Footer from '../components/Footer';
 
+import { useToast } from '../context/ToastContext';
+
 export default function Home() {
+  const toast = useToast();
   const [comparedColleges, setComparedColleges] = useState([]);
   const [isCounsellingOpen, setIsCounsellingOpen] = useState(false);
   const [selectedDetailCollege, setSelectedDetailCollege] = useState(null);
@@ -54,7 +57,7 @@ export default function Home() {
         return prev.filter((c) => c.id !== college.id);
       } else {
         if (prev.length >= 3) {
-          alert("You can compare up to 3 colleges at a time.");
+          toast.warning("You can compare up to 3 colleges at a time.");
           return prev;
         }
         return [...prev, college];

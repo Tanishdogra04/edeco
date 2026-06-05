@@ -6,11 +6,13 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../utils/api';
+import { useToast } from '../context/ToastContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export default function AdminDashboard() {
-  const { user, isLoggedIn } = useAuth();
+  const toast = useToast();
+  const { user, isLoggedIn, loading } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [loadingStats, setLoadingStats] = useState(true);
@@ -20,10 +22,10 @@ export default function AdminDashboard() {
 
   // Access Control: Redirect if not admin
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!isLoggedIn && !loading) {
       navigate('/login');
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, loading, navigate]);
 
   // Fetch count of colleges, exams & counselling requests for stats cards
   useEffect(() => {
@@ -69,7 +71,7 @@ export default function AdminDashboard() {
         ));
       }
     } catch (err) {
-      alert(err.message || 'Failed to update counselling request status');
+      toast.error(err.message || 'Failed to update counselling request status');
     } finally {
       setUpdatingRequestId(null);
     }
@@ -119,6 +121,15 @@ export default function AdminDashboard() {
   const [submittingExam, setSubmittingExam] = useState(false);
   const [examSuccess, setExamSuccess] = useState(null);
   const [examError, setExamError] = useState(null);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center">
+        <div className="w-10 h-10 rounded-full border-4 border-[#110051] border-t-transparent animate-spin mb-3"></div>
+        <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider font-sans">Checking Privileges...</span>
+      </div>
+    );
+  }
 
   if (!isLoggedIn || !user || user.role !== 'admin') {
     return (

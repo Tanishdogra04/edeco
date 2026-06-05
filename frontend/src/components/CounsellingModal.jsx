@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sparkles, User, Phone, Mail, Award, BadgeCheck, ChevronRight, ChevronLeft, ArrowRight, Star } from 'lucide-react';
 import { api } from '../utils/api';
+import { useToast } from '../context/ToastContext';
 
 export default function CounsellingModal({ isOpen, onClose, initialData }) {
+  const toast = useToast();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -58,13 +60,13 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
   const handleNext = () => {
     if (step === 1) {
       if (!formData.name || !formData.phone || !formData.email) {
-        alert("Please fill all contact fields");
+        toast.warning("Please fill all contact fields");
         return;
       }
     }
     if (step === 2) {
       if (!formData.stream || !formData.education) {
-        alert("Please select your stream and education level");
+        toast.warning("Please select your stream and education level");
         return;
       }
     }
@@ -83,10 +85,10 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
       if (data.success) {
         setIsSuccess(true);
       } else {
-        alert(data.error || 'Failed to submit counseling request. Please try again.');
+        toast.error(data.error || 'Failed to submit counseling request. Please try again.');
       }
     } catch (err) {
-      alert(err.message || 'An error occurred during submission.');
+      toast.error(err.message || 'An error occurred during submission.');
     } finally {
       setIsSubmitting(false);
     }

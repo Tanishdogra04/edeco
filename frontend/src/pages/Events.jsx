@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calendar, MapPin, Phone, Mail, ChevronRight, ArrowRight,
-  Compass, X, Clock, CheckCircle2, Search, Play, Volume2, ShieldCheck, Quote, ChevronLeft
+  Compass, X, Clock, CheckCircle2, Search, Play, Volume2, ShieldCheck, Quote, ChevronLeft, ChevronDown
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { api } from '../utils/api';
+import { useToast } from '../context/ToastContext';
 
 
 const eventsData = [
@@ -142,6 +143,7 @@ const successVideos = [
 ];
 
 export default function Events() {
+  const toast = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDest, setSelectedDest] = useState("All Destinations");
   const [selectedLevel, setSelectedLevel] = useState("All Levels");
@@ -210,10 +212,10 @@ export default function Events() {
           setEvents(freshEvents.events);
         }
       } else {
-        alert(data.error || 'Failed to register. Please try again.');
+        toast.error(data.error || 'Failed to register. Please try again.');
       }
     } catch (err) {
-      alert(err.message || 'An error occurred during event registration.');
+      toast.error(err.message || 'An error occurred during event registration.');
     } finally {
       setIsRegistering(false);
     }
@@ -320,53 +322,65 @@ export default function Events() {
 
           {/* Interactive filter controls bar */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center mb-8 text-left">
-            <div className="md:col-span-8 flex flex-wrap gap-3">
+            <div className="col-span-9 flex flex-wrap gap-3">
               {/* Destination Filter */}
-              <select
-                value={selectedDest}
-                onChange={(e) => setSelectedDest(e.target.value)}
-                className="px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm"
-              >
-                {destinations.map(d => <option key={d} value={d}>{d}</option>)}
-              </select>
+              <div className="relative inline-block flex-1">
+                <select
+                  value={selectedDest}
+                  onChange={(e) => setSelectedDest(e.target.value)}
+                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm pr-8"
+                >
+                  {destinations.map(d => <option key={d} value={d}>{d}</option>)}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+              </div>
 
               {/* Study Level Filter */}
-              <select
-                value={selectedLevel}
-                onChange={(e) => setSelectedLevel(e.target.value)}
-                className="px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm"
-              >
-                {studyLevels.map(s => <option key={s} value={s}>{s}</option>)}
-              </select>
+              <div className="relative inline-block flex-1">
+                <select
+                  value={selectedLevel}
+                  onChange={(e) => setSelectedLevel(e.target.value)}
+                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm pr-8"
+                >
+                  {studyLevels.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+              </div>
 
               {/* Event Format Filter */}
-              <select
-                value={selectedFormat}
-                onChange={(e) => setSelectedFormat(e.target.value)}
-                className="px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm"
-              >
-                {eventFormats.map(ef => <option key={ef} value={ef}>{ef}</option>)}
-              </select>
+              <div className="relative inline-block flex-1">
+                <select
+                  value={selectedFormat}
+                  onChange={(e) => setSelectedFormat(e.target.value)}
+                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm pr-8"
+                >
+                  {eventFormats.map(ef => <option key={ef} value={ef}>{ef}</option>)}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+              </div>
 
               {/* Event Type Filter */}
-              <select
-                value={selectedType}
-                onChange={(e) => setSelectedType(e.target.value)}
-                className="px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm"
-              >
-                {eventTypes.map(et => <option key={et} value={et}>{et}</option>)}
-              </select>
+              <div className="relative inline-block flex-1">
+                <select
+                  value={selectedType}
+                  onChange={(e) => setSelectedType(e.target.value)}
+                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm pr-8"
+                >
+                  {eventTypes.map(et => <option key={et} value={et}>{et}</option>)}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+              </div>
             </div>
 
             {/* Search Input */}
-            <div className="md:col-span-4 relative">
+            <div className="col-span-3 relative">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
               <input
                 type="text"
                 placeholder="Search events..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 transition-all text-xs font-semibold text-slate-800"
+                className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-5 transition-all text-xs font-semibold text-slate-800"
               />
             </div>
           </div>
@@ -430,7 +444,7 @@ export default function Events() {
                       </span>
                       <button
                         onClick={() => openBookingModal(evt)}
-                        className="px-4 py-2.5 bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer shadow-sm"
+                        className="px-4 py-2.5 bg-gradient-brand hover:brightness-110 text-white rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer shadow-sm"
                       >
                         Register Free
                       </button>

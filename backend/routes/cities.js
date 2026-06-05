@@ -7,7 +7,7 @@ const City = require('../models/City');
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const cities = await City.find({});
+    const cities = await City.find({}).lean();
     res.json({
       success: true,
       count: cities.length,
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 // @access  Public
 router.get('/:id', async (req, res) => {
   try {
-    const city = await City.findOne({ id: req.params.id.toLowerCase() });
+    const city = await City.findOne({ id: req.params.id.toLowerCase() }).lean();
     
     if (!city) {
       return res.status(404).json({

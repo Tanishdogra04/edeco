@@ -12,10 +12,12 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ApplicationModal from '../components/ApplicationModal';
 import CounsellingModal from '../components/CounsellingModal';
 import CompareDrawer from '../components/CompareDrawer';
 import { api } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 
 const iconMapping = {
   Building2: Building2,
@@ -161,6 +163,7 @@ const tabs = [
 ];
 
 export default function CollegeDetail() {
+  const toast = useToast();
   const { collegeId } = useParams();
   const [college, setCollege] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -169,6 +172,7 @@ export default function CollegeDetail() {
   const [activeTab, setActiveTab] = useState('Overview');
   const [openFaq, setOpenFaq] = useState(0);
   const [isApplyOpen, setIsApplyOpen] = useState(false);
+  const [isCounsellingOpen, setIsCounsellingOpen] = useState(false);
   const [selectedCourseForApply, setSelectedCourseForApply] = useState(null);
   const [comparedColleges, setComparedColleges] = useState([]);
   const [isCompareDrawerOpen, setIsCompareDrawerOpen] = useState(false);
@@ -199,6 +203,7 @@ export default function CollegeDetail() {
       stream: streamOption,
       courseName: selectedCourseForApply,
       collegeName: college.name,
+      courses: college.courses || [],
       query: selectedCourseForApply 
         ? `Applying for course: ${selectedCourseForApply} at ${college.name}`
         : `Interested in admission at ${college.name}`
@@ -210,17 +215,18 @@ export default function CollegeDetail() {
       setLoading(true);
       try {
         const data = await api.colleges.getById(collegeId);
-        if (data.success) {
+        if (data.success && data.college) {
           const col = data.college;
-          if (col) {
-            col.recruiters = col.recruitersList || col.recruiters || [];
-            col.reviews = col.reviewsList || col.reviews || [];
-            col.shortName = col.shortName || (col.id ? col.id.toUpperCase() : 'College');
-          }
+          col.recruiters = col.recruitersList || col.recruiters || [];
+          col.reviews = col.reviewsList || col.reviews || [];
+          col.shortName = col.shortName || (col.id ? col.id.toUpperCase() : 'College');
           setCollege(col);
+        } else {
+          setCollege(getMockCollegeData(collegeId));
         }
       } catch (err) {
-        console.error('Error fetching college:', err.message);
+        console.error('Error fetching college, falling back to mock data:', err.message);
+        setCollege(getMockCollegeData(collegeId));
       } finally {
         setLoading(false);
       }
@@ -232,7 +238,7 @@ export default function CollegeDetail() {
 
   const handleToggleFavorite = async () => {
     if (!user) {
-      alert('Please log in to bookmark colleges.');
+      toast.warning('Please log in to bookmark colleges.');
       return;
     }
     await toggleSavedCollege(college.id);
@@ -249,9 +255,15 @@ export default function CollegeDetail() {
         setIsCompareDrawerOpen(true);
         return [...prev, collegeToToggle];
       }
-      alert('You can only compare up to 3 colleges');
+      toast.warning('You can only compare up to 3 colleges');
       return prev;
     });
+  };
+
+  // Clear all compared colleges
+  const clearAllCompared = () => {
+    setComparedColleges([]);
+    setIsCompareDrawerOpen(false);
   };
 
   useEffect(() => {
@@ -334,7 +346,7 @@ export default function CollegeDetail() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-brand-500/30 selection:text-brand-900">
       <Navbar 
-        onCounsellingClick={() => setIsApplyOpen(true)} 
+        onCounsellingClick={() => setIsCounsellingOpen(true)} 
         compareCount={comparedColleges.length}
         onCompareClick={() => setIsCompareDrawerOpen(true)}
       />
@@ -763,12 +775,15 @@ export default function CollegeDetail() {
             <p className="text-lg text-slate-600 mb-10 font-medium max-w-2xl mx-auto leading-relaxed">Our expert counselors are here to guide you through admission processes, scholarships, and career choices based on your profile.</p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button onClick={() => handleApplyForCourse(null)} className="px-8 py-4 bg-[#110051] hover:bg-[#1a0073] text-white font-black rounded-2xl transition-all duration-300 text-lg cursor-pointer shadow-md">
+              <button onClick={() => setIsCounsellingOpen(true)} className="px-8 py-4 bg-[#110051] hover:bg-[#1a0073] text-white font-black rounded-2xl transition-all duration-300 text-lg cursor-pointer shadow-md">
                 Book Free Counselling
               </button>
-              <button className="px-8 py-4 bg-white hover:bg-brand-50 border-2 border-brand-200 hover:border-brand-500 text-brand-800 font-bold rounded-2xl shadow-sm transition-all duration-300 flex items-center justify-center gap-2 text-lg cursor-pointer">
+              <a 
+                href="tel:8278713791" 
+                className="px-8 py-4 bg-white hover:bg-brand-50 border-2 border-brand-200 hover:border-brand-500 text-brand-800 font-bold rounded-2xl shadow-sm transition-all duration-300 flex items-center justify-center gap-2 text-lg cursor-pointer"
+              >
                 <PhoneCall size={20} /> Talk to Expert
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -786,7 +801,7 @@ export default function CollegeDetail() {
         </button>
       </div>
 
-      <CounsellingModal 
+      <ApplicationModal 
         isOpen={isApplyOpen}
         onClose={() => {
           setIsApplyOpen(false);
@@ -795,11 +810,17 @@ export default function CollegeDetail() {
         initialData={getPrefilledData()}
       />
 
+      <CounsellingModal 
+        isOpen={isCounsellingOpen}
+        onClose={() => setIsCounsellingOpen(false)}
+      />
+
       <CompareDrawer 
         isOpen={isCompareDrawerOpen}
         onClose={() => setIsCompareDrawerOpen(false)}
         comparedColleges={comparedColleges}
         onRemove={(id) => setComparedColleges(prev => prev.filter(c => c.id !== id))}
+        onClearAll={clearAllCompared}
       />
 
     </div>

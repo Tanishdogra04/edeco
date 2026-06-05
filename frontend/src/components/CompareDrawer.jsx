@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, GitCompare, HelpCircle, Check, ArrowRight, ShieldAlert, BadgeCheck } from 'lucide-react';
 
-export default function CompareDrawer({ comparedColleges, onRemove, onClearAll }) {
+export default function CompareDrawer({ isOpen, onClose, comparedColleges, onRemove, onClearAll }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (comparedColleges.length === 0) return null;
+  if (!isOpen || comparedColleges.length === 0) return null;
 
   return (
     <>
       {/* Floating Bottom Drawer */}
       <div className="fixed bottom-16 lg:bottom-6 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-3xl">
+          <button onClick={onClose} className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-100 focus:outline-none">
+            <X size={16} className="text-gray-600" />
+          </button>
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

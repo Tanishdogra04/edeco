@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const VerificationCode = require('../models/VerificationCode');
 const { protect } = require('../middleware/auth');
+const sendEmail = require('../utils/email');
 
 // Generate JWT Token
 const generateToken = (id) => {
@@ -11,13 +13,88 @@ const generateToken = (id) => {
   });
 };
 
+// @desc    Send verification code
+// @route   POST /api/auth/send-code
+// @access  Public
+router.post('/send-code', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please provide an email address'
+      });
+    }
+
+    // Check if user already exists
+    const userExists = await User.findOne({ email });
+    if (userExists) {
+      return res.status(400).json({
+        success: false,
+        error: 'An account with this email address already exists.'
+      });
+    }
+
+    // Generate random 6 digit code
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Save/update verification code in DB
+    await VerificationCode.findOneAndUpdate(
+      { email },
+      { code, createdAt: Date.now() },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
+
+    // Send email via Gmail SMTP utility
+    const emailResult = await sendEmail({
+      to: email,
+      subject: `[edeco] Verify your email address`,
+      code
+    });
+
+    if (!emailResult.success) {
+      return res.status(500).json({
+        success: false,
+        error: `Failed to send verification email: ${emailResult.error}`
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'Verification code sent successfully.'
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
 // @desc    Register a new user
 // @route   POST /api/auth/register
 // @access  Public
 router.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, code } = req.body;
 
   try {
+    if (!code) {
+      return res.status(400).json({
+        success: false,
+        error: 'Verification code is required.'
+      });
+    }
+
+    // Check code in database
+    const verification = await VerificationCode.findOne({ email });
+    if (!verification || verification.code !== code) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid or expired verification code.'
+      });
+    }
+
     // Check if user already exists
     const userExists = await User.findOne({ email });
 
@@ -41,6 +118,9 @@ router.post('/register', async (req, res) => {
     });
 
     if (user) {
+      // Clean up the verification code record
+      await VerificationCode.deleteOne({ email });
+
       res.status(201).json({
         success: true,
         token: generateToken(user._id),

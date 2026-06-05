@@ -48,15 +48,21 @@ export const api = {
       }
       return data;
     },
-    signup: async (name, email, password) => {
+    signup: async (name, email, password, code) => {
       const data = await apiRequest('/auth/register', {
         method: 'POST',
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ name, email, password, code })
       });
       if (data.token) {
         localStorage.setItem('edeco_token', data.token);
       }
       return data;
+    },
+    sendVerificationCode: async (email) => {
+      return await apiRequest('/auth/send-code', {
+        method: 'POST',
+        body: JSON.stringify({ email })
+      });
     },
     getProfile: async () => {
       return await apiRequest('/auth/profile');

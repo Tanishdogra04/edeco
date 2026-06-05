@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
     }
 
     // Fetch all colleges matching the base criteria
-    let colleges = await College.find(query);
+    let colleges = await College.find(query).lean();
 
     // 4. Filter by Type (Private vs Public/Government)
     if (type) {
@@ -136,7 +136,11 @@ router.get('/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const college = await College.findOne({ id: id.toLowerCase() });
+    const college = await College.findOneAndUpdate(
+      { id: id.toLowerCase() },
+      { $inc: { views: 1 } },
+      { new: true }
+    ).lean();
 
     if (!college) {
       return res.status(404).json({
@@ -144,10 +148,6 @@ router.get('/:id', async (req, res) => {
         error: `College with ID ${id} not found`
       });
     }
-
-    // Increment view count
-    college.views = (college.views || 0) + 1;
-    await college.save();
 
     res.json({
       success: true,
@@ -208,7 +208,7 @@ router.post('/', protect, admin, async (req, res) => {
     // Check if ID already exists, if so append unique suffix
     let uniqueId = baseId;
     let count = 1;
-    while (await College.findOne({ id: uniqueId })) {
+    while (await College.findOne({ id: uniqueId }).lean()) {
       uniqueId = `${baseId}-${count}`;
       count++;
     }
@@ -270,7 +270,8 @@ router.get('/admin/analytics', protect, admin, async (req, res) => {
     const mostVisited = await College.find({})
       .sort({ views: -1 })
       .limit(5)
-      .select('id name views -_id');
+      .select('id name views -_id')
+      .lean();
 
     // Total counselling submissions (could be extended per college)
     const counsellingCount = await require('../models/CounsellingRequest').countDocuments();

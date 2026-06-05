@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 import CounsellingModal from '../components/CounsellingModal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { api } from '../utils/api';
+import { useToast } from '../context/ToastContext';
+import { useAuth } from '../context/AuthContext';
 
 import { 
   Calendar, Users, Target, BookOpen, AlertCircle, BadgeCheck, 
@@ -89,6 +91,8 @@ const getMockExamData = (id) => {
 };
 
 export default function ExamDetail() {
+  const toast = useToast();
+  const { user } = useAuth();
   const { examId } = useParams();
   const [exam, setExam] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -98,6 +102,57 @@ export default function ExamDetail() {
   const [openFaq, setOpenFaq] = useState(null);
   const [openSyllabus, setOpenSyllabus] = useState(0);
   const [downloadingPaper, setDownloadingPaper] = useState(null);
+
+  const [sidebarName, setSidebarName] = useState('');
+  const [sidebarPhone, setSidebarPhone] = useState('');
+  const [isSubmittingCallback, setIsSubmittingCallback] = useState(false);
+  const [callbackSubmitted, setCallbackSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setSidebarName(user.name || '');
+    }
+  }, [user]);
+
+  const handleRequestCallback = async (e) => {
+    e?.preventDefault();
+    if (!sidebarName.trim()) {
+      toast.warning("Please enter your name");
+      return;
+    }
+    if (!sidebarPhone.trim()) {
+      toast.warning("Please enter your mobile number");
+      return;
+    }
+    const phoneRegex = /^\+?[0-9\s-]{10,15}$/;
+    if (!phoneRegex.test(sidebarPhone.trim())) {
+      toast.error("Please enter a valid mobile number");
+      return;
+    }
+
+    setIsSubmittingCallback(true);
+    try {
+      const payload = {
+        name: sidebarName,
+        phone: sidebarPhone,
+        email: user?.email || `${sidebarPhone.replace(/\D/g, '')}@edeco.in`,
+        exam: exam?.name || examId,
+        query: `Callback requested from Exam Detail Page (Sidebar Form)`
+      };
+      
+      const response = await api.counselling.submit(payload);
+      if (response.success) {
+        setCallbackSubmitted(true);
+        toast.success("Callback request submitted successfully!");
+      } else {
+        toast.error(response.error || "Failed to submit request");
+      }
+    } catch (err) {
+      toast.error(err.message || "An error occurred. Please try again.");
+    } finally {
+      setIsSubmittingCallback(false);
+    }
+  };
 
   useEffect(() => {
     const fetchExam = async () => {
@@ -122,7 +177,7 @@ export default function ExamDetail() {
   const handleDownload = (paperYear) => {
     setDownloadingPaper(paperYear);
     setTimeout(() => {
-      alert(`Successfully Downloaded ${exam.name.split(' ')[0]} ${paperYear} Question Paper PDF!`);
+      toast.success(`Successfully Downloaded ${exam.name.split(' ')[0]} ${paperYear} Question Paper PDF!`);
       setDownloadingPaper(null);
     }, 1500);
   };
@@ -496,24 +551,92 @@ export default function ExamDetail() {
               {/* Card 1 - Talk to Counselor */}
               <div className="bg-white rounded-3xl border border-brand-200 p-6 relative overflow-hidden shadow-sm">
                 <div className="absolute top-0 inset-x-0 h-1.5 bg-brand-500"></div>
-                <h3 className="text-xl font-black text-brand-800 mb-2 mt-2 font-display">Need Guidance?</h3>
-                <p className="text-sm text-brand-800/60 mb-6 font-medium">Get free expert advice on preparation strategy, syllabus, and top colleges.</p>
                 
-                <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-                  <input type="text" placeholder="Full Name" className="w-full bg-brand-50 border border-brand-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-sm font-medium transition-all text-brand-800 placeholder:text-brand-800/40" />
-                  <input type="tel" placeholder="Mobile Number" className="w-full bg-brand-50 border border-brand-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-sm font-medium transition-all text-brand-800 placeholder:text-brand-800/40" />
-                  
-                  <button 
-                    type="button" 
-                    onClick={() => setIsApplyOpen(true)} 
-                    className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3.5 rounded-xl transition-all duration-300 cursor-pointer shadow-sm"
-                  >
-                    Request Callback
-                  </button>
-                  <p className="text-xs text-center text-brand-800/40 mt-3 flex items-center justify-center gap-1.5 font-medium">
-                    <ShieldCheck size={14} /> 100% secure & spam-free.
-                  </p>
-                </form>
+                <AnimatePresence mode="wait">
+                  {!callbackSubmitted ? (
+                    <motion.div
+                      key="callback-form"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <h3 className="text-xl font-black text-brand-800 mb-2 mt-2 font-display">Need Guidance?</h3>
+                      <p className="text-sm text-brand-800/60 mb-6 font-medium">Get free expert advice on preparation strategy, syllabus, and top colleges.</p>
+                      
+                      <form className="space-y-3" onSubmit={handleRequestCallback}>
+                        <input 
+                          type="text" 
+                          placeholder="Full Name" 
+                          value={sidebarName}
+                          onChange={(e) => setSidebarName(e.target.value)}
+                          className="w-full bg-brand-50 border border-brand-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-sm font-medium transition-all text-brand-800 placeholder:text-brand-800/40" 
+                          required
+                        />
+                        <input 
+                          type="tel" 
+                          placeholder="Mobile Number" 
+                          value={sidebarPhone}
+                          onChange={(e) => setSidebarPhone(e.target.value)}
+                          className="w-full bg-brand-50 border border-brand-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white text-sm font-medium transition-all text-brand-800 placeholder:text-brand-800/40" 
+                          required
+                        />
+                        
+                        <button 
+                          type="submit" 
+                          disabled={isSubmittingCallback}
+                          className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3.5 rounded-xl transition-all duration-300 cursor-pointer shadow-sm disabled:opacity-75 flex items-center justify-center gap-2 text-sm font-display font-extrabold uppercase tracking-wide"
+                        >
+                          {isSubmittingCallback ? (
+                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          ) : (
+                            "Request Callback"
+                          )}
+                        </button>
+                        <p className="text-xs text-center text-brand-800/40 mt-3 flex items-center justify-center gap-1.5 font-medium">
+                          <ShieldCheck size={14} /> 100% secure & spam-free.
+                        </p>
+                      </form>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="callback-success"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                      className="text-center py-6 space-y-4"
+                    >
+                      <div className="w-16 h-16 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center mx-auto border border-brand-100 shadow-md">
+                        <CheckCircle size={36} className="animate-bounce text-brand-500" />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <h3 className="font-display font-black text-xl text-brand-800">
+                          Data Collected!
+                        </h3>
+                        <p className="text-sm text-brand-800/60 font-medium px-2 leading-relaxed">
+                          Your data has been collected and you will receive a call shortly!
+                        </p>
+                      </div>
+
+                      <div className="pt-4 border-t border-brand-100/80">
+                        <button 
+                          onClick={() => {
+                            setCallbackSubmitted(false);
+                            if (!user) {
+                              setSidebarName('');
+                              setSidebarPhone('');
+                            }
+                          }}
+                          className="w-full py-2.5 rounded-xl border border-brand-200 text-brand-500 font-bold text-xs hover:bg-brand-50 transition-colors cursor-pointer"
+                        >
+                          Submit Another Request
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Card 2 - Explore Related Exams */}

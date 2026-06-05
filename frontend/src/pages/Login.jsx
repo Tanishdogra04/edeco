@@ -11,7 +11,7 @@ import loginIllustration from '../assets/login_illustration.png';
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login, signup, isLoggedIn, user, logout, updateProfile } = useAuth();
+  const { login, signup, sendVerificationCode, isLoggedIn, user, logout, updateProfile, loading } = useAuth();
 
   const [isLogin, setIsLogin] = useState(true);
   
@@ -19,6 +19,8 @@ export default function Login() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signupStep, setSignupStep] = useState(1);
+  const [otpCode, setOtpCode] = useState('');
   
   // UI & UX States
   const [showPassword, setShowPassword] = useState(false);
@@ -38,10 +40,10 @@ export default function Login() {
 
   // Admin users should be redirected to admin dashboard and not see the student portal
   useEffect(() => {
-    if (isLoggedIn && user && user.role === 'admin') {
+    if (isLoggedIn && user && user.role === 'admin' && !success) {
       navigate('/admin');
     }
-  }, [isLoggedIn, user, navigate]);
+  }, [isLoggedIn, user, success, navigate]);
 
   // Update edit name state if user details load or change
   useEffect(() => {
@@ -49,6 +51,15 @@ export default function Login() {
       setEditName(user.name);
     }
   }, [user]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center">
+        <Loader2 className="w-10 h-10 animate-spin text-[#110051] mb-3" />
+        <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Verifying Session...</span>
+      </div>
+    );
+  }
 
   // Simple password strength calculator
   const getPasswordStrength = () => {
@@ -65,6 +76,16 @@ export default function Login() {
   const validateForm = () => {
     let errors = {};
     
+    if (!isLogin && signupStep === 2) {
+      if (!otpCode.trim()) {
+        errors.otpCode = 'Verification code is required';
+      } else if (otpCode.trim().length !== 6) {
+        errors.otpCode = 'Verification code must be 6 digits';
+      }
+      setValidationErrors(errors);
+      return Object.keys(errors).length === 0;
+    }
+
     if (!isLogin && !name.trim()) {
       errors.name = 'Full name is required';
     }
@@ -102,15 +123,29 @@ export default function Login() {
       let res;
       if (isLogin) {
         res = await login(email, password);
+      } else if (signupStep === 1) {
+        // Step 1: Send verification code
+        res = await sendVerificationCode(email);
+        if (res.success) {
+          setSignupStep(2);
+          setLocalLoading(false);
+          return;
+        }
       } else {
-        res = await signup(name, email, password);
+        // Step 2: Complete signup with OTP
+        res = await signup(name, email, password, otpCode);
       }
       
       if (res.success) {
         setSuccess(true);
+        const targetRole = res.user?.role || 'user';
         setTimeout(() => {
           setSuccess(false);
-          navigate('/');
+          if (targetRole === 'admin') {
+            navigate('/admin');
+          } else {
+            navigate('/');
+          }
         }, 1500);
       } else {
         setError(res.error);
@@ -118,9 +153,24 @@ export default function Login() {
         setTimeout(() => setShake(false), 500);
       }
     } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
+      setError(err.message || 'An unexpected error occurred. Please try again.');
       setShake(true);
       setTimeout(() => setShake(false), 500);
+    } finally {
+      setLocalLoading(false);
+    }
+  };
+
+  const handleResendOtp = async () => {
+    setError('');
+    setLocalLoading(true);
+    try {
+      const res = await sendVerificationCode(email);
+      if (!res.success) {
+        setError(res.error);
+      }
+    } catch (err) {
+      setError('Failed to resend code. Please try again.');
     } finally {
       setLocalLoading(false);
     }
@@ -451,19 +501,21 @@ export default function Login() {
           </AnimatePresence>
 
           <motion.div
-            key={isLogin ? 'login' : 'signup'}
+            key={isLogin ? 'login' : `signup-step-${signupStep}`}
             animate={shake ? "shake" : ""}
             variants={shakeVariants}
             className="space-y-4"
           >
             <div className="text-left">
               <h2 className="text-2xl font-black text-slate-900 mb-1">
-                {isLogin ? "Welcome back" : "Create your account"}
+                {isLogin ? "Welcome back" : signupStep === 1 ? "Create your account" : "Verify your email"}
               </h2>
               <p className="text-xs text-slate-450 font-bold">
                 {isLogin 
                   ? "Sign in to continue your learning journey" 
-                  : "Sign up below to access premium university advice"}
+                  : signupStep === 1 
+                  ? "Sign up below to access premium university advice"
+                  : "We sent a 6-digit confirmation code to your email"}
               </p>
             </div>
 
@@ -484,130 +536,198 @@ export default function Login() {
 
             <form onSubmit={handleSubmit} className="space-y-3">
               
-              {/* Name Field - Only in Sign Up */}
-              <AnimatePresence>
-                {!isLogin && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="overflow-hidden text-left"
-                  >
-                    <div className="pb-1">
-                      <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Full Name</label>
-                      <div className="relative mt-1">
-                        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                          <User size={16} className="text-slate-400" />
+              {/* STEP 1: Signup / Login Fields */}
+              {(isLogin || signupStep === 1) && (
+                <>
+                  {/* Name Field - Only in Sign Up */}
+                  <AnimatePresence>
+                    {!isLogin && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden text-left"
+                      >
+                        <div className="pb-1">
+                          <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Full Name</label>
+                          <div className="relative mt-1">
+                            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                              <User size={16} className="text-slate-400" />
+                            </div>
+                            <input 
+                              type="text" 
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              disabled={localLoading}
+                              className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 ${
+                                validationErrors.name ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
+                              }`}
+                              placeholder="e.g. John Doe"
+                            />
+                          </div>
+                          {validationErrors.name && (
+                            <p className="text-[11px] text-red-500 font-bold mt-1.5 flex items-center gap-1">
+                              <AlertCircle size={12} /> {validationErrors.name}
+                            </p>
+                          )}
                         </div>
-                        <input 
-                          type="text" 
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          disabled={localLoading}
-                          className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 ${
-                            validationErrors.name ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
-                          }`}
-                          placeholder="e.g. John Doe"
-                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Email Field */}
+                  <div className="text-left">
+                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Email address</label>
+                    <div className="relative mt-1">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                        <Mail size={16} className="text-slate-400" />
                       </div>
-                      {validationErrors.name && (
-                        <p className="text-[11px] text-red-500 font-bold mt-1.5 flex items-center gap-1">
-                          <AlertCircle size={12} /> {validationErrors.name}
+                      <input 
+                        type="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        disabled={localLoading}
+                        className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 ${
+                          validationErrors.email ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
+                        }`}
+                        placeholder="Enter your email"
+                      />
+                    </div>
+                    {validationErrors.email && (
+                      <p className="text-[11px] text-red-500 font-bold mt-1.5 flex items-center gap-1">
+                        <AlertCircle size={12} /> {validationErrors.email}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Password Field */}
+                  <div className="text-left">
+                    <div className="flex items-center justify-between">
+                      <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Password</label>
+                    </div>
+                    <div className="relative mt-1">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                        <Lock size={16} className="text-slate-400" />
+                      </div>
+                      <input 
+                        type={showPassword ? "text" : "password"} 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        disabled={localLoading}
+                        className={`w-full pl-10 pr-10 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 ${
+                          validationErrors.password ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
+                        }`}
+                        placeholder="Enter your password"
+                      />
+                      <button 
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                      </button>
+                    </div>
+                    {validationErrors.password && (
+                      <p className="text-[11px] text-red-500 font-bold mt-1.5 flex items-center gap-1">
+                        <AlertCircle size={12} /> {validationErrors.password}
+                      </p>
+                    )}
+
+                    {/* Password Strength Indicator (Signup Only) */}
+                    {!isLogin && password.length > 0 && (
+                      <motion.div 
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                        className="mt-3"
+                      >
+                        <div className="flex gap-1 h-1 w-full rounded-full overflow-hidden bg-slate-100">
+                          <div className={`h-full transition-all duration-300 w-1/3 ${strength >= 1 ? strengthColors[strength] : 'bg-transparent'}`}></div>
+                          <div className={`h-full transition-all duration-300 w-1/3 ${strength >= 2 ? strengthColors[strength] : 'bg-transparent'}`}></div>
+                          <div className={`h-full transition-all duration-300 w-1/3 ${strength >= 3 ? strengthColors[strength] : 'bg-transparent'}`}></div>
+                        </div>
+                        <p className={`text-[10px] font-bold mt-1.5 ${strength === 3 ? 'text-emerald-500' : 'text-slate-400'}`}>
+                          {strengthLabels[strength]}
                         </p>
-                      )}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Email Field */}
-              <div className="text-left">
-                <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Email address</label>
-                <div className="relative mt-1">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <Mail size={16} className="text-slate-400" />
+                      </motion.div>
+                    )}
                   </div>
-                  <input 
-                    type="email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    disabled={localLoading}
-                    className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 ${
-                      validationErrors.email ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
-                    }`}
-                    placeholder="Enter your email"
-                  />
-                </div>
-                {validationErrors.email && (
-                  <p className="text-[11px] text-red-500 font-bold mt-1.5 flex items-center gap-1">
-                    <AlertCircle size={12} /> {validationErrors.email}
-                  </p>
-                )}
-              </div>
 
-              {/* Password Field */}
-              <div className="text-left">
-                <div className="flex items-center justify-between">
-                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Password</label>
-                </div>
-                <div className="relative mt-1">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <Lock size={16} className="text-slate-400" />
+                  {/* Remember me & Forgot Password */}
+                  <div className="flex items-center justify-between text-xs font-bold pt-1">
+                    <label className="flex items-center gap-2 cursor-pointer text-slate-600">
+                      <input type="checkbox" className="w-4 h-4 text-[#110051] border-slate-200 rounded-sm focus:ring-[#110051]/30" />
+                      <span>Remember me</span>
+                    </label>
+                    {isLogin && (
+                      <a href="#" className="text-slate-500 hover:text-slate-800 transition-colors">
+                        Forgot password?
+                      </a>
+                    )}
                   </div>
-                  <input 
-                    type={showPassword ? "text" : "password"} 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    disabled={localLoading}
-                    className={`w-full pl-10 pr-10 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 ${
-                      validationErrors.password ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
-                    }`}
-                    placeholder="Enter your password"
-                  />
-                  <button 
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors"
-                  >
-                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                  </button>
-                </div>
-                {validationErrors.password && (
-                  <p className="text-[11px] text-red-500 font-bold mt-1.5 flex items-center gap-1">
-                    <AlertCircle size={12} /> {validationErrors.password}
-                  </p>
-                )}
+                </>
+              )}
 
-                {/* Password Strength Indicator (Signup Only) */}
-                {!isLogin && password.length > 0 && (
-                  <motion.div 
-                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                    className="mt-3"
-                  >
-                    <div className="flex gap-1 h-1 w-full rounded-full overflow-hidden bg-slate-100">
-                      <div className={`h-full transition-all duration-300 w-1/3 ${strength >= 1 ? strengthColors[strength] : 'bg-transparent'}`}></div>
-                      <div className={`h-full transition-all duration-300 w-1/3 ${strength >= 2 ? strengthColors[strength] : 'bg-transparent'}`}></div>
-                      <div className={`h-full transition-all duration-300 w-1/3 ${strength >= 3 ? strengthColors[strength] : 'bg-transparent'}`}></div>
-                    </div>
-                    <p className={`text-[10px] font-bold mt-1.5 ${strength === 3 ? 'text-emerald-500' : 'text-slate-400'}`}>
-                      {strengthLabels[strength]}
+              {/* STEP 2: Verification Code (OTP) Input Fields */}
+              {!isLogin && signupStep === 2 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="space-y-4 text-left"
+                >
+                  <div className="pb-1">
+                    <p className="text-xs text-slate-500 font-semibold mb-4 leading-relaxed">
+                      We have sent a 6-digit verification code to <strong className="text-slate-800 font-bold">{email}</strong>. Please enter it below to confirm your account.
                     </p>
-                  </motion.div>
-                )}
-              </div>
+                    
+                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Verification Code</label>
+                    <div className="relative mt-1">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                        <ShieldCheck size={16} className="text-slate-400" />
+                      </div>
+                      <input 
+                        type="text" 
+                        maxLength={6}
+                        inputMode="numeric"
+                        autoComplete="one-time-code"
+                        value={otpCode}
+                        onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ''))}
+                        disabled={localLoading}
+                        className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 tracking-[0.2em] text-center font-display ${
+                          validationErrors.otpCode ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
+                        }`}
+                        placeholder="••••••"
+                      />
+                    </div>
+                    {validationErrors.otpCode && (
+                      <p className="text-[11px] text-red-500 font-bold mt-1.5 flex items-center gap-1">
+                        <AlertCircle size={12} /> {validationErrors.otpCode}
+                      </p>
+                    )}
+                  </div>
 
-              {/* Remember me & Forgot Password */}
-              <div className="flex items-center justify-between text-xs font-bold pt-1">
-                <label className="flex items-center gap-2 cursor-pointer text-slate-600">
-                  <input type="checkbox" className="w-4 h-4 text-[#110051] border-slate-200 rounded-sm focus:ring-[#110051]/30" />
-                  <span>Remember me</span>
-                </label>
-                {isLogin && (
-                  <a href="#" className="text-slate-500 hover:text-slate-800 transition-colors">
-                    Forgot password?
-                  </a>
-                )}
-              </div>
+                  <div className="flex items-center justify-between text-xs pt-1">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSignupStep(1);
+                        setOtpCode('');
+                        setError('');
+                        setValidationErrors({});
+                      }}
+                      className="text-slate-500 hover:text-slate-800 transition-colors font-bold cursor-pointer"
+                    >
+                      ← Change Email
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleResendOtp}
+                      disabled={localLoading}
+                      className="text-[#110051] hover:underline font-extrabold cursor-pointer disabled:opacity-50"
+                    >
+                      Resend Code
+                    </button>
+                  </div>
+                </motion.div>
+              )}
 
               {/* Submit Button */}
               <button 
@@ -622,7 +742,7 @@ export default function Login() {
                   </>
                 ) : (
                   <>
-                    <span>{isLogin ? "Sign In" : "Create Account"}</span>
+                    <span>{isLogin ? "Sign In" : signupStep === 1 ? "Send Verification Code" : "Verify & Register"}</span>
                     <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
                   </>
                 )}
@@ -682,6 +802,8 @@ export default function Login() {
                   setIsLogin(!isLogin);
                   setError('');
                   setValidationErrors({});
+                  setSignupStep(1);
+                  setOtpCode('');
                 }}
                 className="text-[#110051] hover:underline focus:outline-none font-extrabold"
               >
