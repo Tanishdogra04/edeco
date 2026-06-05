@@ -1,6 +1,8 @@
 // Central API Utility for Edeco Portal
 
-const BASE_URL = '/api';
+const BASE_URL = import.meta.env.PROD 
+  ? 'https://edeco-1.onrender.com/api' 
+  : '/api';
 
 // Helper to make API requests with token injection
 const apiRequest = async (endpoint, options = {}) => {
