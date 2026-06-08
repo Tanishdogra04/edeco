@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, MapPin, Building2, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, Building2, Search, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function TopCities() {
@@ -192,15 +192,15 @@ export default function TopCities() {
             {/* The single City Card */}
             <div 
               onClick={() => navigate(`/cities/${selectedCity.name.toLowerCase().replace(/ /g, '-')}`)}
-              className="w-full sm:w-[280px] h-[320px] bg-white rounded-xl p-3 shadow-md border border-slate-150 flex flex-col cursor-pointer group hover:-translate-y-1 hover:shadow-lg transition-all duration-300 shrink-0 text-left"
+              className="w-full sm:w-[280px] h-[320px] bg-white rounded-none p-3 border border-slate-200 flex flex-col cursor-pointer group hover:border-[#110051] transition-all duration-200 shrink-0 text-left"
             >
-              <div className="w-full h-32 rounded-lg overflow-hidden relative mb-3 bg-slate-50 shrink-0">
+              <div className="w-full h-32 rounded-none overflow-hidden relative mb-3 bg-slate-50 shrink-0">
                 <img 
                   src={selectedCity.image} 
                   alt={selectedCity.name} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
                 />
-                <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded bg-[#110051]/90 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
+                <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-none bg-[#110051]/95 text-white text-[9px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
                   {selectedCity.desc}
                 </div>
               </div>
@@ -210,11 +210,11 @@ export default function TopCities() {
                     {selectedCity.name}
                   </h3>
                   <div className="flex flex-wrap gap-1.5 mt-2">
-                    <span className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200/60 text-[10px] font-bold text-slate-600 flex items-center gap-1 shadow-2xs">
+                    <span className="px-2 py-0.5 rounded-none bg-slate-50 border border-slate-200/60 text-[10px] font-bold text-slate-650 flex items-center gap-1 shadow-3xs">
                       <Building2 size={11} className="text-[#110051]/80" />
                       {selectedCity.colleges}
                     </span>
-                    <span className="px-2 py-0.5 rounded bg-indigo-50/40 border border-indigo-100/50 text-[10px] font-bold text-indigo-700 flex items-center gap-1 shadow-2xs">
+                    <span className="px-2 py-0.5 rounded-none bg-indigo-50/40 border border-indigo-100/50 text-[10px] font-bold text-indigo-750 flex items-center gap-1 shadow-3xs">
                       <span className="font-extrabold text-[8px] uppercase">Avg CTC:</span>
                       {selectedCity.avgPackage}
                     </span>
@@ -224,9 +224,9 @@ export default function TopCities() {
                     <span className="text-[11.5px] font-medium text-slate-500 truncate block mt-0.5">{selectedCity.keyStreams}</span>
                   </div>
                 </div>
-                <div className="pt-2.5 border-t border-slate-100/50 flex items-center justify-between text-slate-400 group-hover:text-[#110051] transition-all duration-300">
+                <div className="pt-2.5 border-t border-slate-100/50 flex items-center justify-between text-slate-400 group-hover:text-[#110051] transition-all duration-200">
                   <span className="text-[10px] font-bold uppercase tracking-wider">Explore Colleges</span>
-                  <ChevronRight size={13} className="text-slate-400 group-hover:text-[#110051] group-hover:translate-x-0.5 transition-all duration-300" />
+                  <ChevronRight size={13} className="text-slate-400 group-hover:text-[#110051] group-hover:translate-x-0.5 transition-all duration-200" />
                 </div>
               </div>
             </div>
@@ -274,16 +274,16 @@ export default function TopCities() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="min-w-[260px] sm:min-w-[290px] h-[320px] bg-white rounded-xl p-3 shadow-[0_2px_12px_rgba(0,0,0,0.02)] border border-slate-100/80 flex flex-col snap-start cursor-pointer text-left group hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(17,0,81,0.05)] hover:border-slate-200/60 transition-all duration-300"
+                className="min-w-[260px] sm:min-w-[290px] h-[320px] bg-white rounded-none p-3 border border-slate-200 flex flex-col snap-start cursor-pointer text-left group hover:border-[#110051] transition-all duration-200"
               >
                 {/* Image with subtle zoom on hover */}
-                <div className="w-full h-32 rounded-lg overflow-hidden relative mb-3 bg-slate-50 shrink-0">
+                <div className="w-full h-32 rounded-none overflow-hidden relative mb-3 bg-slate-50 shrink-0">
                   <img 
                     src={city.image} 
                     alt={city.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
                   />
-                  <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded bg-[#110051]/90 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
+                  <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-none bg-[#110051]/95 text-white text-[9px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
                     {city.desc}
                   </div>
                 </div>
@@ -297,11 +297,11 @@ export default function TopCities() {
                     
                     {/* Badges Row */}
                     <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200/60 text-[10px] font-bold text-slate-600 flex items-center gap-1 shadow-2xs">
+                      <span className="px-2 py-0.5 rounded-none bg-slate-50 border border-slate-200/60 text-[10px] font-bold text-slate-650 flex items-center gap-1 shadow-3xs">
                         <Building2 size={11} className="text-[#110051]/80" />
                         {city.colleges}
                       </span>
-                      <span className="px-2 py-0.5 rounded bg-indigo-50/40 border border-indigo-100/50 text-[10px] font-bold text-indigo-700 flex items-center gap-1 shadow-2xs">
+                      <span className="px-2 py-0.5 rounded-none bg-indigo-50/40 border border-indigo-100/50 text-[10px] font-bold text-indigo-750 flex items-center gap-1 shadow-3xs">
                         <span className="font-extrabold text-[8px] uppercase">Avg CTC:</span>
                         {city.avgPackage}
                       </span>
@@ -315,15 +315,27 @@ export default function TopCities() {
                   </div>
 
                   {/* Footer CTA */}
-                  <div className="pt-2.5 border-t border-slate-100/50 flex items-center justify-between text-slate-400 group-hover:text-[#110051] transition-all duration-300">
+                  <div className="pt-2.5 border-t border-slate-100/50 flex items-center justify-between text-slate-400 group-hover:text-[#110051] transition-all duration-200">
                     <span className="text-[10px] font-bold uppercase tracking-wider">Explore Colleges</span>
-                    <ChevronRight size={13} className="text-slate-400 group-hover:text-[#110051] group-hover:translate-x-0.5 transition-all duration-300" />
+                    <ChevronRight size={13} className="text-slate-400 group-hover:text-[#110051] group-hover:translate-x-0.5 transition-all duration-200" />
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
         )}
+        
+        {/* View All Cities Button */}
+        <div className="flex justify-center mt-10">
+          <button 
+            type="button"
+            onClick={() => navigate('/cities')}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border border-slate-200 hover:border-[#110051] text-slate-700 hover:text-white hover:bg-[#110051] text-sm font-bold shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group active:scale-[0.98]"
+          >
+            <span>View All Study Destinations</span>
+            <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+          </button>
+        </div>
 
       </div>
     </section>

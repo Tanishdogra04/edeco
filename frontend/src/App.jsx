@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Cities from './pages/Cities';
 import CityDetail from './pages/CityDetail';
 import CollegeDetail from './pages/CollegeDetail';
 import StreamDetail from './pages/StreamDetail';
@@ -22,6 +23,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cities" element={<Cities />} />
         <Route path="/cities/:cityId" element={<CityDetail />} />
         <Route path="/colleges/:collegeId" element={<CollegeDetail />} />
         <Route path="/stream/:streamId" element={<StreamDetail />} />

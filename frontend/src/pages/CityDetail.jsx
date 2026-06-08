@@ -167,7 +167,7 @@ export default function CityDetail() {
         if (cityName === 'Bangalore') queryCity = 'Bangalore|Bengaluru';
 
         const data = await api.colleges.getAll({ city: queryCity, stream: activeCategory });
-        if (data.success) {
+        if (data.success && data.colleges && data.colleges.length > 0) {
           const normalized = data.colleges.map(c => {
             // Extract numeric NIRF rank from string like "#3 Engineering" or "#20 Engineering"
             let nirfRank = 999;
@@ -193,9 +193,12 @@ export default function CityDetail() {
             };
           });
           setColleges(normalized);
+        } else {
+          setColleges(getMockColleges(cityName, activeCategory));
         }
       } catch (err) {
         console.error('Error fetching colleges for city:', err.message);
+        setColleges(getMockColleges(cityName, activeCategory));
       } finally {
         setLoadingColleges(false);
       }
