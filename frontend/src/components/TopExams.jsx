@@ -119,7 +119,7 @@ export default function TopExams({ onCounsellingClick }) {
     : EXAMS_DATA.filter(exam => exam.category === activeCategory);
 
   return (
-    <section className="relative py-32 bg-brand-50 overflow-hidden border-y border-brand-200">
+    <section className="relative py-16 bg-brand-50 overflow-hidden border-y border-brand-200">
       {/* Background Ambience & 3D Elements */}
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png" alt="3D Books" className="absolute top-20 left-10 w-48 h-48 opacity-[0.05] blur-sm pointer-events-none animate-[bounce_8s_ease-in-out_infinite]" />
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Graduation%20Cap.png" alt="3D Cap" className="absolute bottom-20 right-10 w-64 h-64 opacity-[0.05] blur-[2px] pointer-events-none animate-[pulse_6s_ease-in-out_infinite]" />
@@ -131,7 +131,7 @@ export default function TopExams({ onCounsellingClick }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* SECTION HEADER */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <div className="max-w-2xl text-left">
             <h2 className="text-4xl sm:text-5xl font-black text-brand-800 tracking-tight mb-4 font-display">
               Top Entrance Exams
@@ -147,7 +147,7 @@ export default function TopExams({ onCounsellingClick }) {
         </div>
 
         {/* CATEGORY PILLS NAVIGATION */}
-        <div className="flex overflow-x-auto hide-scrollbar gap-3 pb-8 mb-4 snap-x">
+        <div className="flex overflow-x-auto hide-scrollbar gap-3 pb-5 mb-2 snap-x">
           {CATEGORIES.map((category) => (
             <button
               key={category}
@@ -164,91 +164,77 @@ export default function TopExams({ onCounsellingClick }) {
         </div>
 
         {/* EXAMS GRID */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredExams.map((exam) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                transition={{ duration: 0.3 }}
-                key={exam.id}
-                className="bg-white rounded-xl p-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] border border-slate-100 relative group hover:-translate-y-1 hover:shadow-md hover:border-slate-200 transition-all duration-300 flex flex-col h-full overflow-hidden"
-              >
-                {/* Glow Effect inside card on hover */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-[#110051] opacity-0 group-hover:opacity-[0.02] blur-[60px] rounded-full transition-opacity duration-500 pointer-events-none"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {filteredExams.map((exam) => (
+            <div
+              key={exam.id}
+              className="bg-white rounded-xl p-5 shadow-sm border border-slate-100 relative flex flex-col h-full overflow-hidden"
+            >
+              {/* Top Section */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="px-3 h-10 rounded-lg bg-slate-50 text-[#110051] font-bold text-xs flex items-center justify-center border border-slate-205 shadow-xs transition-all duration-300">
+                  {exam.name}
+                </div>
+                <span className="px-2.5 py-0.5 bg-[#110051]/5 text-[#110051] rounded-full text-[10px] font-semibold tracking-wide">
+                  {exam.category}
+                </span>
+              </div>
 
-                {/* Top Section */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="px-3 h-10 rounded-lg bg-slate-50 text-[#110051] font-bold text-xs flex items-center justify-center border border-slate-205 shadow-xs transition-all duration-300">
-                    {exam.name}
-                  </div>
-                  <span className="px-2.5 py-0.5 bg-[#110051]/5 text-[#110051] rounded-full text-[10px] font-semibold tracking-wide">
-                    {exam.category}
+              {/* Exam Info */}
+              <div className="mb-1 text-left h-[52px] flex flex-col justify-start">
+                <h3 className="text-lg font-bold text-[#110051] tracking-tight mb-0.5 leading-tight">{exam.name}</h3>
+                <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wider line-clamp-2 leading-tight">{exam.fullTitle}</p>
+              </div>
+
+              {/* Key Info List */}
+              <div className="space-y-2.5 mb-5 mt-1 pt-2.5 border-t border-slate-50">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-450 font-medium flex items-center gap-1.5">
+                    <Calendar size={13} className="text-[#110051]/60" /> 
+                    Registration
                   </span>
+                  <span className="font-semibold text-slate-700">{exam.appOpen}</span>
                 </div>
-
-                {/* Exam Info */}
-                <div className="mb-4 flex-1 text-left">
-                  <h3 className="text-lg font-bold text-[#110051] tracking-tight mb-0.5">{exam.name}</h3>
-                  <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wider mb-2.5">{exam.fullTitle}</p>
-                  <p className="text-[13px] text-slate-500 font-normal leading-relaxed line-clamp-2">{exam.desc}</p>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-450 font-medium flex items-center gap-1.5">
+                    <Monitor size={13} className="text-[#110051]/60" /> 
+                    Mode
+                  </span>
+                  <span className="font-semibold text-slate-700">{exam.mode}</span>
                 </div>
-
-                {/* Key Info List */}
-                <div className="space-y-2.5 mb-5 mt-auto pt-4 border-t border-slate-50">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-450 font-medium flex items-center gap-1.5">
-                      <Calendar size={13} className="text-[#110051]/60" /> 
-                      Registration
-                    </span>
-                    <span className="font-semibold text-slate-700">{exam.appOpen}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-450 font-medium flex items-center gap-1.5">
-                      <Monitor size={13} className="text-[#110051]/60" /> 
-                      Mode
-                    </span>
-                    <span className="font-semibold text-slate-700">{exam.mode}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-450 font-medium flex items-center gap-1.5">
-                      <Globe size={13} className="text-[#110051]/60" /> 
-                      Level
-                    </span>
-                    <span className="font-semibold text-slate-700">{exam.level}</span>
-                  </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-450 font-medium flex items-center gap-1.5">
+                    <Globe size={13} className="text-[#110051]/60" /> 
+                    Level
+                  </span>
+                  <span className="font-semibold text-slate-700">{exam.level}</span>
                 </div>
+              </div>
 
-                {/* Bottom Action Area */}
-                <div className="flex items-center gap-2 pt-4 border-t border-slate-100">
-                  <Link 
-                    to={`/exam/${exam.id}`}
-                    className="flex-1 h-9 flex items-center justify-center gap-1.5 bg-[#110051] hover:bg-[#1a0073] text-white font-semibold text-xs rounded-lg transition-all duration-300 shadow-xs cursor-pointer"
-                  >
-                    View Details <ArrowRight size={14} />
-                  </Link>
-                  <button 
-                    onClick={() => handleToggleCompare(exam.id)}
-                    className={`h-9 w-9 rounded-lg flex items-center justify-center transition-all duration-300 border shrink-0 cursor-pointer ${
-                      comparedExams.includes(exam.id)
-                        ? 'bg-[#110051] text-white border-transparent'
-                        : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-700 border-slate-200'
-                    }`} 
-                    title="Compare Exam"
-                  >
-                    <Scale size={14} />
-                  </button>
-                </div>
+              {/* Bottom Action Area */}
+              <div className="flex items-center gap-2 pt-4 border-t border-slate-100 mt-auto">
+                <Link 
+                  to={`/exam/${exam.id}`}
+                  className="flex-1 h-9 flex items-center justify-center gap-1.5 bg-[#110051] hover:bg-[#1a0073] text-white font-semibold text-xs rounded-lg transition-all duration-300 shadow-xs cursor-pointer"
+                >
+                  View Details <ArrowRight size={14} />
+                </Link>
+                <button 
+                  onClick={() => handleToggleCompare(exam.id)}
+                  className={`h-9 w-9 rounded-lg flex items-center justify-center transition-all duration-300 border shrink-0 cursor-pointer ${
+                    comparedExams.includes(exam.id)
+                      ? 'bg-[#110051] text-white border-transparent'
+                      : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-700 border-slate-200'
+                  }`} 
+                  title="Compare Exam"
+                >
+                  <Scale size={14} />
+                </button>
+              </div>
 
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+            </div>
+          ))}
+        </div>
 
       </div>
 

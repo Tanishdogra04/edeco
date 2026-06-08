@@ -342,7 +342,7 @@ export default function CityDetail() {
               <ChevronRight size={14} className="text-slate-600" />
               <Link to="/cities" className="hover:text-white transition-colors">Cities</Link>
               <ChevronRight size={14} className="text-slate-600" />
-              <span className="text-brand-300 font-bold">{cityName}</span>
+              <span className="text-slate-300 font-bold">{cityName}</span>
             </div>
 
             <motion.div

@@ -125,7 +125,7 @@ export default function Home() {
         <TopCities />
 
         {/* Explore Future */}
-        <ExploreFuture onCompareClick={() => handleScrollToSection('colleges')} />
+        <ExploreFuture />
 
         {/* Featured Colleges */}
         <FeaturedColleges 
