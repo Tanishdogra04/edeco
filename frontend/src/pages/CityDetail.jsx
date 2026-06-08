@@ -507,8 +507,8 @@ export default function CityDetail() {
                     {/* Card Header (Image) */}
                     <div className="relative h-48 overflow-hidden">
                       <img
-                        src={college.image}
-                        alt={college.name}
+                        src={college.image || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80'}
+                        alt={college.name || 'College Image'}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>

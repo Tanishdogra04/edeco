@@ -389,7 +389,7 @@ export default function CourseDetail() {
                   
                   {/* Image/Logo area (Left) */}
                   <div className="md:w-64 h-48 md:h-auto relative bg-slate-100 flex-shrink-0">
-                    <img src={college.image} alt={college.name} className="w-full h-full object-cover" />
+                    <img src={college.image || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80'} alt={college.name || 'College Image'} className="w-full h-full object-cover" />
                     <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 flex items-center gap-1 shadow-sm">
                        <Star size={12} className="text-orange-500 fill-orange-500" /> {college.rating} ({college.reviews})
                     </div>

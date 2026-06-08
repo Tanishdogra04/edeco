@@ -23,16 +23,20 @@ export default function Home() {
   const [isCounsellingOpen, setIsCounsellingOpen] = useState(false);
   const [selectedDetailCollege, setSelectedDetailCollege] = useState(null);
   const [activeColleges, setActiveColleges] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchColleges = async () => {
       try {
+        setIsLoading(true);
         const data = await api.colleges.getAll();
         if (data.success) {
           setActiveColleges(data.colleges);
         }
       } catch (err) {
         console.error('Error fetching colleges:', err.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchColleges();
@@ -75,12 +79,15 @@ export default function Home() {
 
   const handleSearchSubmit = async (term) => {
     try {
+      setIsLoading(true);
       const data = await api.colleges.getAll({ search: term });
       if (data.success) {
         setActiveColleges(data.colleges);
       }
     } catch (err) {
       console.error('Search failed:', err.message);
+    } finally {
+      setIsLoading(false);
     }
 
     // Smooth scroll down to colleges section
@@ -130,6 +137,7 @@ export default function Home() {
         {/* Featured Colleges */}
         <FeaturedColleges 
           colleges={activeColleges}
+          isLoading={isLoading}
           onToggleCompare={handleToggleCompare}
           comparedColleges={comparedColleges}
           onViewDetails={(college) => setSelectedDetailCollege(college)}

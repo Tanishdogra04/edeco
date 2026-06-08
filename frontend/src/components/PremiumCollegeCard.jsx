@@ -40,8 +40,8 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
       <div className="relative h-48 w-full overflow-hidden shrink-0">
         {/* Banner Image with hover zoom */}
         <img 
-          src={college.image} 
-          alt={college.name} 
+          src={college.image || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80'} 
+          alt={college.name || 'College Image'} 
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
         
@@ -117,7 +117,7 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
               <Banknote size={11} className="text-slate-400" /> Avg Pkg
             </span>
-            <span className="text-xs font-bold text-slate-700">{college.placement}</span>
+            <span className="text-xs font-bold text-slate-700">{college.placement || college.package || college.stats?.avgPackage || "₹16.5 LPA"}</span>
           </div>
           <div className="flex flex-col items-center flex-1">
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1 flex items-center gap-1">

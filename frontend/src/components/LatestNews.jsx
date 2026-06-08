@@ -60,8 +60,8 @@ export default function LatestNews() {
                 {/* Thumbnail Image */}
                 <div className="relative h-48 w-full overflow-hidden">
                   <img 
-                    src={art.image} 
-                    alt={art.title} 
+                    src={art.image || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80'} 
+                    alt={art.title || 'News Image'} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
                   <div className="absolute top-4 left-4">

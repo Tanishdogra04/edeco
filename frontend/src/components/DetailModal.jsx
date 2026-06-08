@@ -35,7 +35,7 @@ export default function DetailModal({ college, isOpen, onClose, onCounsellingCli
         >
           {/* Header Image Cover */}
           <div className="relative h-56 w-full">
-            <img src={college.image} alt={college.name} className="w-full h-full object-cover" />
+            <img src={college.image || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80'} alt={college.name || 'College Image'} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
             
             {/* Close Button */}

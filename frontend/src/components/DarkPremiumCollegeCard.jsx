@@ -126,7 +126,7 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
             <span className="text-[10px] text-brand-800/50 font-bold uppercase tracking-wider mb-1 flex items-center gap-1 font-sans">
                Avg Pkg
             </span>
-            <span className="text-sm font-black text-brand-800">{college.placement}</span>
+            <span className="text-sm font-black text-brand-800">{college.placement || college.package || college.stats?.avgPackage || "₹16.5 LPA"}</span>
           </div>
           <div className="flex flex-col items-center flex-1">
             <span className="text-[10px] text-brand-800/50 font-bold uppercase tracking-wider mb-1 flex items-center gap-1 font-sans">

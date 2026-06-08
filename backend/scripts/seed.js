@@ -22,7 +22,7 @@ const getCollegeDetails = (id, base) => {
   let dynamicCourses = [];
 
   const lowerId = id.toLowerCase();
-  
+
   if (lowerId.includes('nlsiu') || lowerId.includes('law')) {
     established = '1987';
     dynamicCourses = [
@@ -138,7 +138,7 @@ const featuredCollegesBase = [
     name: "Indian Institute of Management (IIM) Ahmedabad",
     logo: "IIMA",
     stream: "Management",
-    image: "https://images.unsplash.com/photo-1607237138185-eedd996c5c0c?auto=format&fit=crop&w=600&q=80",
+    image: "/images/mba.png",
     location: "Ahmedabad, Gujarat",
     rating: "4.9",
     fees: "₹11.5 Lakhs / Yr",
@@ -168,7 +168,7 @@ const featuredCollegesBase = [
     name: "All India Institute of Medical Sciences (AIIMS)",
     logo: "AIIMS",
     stream: "Medical",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80",
+    image: "/images/medical.png",
     location: "New Delhi, Delhi",
     rating: "4.8",
     fees: "₹1,628 / Yr",
@@ -183,7 +183,7 @@ const featuredCollegesBase = [
     name: "Symbiosis Institute of Business Management",
     logo: "SIBM",
     stream: "Management",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80",
+    image: "/images/mba.png",
     location: "Pune, Maharashtra",
     rating: "4.5",
     fees: "₹11.2 Lakhs / Yr",
@@ -198,7 +198,7 @@ const featuredCollegesBase = [
     name: "National Law School of India University",
     logo: "NLSIU",
     stream: "Law",
-    image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5c?auto=format&fit=crop&w=600&q=80",
+    image: "/images/law.png",
     location: "Bengaluru, Karnataka",
     rating: "4.7",
     fees: "₹2.8 Lakhs / Yr",
@@ -212,13 +212,22 @@ const featuredCollegesBase = [
 
 // Helper to seed more colleges for City Detail pages (e.g. Pune, Delhi, Mumbai, Bangalore)
 const generateCityColleges = (city, category) => {
+  const isMedical = category.toLowerCase() === 'medical';
+  const isMBA = category.toLowerCase() === 'mba' || category.toLowerCase() === 'management';
+  const isLaw = category.toLowerCase() === 'law';
   return [
     {
       id: `iit-${city.toLowerCase()}`,
       name: `Indian Institute of Technology (IIT) ${city}`,
       logo: `IIT${city.charAt(0)}`,
       stream: category,
-      image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
+      image: isMedical 
+        ? "/images/medical.png"
+        : isMBA 
+          ? "/images/mba.png"
+          : isLaw 
+            ? "/images/law.png"
+            : "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
       location: `${city}, India`,
       rating: "4.8",
       fees: "₹2.5 Lakhs / Yr",
@@ -233,7 +242,13 @@ const generateCityColleges = (city, category) => {
       name: `${city} College of ${category}`,
       logo: `C${city.substring(0, 2).toUpperCase()}`,
       stream: category,
-      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80",
+      image: isMedical 
+        ? "/images/medical.png"
+        : isMBA 
+          ? "/images/mba.png"
+          : isLaw 
+            ? "/images/law.png"
+            : "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80",
       location: `Central District, ${city}`,
       rating: "4.4",
       fees: "₹4.5 Lakhs / Yr",
@@ -248,7 +263,15 @@ const generateCityColleges = (city, category) => {
       name: `${city} ${category} University`,
       logo: `U${city.charAt(0)}`,
       stream: category,
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
+      image: isMedical 
+        ? "/images/medical.png"
+        : isMBA 
+          ? "/images/mba.png"
+          : isLaw 
+            ? "/images/law.png"
+            : (city.toLowerCase() === 'pune' && category.toLowerCase() === 'engineering')
+              ? "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?auto=format&fit=crop&w=800&q=80"
+              : "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
       location: `University Road, ${city}`,
       rating: "4.3",
       fees: "₹3.8 Lakhs / Yr",
@@ -263,7 +286,13 @@ const generateCityColleges = (city, category) => {
       name: `National Institute of ${category} (NIT) ${city}`,
       logo: `NIT${city.charAt(0)}`,
       stream: category,
-      image: "https://images.unsplash.com/photo-1592289658098-b80c102b5e28?auto=format&fit=crop&w=800&q=80",
+      image: isMedical 
+        ? "/images/medical.png"
+        : isMBA 
+          ? "/images/mba.png"
+          : isLaw 
+            ? "/images/law.png"
+            : "/images/nit.jpg",
       location: `Campus Road, ${city}`,
       rating: "4.6",
       fees: "₹2.2 Lakhs / Yr",
@@ -303,11 +332,13 @@ const newsArticles = [
       { type: "h2", text: "Overview of Session 1 Results", id: "overview" },
       { type: "p", text: "The Joint Entrance Examination (JEE) Main Session 1 has concluded, and the results have sparked widespread discussions among aspirants and educators alike. This year, we've witnessed an unprecedented shift in the score-versus-percentile metrics, indicating a highly competitive landscape for engineering admissions." },
       { type: "p", text: "With over 1.2 million candidates appearing for the exam, the normalization process has resulted in significant variations across different shifts. Students are advised to carefully analyze their raw scores against the published answer keys before estimating their percentiles." },
-      { type: "highlight", title: "Important Highlights", id: "highlights", items: [
-        "A significant spike in the number of candidates scoring above the 99th percentile.",
-        "The cutoff for top-tier NITs and IIITs is expected to rise by 2-3 percentile points.",
-        "Core branches like Computer Science (CSE) and Artificial Intelligence remain the most sought-after."
-      ]},
+      {
+        type: "highlight", title: "Important Highlights", id: "highlights", items: [
+          "A significant spike in the number of candidates scoring above the 99th percentile.",
+          "The cutoff for top-tier NITs and IIITs is expected to rise by 2-3 percentile points.",
+          "Core branches like Computer Science (CSE) and Artificial Intelligence remain the most sought-after."
+        ]
+      },
       { type: "h2", text: "Tier-1 College Cutoff Trends", id: "trends" },
       { type: "p", text: "Analyzing the trends from the past three years, it is evident that the demand for circuit branches has reached an all-time high. Institutions like NIT Trichy, Surathkal, and Warangal are expected to close their CSE admissions at a staggering 99.8+ percentile for the open category." },
       { type: "quote", text: "Students falling slightly below their target percentile shouldn't lose hope. Strong tier-2 institutions and state-level engineering colleges offer excellent placements and robust curriculums. The focus should now shift entirely to optimizing performance in Session 2.", author: "Dr. Arvind Kumar, Ex-Director, NTA" }
@@ -330,11 +361,13 @@ const newsArticles = [
     content: [
       { type: "h2", text: "The New Regulatory Framework", id: "overview" },
       { type: "p", text: "In a landmark move to internationalize higher education, the University Grants Commission (UGC) has released comprehensive guidelines allowing foreign universities to set up their campuses in India. This opens up global opportunities for Indian students without the massive financial burden of studying abroad." },
-      { type: "highlight", title: "What This Means for Students", id: "highlights", items: [
-        "Double Degrees: Pursue programs offering degrees recognized in both India and the host country.",
-        "Credit Transfers: Seamless transfer of credits between the Indian campus and the parent campus abroad.",
-        "Cost Efficiency: Experience Ivy League education at a fraction of the cost of studying internationally."
-      ]}
+      {
+        type: "highlight", title: "What This Means for Students", id: "highlights", items: [
+          "Double Degrees: Pursue programs offering degrees recognized in both India and the host country.",
+          "Credit Transfers: Seamless transfer of credits between the Indian campus and the parent campus abroad.",
+          "Cost Efficiency: Experience Ivy League education at a fraction of the cost of studying internationally."
+        ]
+      }
     ]
   },
   {
@@ -562,11 +595,11 @@ const seedDB = async () => {
     // Seed Core Colleges
     const coreColleges = featuredCollegesBase.map((c) => getCollegeDetails(c.id, c));
     await College.insertMany(coreColleges);
-    
+
     // Seed City-Specific Colleges to ensure CityDetail page works perfectly
     const categories = ['Engineering', 'MBA', 'Medical', 'Law'];
     const cityColleges = [];
-    
+
     for (const city of ['Pune', 'Delhi', 'Mumbai', 'Bangalore', 'Hyderabad']) {
       for (const category of categories) {
         const generated = generateCityColleges(city, category);
