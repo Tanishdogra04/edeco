@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   GraduationCap, Mail, Phone, MapPin, Send, ShieldCheck, Heart,
   Star, Building2, Users, Sparkles, ChevronRight, ArrowUp
@@ -46,25 +47,25 @@ export default function Footer() {
 
   const footerLinks = {
     colleges: [
-      { name: "Engineering Colleges", href: "#colleges", badge: "Popular" },
-      { name: "MBA Institutes", href: "#colleges" },
-      { name: "Medical Colleges", href: "#colleges", badge: "New" },
-      { name: "Law Colleges", href: "#colleges" },
-      { name: "Design Colleges", href: "#colleges" }
+      { name: "Engineering Colleges", href: "/stream/engineering", badge: "Popular" },
+      { name: "MBA Institutes", href: "/stream/mba-&-business" },
+      { name: "Medical Colleges", href: "/stream/medical", badge: "New" },
+      { name: "Law Colleges", href: "/stream/law-&-justice" },
+      { name: "Design Colleges", href: "/stream/design-&-arts" }
     ],
     exams: [
-      { name: "JEE Main Guide", href: "#exams" },
-      { name: "NEET Syllabus", href: "#exams", badge: "Hot" },
-      { name: "CAT Mock Tests", href: "#exams" },
-      { name: "CUET Updates", href: "#exams" },
-      { name: "CLAT Timelines", href: "#exams" }
+      { name: "JEE Main Guide", href: "/exam/jee-main" },
+      { name: "NEET Syllabus", href: "/exam/neet", badge: "Hot" },
+      { name: "CAT Mock Tests", href: "/exam/cat" },
+      { name: "CUET Updates", href: "/exam/cuet" },
+      { name: "CLAT Timelines", href: "/exam/clat" }
     ],
     courses: [
-      { name: "B.Tech Computer Science", href: "#courses" },
-      { name: "MBA Marketing", href: "#courses" },
-      { name: "MBBS Specialization", href: "#courses", badge: "Top" },
-      { name: "BBA Fintech", href: "#courses" },
-      { name: "Integrated Law", href: "#courses" }
+      { name: "B.Tech Computer Science", href: "/course/btech" },
+      { name: "MBA Marketing", href: "/course/mba" },
+      { name: "MBBS Specialization", href: "/course/mbbs", badge: "Top" },
+      { name: "BBA Fintech", href: "/course/bba" },
+      { name: "Integrated Law", href: "/course/llb" }
     ]
   };
 
@@ -184,8 +185,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.colleges.map((item, idx) => (
                 <li key={idx}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className="group flex items-center gap-1.5 text-xs text-slate-300 hover:text-brand-mint transition-all duration-300 hover:translate-x-1"
                   >
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 text-brand-mint transition-all duration-300 -ml-3 group-hover:ml-0" />
@@ -195,7 +196,7 @@ export default function Footer() {
                         {item.badge}
                       </span>
                     )}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -207,8 +208,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.exams.map((item, idx) => (
                 <li key={idx}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className="group flex items-center gap-1.5 text-xs text-slate-300 hover:text-brand-mint transition-all duration-300 hover:translate-x-1"
                   >
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 text-brand-mint transition-all duration-300 -ml-3 group-hover:ml-0" />
@@ -218,7 +219,7 @@ export default function Footer() {
                         {item.badge}
                       </span>
                     )}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -230,8 +231,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.courses.map((item, idx) => (
                 <li key={idx}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className="group flex items-center gap-1.5 text-xs text-slate-300 hover:text-brand-mint transition-all duration-300 hover:translate-x-1"
                   >
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 text-brand-mint transition-all duration-300 -ml-3 group-hover:ml-0" />
@@ -241,7 +242,7 @@ export default function Footer() {
                         {item.badge}
                       </span>
                     )}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
