@@ -106,6 +106,11 @@ export const api = {
         body: JSON.stringify(collegeData)
       });
     },
+    delete: async (id) => {
+      return await apiRequest(`/colleges/${id}`, {
+        method: 'DELETE'
+      });
+    },
     getAnalytics: async () => {
       return await apiRequest('/admin/analytics');
     }

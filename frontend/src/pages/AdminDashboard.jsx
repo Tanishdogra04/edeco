@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
   Building2, ShieldCheck, Plus, Trash2, ArrowLeft, AlertCircle, 
-  CheckCircle, Compass, Sparkles, BookOpenCheck, PhoneCall, Mail
+  CheckCircle, Compass, Sparkles, BookOpenCheck, PhoneCall, Mail, List
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../utils/api';
@@ -17,6 +17,7 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
   const [loadingStats, setLoadingStats] = useState(true);
   const [stats, setStats] = useState({ collegesCount: 0, examsCount: 0, counsellingCount: 0 });
+  const [colleges, setColleges] = useState([]);
   const [counsellingRequests, setCounsellingRequests] = useState([]);
   const [updatingRequestId, setUpdatingRequestId] = useState(null);
 
@@ -50,6 +51,7 @@ export default function AdminDashboard() {
             examsCount: examData.exams ? examData.exams.length : 0,
             counsellingCount
           });
+          setColleges(colData.colleges || []);
           setCounsellingRequests(requestsList);
         } catch (err) {
           console.error('Error fetching dashboard stats:', err.message);
@@ -60,6 +62,28 @@ export default function AdminDashboard() {
       fetchStats();
     }
   }, [user]);
+
+  const handleCollegeDelete = async (id, mongoId) => {
+    console.log('handleCollegeDelete called with ID:', id, 'MongoID:', mongoId);
+    const targetId = id || mongoId;
+    if (!targetId) {
+      toast.error('Invalid college ID. Cannot delete.');
+      return;
+    }
+    if (window.confirm('Are you sure you want to delete this college? This action cannot be undone.')) {
+      try {
+        const res = await api.colleges.delete(targetId);
+        if (res.success) {
+          toast.success('College deleted successfully');
+          setColleges(prev => prev.filter(col => col.id !== targetId && col._id !== targetId));
+          setStats(prev => ({ ...prev, collegesCount: Math.max(0, prev.collegesCount - 1) }));
+        }
+      } catch (err) {
+        console.error('Delete error:', err);
+        toast.error(err.message || 'Failed to delete college');
+      }
+    }
+  };
 
   const handleStatusChange = async (requestId, newStatus) => {
     setUpdatingRequestId(requestId);
@@ -81,6 +105,8 @@ export default function AdminDashboard() {
   // --- College Form State ---
   const [collegeForm, setCollegeForm] = useState({
     name: '',
+    logo: '',
+    image: '',
     stream: 'Engineering',
     location: '',
     ownership: 'Public/Government',
@@ -213,6 +239,8 @@ export default function AdminDashboard() {
         // Reset form
         setCollegeForm({
           name: '',
+          logo: '',
+          image: '',
           stream: 'Engineering',
           location: '',
           ownership: 'Public/Government',
@@ -229,7 +257,8 @@ export default function AdminDashboard() {
           facilities: [],
           faqs: [{ q: '', a: '' }]
         });
-        // Update stats
+        // Update state and stats
+        setColleges(prev => [data.college, ...prev]);
         setStats(prev => ({ ...prev, collegesCount: prev.collegesCount + 1 }));
       }
     } catch (err) {
@@ -375,6 +404,18 @@ export default function AdminDashboard() {
               >
                 <Building2 size={18} className="shrink-0" />
                 Add New College
+              </button>
+
+              <button
+                onClick={() => setActiveTab('manage-colleges')}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all ${
+                  activeTab === 'manage-colleges'
+                    ? 'bg-[#110051] text-white shadow-md shadow-indigo-950/20'
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                }`}
+              >
+                <List size={18} className="shrink-0" />
+                Manage Colleges
               </button>
 
               <button
@@ -585,11 +626,11 @@ export default function AdminDashboard() {
                   )}
 
                   {/* Section 1: Basic Info */}
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest border-b pb-2">1. Basic Information</h4>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">College Name *</label>
                         <input
                           type="text"
@@ -602,7 +643,7 @@ export default function AdminDashboard() {
                         />
                       </div>
 
-                      <div className="space-y-1.5">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Location *</label>
                         <input
                           type="text"
@@ -614,16 +655,14 @@ export default function AdminDashboard() {
                           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="space-y-1.5">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Stream / Category</label>
                         <select
                           name="stream"
                           value={collegeForm.stream}
                           onChange={handleCollegeChange}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-semibold transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-semibold transition-all h-10"
                         >
                           <option value="Engineering">Engineering</option>
                           <option value="Management">Management</option>
@@ -633,13 +672,13 @@ export default function AdminDashboard() {
                         </select>
                       </div>
 
-                      <div className="space-y-1.5">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Ownership Type</label>
                         <select
                           name="ownership"
                           value={collegeForm.ownership}
                           onChange={handleCollegeChange}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-semibold transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-semibold transition-all h-10"
                         >
                           <option value="Public/Government">Public/Government</option>
                           <option value="Private">Private</option>
@@ -647,26 +686,50 @@ export default function AdminDashboard() {
                         </select>
                       </div>
 
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Accreditation / Approvals (comma-separated)</label>
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Logo Image URL</label>
                         <input
                           type="text"
-                          name="approvals"
-                          value={collegeForm.approvals}
+                          name="logo"
+                          value={collegeForm.logo}
                           onChange={handleCollegeChange}
-                          placeholder="e.g. AICTE, UGC, NAAC A+"
+                          placeholder="e.g. https://domain.com/logo.png"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                        />
+                      </div>
+
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Cover Image URL</label>
+                        <input
+                          type="text"
+                          name="image"
+                          value={collegeForm.image}
+                          onChange={handleCollegeChange}
+                          placeholder="e.g. https://images.unsplash.com/photo-..."
                           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
                     </div>
+
+                    <div className="flex flex-col justify-between h-full space-y-1.5 mt-4">
+                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Accreditation / Approvals (comma-separated)</label>
+                      <input
+                        type="text"
+                        name="approvals"
+                        value={collegeForm.approvals}
+                        onChange={handleCollegeChange}
+                        placeholder="e.g. AICTE, UGC, NAAC A+"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                      />
+                    </div>
                   </div>
 
                   {/* Section 2: Stats & Key Metrics */}
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest border-b pb-2">2. Stats & Key Metrics</h4>
                     
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                      <div className="space-y-1.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Annual Fees</label>
                         <input
                           type="text"
@@ -678,7 +741,7 @@ export default function AdminDashboard() {
                         />
                       </div>
 
-                      <div className="space-y-1.5">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Average Placement Package</label>
                         <input
                           type="text"
@@ -690,7 +753,7 @@ export default function AdminDashboard() {
                         />
                       </div>
 
-                      <div className="space-y-1.5">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Highest Package</label>
                         <input
                           type="text"
@@ -702,7 +765,7 @@ export default function AdminDashboard() {
                         />
                       </div>
 
-                      <div className="space-y-1.5">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">NIRF Rank / Tagline</label>
                         <input
                           type="text"
@@ -713,22 +776,8 @@ export default function AdminDashboard() {
                           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="space-y-1.5 md:col-span-2">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Quick Description</label>
-                        <input
-                          type="text"
-                          name="description"
-                          value={collegeForm.description}
-                          onChange={handleCollegeChange}
-                          placeholder="Brief tagline/one-line overview of the college..."
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
-                        />
-                      </div>
-
-                      <div className="space-y-1.5">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Visual Rating (out of 5)</label>
                         <input
                           type="text"
@@ -736,6 +785,18 @@ export default function AdminDashboard() {
                           value={collegeForm.rating}
                           onChange={handleCollegeChange}
                           placeholder="e.g. 4.7"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                        />
+                      </div>
+
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Quick Description</label>
+                        <input
+                          type="text"
+                          name="description"
+                          value={collegeForm.description}
+                          onChange={handleCollegeChange}
+                          placeholder="Brief tagline/one-line overview..."
                           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
@@ -1260,6 +1321,90 @@ export default function AdminDashboard() {
                     </button>
                   </div>
                 </form>
+              </div>
+            )}
+
+            {/* MANAGE COLLEGES TAB */}
+            {activeTab === 'manage-colleges' && (
+              <div className="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden text-left">
+                <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
+                  <div>
+                    <h3 className="font-black text-slate-900 text-lg">Manage College Listings</h3>
+                    <p className="text-slate-500 text-xs mt-0.5 font-medium">Delete listings from the database dynamically.</p>
+                  </div>
+                  <span className="px-3.5 py-1.5 bg-[#110051] text-white rounded-xl text-xs font-bold w-fit">
+                    {colleges.length} Total Colleges
+                  </span>
+                </div>
+
+                {loadingStats ? (
+                  <div className="p-12 text-center text-slate-400 font-medium text-sm flex items-center justify-center gap-2">
+                    <div className="w-5 h-5 rounded-full border-2 border-indigo-600 border-t-transparent animate-spin"></div>
+                    Loading database colleges...
+                  </div>
+                ) : colleges.length === 0 ? (
+                  <div className="p-12 text-center text-slate-400 font-medium text-sm">
+                    No colleges found in the database.
+                  </div>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse min-w-[800px]">
+                      <thead>
+                        <tr className="border-b border-slate-100 bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                          <th className="px-6 py-4">College Name</th>
+                          <th className="px-6 py-4">Location</th>
+                          <th className="px-6 py-4">Stream</th>
+                          <th className="px-6 py-4">Ownership</th>
+                          <th className="px-6 py-4">Rating</th>
+                          <th className="px-6 py-4 text-right">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {colleges.map((col) => (
+                          <tr key={col.id || col._id} className="hover:bg-slate-50/70 transition-colors group">
+                            <td className="px-6 py-4">
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-[#110051]/5 border border-[#110051]/10 text-[#110051] flex items-center justify-center font-bold text-sm shrink-0">
+                                  {col.logo ? (
+                                    col.logo.startsWith('http') ? (
+                                      <img src={col.logo} alt="" className="w-full h-full object-contain rounded-xl" />
+                                    ) : (
+                                      col.logo
+                                    )
+                                  ) : (
+                                    col.name.split(' ').map(w => w.charAt(0)).join('').toUpperCase().substring(0, 3)
+                                  )}
+                                </div>
+                                <div className="font-extrabold text-slate-900 text-sm">{col.name}</div>
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 text-xs font-bold text-slate-600">
+                              {col.location}
+                            </td>
+                            <td className="px-6 py-4 text-xs font-bold text-indigo-650">
+                              {col.stream}
+                            </td>
+                            <td className="px-6 py-4 text-xs font-bold text-slate-500">
+                              {col.ownership}
+                            </td>
+                            <td className="px-6 py-4 text-xs font-extrabold text-amber-600">
+                              ★ {col.rating || '4.5'}
+                            </td>
+                            <td className="px-6 py-4 text-right">
+                              <button
+                                onClick={() => handleCollegeDelete(col.id, col._id)}
+                                className="p-2 border border-slate-200 text-red-500 rounded-xl hover:bg-red-50 hover:border-red-200 transition-all cursor-pointer h-fit inline-flex items-center justify-center"
+                                title="Delete College"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             )}
 

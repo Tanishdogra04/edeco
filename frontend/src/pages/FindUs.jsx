@@ -382,7 +382,7 @@ export default function FindUs() {
                     {/* Book an Appointment */}
                     <button
                       onClick={() => openBookingModal(branch)}
-                      className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
+                      className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-[#110051] text-white hover:bg-[#0e003e] font-bold transition-colors"
                     >
                       <span>Book an Appointment</span>
                       <ChevronRight size={14} />

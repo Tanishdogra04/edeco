@@ -286,4 +286,41 @@ router.get('/admin/analytics', protect, admin, async (req, res) => {
   }
 });
 
+router.delete('/:id', protect, admin, async (req, res) => {
+  const { id } = req.params;
+  console.log(`[DELETE COLLEGE] Request received for ID: ${id}`);
+  try {
+    const mongoose = require('mongoose');
+    let query = {};
+    if (mongoose.Types.ObjectId.isValid(id)) {
+      query = { _id: id };
+    } else {
+      query = { id: id.toLowerCase() };
+    }
+    
+    console.log('[DELETE COLLEGE] Using query:', query);
+    const college = await College.findOneAndDelete(query);
+
+    if (!college) {
+      console.log(`[DELETE COLLEGE] College not found for ID: ${id}`);
+      return res.status(404).json({
+        success: false,
+        error: `College with ID ${id} not found`
+      });
+    }
+
+    console.log(`[DELETE COLLEGE] Successfully deleted college: ${college.name}`);
+    res.json({
+      success: true,
+      message: 'College deleted successfully'
+    });
+  } catch (error) {
+    console.error('[DELETE COLLEGE] Error:', error.message);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
 module.exports = router;

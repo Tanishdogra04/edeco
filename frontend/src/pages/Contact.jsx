@@ -256,7 +256,7 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm text-sm"
+                        className="w-full bg-[#110051] text-white hover:bg-[#0e003e] font-bold py-4 rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm text-sm"
                       >
                         {isSubmitting ? (
                           <div className="w-5 h-5 border-2 border-[#110051] border-t-transparent rounded-full animate-spin"></div>
