@@ -113,7 +113,7 @@ export default function TopCities() {
           </div>
 
           {/* Right Side: Search Input and Slide Buttons */}
-          <div className="flex flex-col items-end gap-3 shrink-0">
+          <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
             {/* Search Input Bar (reduced size) */}
             <div className="relative w-64 text-left z-20">
               <div className="relative flex items-center bg-slate-50 border border-slate-200 focus-within:border-brand-500 rounded-xl px-3 py-2 group transition-all shadow-sm">
