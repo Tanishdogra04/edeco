@@ -529,7 +529,7 @@ export default function Cities() {
               <div className="flex items-center text-xs text-slate-400 gap-2 mb-4 font-bold uppercase tracking-wider">
                 <Link to="/" className="hover:text-white transition-colors">Home</Link>
                 <ChevronRight size={12} className="text-slate-600" />
-                <span className="text-emerald-400">Study Destinations</span>
+                <span className="text-indigo-400 font-bold">Study Destinations</span>
               </div>
               <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
                 Indian Study Destinations
@@ -623,7 +623,7 @@ export default function Cities() {
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.2 }}
                   onClick={() => navigate(`/cities/${city.id}`)}
-                  className="bg-white border border-slate-200 rounded-none p-3 flex flex-col justify-between hover:border-[#110051] transition-all duration-200 cursor-pointer group text-left"
+                  className="bg-white border border-slate-200 rounded-none p-3 flex flex-col justify-between hover:border-indigo-300 hover:shadow-[0_4px_20px_rgba(79,70,229,0.05)] transition-all duration-200 cursor-pointer group text-left"
                 >
                   <div>
                     {/* City Image */}
@@ -637,7 +637,7 @@ export default function Cities() {
                         {city.tier === 'tier1' ? 'Tier 1' : city.tier === 'tier2' ? 'Tier 2' : city.tier === 'tier3' ? 'Tier 3' : 'Tier 4'}
                       </span>
                       {city.isCapital && (
-                        <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-none bg-amber-400 text-[#110051] text-[8px] font-black uppercase tracking-widest border border-amber-300/30 shadow-sm">
+                        <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-none bg-indigo-600 text-white text-[8px] font-black uppercase tracking-widest border border-indigo-500/20 shadow-sm">
                           Capital
                         </span>
                       )}

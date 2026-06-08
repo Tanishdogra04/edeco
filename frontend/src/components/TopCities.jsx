@@ -192,7 +192,7 @@ export default function TopCities() {
             {/* The single City Card */}
             <div 
               onClick={() => navigate(`/cities/${selectedCity.name.toLowerCase().replace(/ /g, '-')}`)}
-              className="w-full sm:w-[280px] h-[320px] bg-white rounded-none p-3 border border-slate-200 flex flex-col cursor-pointer group hover:border-[#110051] transition-all duration-200 shrink-0 text-left"
+              className="w-full sm:w-[280px] h-[320px] bg-white rounded-none p-3 border border-slate-200 flex flex-col cursor-pointer group hover:border-indigo-300 hover:shadow-[0_4px_20px_rgba(79,70,229,0.05)] transition-all duration-200 shrink-0 text-left"
             >
               <div className="w-full h-32 rounded-none overflow-hidden relative mb-3 bg-slate-50 shrink-0">
                 <img 
@@ -274,7 +274,7 @@ export default function TopCities() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="min-w-[260px] sm:min-w-[290px] h-[320px] bg-white rounded-none p-3 border border-slate-200 flex flex-col snap-start cursor-pointer text-left group hover:border-[#110051] transition-all duration-200"
+                className="min-w-[260px] sm:min-w-[290px] h-[320px] bg-white rounded-none p-3 border border-slate-200 flex flex-col snap-start cursor-pointer text-left group hover:border-indigo-300 hover:shadow-[0_4px_20px_rgba(79,70,229,0.05)] transition-all duration-200"
               >
                 {/* Image with subtle zoom on hover */}
                 <div className="w-full h-32 rounded-none overflow-hidden relative mb-3 bg-slate-50 shrink-0">
