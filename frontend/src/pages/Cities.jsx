@@ -483,6 +483,29 @@ const allCities = [
   }
 ];
 
+const processedCities = allCities.map((city, index) => {
+  const keepIconic = [
+    "bangalore", "delhi", "mumbai", "pune", "hyderabad", "chennai", "kolkata", "ahmedabad", "jaipur", "chandigarh"
+  ];
+  if (keepIconic.includes(city.id)) {
+    return city;
+  }
+  const guaranteedImages = [
+    "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1592289658098-b80c102b5e28?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1607237138185-eedd996c5c0c?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1525920980995-f8a382bf42c5?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=400&q=80"
+  ];
+  return {
+    ...city,
+    image: guaranteedImages[index % guaranteedImages.length]
+  };
+});
+
 export default function Cities() {
   const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -503,7 +526,7 @@ export default function Cities() {
   ];
 
   // Filter cities by tab selection & search query
-  const filteredCities = allCities.filter(city => {
+  const filteredCities = processedCities.filter(city => {
     const matchesSearch = city.name.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
       city.desc.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
       city.keyStreams.toLowerCase().includes(searchQuery.toLowerCase().trim());
@@ -623,7 +646,7 @@ export default function Cities() {
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.2 }}
                   onClick={() => navigate(`/cities/${city.id}`)}
-                  className="bg-white border border-slate-200 rounded-none p-3 flex flex-col justify-between hover:border-indigo-300 hover:shadow-[0_4px_20px_rgba(79,70,229,0.05)] transition-all duration-200 cursor-pointer group text-left"
+                  className="bg-white border border-slate-200 rounded-none p-3 flex flex-col justify-between hover:-translate-y-1 hover:shadow-md transition-all duration-200 cursor-pointer group text-left"
                 >
                   <div>
                     {/* City Image */}
