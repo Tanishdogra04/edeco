@@ -63,19 +63,19 @@ export default function Hero2({ onSearchSubmit, onCounsellingClick }) {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Heading and Search */}
-          <div className="lg:col-span-7 text-left space-y-8">
+          <div className="lg:col-span-7 text-left flex flex-col items-start space-y-8 w-full max-w-2xl lg:max-w-none">
             
             {/* Trust badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-100/50 shadow-sm"
+              className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-100/50 shadow-sm"
             >
-              <div className="w-5 h-5 rounded-full bg-[#110051]/10 flex items-center justify-center text-[#110051]">
-                <Sparkles size={11} className="text-[#110051]" />
+              <div className="w-5 h-5 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue">
+                <Sparkles size={11} className="text-brand-blue" />
               </div>
-              <span className="text-[12px] font-bold text-[#110051] tracking-wide uppercase">
+              <span className="text-[11px] sm:text-[12px] font-bold text-brand-blue tracking-wide uppercase">
                 98% College Match Accuracy
               </span>
             </motion.div>
@@ -87,11 +87,11 @@ export default function Hero2({ onSearchSubmit, onCounsellingClick }) {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-4"
             >
-              <h1 className="font-sans font-extrabold text-4xl sm:text-5xl lg:text-[56px] text-[#110051] leading-[1.15] tracking-tight">
+              <h1 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] text-brand-blue leading-[1.15] tracking-tight">
                 Find the right college. <br />
-                <span className="text-[#110051]">Shape your future.</span>
+                <span className="text-brand-blue">Shape your future.</span>
               </h1>
-              <p className="text-lg text-slate-700 max-w-xl font-normal leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-slate-700 max-w-xl font-normal leading-relaxed">
                 Connect with institutional partners, compare placement statistics, and get personalized counseling driven by career analytics.
               </p>
             </motion.div>
@@ -101,29 +101,31 @@ export default function Hero2({ onSearchSubmit, onCounsellingClick }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative max-w-2xl"
+              className="relative max-w-2xl w-full"
               ref={dropdownRef}
             >
-              <div className="flex items-center gap-2 p-2 bg-white/90 backdrop-blur-md rounded-2xl border border-slate-100 focus-within:border-[#110051]/30 focus-within:ring-2 focus-within:ring-[#110051]/5 transition-all duration-300 shadow-sm">
-                <div className="pl-3 text-slate-400">
-                  <Search size={22} />
+              <div className="flex items-center gap-2 p-1.5 sm:p-2 bg-white/90 backdrop-blur-md rounded-2xl border border-slate-100 focus-within:border-brand-blue/30 focus-within:ring-2 focus-within:ring-brand-blue/5 transition-all duration-300 shadow-sm w-full">
+                <div className="pl-2 sm:pl-3 text-slate-400 shrink-0">
+                  <Search size={20} className="sm:w-[22px] sm:h-[22px]" />
                 </div>
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value);
-                    setShowSuggestions(true);
-                  }}
-                  onFocus={() => setShowSuggestions(true)}
-                  onKeyPress={handleSearchKeyPress}
-                  placeholder="Search for colleges, exams (e.g. IIT, MBA, NEET)..."
-                  className="w-full py-3.5 px-2 bg-transparent text-slate-800 placeholder-slate-400 text-[15px] font-medium outline-none"
-                />
+                <div className="flex-1 min-w-0">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                      setShowSuggestions(true);
+                    }}
+                    onFocus={() => setShowSuggestions(true)}
+                    onKeyPress={handleSearchKeyPress}
+                    placeholder="Search colleges, exams..."
+                    className="w-full py-2.5 sm:py-3.5 px-1 bg-transparent text-slate-800 placeholder-slate-400 text-[14px] sm:text-[15px] font-medium outline-none"
+                  />
+                </div>
 
                 <button
                   onClick={() => onSearchSubmit(searchTerm)}
-                  className="px-6 py-3.5 rounded-xl bg-[#110051] text-white hover:bg-[#110051]/90 text-[15px] font-bold active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm"
+                  className="px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl bg-brand-blue text-white hover:bg-brand-indigo text-[13px] sm:text-[15px] font-bold active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm text-center shrink-0"
                 >
                   Search
                 </button>
@@ -170,12 +172,12 @@ export default function Hero2({ onSearchSubmit, onCounsellingClick }) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="space-y-3"
+              className="space-y-3 w-full overflow-hidden"
             >
               <span className="text-[12px] font-bold text-slate-500 uppercase tracking-wider block">
                 Popular Streams:
               </span>
-              <div className="flex flex-nowrap gap-2 overflow-x-auto no-scrollbar pb-1 max-w-full">
+              <div className="flex flex-wrap gap-2.5 w-full">
                 {categories.map((cat, idx) => (
                   <button
                     key={idx}
@@ -184,9 +186,9 @@ export default function Hero2({ onSearchSubmit, onCounsellingClick }) {
                       setSearchTerm(cat.name);
                       onSearchSubmit(cat.name);
                     }}
-                    className={`flex items-center gap-1.5 px-4.5 py-2.5 rounded-xl border text-[13px] font-bold transition-all duration-200 cursor-pointer shadow-xs shrink-0 ${selectedCategory === cat.name
-                      ? 'bg-[#110051] border-[#110051] text-white'
-                      : 'bg-white/80 border-slate-100 text-slate-700 hover:bg-slate-50 hover:border-[#110051]/50 hover:text-[#110051]'
+                    className={`flex items-center gap-1 px-2.5 py-1.5 sm:gap-1.5 sm:px-4.5 sm:py-2.5 rounded-xl border text-[11px] sm:text-[13px] font-bold transition-all duration-200 cursor-pointer shadow-xs shrink-0 ${selectedCategory === cat.name
+                      ? 'bg-brand-blue border-brand-blue text-white'
+                      : 'bg-white/80 border-slate-100 text-slate-700 hover:bg-slate-50 hover:border-brand-blue/50 hover:text-brand-blue'
                       }`}
                   >
                     <span>{cat.icon}</span>
@@ -201,17 +203,17 @@ export default function Hero2({ onSearchSubmit, onCounsellingClick }) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-wrap gap-4 items-center"
+              className="flex flex-col sm:flex-row gap-3.5 items-stretch sm:items-center w-full sm:w-auto"
             >
               <a
                 href="#colleges"
-                className="px-6 py-3.5 rounded-xl bg-[#110051] hover:bg-[#110051]/90 text-white text-[15px] font-bold shadow-sm transition-all duration-300"
+                className="px-6 py-3.5 rounded-xl bg-brand-blue hover:bg-brand-indigo text-white text-[15px] font-bold shadow-sm transition-all duration-300 text-center"
               >
                 Start Exploring
               </a>
               <button
                 onClick={onCounsellingClick}
-                className="px-6 py-3.5 rounded-xl border border-[#110051]/30 hover:border-[#110051] text-[#110051] bg-white hover:bg-slate-50 text-[15px] font-bold shadow-xs transition-all duration-300 cursor-pointer"
+                className="px-6 py-3.5 rounded-xl border border-brand-blue/30 hover:border-brand-blue text-brand-blue bg-white hover:bg-slate-50 text-[15px] font-bold shadow-xs transition-all duration-300 cursor-pointer text-center"
               >
                 Get Free Counselling
               </button>
@@ -219,7 +221,7 @@ export default function Hero2({ onSearchSubmit, onCounsellingClick }) {
           </div>
 
           {/* Right Column: Student Image */}
-          <div className="lg:col-span-5 w-full flex items-center justify-center lg:justify-end mt-8 lg:mt-0">
+          <div className="lg:col-span-5 w-full flex items-center justify-start lg:justify-end mt-8 lg:mt-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
