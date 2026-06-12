@@ -71,12 +71,12 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200/80 shadow-sm"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)]"
             >
-              <div className="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-white">
-                <Sparkles size={11} className="text-white" />
+              <div className="w-5 h-5 rounded-full bg-[#110051]/10 flex items-center justify-center text-[#110051]">
+                <Sparkles size={11} className="text-[#110051]" />
               </div>
-              <span className="text-[12px] font-bold text-slate-700 tracking-wide uppercase">
+              <span className="text-[12px] font-bold text-[#110051] tracking-wide uppercase">
                 98% College Match Accuracy
               </span>
             </motion.div>
@@ -88,9 +88,9 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-4"
             >
-              <h1 className="font-sans font-extrabold text-4xl sm:text-5xl lg:text-[56px] text-slate-900 leading-[1.15] tracking-tight">
+              <h1 className="font-sans font-extrabold text-4xl sm:text-5xl lg:text-[56px] text-[#110051] leading-[1.15] tracking-tight">
                 Find the right college. <br />
-                <span className="text-slate-900">Shape your future.</span>
+                <span className="text-[#110051]">Shape your future.</span>
               </h1>
               <p className="text-lg text-slate-600 max-w-xl font-normal leading-relaxed">
                 Connect with institutional partners, compare placement statistics, and get personalized counseling driven by career analytics.
@@ -105,7 +105,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               className="relative max-w-2xl"
               ref={dropdownRef}
             >
-              <div className="flex items-center gap-2 p-2 bg-white rounded-2xl shadow-md shadow-slate-100/50 border border-slate-200 focus-within:border-slate-400 focus-within:ring-2 focus-within:ring-slate-100 transition-all duration-300">
+              <div className="flex items-center gap-2 p-2 bg-white rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-slate-100 focus-within:border-[#110051]/30 focus-within:ring-2 focus-within:ring-[#110051]/5 transition-all duration-300">
                 <div className="pl-3 text-slate-400">
                   <Search size={22} />
                 </div>
@@ -124,7 +124,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
 
                 <button
                   onClick={() => onSearchSubmit(searchTerm)}
-                  className="px-6 py-3.5 rounded-xl bg-[#110051] text-white hover:bg-[#1a0073] text-[15px] font-bold shadow-md active:scale-[0.98] transition-all duration-300 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-[#110051] text-white hover:bg-[#110051]/90 text-[15px] font-bold shadow-[0_4px_12px_rgba(17,0,81,0.12)] active:scale-[0.98] transition-all duration-300 cursor-pointer"
                 >
                   Search
                 </button>
@@ -137,7 +137,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute left-0 w-full mt-2 bg-white border border-slate-200 rounded-2xl shadow-xl z-30 overflow-hidden divide-y divide-slate-100"
+                    className="absolute left-0 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] z-30 overflow-hidden divide-y divide-slate-100"
                   >
                     {filteredSuggestions.length > 0 ? (
                       filteredSuggestions.map((item, idx) => (
@@ -185,9 +185,9 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                       setSearchTerm(cat.name);
                       onSearchSubmit(cat.name);
                     }}
-                    className={`flex items-center gap-1.5 px-4.5 py-2.5 rounded-xl border text-[13px] font-bold transition-all duration-200 cursor-pointer ${selectedCategory === cat.name
-                      ? 'bg-slate-900 border-slate-900 text-white shadow-sm'
-                      : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-800 hover:text-slate-900'
+                    className={`flex items-center gap-1.5 px-4.5 py-2.5 rounded-xl border text-[13px] font-bold transition-all duration-200 cursor-pointer shadow-[0_2px_15px_rgba(0,0,0,0.03)] ${selectedCategory === cat.name
+                      ? 'bg-[#110051] border-[#110051] text-white shadow-[0_2px_10px_rgba(17,0,81,0.15)]'
+                      : 'bg-white border-slate-100 text-slate-700 hover:bg-slate-50 hover:border-[#110051]/50 hover:text-[#110051]'
                       }`}
                   >
                     <span>{cat.icon}</span>
@@ -206,7 +206,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             >
               <a
                 href="#colleges"
-                className="px-6 py-3.5 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white text-[15px] font-bold shadow-md hover:shadow-lg transition-all duration-300"
+                className="px-6 py-3.5 rounded-xl bg-[#110051] hover:bg-[#110051]/90 text-white text-[15px] font-bold shadow-[0_4px_12px_rgba(17,0,81,0.12)] hover:shadow-[0_6px_16px_rgba(17,0,81,0.18)] transition-all duration-300"
               >
                 Start Exploring
               </a>
@@ -224,7 +224,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               <img
                 src={educationPlatformHero}
                 alt="Education Platform Hero"
-                className="w-full h-auto object-contain drop-shadow-xl rounded-2xl"
+                className="w-full h-auto object-contain rounded-2xl border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
               />
             </motion.div>
           </div>

@@ -3,7 +3,8 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search, MapPin, Phone, Mail, ChevronRight, ArrowRight,
-  Compass, X, Calendar, User, Clock, CheckCircle2, Send, Check
+  Compass, X, Calendar, User, Clock, CheckCircle2, Send, Check,
+  Navigation
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -305,10 +306,22 @@ export default function FindUs() {
                   className="bg-white rounded-[32px] p-6 border border-slate-100 shadow-[0_4px_25px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:border-slate-200 transition-all duration-300 group text-left"
                 >
                   <div>
-                    {/* State Tag */}
-                    <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-50 text-brand-600 mb-4">
-                      {branch.state}
-                    </span>
+                    {/* Header Tag Row */}
+                    <div className="flex justify-between items-center mb-4">
+                      {/* State Tag */}
+                      <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-50 text-brand-600">
+                        {branch.state}
+                      </span>
+                      {/* Get Directions */}
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.name + ' ' + branch.address)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 font-bold transition-colors cursor-pointer text-xs"
+                      >
+                        <Navigation size={12} className="shrink-0" /> Get Directions
+                      </a>
+                    </div>
 
                     {/* Branch Title */}
                     <h3 className="text-xl font-bold text-[#110051] mb-4.5 font-display group-hover:text-brand-600 transition-colors">
@@ -321,15 +334,7 @@ export default function FindUs() {
                       <div className="flex gap-3 items-start">
                         <MapPin size={16} className="text-[#110051] shrink-0 mt-0.5" />
                         <div className="text-[13px] leading-relaxed text-slate-600 font-sans font-medium">
-                          <span>{branch.address}</span>
-                          <a
-                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.name + ' ' + branch.address)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 ml-1.5 text-brand-600 hover:text-brand-800 font-bold transition-colors cursor-pointer"
-                          >
-                            <Send size={11} className="rotate-45" /> Get Directions
-                          </a>
+                          {branch.address}
                         </div>
                       </div>
 
