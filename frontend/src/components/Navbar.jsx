@@ -168,10 +168,13 @@ export default function Navbar({
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${darkTheme
-        ? 'bg-slate-950/95 backdrop-blur-md border-b border-white/10 shadow-sm'
-        : 'bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)]'
-        }`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled || isOpen
+          ? darkTheme
+            ? 'bg-slate-950/95 backdrop-blur-md border-b border-white/10 shadow-sm'
+            : 'bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-[0_2px_15px_rgba(0,0,0,0.03)]'
+          : 'bg-transparent border-b border-transparent shadow-none'
+      }`}>
         {/* Main Navbar */}
         <div className="py-3.5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

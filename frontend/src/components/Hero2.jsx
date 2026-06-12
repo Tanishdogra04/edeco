@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Sparkles, Star, ShieldCheck, Users, ChevronRight, Award, MessageCircle, Play, BadgeCheck, TrendingUp } from 'lucide-react';
+import { Search, Sparkles, Star, School } from 'lucide-react';
 import educationPlatformHero from '../assets/education_platform_hero.png';
 
-export default function Hero({ onSearchSubmit, onCounsellingClick }) {
+export default function Hero2({ onSearchSubmit, onCounsellingClick }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -58,20 +58,19 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
   };
 
   return (
-    <section className="relative min-h-screen bg-white pt-20 pb-16 lg:pt-24 lg:pb-24 overflow-hidden">
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="relative min-h-[80vh] flex items-center pt-24 pb-20 overflow-hidden bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-
+          
           {/* Left Column: Heading and Search */}
           <div className="lg:col-span-7 text-left space-y-8">
-
+            
             {/* Trust badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-100"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-100/50 shadow-sm"
             >
               <div className="w-5 h-5 rounded-full bg-[#110051]/10 flex items-center justify-center text-[#110051]">
                 <Sparkles size={11} className="text-[#110051]" />
@@ -92,7 +91,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                 Find the right college. <br />
                 <span className="text-[#110051]">Shape your future.</span>
               </h1>
-              <p className="text-lg text-slate-600 max-w-xl font-normal leading-relaxed">
+              <p className="text-lg text-slate-700 max-w-xl font-normal leading-relaxed">
                 Connect with institutional partners, compare placement statistics, and get personalized counseling driven by career analytics.
               </p>
             </motion.div>
@@ -105,7 +104,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               className="relative max-w-2xl"
               ref={dropdownRef}
             >
-              <div className="flex items-center gap-2 p-2 bg-white rounded-2xl border border-slate-100 focus-within:border-[#110051]/30 focus-within:ring-2 focus-within:ring-[#110051]/5 transition-all duration-300">
+              <div className="flex items-center gap-2 p-2 bg-white/90 backdrop-blur-md rounded-2xl border border-slate-100 focus-within:border-[#110051]/30 focus-within:ring-2 focus-within:ring-[#110051]/5 transition-all duration-300 shadow-sm">
                 <div className="pl-3 text-slate-400">
                   <Search size={22} />
                 </div>
@@ -124,7 +123,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
 
                 <button
                   onClick={() => onSearchSubmit(searchTerm)}
-                  className="px-6 py-3.5 rounded-xl bg-[#110051] text-white hover:bg-[#110051]/90 text-[15px] font-bold active:scale-[0.98] transition-all duration-300 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-[#110051] text-white hover:bg-[#110051]/90 text-[15px] font-bold active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm"
                 >
                   Search
                 </button>
@@ -137,7 +136,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute left-0 w-full mt-2 bg-white border border-slate-100 rounded-2xl z-30 overflow-hidden divide-y divide-slate-100"
+                    className="absolute left-0 w-full mt-2 bg-white/95 backdrop-blur-md border border-slate-100 rounded-2xl shadow-lg z-30 overflow-hidden divide-y divide-slate-100"
                   >
                     {filteredSuggestions.length > 0 ? (
                       filteredSuggestions.map((item, idx) => (
@@ -176,7 +175,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               <span className="text-[12px] font-bold text-slate-500 uppercase tracking-wider block">
                 Popular Streams:
               </span>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-nowrap gap-2 overflow-x-auto no-scrollbar pb-1 max-w-full">
                 {categories.map((cat, idx) => (
                   <button
                     key={idx}
@@ -185,9 +184,9 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                       setSearchTerm(cat.name);
                       onSearchSubmit(cat.name);
                     }}
-                    className={`flex items-center gap-1.5 px-4.5 py-2.5 rounded-xl border text-[13px] font-bold transition-all duration-200 cursor-pointer ${selectedCategory === cat.name
+                    className={`flex items-center gap-1.5 px-4.5 py-2.5 rounded-xl border text-[13px] font-bold transition-all duration-200 cursor-pointer shadow-xs shrink-0 ${selectedCategory === cat.name
                       ? 'bg-[#110051] border-[#110051] text-white'
-                      : 'bg-white border-slate-100 text-slate-700 hover:bg-slate-50 hover:border-[#110051]/50 hover:text-[#110051]'
+                      : 'bg-white/80 border-slate-100 text-slate-700 hover:bg-slate-50 hover:border-[#110051]/50 hover:text-[#110051]'
                       }`}
                   >
                     <span>{cat.icon}</span>
@@ -206,14 +205,20 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             >
               <a
                 href="#colleges"
-                className="px-6 py-3.5 rounded-xl bg-[#110051] hover:bg-[#110051]/90 text-white text-[15px] font-bold transition-all duration-300"
+                className="px-6 py-3.5 rounded-xl bg-[#110051] hover:bg-[#110051]/90 text-white text-[15px] font-bold shadow-sm transition-all duration-300"
               >
                 Start Exploring
               </a>
+              <button
+                onClick={onCounsellingClick}
+                className="px-6 py-3.5 rounded-xl border border-[#110051]/30 hover:border-[#110051] text-[#110051] bg-white hover:bg-slate-50 text-[15px] font-bold shadow-xs transition-all duration-300 cursor-pointer"
+              >
+                Get Free Counselling
+              </button>
             </motion.div>
           </div>
 
-          {/* Right Column: Premium Illustration */}
+          {/* Right Column: Student Image */}
           <div className="lg:col-span-5 w-full flex items-center justify-center lg:justify-end mt-8 lg:mt-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -223,7 +228,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             >
               <img
                 src={educationPlatformHero}
-                alt="Education Platform Hero"
+                alt="Students Illustration"
                 className="w-full h-auto object-contain rounded-2xl"
               />
             </motion.div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
+import Hero2 from '../components/Hero2';
 import Stats from '../components/Stats';
 import TopCities from '../components/TopCities';
 import ExploreFuture from '../components/ExploreFuture';
@@ -119,7 +119,7 @@ export default function Home() {
         
         {/* Hero Section */}
         <div id="hero">
-          <Hero 
+          <Hero2 
             onSearchSubmit={handleSearchSubmit} 
             onCounsellingClick={() => setIsCounsellingOpen(true)} 
           />
