@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Search, MapPin, Phone, Mail, ChevronRight, ArrowRight,
+  Search, MapPin, Phone, Mail, ChevronRight, ChevronDown, ArrowRight,
   Compass, X, Calendar, User, Clock, CheckCircle2, Send, Check,
   Navigation
 } from 'lucide-react';
@@ -138,16 +138,19 @@ const branchesData = [
   }
 ];
 
-const states = [
+const visibleStates = [
   "All regions",
   "Gujarat",
-  "Karnataka",
+  "Delhi NCR",
+  "Maharashtra",
+  "Karnataka"
+];
+
+const dropdownStates = [
   "Punjab & Chandigarh",
   "Tamil Nadu",
-  "Delhi NCR",
   "Telangana",
   "Kerala",
-  "Maharashtra",
   "Andhra Pradesh",
   "Haryana"
 ];
@@ -160,6 +163,7 @@ export default function FindUs() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeBookingBranch, setActiveBookingBranch] = useState(null);
   const [activeVisitBranch, setActiveVisitBranch] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const [bookingForm, setBookingForm] = useState({
     firstName: '',
@@ -248,13 +252,16 @@ export default function FindUs() {
           </div>
 
           {/* Heading */}
-          <div className="text-left mb-10">
+          <div className="text-center mb-12 flex flex-col items-center">
             <h1 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
-              Contact or Book an Appointment
+              Get in Touch
             </h1>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#110051] font-display leading-tight max-w-3xl">
-              We offer numerous ways for you <span className="bg-gradient-to-r from-brand-600 to-brand-purple bg-clip-text text-transparent">connect with us</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#110051] font-display leading-tight max-w-3xl mb-4 mx-auto">
+              Find a branch, book a call,<br className="hidden md:inline" /> <span className="bg-gradient-to-r from-brand-600 to-brand-purple bg-clip-text text-transparent">or chat with us.</span>
             </h2>
+            <p className="text-sm sm:text-base font-semibold text-slate-500 max-w-2xl leading-relaxed mx-auto">
+              Your goals, your schedule.<br className="hidden sm:inline" /> Choose the easiest way to connect with our team.
+            </p>
           </div>
 
           {/* Search Bar */}
@@ -278,11 +285,14 @@ export default function FindUs() {
           </div>
 
           {/* Filter Pills */}
-          <div className="flex gap-2.5 overflow-x-auto pb-4 mb-10 no-scrollbar select-none -mx-4 px-4 sm:mx-0 sm:px-0">
-            {states.map((state) => (
+          <div className="relative flex flex-wrap gap-2.5 pb-4 mb-10 select-none items-center justify-center">
+            {visibleStates.map((state) => (
               <button
                 key={state}
-                onClick={() => handleStateSelect(state)}
+                onClick={() => {
+                  handleStateSelect(state);
+                  setIsDropdownOpen(false);
+                }}
                 className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer ${
                   selectedState === state
                     ? 'bg-[#110051] border-[#110051] text-white shadow-md shadow-[#110051]/15'
@@ -292,6 +302,59 @@ export default function FindUs() {
                 {state}
               </button>
             ))}
+
+            {/* Dropdown for More Regions */}
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer flex items-center gap-1.5 ${
+                  dropdownStates.includes(selectedState)
+                    ? 'bg-[#110051] border-[#110051] text-white shadow-md shadow-[#110051]/15'
+                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-350 hover:bg-slate-50'
+                }`}
+              >
+                <span>{dropdownStates.includes(selectedState) ? `More: ${selectedState}` : 'More'}</span>
+                <ChevronDown size={14} className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <>
+                    {/* Backdrop wrapper to handle click outside */}
+                    <div 
+                      className="fixed inset-0 z-10 cursor-default" 
+                      onClick={() => setIsDropdownOpen(false)}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 mt-2 w-56 bg-white border border-slate-100 rounded-2xl shadow-xl z-20 py-2 overflow-hidden text-left"
+                    >
+                      {dropdownStates.map((state) => (
+                        <button
+                          key={state}
+                          onClick={() => {
+                            handleStateSelect(state);
+                            setIsDropdownOpen(false);
+                          }}
+                          className={`w-full px-4 py-2.5 text-xs font-bold text-left transition-colors flex items-center justify-between cursor-pointer ${
+                            selectedState === state
+                              ? 'bg-slate-50 text-[#110051]'
+                              : 'text-slate-600 hover:bg-slate-50/80 hover:text-[#110051]'
+                          }`}
+                        >
+                          <span>{state}</span>
+                          {selectedState === state && <Check size={12} className="text-brand-600" />}
+                        </button>
+                      ))}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Cards Grid */}
