@@ -76,7 +76,7 @@ export default function Stats() {
   ];
 
   return (
-    <section className="py-16 bg-[#FAFAFA] border-y border-slate-200/50 relative overflow-hidden">
+    <section className="py-16 bg-[#e9f6ff] border-y border-slate-200/50 relative overflow-hidden">
       {/* Decorative vertical grid lines on desktop */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute left-[25%] top-0 w-[1px] h-full bg-slate-200/60 hidden lg:block"></div>
@@ -98,18 +98,18 @@ export default function Stats() {
                 className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left group"
               >
                 {/* Icon wrapper with subtle squircle shape and hover glow */}
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-white border border-slate-200/65 text-brand-600 shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 group-hover:scale-105 group-hover:border-brand-500/30 group-hover:shadow-[0_4px_12px_rgba(108,99,255,0.08)] shrink-0">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-white border border-slate-200/65 text-[#0f71cd] shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 group-hover:scale-105 group-hover:border-[#0f71cd]/30 group-hover:shadow-[0_4px_12px_rgba(15,113,205,0.08)] shrink-0">
                   <Icon size={20} className="stroke-[2]" />
                 </div>
 
                 {/* Content block */}
                 <div className="space-y-1">
                   {/* Metric number */}
-                  <div className="text-3.5xl sm:text-4xl lg:text-4.5xl font-sans font-black text-brand-800 tracking-tight transition-transform duration-300 group-hover:translate-x-0.5">
+                  <div className="text-3.5xl sm:text-4xl lg:text-4.5xl font-tt-talent font-black text-[#0F141E] tracking-tight transition-transform duration-300 group-hover:translate-x-0.5" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                     <AnimatedCounter value={item.value} suffix={item.suffix} />
                   </div>
                   {/* Label */}
-                  <h4 className="text-[13px] font-bold text-slate-800 tracking-wide uppercase mt-1">
+                  <h4 className="text-[13px] font-tt-talent font-bold text-[#0F141E] tracking-wide uppercase mt-1" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                     {item.label}
                   </h4>
                   {/* Description */}

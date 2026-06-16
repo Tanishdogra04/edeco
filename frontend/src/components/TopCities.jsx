@@ -101,13 +101,13 @@ export default function TopCities() {
         {/* Header containing left-side title and right-side controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div className="text-left space-y-2">
-            <span className="text-[12px] font-bold text-brand-600 uppercase tracking-widest block">
+            <span className="text-[11px] font-bold text-[#0f71cd] uppercase tracking-widest block">
               Study Destinations
             </span>
-            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-brand-800 tracking-tight">
+            <h2 className="font-tt-talent font-extrabold text-3xl sm:text-4xl text-[#0F141E] tracking-tight" style={{ fontFamily: '"TT Talent", sans-serif' }}>
               Explore Colleges by City
             </h2>
-            <p className="text-[14px] text-brand-800/60 max-w-md font-medium">
+            <p className="text-[14px] text-[#0F141E]/70 max-w-md font-medium">
               Discover top educational hubs across the country with active recruiting networks.
             </p>
           </div>
@@ -116,8 +116,8 @@ export default function TopCities() {
           <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
             {/* Search Input Bar (reduced size) */}
             <div className="relative w-64 text-left z-20">
-              <div className="relative flex items-center bg-slate-50 border border-slate-200 focus-within:border-brand-500 rounded-xl px-3 py-2 group transition-all shadow-sm">
-                <Search size={14} className="text-slate-400 group-focus-within:text-brand-500 transition-colors shrink-0 mr-2" />
+              <div className="relative flex items-center bg-slate-50 border border-slate-200 focus-within:border-[#0f71cd] rounded-xl px-3 py-2 group transition-all shadow-sm">
+                <Search size={14} className="text-slate-400 group-focus-within:text-[#0f71cd] transition-colors shrink-0 mr-2" />
                 <input 
                   type="text" 
                   placeholder="Search city..."
@@ -147,10 +147,10 @@ export default function TopCities() {
                         <button
                           type="button"
                           onClick={() => handleSelectCity(city)}
-                          className="w-full px-3 py-2.5 hover:bg-slate-50 text-left text-xs text-slate-700 hover:text-[#110051] font-semibold transition-colors flex items-center justify-between"
+                          className="w-full px-3 py-2.5 hover:bg-slate-50 text-left text-xs text-slate-700 hover:text-[#0f71cd] font-semibold transition-colors flex items-center justify-between"
                         >
                           <span className="flex items-center gap-1.5">
-                            <MapPin size={12} className="text-brand-600 shrink-0" />
+                            <MapPin size={12} className="text-[#0f71cd] shrink-0" />
                             {city.name}
                           </span>
                           <span className="text-[9px] font-bold text-slate-400 bg-slate-100 px-1 py-0.5 rounded">
@@ -170,14 +170,14 @@ export default function TopCities() {
                 <button 
                   type="button"
                   onClick={() => scroll('left')}
-                  className="p-2.5 rounded-xl bg-white border border-slate-100 hover:border-brand-200 text-slate-600 hover:text-brand-600 shadow-sm active:scale-95 transition-all duration-200 cursor-pointer"
+                  className="p-2.5 rounded-xl bg-white border border-slate-100 hover:border-[#0f71cd]/30 text-slate-600 hover:text-[#0f71cd] shadow-sm active:scale-95 transition-all duration-200 cursor-pointer"
                 >
                   <ChevronLeft size={16} />
                 </button>
                 <button 
                   type="button"
                   onClick={() => scroll('right')}
-                  className="p-2.5 rounded-xl bg-white border border-slate-100 hover:border-brand-200 text-slate-600 hover:text-brand-600 shadow-sm active:scale-95 transition-all duration-200 cursor-pointer"
+                  className="p-2.5 rounded-xl bg-white border border-slate-100 hover:border-[#0f71cd]/30 text-slate-600 hover:text-[#0f71cd] shadow-sm active:scale-95 transition-all duration-200 cursor-pointer"
                 >
                   <ChevronRight size={16} />
                 </button>
@@ -200,22 +200,22 @@ export default function TopCities() {
                   alt={selectedCity.name} 
                   className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
                 />
-                <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-none bg-[#110051]/95 text-white text-[9px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
+                <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-none bg-[#0f71cd]/95 text-white text-[9px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
                   {selectedCity.desc}
                 </div>
               </div>
               <div className="flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-display font-bold text-base text-[#110051] tracking-tight leading-none">
+                  <h3 className="font-tt-talent font-bold text-base text-[#0F141E] tracking-tight leading-none" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                     {selectedCity.name}
                   </h3>
                   <div className="flex flex-wrap gap-1.5 mt-2">
-                    <span className="px-2 py-0.5 rounded-none bg-slate-50 border border-slate-200/60 text-[10px] font-bold text-slate-650 flex items-center gap-1 shadow-3xs">
-                      <Building2 size={11} className="text-[#110051]/80" />
+                    <span className="px-2 py-0.5 rounded-none bg-[#0f71cd]/5 border border-[#0f71cd]/15 text-[10px] font-bold text-[#0f71cd] flex items-center gap-1 shadow-3xs">
+                      <Building2 size={11} className="text-[#0f71cd]" />
                       {selectedCity.colleges}
                     </span>
-                    <span className="px-2 py-0.5 rounded-none bg-indigo-50/40 border border-indigo-100/50 text-[10px] font-bold text-indigo-750 flex items-center gap-1 shadow-3xs">
-                      <span className="font-extrabold text-[8px] uppercase">Avg CTC:</span>
+                    <span className="px-2 py-0.5 rounded-none bg-[#0f71cd]/5 border border-[#0f71cd]/15 text-[10px] font-bold text-[#0f71cd] flex items-center gap-1 shadow-3xs">
+                      <span className="font-extrabold text-[8px] uppercase text-[#0f71cd]/80">Avg CTC:</span>
                       {selectedCity.avgPackage}
                     </span>
                   </div>
@@ -224,9 +224,9 @@ export default function TopCities() {
                     <span className="text-[11.5px] font-medium text-slate-500 truncate block mt-0.5">{selectedCity.keyStreams}</span>
                   </div>
                 </div>
-                <div className="pt-2.5 border-t border-slate-100/50 flex items-center justify-between text-slate-400 group-hover:text-[#110051] transition-all duration-200">
+                <div className="pt-2.5 border-t border-slate-100/50 flex items-center justify-between text-slate-400 group-hover:text-[#0f71cd] transition-all duration-200">
                   <span className="text-[10px] font-bold uppercase tracking-wider">Explore Colleges</span>
-                  <ChevronRight size={13} className="text-slate-400 group-hover:text-[#110051] group-hover:translate-x-0.5 transition-all duration-200" />
+                  <ChevronRight size={13} className="text-slate-400 group-hover:text-[#0f71cd] group-hover:translate-x-0.5 transition-all duration-200" />
                 </div>
               </div>
             </div>
@@ -234,10 +234,10 @@ export default function TopCities() {
             {/* Quick stats and details about selected destination */}
             <div className="flex-1 flex flex-col justify-between text-left space-y-5 pt-3 w-full">
               <div className="space-y-3">
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-[10.5px] font-extrabold text-indigo-700 uppercase tracking-wider w-fit">
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#0f71cd]/10 border border-[#0f71cd]/20 text-[10.5px] font-extrabold text-[#0f71cd] uppercase tracking-wider w-fit">
                   <MapPin size={12} /> Selected Destination
                 </span>
-                <h3 className="text-3xl font-black text-[#110051] tracking-tight leading-none">{selectedCity.name}</h3>
+                <h3 className="text-3xl font-black text-[#0F141E] font-tt-talent tracking-tight leading-none" style={{ fontFamily: '"TT Talent", sans-serif' }}>{selectedCity.name}</h3>
                 <p className="text-slate-500 text-sm font-medium leading-relaxed max-w-md">
                   {selectedCity.name} is a premier study destination with an active recruiting ecosystem of {selectedCity.colleges} and strong placement statistics (average packages around {selectedCity.avgPackage}). Discover top institutes and find courses matching your score.
                 </p>
@@ -246,7 +246,7 @@ export default function TopCities() {
                 <button 
                   type="button"
                   onClick={() => navigate(`/cities/${selectedCity.name.toLowerCase().replace(/ /g, '-')}`)}
-                  className="px-6 py-3 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white text-xs font-bold transition-all duration-300 cursor-pointer shadow-md hover:shadow-indigo-950/20 active:scale-[0.98]"
+                  className="px-6 py-3 rounded-xl bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-xs font-bold transition-all duration-300 cursor-pointer shadow-md hover:shadow-blue-950/20 active:scale-[0.98]"
                 >
                   Explore {selectedCity.name} Colleges
                 </button>
@@ -283,7 +283,7 @@ export default function TopCities() {
                     alt={city.name} 
                     className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-out"
                   />
-                  <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-none bg-[#110051]/95 text-white text-[9px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
+                  <div className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-none bg-[#0f71cd]/95 text-white text-[9px] font-bold uppercase tracking-wider border border-white/10 shadow-sm">
                     {city.desc}
                   </div>
                 </div>
@@ -291,18 +291,18 @@ export default function TopCities() {
                 {/* Card Details */}
                 <div className="flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-display font-bold text-base text-[#110051] tracking-tight leading-none">
+                    <h3 className="font-tt-talent font-bold text-base text-[#0F141E] tracking-tight leading-none" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                       {city.name}
                     </h3>
                     
                     {/* Badges Row */}
                     <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="px-2 py-0.5 rounded-none bg-slate-50 border border-slate-200/60 text-[10px] font-bold text-slate-650 flex items-center gap-1 shadow-3xs">
-                        <Building2 size={11} className="text-[#110051]/80" />
+                      <span className="px-2 py-0.5 rounded-none bg-[#0f71cd]/5 border border-[#0f71cd]/15 text-[10px] font-bold text-[#0f71cd] flex items-center gap-1 shadow-3xs">
+                        <Building2 size={11} className="text-[#0f71cd]" />
                         {city.colleges}
                       </span>
-                      <span className="px-2 py-0.5 rounded-none bg-indigo-50/40 border border-indigo-100/50 text-[10px] font-bold text-indigo-750 flex items-center gap-1 shadow-3xs">
-                        <span className="font-extrabold text-[8px] uppercase">Avg CTC:</span>
+                      <span className="px-2 py-0.5 rounded-none bg-[#0f71cd]/5 border border-[#0f71cd]/15 text-[10px] font-bold text-[#0f71cd] flex items-center gap-1 shadow-3xs">
+                        <span className="font-extrabold text-[8px] uppercase text-[#0f71cd]/80">Avg CTC:</span>
                         {city.avgPackage}
                       </span>
                     </div>
@@ -315,9 +315,9 @@ export default function TopCities() {
                   </div>
 
                   {/* Footer CTA */}
-                  <div className="pt-2.5 border-t border-slate-100/50 flex items-center justify-between text-slate-400 group-hover:text-[#110051] transition-all duration-200">
+                  <div className="pt-2.5 border-t border-slate-100/50 flex items-center justify-between text-slate-400 group-hover:text-[#0f71cd] transition-all duration-200">
                     <span className="text-[10px] font-bold uppercase tracking-wider">Explore Colleges</span>
-                    <ChevronRight size={13} className="text-slate-400 group-hover:text-[#110051] group-hover:translate-x-0.5 transition-all duration-200" />
+                    <ChevronRight size={13} className="text-slate-400 group-hover:text-[#0f71cd] group-hover:translate-x-0.5 transition-all duration-200" />
                   </div>
                 </div>
               </motion.div>
@@ -330,7 +330,7 @@ export default function TopCities() {
           <button 
             type="button"
             onClick={() => navigate('/cities')}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border border-slate-200 hover:border-[#110051] text-slate-700 hover:text-white hover:bg-[#110051] text-sm font-bold shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group active:scale-[0.98]"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border border-slate-200 hover:border-[#0f71cd] text-slate-700 hover:text-white hover:bg-[#0f71cd] text-sm font-bold shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group active:scale-[0.98]"
           >
             <span>View All Study Destinations</span>
             <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />

@@ -22,6 +22,10 @@ const CollegeSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  images: {
+    type: [String],
+    default: []
+  },
   location: {
     type: String,
     required: true

@@ -62,6 +62,9 @@ const getCollegeDetails = (id, base) => {
     dynamicAbout = `Established in ${established}, ${base.name} is a premier institute that has consistently ranked among the top colleges in its domain. With a rich legacy, the institute offers a unique blend of traditional values and modern education. The campus spans across a vibrant area in the heart of the city, providing a conducive environment for holistic learning.`;
     coverImage = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1920&q=80';
   }
+  const images = (lowerId.includes('aiims') || lowerId.includes('medical'))
+    ? ["/images/medical.png", "/images/medical_college_new.jpg"]
+    : [coverImage];
 
   return {
     ...base,
@@ -69,6 +72,7 @@ const getCollegeDetails = (id, base) => {
     ownership: lowerId.startsWith('iit') || lowerId.startsWith('iim') || lowerId.startsWith('aiims') || lowerId.startsWith('nls') ? 'Public/Government' : 'Private',
     approvals: ['AICTE', 'UGC', 'NBA', 'NAAC A+'],
     coverImage,
+    images,
     stats: {
       avgFees: base.fees || '₹2.0 Lakhs/yr',
       placementRate: '98%',
@@ -177,6 +181,21 @@ const featuredCollegesBase = [
     highestPackage: "₹45.0 LPA",
     reviews: "670 Reviews",
     description: "Apex medical education and research institute offering MBBS and research programs in New Delhi."
+  },
+  {
+    id: "cmc-vellore",
+    name: "Christian Medical College (CMC) Vellore",
+    logo: "CMC",
+    stream: "Medical",
+    image: "/images/medical_college_new.jpg",
+    location: "Vellore, Tamil Nadu",
+    rating: "4.8",
+    fees: "₹1.5 Lakhs / Yr",
+    nirf: "#3 Medical",
+    package: "₹10.5 LPA Avg",
+    highestPackage: "₹25.0 LPA",
+    reviews: "520 Reviews",
+    description: "Renowned private medical college and hospital providing education and medical services since 1900."
   },
   {
     id: "siu",

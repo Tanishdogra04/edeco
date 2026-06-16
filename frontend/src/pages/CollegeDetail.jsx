@@ -98,7 +98,10 @@ const getMockCollegeData = (id) => {
       coverImage = 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=1920&q=80';
     }
   }
-  
+  const images = (id && (id.toLowerCase().includes('aiims') || id.toLowerCase().includes('medical')))
+    ? ["/images/medical.png", "/images/medical_college_new.jpg"]
+    : [coverImage];
+
   return {
     id: id || 'coep-pune',
     name: formattedName,
@@ -109,6 +112,7 @@ const getMockCollegeData = (id) => {
     approvals: ['AICTE', 'UGC', 'NBA', 'NAAC A+'],
     logo: `https://ui-avatars.com/api/?name=${shortName}&background=0f172a&color=f97316&size=200`,
     coverImage: coverImage,
+    images: images,
     stats: {
       avgFees: '₹1.5 Lakhs/yr',
       placementRate: '98%',
@@ -220,6 +224,11 @@ export default function CollegeDetail() {
           col.recruiters = col.recruitersList || col.recruiters || [];
           col.reviews = col.reviewsList || col.reviews || [];
           col.shortName = col.shortName || (col.id ? col.id.toUpperCase() : 'College');
+          if (!col.images || col.images.length === 0) {
+            col.images = (col.id && (col.id.toLowerCase().includes('aiims') || col.id.toLowerCase().includes('medical')))
+              ? ["/images/medical.png", "/images/medical_college_new.jpg"]
+              : [col.coverImage || col.image];
+          }
           setCollege(col);
         } else {
           setCollege(getMockCollegeData(collegeId));
@@ -493,9 +502,37 @@ export default function CollegeDetail() {
               <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-2">
                 <Info className="text-brand-500" /> About {college.shortName}
               </h2>
-              <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 leading-relaxed text-slate-600 font-medium">
+              <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 leading-relaxed text-slate-600 font-medium mb-8">
                 <p>{college.about}</p>
               </div>
+
+              {/* Campus Gallery */}
+              {college.images && college.images.length > 0 && (
+                <div className="mb-10 text-left">
+                  <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-2">
+                    <Building2 className="text-brand-500" /> Campus Gallery
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {college.images.map((img, index) => (
+                      <div 
+                        key={index} 
+                        className="relative h-64 rounded-3xl overflow-hidden shadow-sm group border border-slate-200 bg-white"
+                      >
+                        <img 
+                          src={img} 
+                          alt={`${college.shortName} Campus ${index + 1}`} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/70 to-transparent p-4 flex justify-between items-end">
+                          <span className="text-xs font-bold text-white uppercase tracking-wider">
+                            {index === 0 ? "Main Campus Entrance" : "Main Building & Ambulance Bay"}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Why Choose This College */}
               <h3 className="text-xl font-black text-slate-900 mb-6 mt-10 flex items-center gap-2">

@@ -68,6 +68,20 @@ export const collegesData = [
     reviews: "670 Reviews"
   },
   {
+    id: "cmc-vellore",
+    name: "Christian Medical College (CMC) Vellore",
+    logo: "CMC",
+    stream: "Medical",
+    image: "/images/medical_college_new.jpg",
+    location: "Vellore, Tamil Nadu",
+    rating: "4.8",
+    fees: "₹1.5 Lakhs / Yr",
+    nirf: "#3 Medical",
+    package: "₹10.5 LPA Avg",
+    highestPackage: "₹25.0 LPA",
+    reviews: "520 Reviews"
+  },
+  {
     id: "siu",
     name: "Symbiosis Institute of Business Management",
     logo: "SIBM",

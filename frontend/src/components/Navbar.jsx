@@ -190,7 +190,7 @@ export default function Navbar({
                   }
                 }}
               >
-                <span className={`font-display font-extrabold text-3xl tracking-tight leading-none transition-colors duration-300 ${darkTheme ? 'text-white' : 'text-[#110051]'
+                <span className={`font-display font-extrabold text-3xl tracking-tight leading-none transition-colors duration-300 ${darkTheme ? 'text-white' : 'text-[#0f71cd]'
                   }`}>
                   edeco
                 </span>
@@ -208,7 +208,8 @@ export default function Navbar({
                     >
                       <button 
                         onClick={() => setActiveDropdown(activeDropdown === key ? null : key)}
-                        className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}
+                        className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'}`}
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
                       >
                         <span>{item.title}</span>
                         <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === key ? 'rotate-180' : ''}`} />
@@ -236,22 +237,22 @@ export default function Navbar({
                                     const LinkContent = (
                                       <>
                                         {LinkIcon && (
-                                          <div className="p-1.5 rounded-lg bg-slate-100 group-hover/item:bg-brand-100 group-hover/item:text-brand-600 text-slate-500 transition-colors duration-200">
+                                          <div className="p-1.5 rounded-lg bg-slate-100 group-hover/item:bg-[#0f71cd]/10 group-hover/item:text-[#0f71cd] text-slate-500 transition-colors duration-200">
                                             <LinkIcon size={16} />
                                           </div>
                                         )}
                                         <div className="flex-1">
                                           <div className="flex items-center gap-1.5">
-                                            <span className="text-[14px] font-semibold text-slate-800 group-hover/item:text-[#110051] transition-colors">
+                                            <span className="text-[14px] font-semibold text-slate-800 group-hover/item:text-[#0f71cd] transition-colors">
                                               {link.name}
                                             </span>
                                             {link.badge && (
-                                              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-[#110051] text-white rounded-md">
+                                              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-[#0f71cd] text-white rounded-md">
                                                 {link.badge}
                                               </span>
                                             )}
                                             {link.actionType === "compare" && compareCount > 0 && (
-                                              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-wide bg-[#110051] text-white rounded-md flex items-center justify-center min-w-5 h-5 shadow-xs">
+                                              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-wide bg-[#0f71cd] text-white rounded-md flex items-center justify-center min-w-5 h-5 shadow-xs">
                                                 {compareCount}
                                               </span>
                                             )}
@@ -304,7 +305,7 @@ export default function Navbar({
                             {/* Dropdown footer info banner */}
                             <div className="col-span-2 pt-4 border-t border-slate-50 flex items-center justify-between text-xs text-slate-400">
                               <span>{item.subtitle}</span>
-                              <button onClick={() => { setActiveDropdown(null); handleCounsellingClick(); }} className="flex items-center gap-1 font-semibold text-[#110051] hover:text-brand-900 transition-colors group/link cursor-pointer">
+                              <button onClick={() => { setActiveDropdown(null); handleCounsellingClick(); }} className="flex items-center gap-1 font-semibold text-[#0f71cd] hover:text-[#0c62b2] transition-colors group/link cursor-pointer">
                                 Talk to Counselors
                                 <ArrowRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
                               </button>
@@ -318,20 +319,22 @@ export default function Navbar({
 
                 <Link
                   to="/resources"
-                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}
+                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'}`}
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   Resources
                 </Link>
 
                 <Link
                   to="/events"
-                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}
+                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'}`}
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   Events
                 </Link>
 
                 <div className="relative group py-2">
-                  <Link to="/find-us" className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[14.5px] font-display font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-[#110051]' : 'text-slate-900 hover:text-white hover:bg-[#110051]'}`}>
+                  <Link to="/find-us" className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'}`} style={{ fontFamily: '"TT Talent", sans-serif' }}>
                     <span>Find Us</span>
                     <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
                   </Link>
@@ -342,8 +345,8 @@ export default function Navbar({
                       to="/contact"
                       className="w-full px-4 py-3 bg-slate-50/50 hover:bg-slate-100/70 border-b border-slate-100 flex items-center gap-2 transition-colors cursor-pointer"
                     >
-                      <PhoneCall size={14} className="text-[#110051]" />
-                      <span className="font-display font-bold text-[13px] text-[#110051]">
+                      <PhoneCall size={14} className="text-[#0f71cd]" />
+                      <span className="font-display font-bold text-[13px] text-[#0f71cd]">
                         Get in Touch / Support
                       </span>
                     </Link>
@@ -352,8 +355,8 @@ export default function Navbar({
                       to="/find-us"
                       className="w-full px-4 py-3 bg-slate-50/50 hover:bg-slate-100/70 border-b border-slate-100 flex items-center gap-2 transition-colors cursor-pointer"
                     >
-                      <Compass size={14} className="text-[#110051]" />
-                      <span className="font-display font-bold text-[13px] text-[#110051]">
+                      <Compass size={14} className="text-[#0f71cd]" />
+                      <span className="font-display font-bold text-[13px] text-[#0f71cd]">
                         Find nearest Edeco office
                       </span>
                     </Link>
@@ -374,7 +377,7 @@ export default function Navbar({
                         <Link
                           key={state}
                           to={`/find-us?state=${encodeURIComponent(state === 'Delhi' ? 'Delhi NCR' : state === 'Punjab' ? 'Punjab & Chandigarh' : state)}`}
-                          className="flex items-center justify-between px-4 py-2.5 hover:bg-slate-50 text-[13px] text-slate-700 hover:text-[#110051] transition-colors font-sans border-b border-slate-50 last:border-b-0"
+                          className="flex items-center justify-between px-4 py-2.5 hover:bg-slate-50 text-[13px] text-slate-700 hover:text-[#0f71cd] transition-colors font-sans border-b border-slate-50 last:border-b-0"
                         >
                           <span>{state}</span>
                           <ChevronRight size={12} className="text-slate-400" />
@@ -471,17 +474,17 @@ export default function Navbar({
                     to="/login"
                     className={`flex items-center gap-1.5 text-[14.5px] font-display font-normal transition-all py-2 px-4 rounded-xl border cursor-pointer group/login ${darkTheme
                       ? 'border-white/10 hover:border-orange-400 bg-white/5 hover:bg-orange-400 text-slate-200 hover:text-slate-950'
-                      : 'border-[#110051]/20 hover:border-[#110051] bg-[#110051]/5 hover:bg-[#110051] text-[#110051] hover:text-white'
+                      : 'border-[#0f71cd]/20 hover:border-[#0f71cd] bg-[#0f71cd]/5 hover:bg-[#0f71cd] text-[#0f71cd] hover:text-white'
                       }`}
                   >
-                    <LogIn size={16} className={`transition-colors ${darkTheme ? 'text-slate-400 group-hover/login:text-slate-950' : 'text-[#110051] group-hover/login:text-white'}`} />
+                    <LogIn size={16} className={`transition-colors ${darkTheme ? 'text-slate-400 group-hover/login:text-slate-950' : 'text-[#0f71cd] group-hover/login:text-white'}`} />
                     <span>Login</span>
                   </Link>
                 )}
 
                 <button
                   onClick={handleCounsellingClick}
-                  className="whitespace-nowrap relative group overflow-hidden px-5 py-2.5 rounded-xl bg-[#110051] text-white hover:bg-[#1a0073] text-[14.5px] font-display font-semibold shadow-md shadow-indigo-950/20 hover:shadow-lg hover:shadow-indigo-950/35 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+                  className="whitespace-nowrap relative group overflow-hidden px-5 py-2.5 rounded-xl bg-[#0f71cd] text-white hover:bg-[#0c62b2] text-[14.5px] font-display font-semibold shadow-md shadow-blue-950/20 hover:shadow-lg hover:shadow-blue-950/35 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                 >
                   <span className="relative z-10 flex items-center gap-1.5">
                     <PhoneCall size={16} className="transition-transform duration-300 group-hover:scale-110" />
@@ -560,7 +563,7 @@ export default function Navbar({
                   }
                 }}
               >
-                <span className={`font-display font-extrabold text-2xl tracking-tight leading-none ${darkTheme ? 'text-white' : 'text-[#110051]'
+                <span className={`font-display font-extrabold text-2xl tracking-tight leading-none ${darkTheme ? 'text-white' : 'text-[#0f71cd]'
                   }`}>
                   edeco
                 </span>
@@ -801,7 +804,7 @@ export default function Navbar({
               }`}>
               <button
                 onClick={() => { toggleMenu(); handleCounsellingClick(); }}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm shadow-md transition-all duration-300 cursor-pointer bg-[#110051] hover:bg-[#1a0073] text-white shadow-indigo-950/20"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm shadow-md transition-all duration-300 cursor-pointer bg-[#0f71cd] hover:bg-[#0c62b2] text-white shadow-blue-950/20"
               >
                 <PhoneCall size={16} />
                 Book Call with Expert
@@ -849,8 +852,8 @@ export default function Navbar({
                   to="/login"
                   onClick={toggleMenu}
                   className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl border font-semibold text-sm transition-all duration-200 ${darkTheme
-                    ? 'border-white/10 text-slate-300 hover:bg-white hover:text-[#110051] hover:border-white'
-                    : 'border-slate-200 text-slate-700 hover:bg-[#110051] hover:text-white hover:border-[#110051]'
+                    ? 'border-white/10 text-slate-300 hover:bg-white hover:text-[#0f71cd] hover:border-white'
+                    : 'border-slate-200 text-slate-700 hover:bg-[#0f71cd] hover:text-white hover:border-[#0f71cd]'
                     }`}
                 >
                   <LogIn size={16} />
