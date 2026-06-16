@@ -14,7 +14,8 @@ export default function Navbar({
   onCounsellingClick,
   onCompareClick,
   compareCount = 0,
-  darkTheme = false
+  darkTheme = false,
+  lightTextBeforeScroll = false
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -190,8 +191,9 @@ export default function Navbar({
                   }
                 }}
               >
-                <span className={`font-display font-extrabold text-3xl tracking-tight leading-none transition-colors duration-300 ${darkTheme ? 'text-white' : 'text-[#0f71cd]'
-                  }`}>
+                <span className={`font-display font-extrabold text-3xl tracking-tight leading-none transition-colors duration-300 ${
+                  darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen) ? 'text-white' : 'text-[#0f71cd]'
+                }`}>
                   edeco
                 </span>
               </div>
@@ -208,7 +210,11 @@ export default function Navbar({
                     >
                       <button 
                         onClick={() => setActiveDropdown(activeDropdown === key ? null : key)}
-                        className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'}`}
+                        className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${
+                          darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen)
+                            ? 'text-slate-300 hover:text-white hover:bg-white/10'
+                            : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'
+                        }`}
                         style={{ fontFamily: '"TT Talent", sans-serif' }}
                       >
                         <span>{item.title}</span>
@@ -319,7 +325,11 @@ export default function Navbar({
 
                 <Link
                   to="/resources"
-                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'}`}
+                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${
+                    darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen)
+                      ? 'text-slate-300 hover:text-white hover:bg-white/10'
+                      : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'
+                  }`}
                   style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   Resources
@@ -327,14 +337,26 @@ export default function Navbar({
 
                 <Link
                   to="/events"
-                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'}`}
+                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${
+                    darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen)
+                      ? 'text-slate-300 hover:text-white hover:bg-white/10'
+                      : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'
+                  }`}
                   style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   Events
                 </Link>
 
                 <div className="relative group py-2">
-                  <Link to="/find-us" className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${darkTheme ? 'text-slate-300 hover:text-white hover:bg-white/10' : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'}`} style={{ fontFamily: '"TT Talent", sans-serif' }}>
+                  <Link
+                    to="/find-us"
+                    className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-[16px] font-tt-talent font-normal transition-all duration-200 cursor-pointer ${
+                      darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen)
+                        ? 'text-slate-300 hover:text-white hover:bg-white/10'
+                        : 'text-[#0F141E] hover:text-[#0f71cd] hover:bg-[#0f71cd]/10'
+                    }`}
+                    style={{ fontFamily: '"TT Talent", sans-serif' }}
+                  >
                     <span>Find Us</span>
                     <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
                   </Link>
@@ -389,21 +411,30 @@ export default function Navbar({
               </div>
 
               {/* Navbar actions */}
-              <div className={`hidden lg:flex items-center gap-4 pl-6 border-l ${darkTheme ? 'border-white/10' : 'border-slate-200'
-                }`}>
+              <div className={`hidden lg:flex items-center gap-4 pl-6 border-l ${
+                darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen) ? 'border-white/10' : 'border-slate-200'
+              }`}>
                 {isLoggedIn && user ? (
                   <div className="relative">
                     <button
                       onClick={() => setIsProfileOpen(!isProfileOpen)}
-                      className="flex items-center gap-2 p-1.5 rounded-xl border border-slate-200 hover:border-slate-350 bg-slate-50/50 backdrop-blur-md transition-all cursor-pointer shadow-sm focus:outline-none"
+                      className={`flex items-center gap-2 p-1.5 rounded-xl border backdrop-blur-md transition-all cursor-pointer shadow-sm focus:outline-none ${
+                        darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen)
+                          ? 'border-white/10 hover:border-[#0f71cd] bg-white/5'
+                          : 'border-slate-200 hover:border-slate-350 bg-slate-50/50'
+                      }`}
                     >
                       <img
                         src={user.avatar}
                         alt={user.name}
                         className="w-7 h-7 rounded-lg object-cover border border-slate-100"
                       />
-                      <span className="text-[13px] font-bold text-slate-800 pr-1 max-w-[100px] truncate">{user.name.split(' ')[0]}</span>
-                      <ChevronDown size={12} className={`text-slate-500 transition-transform duration-200 ${isProfileOpen ? 'rotate-180' : ''}`} />
+                      <span className={`text-[13px] font-bold pr-1 max-w-[100px] truncate ${
+                        darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen) ? 'text-slate-200' : 'text-slate-800'
+                      }`}>{user.name.split(' ')[0]}</span>
+                      <ChevronDown size={12} className={`transition-transform duration-200 ${isProfileOpen ? 'rotate-180' : ''} ${
+                        darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen) ? 'text-slate-400' : 'text-slate-500'
+                      }`} />
                     </button>
 
                     <AnimatePresence>
@@ -472,12 +503,17 @@ export default function Navbar({
                 ) : (
                   <Link
                     to="/login"
-                    className={`flex items-center gap-1.5 text-[14.5px] font-display font-normal transition-all py-2 px-4 rounded-xl border cursor-pointer group/login ${darkTheme
-                      ? 'border-white/10 hover:border-orange-400 bg-white/5 hover:bg-orange-400 text-slate-200 hover:text-slate-950'
-                      : 'border-[#0f71cd]/20 hover:border-[#0f71cd] bg-[#0f71cd]/5 hover:bg-[#0f71cd] text-[#0f71cd] hover:text-white'
-                      }`}
+                    className={`flex items-center gap-1.5 text-[14.5px] font-display font-normal transition-all py-2 px-4 rounded-xl border cursor-pointer group/login ${
+                      darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen)
+                        ? 'border-white/10 hover:border-white bg-white/5 hover:bg-white text-slate-200 hover:text-slate-950'
+                        : 'border-[#0f71cd]/20 hover:border-[#0f71cd] bg-[#0f71cd]/5 hover:bg-[#0f71cd] text-[#0f71cd] hover:text-white'
+                    }`}
                   >
-                    <LogIn size={16} className={`transition-colors ${darkTheme ? 'text-slate-400 group-hover/login:text-slate-950' : 'text-[#0f71cd] group-hover/login:text-white'}`} />
+                    <LogIn size={16} className={`transition-colors ${
+                      darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen)
+                        ? 'text-slate-400 group-hover/login:text-slate-950'
+                        : 'text-[#0f71cd] group-hover/login:text-white'
+                    }`} />
                     <span>Login</span>
                   </Link>
                 )}
@@ -499,10 +535,11 @@ export default function Navbar({
                   href="/api/whatsapp?phone=918130784777&amp;url=https%3A%2F%2Fwww.aeccglobal.com%2Fin"
                   target="_blank"
                   rel="nofollow noopener noreferrer"
-                  className={`p-2 rounded-xl transition-colors cursor-pointer flex items-center justify-center ${darkTheme
-                    ? 'text-slate-300 hover:text-[rgb(106,255,217)] hover:bg-white/5'
-                    : 'text-slate-600 hover:text-[rgb(17,0,81)] hover:bg-slate-50'
-                    }`}
+                  className={`p-2 rounded-xl transition-colors cursor-pointer flex items-center justify-center ${
+                    darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen)
+                      ? 'text-slate-300 hover:text-white hover:bg-white/5'
+                      : 'text-slate-600 hover:text-[rgb(15,113,205)] hover:bg-slate-50'
+                  }`}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
                     <g>
@@ -514,7 +551,11 @@ export default function Navbar({
 
                 <button
                   onClick={toggleMenu}
-                  className={`p-2 rounded-xl transition-colors cursor-pointer ${darkTheme ? 'text-slate-200 hover:text-orange-400 hover:bg-white/5' : 'text-slate-700 hover:text-[#110051] hover:bg-slate-50'}`}
+                  className={`p-2 rounded-xl transition-colors cursor-pointer ${
+                    darkTheme || (lightTextBeforeScroll && !isScrolled && !isOpen)
+                      ? 'text-slate-200 hover:text-white hover:bg-white/5'
+                      : 'text-slate-700 hover:text-[#0f71cd] hover:bg-slate-50'
+                  }`}
                 >
                   {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -602,7 +643,7 @@ export default function Navbar({
                             {LinkIcon && (
                               <div className={`p-1.5 rounded-lg shrink-0 transition-colors ${darkTheme
                                 ? 'bg-white/5 text-slate-400 group-hover/drawerlink:bg-white/10 group-hover/drawerlink:text-white'
-                                : 'bg-slate-50 text-slate-500 group-hover/drawerlink:bg-slate-100 group-hover/drawerlink:text-[#110051]'
+                                : 'bg-slate-50 text-slate-500 group-hover/drawerlink:bg-slate-100 group-hover/drawerlink:text-[#0f71cd]'
                                 }`}>
                                 <LinkIcon size={14} />
                               </div>
@@ -613,13 +654,13 @@ export default function Navbar({
                                   {link.name}
                                 </span>
                                 {link.badge && (
-                                  <span className={`px-1.5 py-0.5 text-[8px] font-bold rounded shrink-0 uppercase tracking-wider ${darkTheme ? 'bg-white/10 text-white' : 'bg-[#110051]/10 text-[#110051]'
+                                  <span className={`px-1.5 py-0.5 text-[8px] font-bold rounded shrink-0 uppercase tracking-wider ${darkTheme ? 'bg-white/10 text-white' : 'bg-[#0f71cd]/10 text-[#0f71cd]'
                                     }`}>
                                     {link.badge}
                                   </span>
                                 )}
                                 {link.actionType === "compare" && compareCount > 0 && (
-                                  <span className={`px-1.5 py-0.5 text-[9px] font-bold rounded-full text-white ${darkTheme ? 'bg-[rgb(106,255,217)] text-slate-950' : 'bg-[#110051]'}`}>
+                                  <span className={`px-1.5 py-0.5 text-[9px] font-bold rounded-full text-white ${darkTheme ? 'bg-[rgb(106,255,217)] text-slate-950' : 'bg-[#0f71cd]'}`}>
                                     {compareCount}
                                   </span>
                                 )}
@@ -647,7 +688,7 @@ export default function Navbar({
                                 }}
                                 className={`w-full group/drawerlink flex items-start p-2.5 rounded-xl transition-colors cursor-pointer ${darkTheme
                                   ? 'text-slate-300 hover:bg-white/5 hover:text-white'
-                                  : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                                  : 'text-slate-700 hover:bg-slate-50 hover:text-[#0f71cd]'
                                   }`}
                               >
                                 {LinkContent}
@@ -658,7 +699,7 @@ export default function Navbar({
                                 onClick={toggleMenu}
                                 className={`group/drawerlink flex items-start p-2.5 rounded-xl transition-colors ${darkTheme
                                   ? 'text-slate-300 hover:bg-white/5 hover:text-white'
-                                  : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                                  : 'text-slate-700 hover:bg-slate-50 hover:text-[#0f71cd]'
                                   }`}
                               >
                                 {LinkContent}
@@ -679,7 +720,7 @@ export default function Navbar({
                   onClick={toggleMenu}
                   className={`w-full flex items-center gap-2 p-2.5 rounded-xl text-[14px] font-semibold transition-colors ${darkTheme
                     ? 'text-slate-300 hover:bg-white/5 hover:text-white'
-                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#0f71cd]'
                     }`}
                 >
                   <BookOpen size={16} className={darkTheme ? 'text-slate-400' : 'text-slate-500'} />
@@ -694,7 +735,7 @@ export default function Navbar({
                   onClick={toggleMenu}
                   className={`w-full flex items-center gap-2 p-2.5 rounded-xl text-[14px] font-semibold transition-colors ${darkTheme
                     ? 'text-slate-300 hover:bg-white/5 hover:text-white'
-                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#0f71cd]'
                     }`}
                 >
                   <Sparkles size={16} className={darkTheme ? 'text-slate-400' : 'text-slate-500'} />
@@ -709,14 +750,14 @@ export default function Navbar({
                   onClick={() => { toggleMenu(); handleCompareClick(); }}
                   className={`w-full flex items-center justify-between p-2.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer ${darkTheme
                     ? 'text-slate-300 hover:bg-white/5 hover:text-white'
-                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#0f71cd]'
                     }`}
                 >
                   <span className="flex items-center gap-2">
                     <GitCompare size={16} />
                     Compare Colleges
                   </span>
-                  <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${darkTheme ? 'bg-white/10 text-white' : 'bg-slate-100 text-[#110051]'
+                  <span className={`text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${darkTheme ? 'bg-white/10 text-white' : 'bg-slate-100 text-[#0f71cd]'
                     }`}>
                     {compareCount} Selected
                   </span>
@@ -729,7 +770,7 @@ export default function Navbar({
                   onClick={() => setExpandedCategory(expandedCategory === 'contact' ? null : 'contact')}
                   className={`w-full flex items-center justify-between p-2.5 rounded-xl text-[14px] font-semibold transition-colors cursor-pointer ${darkTheme
                     ? 'text-slate-300 hover:bg-white/5 hover:text-white'
-                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#110051]'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-[#0f71cd]'
                     }`}
                 >
                   <span className="flex items-center gap-2">
@@ -756,7 +797,7 @@ export default function Navbar({
                         onClick={toggleMenu}
                         className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-[13.5px] font-bold transition-colors ${darkTheme
                           ? 'text-slate-300 hover:text-white hover:bg-white/5'
-                          : 'text-[#110051] hover:bg-slate-50'
+                          : 'text-[#0f71cd] hover:bg-slate-50'
                           }`}
                       >
                         <PhoneCall size={14} />
@@ -786,7 +827,7 @@ export default function Navbar({
                           onClick={toggleMenu}
                           className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-[13px] font-medium transition-colors ${darkTheme
                             ? 'text-slate-400 hover:text-white hover:bg-white/5'
-                            : 'text-slate-600 hover:text-[#110051] hover:bg-slate-50'
+                            : 'text-slate-600 hover:text-[#0f71cd] hover:bg-slate-50'
                             }`}
                         >
                           <span>{state}</span>
@@ -873,8 +914,8 @@ export default function Navbar({
         <Link
           to="/"
           className={`flex flex-col items-center gap-0.5 transition-colors ${isActive('/')
-            ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold')
-            : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
+            ? (darkTheme ? 'text-white font-bold' : 'text-[#0f71cd] font-bold')
+            : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#0f71cd]')
             }`}
         >
           <Compass size={20} className="transition-colors text-current" />
@@ -884,8 +925,8 @@ export default function Navbar({
         <Link
           to="/events"
           className={`flex flex-col items-center gap-0.5 transition-colors ${isActive('/events')
-            ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold')
-            : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
+            ? (darkTheme ? 'text-white font-bold' : 'text-[#0f71cd] font-bold')
+            : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#0f71cd]')
             }`}
         >
           <BookOpen size={20} className="transition-colors text-current" />
@@ -895,8 +936,8 @@ export default function Navbar({
         <Link
           to="/exam/jee-main"
           className={`flex flex-col items-center gap-0.5 transition-colors ${isExamsActive()
-            ? (darkTheme ? 'text-white font-bold' : 'text-[#110051] font-bold')
-            : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]')
+            ? (darkTheme ? 'text-white font-bold' : 'text-[#0f71cd] font-bold')
+            : (darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#0f71cd]')
             }`}
         >
           <BookOpenCheck size={20} className="transition-colors text-current" />
@@ -908,7 +949,7 @@ export default function Navbar({
             onClick={() => {
               navigate(user.role === 'admin' ? '/admin' : '/login');
             }}
-            className={`flex flex-col items-center gap-0.5 transition-colors cursor-pointer ${darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]'
+            className={`flex flex-col items-center gap-0.5 transition-colors cursor-pointer ${darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#0f71cd]'
               }`}
           >
             <img src={user.avatar} alt="Profile" className={`w-5 h-5 rounded-lg object-cover border ${darkTheme ? 'border-white/20' : 'border-slate-300'
@@ -918,7 +959,7 @@ export default function Navbar({
         ) : (
           <button
             onClick={handleCounsellingClick}
-            className={`flex flex-col items-center gap-0.5 transition-colors cursor-pointer ${darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#110051]'
+            className={`flex flex-col items-center gap-0.5 transition-colors cursor-pointer ${darkTheme ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-[#0f71cd]'
               }`}
           >
             <User size={20} className="transition-colors text-current" />

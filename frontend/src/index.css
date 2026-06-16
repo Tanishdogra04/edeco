@@ -6,20 +6,20 @@
   --font-display: "Poppins", sans-serif;
   --font-tt-talent: "TT Talent", sans-serif;
 
-  --color-brand-50: #F5F5F7;
-  --color-brand-100: #EAEAEE;
-  --color-brand-200: #D1D0E5;
-  --color-brand-300: #B8B6D9;
-  --color-brand-400: #938FED;
-  --color-brand-500: #6C63FF;
-  --color-brand-600: #554EC7;
-  --color-brand-700: #3B33A0;
-  --color-brand-800: #2B247A;
-  --color-brand-900: #1B164F;
-  --color-brand-purple: #6C63FF;
-  --color-brand-indigo: #2B247A;
-  --color-brand-mint: #5EEAD4;
-  --color-brand-blue: #110051;
+  --color-brand-50: #F8FAFC;
+  --color-brand-100: #F1F5F9;
+  --color-brand-200: #E2E8F0;
+  --color-brand-300: #CBD5E1;
+  --color-brand-400: #38bdf8;
+  --color-brand-500: #0f71cd;
+  --color-brand-600: #0f71cd;
+  --color-brand-700: #0c62b2;
+  --color-brand-800: #0F141E;
+  --color-brand-900: #090D16;
+  --color-brand-purple: #3ba3ff;
+  --color-brand-indigo: #0c62b2;
+  --color-brand-mint: #0f71cd;
+  --color-brand-blue: #0f71cd;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-delayed: float-delayed 8s ease-in-out infinite;

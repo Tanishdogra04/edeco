@@ -151,8 +151,8 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center">
-        <div className="w-10 h-10 rounded-full border-4 border-[#110051] border-t-transparent animate-spin mb-3"></div>
-        <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider font-sans">Checking Privileges...</span>
+        <div className="w-10 h-10 rounded-full border-4 border-[#0f71cd] border-t-transparent animate-spin mb-3"></div>
+        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Checking Privileges...</span>
       </div>
     );
   }
@@ -161,9 +161,9 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
         <AlertCircle size={64} className="text-red-500 mb-4" />
-        <h2 className="text-3xl font-black text-slate-800 mb-2">Access Denied</h2>
-        <p className="text-slate-500 mb-6 font-medium max-w-md">You do not have administrative privileges to view this page. Please log in with an admin account.</p>
-        <Link to="/" className="px-6 py-2.5 bg-[#110051] text-white font-bold text-sm rounded-xl transition-all hover:bg-[#1a0073]">Go Back Home</Link>
+        <h2 className="text-3xl font-bold text-slate-800 mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Access Denied</h2>
+        <p className="text-slate-500 mb-6 font-semibold max-w-md text-sm">You do not have administrative privileges to view this page. Please log in with an admin account.</p>
+        <Link to="/" className="px-6 py-2.5 bg-[#0f71cd] text-white font-bold text-sm rounded-xl transition-all hover:bg-[#0c62b2] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Go Back Home</Link>
       </div>
     );
   }
@@ -353,22 +353,22 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans selection:bg-[#110051]/20">
-      <Navbar />
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-[#0f71cd]/20">
+      <Navbar lightTextBeforeScroll={true} />
 
       {/* Hero Banner Header */}
-      <section className="relative pt-24 pb-8 bg-[#110051] text-white overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(251,146,60,0.15),transparent_50%)]"></div>
+      <section className="relative pt-32 pb-12 bg-[#0F141E] text-white overflow-hidden border-b border-slate-800 text-left">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0f71cd]/10 rounded-full blur-[120px] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2 text-orange-400 text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="flex items-center gap-2 text-[#0f71cd] text-xs font-bold uppercase tracking-wider mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 <ShieldCheck size={16} /> Admin Operations Portal
               </div>
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight">Admin Control Center</h1>
-              <p className="text-slate-350 text-sm mt-1 font-medium">Add, update, and manage colleges, streams, and entrance exams database dynamically.</p>
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Admin Control Center</h1>
+              <p className="text-slate-300 text-sm mt-1 font-semibold">Add, update, and manage colleges, streams, and entrance exams database dynamically.</p>
             </div>
-            <Link to="/" className="inline-flex items-center gap-1 text-xs font-bold text-slate-300 hover:text-white px-4 py-2 bg-white/10 rounded-xl hover:bg-white/15 transition-all w-fit border border-white/10">
+            <Link to="/" className="inline-flex items-center gap-1 text-xs font-bold text-slate-300 hover:text-white px-4 py-2 bg-white/10 rounded-xl hover:bg-white/15 transition-all w-fit border border-white/10 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
               <ArrowLeft size={14} /> Back to Portal
             </Link>
           </div>
@@ -381,14 +381,15 @@ export default function AdminDashboard() {
           
           {/* Navigation Sidebar (3 Cols) */}
           <div className="lg:col-span-3 space-y-4">
-            <div className="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm space-y-1">
+            <div className="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm space-y-1 text-left">
               <button
                 onClick={() => setActiveTab('overview')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all font-tt-talent ${
                   activeTab === 'overview'
-                    ? 'bg-[#110051] text-white shadow-md shadow-indigo-950/20'
+                    ? 'bg-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/20'
                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                 }`}
+                style={{ fontFamily: '"TT Talent", sans-serif' }}
               >
                 <Compass size={18} className="shrink-0" />
                 Overview
@@ -396,11 +397,12 @@ export default function AdminDashboard() {
               
               <button
                 onClick={() => setActiveTab('add-college')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all font-tt-talent ${
                   activeTab === 'add-college'
-                    ? 'bg-[#110051] text-white shadow-md shadow-indigo-950/20'
+                    ? 'bg-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/20'
                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                 }`}
+                style={{ fontFamily: '"TT Talent", sans-serif' }}
               >
                 <Building2 size={18} className="shrink-0" />
                 Add New College
@@ -408,11 +410,12 @@ export default function AdminDashboard() {
 
               <button
                 onClick={() => setActiveTab('manage-colleges')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all font-tt-talent ${
                   activeTab === 'manage-colleges'
-                    ? 'bg-[#110051] text-white shadow-md shadow-indigo-950/20'
+                    ? 'bg-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/20'
                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                 }`}
+                style={{ fontFamily: '"TT Talent", sans-serif' }}
               >
                 <List size={18} className="shrink-0" />
                 Manage Colleges
@@ -420,11 +423,12 @@ export default function AdminDashboard() {
 
               <button
                 onClick={() => setActiveTab('add-exam')}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all font-tt-talent ${
                   activeTab === 'add-exam'
-                    ? 'bg-[#110051] text-white shadow-md shadow-indigo-950/20'
+                    ? 'bg-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/20'
                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                 }`}
+                style={{ fontFamily: '"TT Talent", sans-serif' }}
               >
                 <BookOpenCheck size={18} className="shrink-0" />
                 Add Entrance Exam
@@ -432,11 +436,11 @@ export default function AdminDashboard() {
             </div>
 
             {/* Quick Helper Widget */}
-            <div className="bg-gradient-to-br from-slate-900 to-[#110051] rounded-3xl p-6 text-white border border-slate-800 shadow-xl space-y-3 relative overflow-hidden group text-left">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-xl translate-x-1/3 -translate-y-1/3 group-hover:scale-125 transition-transform duration-500"></div>
-              <h4 className="font-extrabold text-sm">Need Database Assistance?</h4>
-              <p className="text-xs text-slate-400 leading-relaxed font-medium">To modify existing data or bulk upload records, contact database developers directly or execute bulk loading seed files.</p>
-              <a href="mailto:support@edeco.com" className="inline-block text-[11px] font-bold bg-white text-slate-900 px-4 py-2 rounded-xl transition-all hover:bg-slate-50 mt-1 cursor-pointer">
+            <div className="bg-[#0F141E] rounded-3xl p-6 text-white border border-slate-800 shadow-xl space-y-3 relative overflow-hidden group text-left">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[#0f71cd]/10 rounded-full blur-xl translate-x-1/3 -translate-y-1/3 group-hover:scale-125 transition-transform duration-500"></div>
+              <h4 className="font-extrabold text-sm font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Need Database Assistance?</h4>
+              <p className="text-xs text-slate-400 leading-relaxed font-semibold">To modify existing data or bulk upload records, contact database developers directly or execute bulk loading seed files.</p>
+              <a href="mailto:support@edeco.com" className="inline-block text-[11px] font-bold bg-[#0f71cd] hover:bg-[#0c62b2] text-white px-4 py-2 rounded-xl transition-all mt-1 cursor-pointer font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 Support Email
               </a>
             </div>
@@ -451,42 +455,42 @@ export default function AdminDashboard() {
                 
                 {/* Stats Panel Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-white border border-slate-200 rounded-3xl p-6 flex items-center gap-5 shadow-sm group hover:border-indigo-200 transition-all text-left">
-                    <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-[#110051] flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-350">
+                  <div className="bg-white border border-slate-200 rounded-3xl p-6 flex items-center gap-5 shadow-sm group hover:border-[#0f71cd]/30 transition-all text-left">
+                    <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#0f71cd] flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-350">
                       <Building2 size={28} />
                     </div>
                     <div>
                       <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">Total Colleges</span>
-                      <h3 className="text-3xl font-black text-slate-800 mt-0.5">{loadingStats ? '...' : stats.collegesCount}</h3>
+                      <h3 className="text-3xl font-black text-slate-850 mt-0.5 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{loadingStats ? '...' : stats.collegesCount}</h3>
                     </div>
                   </div>
 
-                  <div className="bg-white border border-slate-200 rounded-3xl p-6 flex items-center gap-5 shadow-sm group hover:border-indigo-200 transition-all text-left">
-                    <div className="w-14 h-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-350">
+                  <div className="bg-white border border-slate-200 rounded-3xl p-6 flex items-center gap-5 shadow-sm group hover:border-[#0f71cd]/30 transition-all text-left">
+                    <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#0f71cd] flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-350">
                       <BookOpenCheck size={28} />
                     </div>
                     <div>
                       <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">Total Entrance Exams</span>
-                      <h3 className="text-3xl font-black text-slate-800 mt-0.5">{loadingStats ? '...' : stats.examsCount}</h3>
+                      <h3 className="text-3xl font-black text-slate-850 mt-0.5 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{loadingStats ? '...' : stats.examsCount}</h3>
                     </div>
                   </div>
 
-                  <div className="bg-white border border-slate-200 rounded-3xl p-6 flex items-center gap-5 shadow-sm group hover:border-indigo-200 transition-all text-left">
-                    <div className="w-14 h-14 rounded-2xl bg-pink-50 text-pink-600 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-350">
+                  <div className="bg-white border border-slate-200 rounded-3xl p-6 flex items-center gap-5 shadow-sm group hover:border-[#0f71cd]/30 transition-all text-left">
+                    <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#0f71cd] flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-350">
                       <PhoneCall size={28} />
                     </div>
                     <div>
                       <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">Counselling Requests</span>
-                      <h3 className="text-3xl font-black text-slate-800 mt-0.5">{loadingStats ? '...' : stats.counsellingCount}</h3>
+                      <h3 className="text-3xl font-black text-slate-850 mt-0.5 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{loadingStats ? '...' : stats.counsellingCount}</h3>
                     </div>
                   </div>
                 </div>
 
                 {/* Dashboard Greetings */}
                 <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm space-y-4 text-left">
-                  <div className="flex items-center gap-2 text-indigo-600">
+                  <div className="flex items-center gap-2 text-[#0f71cd]">
                     <Sparkles size={20} className="animate-pulse" />
-                    <h3 className="font-extrabold text-lg text-slate-900">Welcome back, {user.name}!</h3>
+                    <h3 className="font-extrabold text-lg text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Welcome back, {user.name}!</h3>
                   </div>
                   <p className="text-slate-650 leading-relaxed font-medium text-sm">
                     This administrative dashboard allows you to seed new listings to the portal instantly. Newly created colleges will immediately support reviews, dynamic eligibility checks, compared actions, and brochures downloads on the frontend.
@@ -502,10 +506,10 @@ export default function AdminDashboard() {
                 <div className="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden text-left">
                   <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
                     <div>
-                      <h3 className="font-black text-slate-900 text-lg">Admissions Counselling Leads</h3>
-                      <p className="text-slate-500 text-xs mt-0.5 font-medium">Real-time dynamic updates of student query logs and callback requests.</p>
+                      <h3 className="font-black text-[#0F141E] text-lg font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Admissions Counselling Leads</h3>
+                      <p className="text-slate-500 text-xs mt-0.5 font-semibold">Real-time dynamic updates of student query logs and callback requests.</p>
                     </div>
-                    <span className="px-3.5 py-1.5 bg-[#110051] text-white rounded-xl text-xs font-bold w-fit">
+                    <span className="px-3.5 py-1.5 bg-[#0f71cd] text-white rounded-xl text-xs font-bold w-fit font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                       {counsellingRequests.length} Active Leads
                     </span>
                   </div>
@@ -606,7 +610,7 @@ export default function AdminDashboard() {
             {activeTab === 'add-college' && (
               <div className="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden">
                 <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                  <h3 className="font-black text-slate-900 text-lg">Add New College Profile</h3>
+                  <h3 className="font-black text-[#0F141E] text-lg font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Add New College Profile</h3>
                   <span className="text-xs font-bold text-slate-400">100% Dynamic Synchronization</span>
                 </div>
 
@@ -620,14 +624,14 @@ export default function AdminDashboard() {
 
                   {collegeError && (
                     <div className="p-4 bg-red-50 border border-red-100 text-red-700 rounded-2xl flex items-center gap-3 text-sm font-semibold">
-                      <AlertCircle className="shrink-0 text-red-600" size={18} />
+                      <AlertCircle className="shrink-0 text-red-650" size={18} />
                       {collegeError}
                     </div>
                   )}
 
                   {/* Section 1: Basic Info */}
                   <div className="space-y-6">
-                    <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest border-b pb-2">1. Basic Information</h4>
+                    <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest border-b pb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>1. Basic Information</h4>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="flex flex-col justify-between h-full space-y-1.5">
@@ -639,7 +643,7 @@ export default function AdminDashboard() {
                           value={collegeForm.name}
                           onChange={handleCollegeChange}
                           placeholder="e.g. Birla Institute of Technology & Science (BITS)"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -652,7 +656,7 @@ export default function AdminDashboard() {
                           value={collegeForm.location}
                           onChange={handleCollegeChange}
                           placeholder="e.g. Pilani, Rajasthan"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -662,7 +666,7 @@ export default function AdminDashboard() {
                           name="stream"
                           value={collegeForm.stream}
                           onChange={handleCollegeChange}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-semibold transition-all h-10"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-semibold transition-all h-10"
                         >
                           <option value="Engineering">Engineering</option>
                           <option value="Management">Management</option>
@@ -678,7 +682,7 @@ export default function AdminDashboard() {
                           name="ownership"
                           value={collegeForm.ownership}
                           onChange={handleCollegeChange}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-semibold transition-all h-10"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-semibold transition-all h-10"
                         >
                           <option value="Public/Government">Public/Government</option>
                           <option value="Private">Private</option>
@@ -694,7 +698,7 @@ export default function AdminDashboard() {
                           value={collegeForm.logo}
                           onChange={handleCollegeChange}
                           placeholder="e.g. https://domain.com/logo.png"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -706,7 +710,7 @@ export default function AdminDashboard() {
                           value={collegeForm.image}
                           onChange={handleCollegeChange}
                           placeholder="e.g. https://images.unsplash.com/photo-..."
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
                     </div>
@@ -719,14 +723,14 @@ export default function AdminDashboard() {
                         value={collegeForm.approvals}
                         onChange={handleCollegeChange}
                         placeholder="e.g. AICTE, UGC, NAAC A+"
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                       />
                     </div>
                   </div>
 
                   {/* Section 2: Stats & Key Metrics */}
                   <div className="space-y-6">
-                    <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest border-b pb-2">2. Stats & Key Metrics</h4>
+                    <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest border-b pb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>2. Stats & Key Metrics</h4>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                       <div className="flex flex-col justify-between h-full space-y-1.5">
@@ -737,7 +741,7 @@ export default function AdminDashboard() {
                           value={collegeForm.fees}
                           onChange={handleCollegeChange}
                           placeholder="e.g. ₹4.5 Lakhs / Yr"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -749,7 +753,7 @@ export default function AdminDashboard() {
                           value={collegeForm.package}
                           onChange={handleCollegeChange}
                           placeholder="e.g. ₹19.2 LPA Avg"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -761,7 +765,7 @@ export default function AdminDashboard() {
                           value={collegeForm.highestPackage}
                           onChange={handleCollegeChange}
                           placeholder="e.g. ₹72.0 LPA"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -773,7 +777,7 @@ export default function AdminDashboard() {
                           value={collegeForm.nirf}
                           onChange={handleCollegeChange}
                           placeholder="e.g. #20 Engineering"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -785,7 +789,7 @@ export default function AdminDashboard() {
                           value={collegeForm.rating}
                           onChange={handleCollegeChange}
                           placeholder="e.g. 4.7"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -797,15 +801,13 @@ export default function AdminDashboard() {
                           value={collegeForm.description}
                           onChange={handleCollegeChange}
                           placeholder="Brief tagline/one-line overview..."
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
                     </div>
-                  </div>
-
-                  {/* Section 3: Facilities Checkboxes */}
+                                    {/* Section 3: Facilities Checkboxes */}
                   <div className="space-y-4">
-                    <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest border-b pb-2">3. Campus Facilities</h4>
+                    <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest border-b pb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>3. Campus Facilities</h4>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {availableFacilities.map((fac) => {
                         const isChecked = !!collegeForm.facilities.find(f => f.name === fac.name);
@@ -814,7 +816,7 @@ export default function AdminDashboard() {
                             key={fac.name}
                             className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer text-xs font-bold transition-all ${
                               isChecked
-                                ? 'bg-indigo-50 border-[#110051] text-[#110051]'
+                                ? 'bg-blue-50 border-[#0f71cd] text-[#0f71cd]'
                                 : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100/50'
                             }`}
                           >
@@ -833,7 +835,7 @@ export default function AdminDashboard() {
 
                   {/* Section 4: Detailed About */}
                   <div className="space-y-1.5">
-                    <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest border-b pb-2 mb-2">4. Detailed Profile Biography</h4>
+                    <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest border-b pb-2 mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>4. Detailed Profile Biography</h4>
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">About the College</label>
                     <textarea
                       name="about"
@@ -841,22 +843,23 @@ export default function AdminDashboard() {
                       value={collegeForm.about}
                       onChange={handleCollegeChange}
                       placeholder="Detailed background history, student strength, ranking accomplishments, and overview..."
-                      className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all resize-none"
+                      className="w-full p-4 bg-slate-55 border border-slate-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all resize-none"
                     />
                   </div>
 
                   {/* Section 5: Dynamic Courses List */}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between border-b pb-2">
-                      <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest">5. Course Offerings & Intake Details</h4>
+                      <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>5. Course Offerings & Intake Details</h4>
                       <button
                         type="button"
                         onClick={() => addDynamicCollegeRow('courses')}
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-xl hover:bg-indigo-100 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0f71cd] bg-blue-50 px-3.5 py-1.5 rounded-xl hover:bg-blue-100 transition-colors cursor-pointer font-tt-talent"
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
                       >
                         <Plus size={12} /> Add Course
                       </button>
-                    </div>
+                    </div>  </div>
 
                     <div className="space-y-3">
                       {collegeForm.courses.map((course, idx) => (
@@ -869,7 +872,7 @@ export default function AdminDashboard() {
                                 value={course.name}
                                 onChange={(e) => handleDynamicCollegeFieldChange(idx, 'name', e.target.value, 'courses')}
                                 placeholder="e.g. B.Tech Computer Science"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                             <div className="space-y-1">
@@ -879,7 +882,7 @@ export default function AdminDashboard() {
                                 value={course.fees}
                                 onChange={(e) => handleDynamicCollegeFieldChange(idx, 'fees', e.target.value, 'courses')}
                                 placeholder="e.g. ₹2.2 Lakhs / yr"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                             <div className="space-y-1">
@@ -889,7 +892,7 @@ export default function AdminDashboard() {
                                 value={course.duration}
                                 onChange={(e) => handleDynamicCollegeFieldChange(idx, 'duration', e.target.value, 'courses')}
                                 placeholder="e.g. 4 Years"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                             <div className="space-y-1">
@@ -899,7 +902,7 @@ export default function AdminDashboard() {
                                 value={course.eligibility}
                                 onChange={(e) => handleDynamicCollegeFieldChange(idx, 'eligibility', e.target.value, 'courses')}
                                 placeholder="e.g. 10+2 with 75% + JEE"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                           </div>
@@ -919,11 +922,12 @@ export default function AdminDashboard() {
                   {/* Section 6: Dynamic Why Choose Us */}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between border-b pb-2">
-                      <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest">6. Why Choose Us Features</h4>
+                      <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>6. Why Choose Us Features</h4>
                       <button
                         type="button"
                         onClick={() => addDynamicCollegeRow('whyChoose')}
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-xl hover:bg-indigo-100 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0f71cd] bg-blue-50 px-3.5 py-1.5 rounded-xl hover:bg-blue-100 transition-colors cursor-pointer font-tt-talent"
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
                       >
                         <Plus size={12} /> Add Feature
                       </button>
@@ -940,7 +944,7 @@ export default function AdminDashboard() {
                                 value={why.title}
                                 onChange={(e) => handleDynamicCollegeFieldChange(idx, 'title', e.target.value, 'whyChoose')}
                                 placeholder="e.g. World-Class Faculty"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                             <div className="space-y-1 md:col-span-2">
@@ -950,7 +954,7 @@ export default function AdminDashboard() {
                                 value={why.desc}
                                 onChange={(e) => handleDynamicCollegeFieldChange(idx, 'desc', e.target.value, 'whyChoose')}
                                 placeholder="Describe why this feature stands out to students..."
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                           </div>
@@ -970,11 +974,12 @@ export default function AdminDashboard() {
                   {/* Section 7: Dynamic FAQs */}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between border-b pb-2">
-                      <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest">7. FAQ Accordion Items</h4>
+                      <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>7. FAQ Accordion Items</h4>
                       <button
                         type="button"
                         onClick={() => addDynamicCollegeRow('faqs')}
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-xl hover:bg-indigo-100 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0f71cd] bg-blue-50 px-3.5 py-1.5 rounded-xl hover:bg-blue-100 transition-colors cursor-pointer font-tt-talent"
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
                       >
                         <Plus size={12} /> Add FAQ
                       </button>
@@ -991,7 +996,7 @@ export default function AdminDashboard() {
                                 value={faq.q}
                                 onChange={(e) => handleDynamicCollegeFieldChange(idx, 'q', e.target.value, 'faqs')}
                                 placeholder="e.g. What is the intake capacity?"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                             <div className="space-y-1">
@@ -1001,7 +1006,7 @@ export default function AdminDashboard() {
                                 value={faq.a}
                                 onChange={(e) => handleDynamicCollegeFieldChange(idx, 'a', e.target.value, 'faqs')}
                                 placeholder="Provide the detailed answer to help student queries..."
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                           </div>
@@ -1023,7 +1028,8 @@ export default function AdminDashboard() {
                     <button
                       type="submit"
                       disabled={submittingCollege}
-                      className="px-8 py-3.5 bg-[#110051] hover:bg-[#1a0073] text-white text-sm font-bold rounded-xl transition-all duration-300 disabled:opacity-50 flex items-center gap-2 cursor-pointer shadow-md"
+                      className="px-8 py-3.5 bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-sm font-bold rounded-xl transition-all duration-300 disabled:opacity-50 flex items-center gap-2 cursor-pointer shadow-md font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       {submittingCollege ? 'Creating Profile...' : 'Create College Profile'}
                     </button>
@@ -1031,12 +1037,11 @@ export default function AdminDashboard() {
                 </form>
               </div>
             )}
-
-            {/* ADD EXAM TAB */}
+                  {/* ADD EXAM TAB */}
             {activeTab === 'add-exam' && (
               <div className="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden">
                 <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                  <h3 className="font-black text-slate-900 text-lg">Create Entrance Exam Portal</h3>
+                  <h3 className="font-black text-[#0F141E] text-lg font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Create Entrance Exam Portal</h3>
                   <span className="text-xs font-bold text-slate-400">Manage Admissions Tests</span>
                 </div>
 
@@ -1050,14 +1055,14 @@ export default function AdminDashboard() {
 
                   {examError && (
                     <div className="p-4 bg-red-50 border border-red-100 text-red-700 rounded-2xl flex items-center gap-3 text-sm font-semibold">
-                      <AlertCircle className="shrink-0 text-red-600" size={18} />
+                      <AlertCircle className="shrink-0 text-red-650" size={18} />
                       {examError}
                     </div>
                   )}
 
                   {/* Section 1: Basic Exam Info */}
                   <div className="space-y-4">
-                    <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest border-b pb-2">1. Exam Information</h4>
+                    <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest border-b pb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>1. Exam Information</h4>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
@@ -1069,7 +1074,7 @@ export default function AdminDashboard() {
                           value={examForm.name}
                           onChange={handleExamChange}
                           placeholder="e.g. BITSAT"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -1082,7 +1087,7 @@ export default function AdminDashboard() {
                           value={examForm.fullTitle}
                           onChange={handleExamChange}
                           placeholder="e.g. BITS Admission Test"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
                     </div>
@@ -1094,7 +1099,7 @@ export default function AdminDashboard() {
                           name="category"
                           value={examForm.category}
                           onChange={handleExamChange}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-semibold transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-semibold transition-all"
                         >
                           <option value="Engineering">Engineering</option>
                           <option value="Management">Management</option>
@@ -1110,7 +1115,7 @@ export default function AdminDashboard() {
                           name="level"
                           value={examForm.level}
                           onChange={handleExamChange}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-semibold transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-semibold transition-all"
                         >
                           <option value="National">National</option>
                           <option value="State">State</option>
@@ -1126,7 +1131,7 @@ export default function AdminDashboard() {
                           value={examForm.mode}
                           onChange={handleExamChange}
                           placeholder="e.g. Online / CBT or Offline"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
                     </div>
@@ -1140,7 +1145,7 @@ export default function AdminDashboard() {
                           value={examForm.conductingBody}
                           onChange={handleExamChange}
                           placeholder="e.g. BITS Pilani"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -1152,7 +1157,7 @@ export default function AdminDashboard() {
                           value={examForm.applicants}
                           onChange={handleExamChange}
                           placeholder="e.g. 3.2 Lakhs"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -1164,7 +1169,7 @@ export default function AdminDashboard() {
                           value={examForm.duration}
                           onChange={handleExamChange}
                           placeholder="e.g. 3 Hours"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
 
@@ -1176,7 +1181,7 @@ export default function AdminDashboard() {
                           value={examForm.frequency}
                           onChange={handleExamChange}
                           placeholder="e.g. Once a year"
-                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                         />
                       </div>
                     </div>
@@ -1184,7 +1189,7 @@ export default function AdminDashboard() {
 
                   {/* Section 2: Detailed Overview */}
                   <div className="space-y-1.5">
-                    <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest border-b pb-2 mb-2">2. Detailed Exam Overview</h4>
+                    <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest border-b pb-2 mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>2. Detailed Exam Overview</h4>
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Overview Description</label>
                     <textarea
                       name="overview"
@@ -1192,18 +1197,19 @@ export default function AdminDashboard() {
                       value={examForm.overview}
                       onChange={handleExamChange}
                       placeholder="Detailed overview about what this exam checks, test syllabus structure, and scoring guidelines..."
-                      className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#110051]/30 focus:bg-white text-sm font-medium transition-all resize-none"
+                      className="w-full p-4 bg-slate-55 border border-slate-200 rounded-2xl outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all resize-none"
                     />
                   </div>
 
                   {/* Section 3: Dynamic Highlights */}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between border-b pb-2">
-                      <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest">3. Exam Highlights (Quick Facts)</h4>
+                      <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>3. Exam Highlights (Quick Facts)</h4>
                       <button
                         type="button"
                         onClick={() => addDynamicExamRow('highlights')}
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-xl hover:bg-indigo-100 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0f71cd] bg-blue-50 px-3.5 py-1.5 rounded-xl hover:bg-blue-100 transition-colors cursor-pointer font-tt-talent"
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
                       >
                         <Plus size={12} /> Add Highlight
                       </button>
@@ -1220,7 +1226,7 @@ export default function AdminDashboard() {
                                 value={high.label}
                                 onChange={(e) => handleDynamicExamFieldChange(idx, 'label', e.target.value, 'highlights')}
                                 placeholder="e.g. Negative Marking"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                             <div className="space-y-1">
@@ -1230,7 +1236,7 @@ export default function AdminDashboard() {
                                 value={high.value}
                                 onChange={(e) => handleDynamicExamFieldChange(idx, 'value', e.target.value, 'highlights')}
                                 placeholder="e.g. Yes (-1 mark for wrong answers)"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                           </div>
@@ -1250,11 +1256,12 @@ export default function AdminDashboard() {
                   {/* Section 4: Dynamic Important Dates */}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between border-b pb-2">
-                      <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest">4. Important Dates & Calendar Events</h4>
+                      <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>4. Important Dates & Calendar Events</h4>
                       <button
                         type="button"
                         onClick={() => addDynamicExamRow('dates')}
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-xl hover:bg-indigo-100 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0f71cd] bg-blue-50 px-3.5 py-1.5 rounded-xl hover:bg-blue-100 transition-colors cursor-pointer font-tt-talent"
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
                       >
                         <Plus size={12} /> Add Date
                       </button>
@@ -1271,7 +1278,7 @@ export default function AdminDashboard() {
                                 value={dateObj.event}
                                 onChange={(e) => handleDynamicExamFieldChange(idx, 'event', e.target.value, 'dates')}
                                 placeholder="e.g. Registration Window"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                             <div className="space-y-1">
@@ -1281,7 +1288,7 @@ export default function AdminDashboard() {
                                 value={dateObj.date}
                                 onChange={(e) => handleDynamicExamFieldChange(idx, 'date', e.target.value, 'dates')}
                                 placeholder="e.g. January 15 - February 20, 2026"
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#110051]"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium outline-none focus:border-[#0f71cd]"
                               />
                             </div>
                             <div className="space-y-1">
@@ -1289,7 +1296,7 @@ export default function AdminDashboard() {
                               <select
                                 value={dateObj.status}
                                 onChange={(e) => handleDynamicExamFieldChange(idx, 'status', e.target.value, 'dates')}
-                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold outline-none focus:border-[#110051] h-9"
+                                className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-semibold outline-none focus:border-[#0f71cd] h-9"
                               >
                                 <option value="upcoming">Upcoming</option>
                                 <option value="active">Active</option>
@@ -1315,7 +1322,8 @@ export default function AdminDashboard() {
                     <button
                       type="submit"
                       disabled={submittingExam}
-                      className="px-8 py-3.5 bg-[#110051] hover:bg-[#1a0073] text-white text-sm font-bold rounded-xl transition-all duration-300 disabled:opacity-50 flex items-center gap-2 cursor-pointer shadow-md"
+                      className="px-8 py-3.5 bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-sm font-bold rounded-xl transition-all duration-300 disabled:opacity-50 flex items-center gap-2 cursor-pointer shadow-md font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       {submittingExam ? 'Creating Portal...' : 'Create Exam Portal'}
                     </button>
@@ -1329,21 +1337,21 @@ export default function AdminDashboard() {
               <div className="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden text-left">
                 <div className="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
                   <div>
-                    <h3 className="font-black text-slate-900 text-lg">Manage College Listings</h3>
-                    <p className="text-slate-500 text-xs mt-0.5 font-medium">Delete listings from the database dynamically.</p>
+                    <h3 className="font-black text-[#0F141E] text-lg font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Manage College Listings</h3>
+                    <p className="text-slate-500 text-xs mt-0.5 font-semibold">Delete listings from the database dynamically.</p>
                   </div>
-                  <span className="px-3.5 py-1.5 bg-[#110051] text-white rounded-xl text-xs font-bold w-fit">
+                  <span className="px-3.5 py-1.5 bg-[#0f71cd] text-white rounded-xl text-xs font-bold w-fit font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                     {colleges.length} Total Colleges
                   </span>
                 </div>
 
                 {loadingStats ? (
                   <div className="p-12 text-center text-slate-400 font-medium text-sm flex items-center justify-center gap-2">
-                    <div className="w-5 h-5 rounded-full border-2 border-indigo-600 border-t-transparent animate-spin"></div>
+                    <div className="w-5 h-5 rounded-full border-2 border-[#0f71cd] border-t-transparent animate-spin"></div>
                     Loading database colleges...
                   </div>
                 ) : colleges.length === 0 ? (
-                  <div className="p-12 text-center text-slate-400 font-medium text-sm">
+                  <div className="p-12 text-center text-slate-400 font-semibold text-sm">
                     No colleges found in the database.
                   </div>
                 ) : (
@@ -1364,7 +1372,7 @@ export default function AdminDashboard() {
                           <tr key={col.id || col._id} className="hover:bg-slate-50/70 transition-colors group">
                             <td className="px-6 py-4">
                               <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-[#110051]/5 border border-[#110051]/10 text-[#110051] flex items-center justify-center font-bold text-sm shrink-0">
+                                <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 flex items-center justify-center font-bold text-sm shrink-0">
                                   {col.logo ? (
                                     col.logo.startsWith('http') ? (
                                       <img src={col.logo} alt="" className="w-full h-full object-contain rounded-xl" />
@@ -1375,7 +1383,7 @@ export default function AdminDashboard() {
                                     col.name.split(' ').map(w => w.charAt(0)).join('').toUpperCase().substring(0, 3)
                                   )}
                                 </div>
-                                <div className="font-extrabold text-slate-900 text-sm">{col.name}</div>
+                                <div className="font-extrabold text-[#0F141E] text-sm">{col.name}</div>
                               </div>
                             </td>
                             <td className="px-6 py-4 text-xs font-bold text-slate-600">

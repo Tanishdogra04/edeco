@@ -231,11 +231,11 @@ export default function CourseDetail() {
       <div className="bg-white border-b border-slate-200 pt-24 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center text-sm text-slate-500 gap-2 overflow-x-auto whitespace-nowrap hide-scrollbar">
-            <Link to="/" className="hover:text-brand-600 transition-colors">Home</Link>
+            <Link to="/" className="hover:text-[#0f71cd] transition-colors">Home</Link>
             <ChevronRight size={14} />
-            <span className="text-slate-900 font-medium">Courses</span>
+            <span className="text-[#0F141E] font-medium">Courses</span>
             <ChevronRight size={14} />
-            <span className="text-slate-900 font-medium">{course.name}</span>
+            <span className="text-[#0F141E] font-medium">{course.name}</span>
           </div>
         </div>
       </div>
@@ -245,7 +245,7 @@ export default function CourseDetail() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
+              <h1 className="text-3xl md:text-4xl font-bold text-[#0F141E] mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 {course.title}
               </h1>
               <p className="text-slate-500 text-sm md:text-base max-w-2xl">
@@ -253,9 +253,9 @@ export default function CourseDetail() {
               </p>
             </div>
             <div className="flex gap-4">
-              <div className="bg-brand-50 rounded-xl p-4 text-center border border-brand-100">
-                <p className="text-xl font-bold text-brand-700">{course.stats.totalColleges}</p>
-                <p className="text-xs font-semibold text-brand-600 uppercase tracking-wide">Colleges</p>
+              <div className="bg-[#0f71cd]/5 rounded-xl p-4 text-center border border-[#0f71cd]/10">
+                <p className="text-xl font-bold text-[#0f71cd]" style={{ fontFamily: '"TT Talent", sans-serif' }}>{course.stats.totalColleges}</p>
+                <p className="text-xs font-semibold text-[#0f71cd] uppercase tracking-wide">Colleges</p>
               </div>
             </div>
           </div>
@@ -267,10 +267,11 @@ export default function CourseDetail() {
         
         {/* Mobile Filter Toggle */}
         <div className="lg:hidden flex items-center justify-between mb-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <span className="font-bold text-slate-800">Filter Colleges</span>
+          <span className="font-bold text-[#0F141E]">Filter Colleges</span>
           <button 
             onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-            className="flex items-center gap-2 bg-brand-50 text-brand-600 px-4 py-2 rounded-lg font-semibold"
+            className="flex items-center gap-2 bg-[#0f71cd]/10 text-[#0f71cd] px-4 py-2 rounded-lg font-semibold font-tt-talent"
+            style={{ fontFamily: '"TT Talent", sans-serif' }}
           >
             <Filter size={18} /> Filters
           </button>
@@ -282,12 +283,12 @@ export default function CourseDetail() {
           <div className={`lg:col-span-1 space-y-6 ${mobileFilterOpen ? 'block' : 'hidden lg:block'}`}>
             <div className="bg-white border border-slate-200 rounded-2xl p-5 lg:sticky lg:top-24 shadow-sm max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
-                <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                  <Filter size={20} className="text-brand-600" /> Filters
+                <h2 className="text-lg font-bold text-[#0F141E] flex items-center gap-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+                  <Filter size={20} className="text-[#0f71cd]" /> Filters
                 </h2>
                 <button 
                   onClick={clearFilters}
-                  className="text-sm font-semibold text-brand-600 hover:text-brand-700"
+                  className="text-sm font-semibold text-[#0f71cd] hover:text-[#0c62b2]"
                 >
                   Clear All
                 </button>
@@ -304,7 +305,7 @@ export default function CourseDetail() {
                   <div key={key} className="mb-6 last:mb-0">
                     <button 
                       onClick={() => toggleFilterCollapse(key)}
-                      className="w-full font-bold text-slate-800 uppercase tracking-wider text-xs mb-3 flex items-center justify-between hover:text-brand-600 transition-colors"
+                      className="w-full font-bold text-slate-800 uppercase tracking-wider text-xs mb-3 flex items-center justify-between hover:text-[#0f71cd] transition-colors"
                     >
                       {key} <ChevronDown size={14} className={`text-slate-400 transition-transform duration-300 ${collapsedFilters[key] ? 'rotate-180' : ''}`} />
                     </button>
@@ -319,7 +320,7 @@ export default function CourseDetail() {
                             placeholder={`Search ${key}...`} 
                             value={searchQueries[key]}
                             onChange={(e) => handleSearchChange(key, e)}
-                            className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-brand-500"
+                            className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-[#0f71cd]"
                           />
                         </div>
                       )}
@@ -332,10 +333,10 @@ export default function CourseDetail() {
                                 type="checkbox" 
                                 checked={activeFilters[key].includes(opt)}
                                 onChange={() => handleFilterChange(key, opt)}
-                                className="w-4 h-4 border-slate-300 rounded text-brand-600 focus:ring-brand-500 peer" 
+                                className="w-4 h-4 border-slate-300 rounded text-[#0f71cd] focus:ring-[#0f71cd] peer" 
                               />
                             </div>
-                            <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors">{opt}</span>
+                            <span className="text-sm text-slate-600 group-hover:text-[#0F141E] transition-colors">{opt}</span>
                           </label>
                         )) : (
                           <p className="text-xs text-slate-400">No matches found.</p>
@@ -357,7 +358,8 @@ export default function CourseDetail() {
                 <button 
                   key={i} 
                   onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                  className={`whitespace-nowrap px-4 py-2 border rounded-full text-sm font-medium transition-colors shadow-sm ${activeTag === tag ? 'bg-brand-600 text-white border-brand-600' : 'bg-white border-slate-200 text-slate-600 hover:border-brand-600 hover:text-brand-600'}`}
+                  className={`whitespace-nowrap px-4 py-2 border rounded-full text-sm font-medium transition-colors shadow-sm font-tt-talent ${activeTag === tag ? 'bg-[#0f71cd] text-white border-[#0f71cd]' : 'bg-white border-slate-200 text-slate-600 hover:border-[#0f71cd] hover:text-[#0f71cd]'}`}
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   {tag}
                 </button>
@@ -366,13 +368,13 @@ export default function CourseDetail() {
 
             {/* Sort & Count Header */}
             <div className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-              <p className="text-sm text-slate-500 font-medium">Found <span className="font-bold text-slate-900">{filteredColleges.length}</span> Colleges</p>
+              <p className="text-sm text-slate-500 font-medium">Found <span className="font-bold text-[#0F141E]">{filteredColleges.length}</span> Colleges</p>
               <div className="flex items-center gap-3">
                 <span className="hidden sm:inline text-sm text-slate-500">Sort By:</span>
                 <select 
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="text-sm font-semibold text-slate-900 bg-slate-50 border border-slate-200 py-1.5 px-3 rounded-lg focus:outline-none focus:border-brand-500"
+                  className="text-sm font-semibold text-[#0F141E] bg-slate-50 border border-slate-200 py-1.5 px-3 rounded-lg focus:outline-none focus:border-[#0f71cd]"
                 >
                   <option value="popularity">Popularity</option>
                   <option value="rating">Rating (High to Low)</option>
@@ -385,12 +387,12 @@ export default function CourseDetail() {
             {/* College Cards List */}
             <div className="space-y-5">
               {filteredColleges.length > 0 ? filteredColleges.map((college, i) => (
-                <div key={i} className="bg-white rounded-2xl border border-brand-200 shadow-sm hover:shadow-xl hover:border-brand-500/40 transition-all overflow-hidden flex flex-col md:flex-row text-left group">
+                <div key={i} className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#0f71cd]/40 transition-all overflow-hidden flex flex-col md:flex-row text-left group">
                   
                   {/* Image/Logo area (Left) */}
                   <div className="md:w-64 h-48 md:h-auto relative bg-slate-100 flex-shrink-0">
                     <img src={college.image || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80'} alt={college.name || 'College Image'} className="w-full h-full object-cover" />
-                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 flex items-center gap-1 shadow-sm">
+                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-[#0F141E] flex items-center gap-1 shadow-sm">
                        <Star size={12} className="text-orange-500 fill-orange-500" /> {college.rating} ({college.reviews})
                     </div>
                   </div>
@@ -399,34 +401,34 @@ export default function CourseDetail() {
                   <div className="p-5 md:p-6 flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-start gap-4 mb-2">
-                        <Link to={`/colleges/${college.id}`} className="hover:text-brand-500 transition-colors">
-                          <h3 className="text-xl font-bold text-brand-800 leading-tight group-hover:text-brand-500 transition-colors">{college.name}</h3>
+                        <Link to={`/colleges/${college.id}`} className="hover:text-[#0f71cd] transition-colors">
+                          <h3 className="text-xl font-bold text-[#0F141E] leading-tight group-hover:text-[#0f71cd] transition-colors font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{college.name}</h3>
                         </Link>
                       </div>
                       
-                      <div className="flex items-center gap-4 text-sm text-brand-800/60 mb-4 flex-wrap">
-                        <span className="flex items-center gap-1"><MapPin size={14} className="text-brand-800/40" /> {college.location}</span>
-                        <span className="flex items-center gap-1"><ShieldCheck size={14} className="text-brand-500" /> {college.approved}</span>
-                        <span className="flex items-center gap-1"><Building2 size={14} className="text-brand-500" /> {college.type}</span>
+                      <div className="flex items-center gap-4 text-sm text-[#0F141E]/60 mb-4 flex-wrap">
+                        <span className="flex items-center gap-1"><MapPin size={14} className="text-slate-400" /> {college.location}</span>
+                        <span className="flex items-center gap-1"><ShieldCheck size={14} className="text-[#0f71cd]" /> {college.approved}</span>
+                        <span className="flex items-center gap-1"><Building2 size={14} className="text-[#0f71cd]" /> {college.type}</span>
                       </div>
 
                       <div className="flex items-center gap-4 sm:gap-6 mb-6">
-                        <div className="bg-brand-50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-brand-200 flex-1">
-                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-brand-800/50 mb-0.5 flex items-center gap-1"><Banknote size={12}/> First Year Fees</p>
-                          <p className="font-black text-brand-800 text-sm sm:text-base">{college.fees}</p>
+                        <div className="bg-slate-50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-slate-100 flex-1">
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-slate-500 mb-0.5 flex items-center gap-1"><Banknote size={12}/> First Year Fees</p>
+                          <p className="font-black text-[#0f71cd] text-sm sm:text-base">{college.fees}</p>
                         </div>
-                        <div className="bg-brand-50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-brand-200 flex-1">
-                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-brand-800/50 mb-0.5 flex items-center gap-1"><Award size={12}/> Average Package</p>
-                          <p className="font-black text-brand-800 text-sm sm:text-base">{college.placement}</p>
+                        <div className="bg-slate-50 px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg border border-slate-100 flex-1">
+                          <p className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-slate-500 mb-0.5 flex items-center gap-1"><Award size={12}/> Average Package</p>
+                          <p className="font-black text-[#0f71cd] text-sm sm:text-base">{college.placement}</p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-brand-200">
-                      <button onClick={() => { setSelectedCollegeForApply(college); setIsApplyOpen(true); }} className="w-full sm:flex-1 bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm cursor-pointer">
+                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-slate-100">
+                      <button onClick={() => { setSelectedCollegeForApply(college); setIsApplyOpen(true); }} className="w-full sm:flex-1 bg-[#0f71cd] hover:bg-[#0c62b2] text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-sm cursor-pointer font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                         Apply Now <ArrowRight size={16} />
                       </button>
-                      <button className="w-full sm:flex-1 bg-white hover:bg-brand-50 text-brand-800 border border-brand-200 font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer">
+                      <button className="w-full sm:flex-1 bg-white hover:bg-slate-50 text-[#0F141E] border border-slate-200 font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                         <Download size={16} /> Download Brochure
                       </button>
                     </div>
@@ -438,11 +440,12 @@ export default function CourseDetail() {
                   <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
                     <Search size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">No colleges found</h3>
+                  <h3 className="text-xl font-bold text-[#0F141E] mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>No colleges found</h3>
                   <p className="text-slate-500 mb-6">Try adjusting your filters or search criteria.</p>
                   <button 
                     onClick={clearFilters}
-                    className="bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold py-2.5 px-6 rounded-xl transition-colors"
+                    className="bg-[#0f71cd]/10 hover:bg-[#0f71cd]/20 text-[#0f71cd] font-bold py-2.5 px-6 rounded-xl transition-colors font-tt-talent"
+                    style={{ fontFamily: '"TT Talent", sans-serif' }}
                   >
                     Clear All Filters
                   </button>

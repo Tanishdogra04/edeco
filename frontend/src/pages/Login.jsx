@@ -55,7 +55,7 @@ export default function Login() {
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center">
-        <Loader2 className="w-10 h-10 animate-spin text-[#110051] mb-3" />
+        <Loader2 className="w-10 h-10 animate-spin text-[#0f71cd] mb-3" />
         <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Verifying Session...</span>
       </div>
     );
@@ -71,7 +71,7 @@ export default function Login() {
 
   const strength = getPasswordStrength();
   const strengthLabels = ['Enter password', 'Weak (Minimum 6 characters)', 'Good', 'Strong'];
-  const strengthColors = ['bg-slate-200', 'bg-red-400', 'bg-yellow-400', 'bg-emerald-500'];
+  const strengthColors = ['bg-slate-200', 'bg-red-400', 'bg-yellow-400', 'bg-[#0f71cd]'];
 
   const validateForm = () => {
     let errors = {};
@@ -196,12 +196,12 @@ export default function Login() {
   ==================================================== */
   if (isLoggedIn && user) {
     return (
-      <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-slate-100 selection:text-slate-900">
+      <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-[#0f71cd]/10 selection:text-[#0F141E] text-[#0F141E]">
         {/* Dashboard Top Navigation */}
         <div className="bg-white border-b border-slate-200 py-4 px-6 md:px-12 flex items-center justify-between sticky top-0 z-10 shadow-sm">
           <Link to="/" className="flex items-center gap-1.5 hover:opacity-90 transition-opacity">
-            <span className="font-display font-black text-2xl tracking-tight text-slate-900">
-              edeco<span className="text-emerald-500 font-black">.</span>
+            <span className="font-tt-talent font-black text-2xl tracking-tight text-[#0F141E]" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+              edeco<span className="text-[#0f71cd] font-black">.</span>
             </span>
           </Link>
           <button 
@@ -209,7 +209,8 @@ export default function Login() {
               logout();
               navigate('/');
             }}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-700 text-sm font-bold transition-all cursor-pointer border border-slate-200 hover:border-red-100"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-red-50 hover:text-red-650 text-slate-700 text-sm font-bold transition-all cursor-pointer border border-slate-200 hover:border-red-100 font-tt-talent"
+            style={{ fontFamily: '"TT Talent", sans-serif' }}
           >
             <LogOut size={16} />
             <span>Sign Out</span>
@@ -229,7 +230,7 @@ export default function Login() {
                     <Sparkles size={14} />
                   </div>
                 </div>
-                <h3 className="text-xl font-black text-slate-900">{user.name}</h3>
+                <h3 className="text-xl font-black text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{user.name}</h3>
                 <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mt-1">{user.email}</p>
                 <span className="inline-block mt-3 px-3 py-1 bg-slate-100 border border-slate-200 text-slate-600 text-[10px] uppercase tracking-wider font-bold rounded-lg">
                   Registered {user.estd}
@@ -244,7 +245,7 @@ export default function Login() {
                     type="text" 
                     value={editName}
                     onChange={(e) => setEditName(e.target.value)}
-                    className="w-full mt-1.5 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:border-slate-800 focus:bg-white outline-none transition-all font-semibold text-slate-900 text-sm"
+                    className="w-full mt-1.5 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all font-semibold text-[#0F141E] text-sm"
                   />
                 </div>
                 <button
@@ -255,7 +256,8 @@ export default function Login() {
                       setTimeout(() => setProfileSuccess(false), 2000);
                     }
                   }}
-                  className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-3 rounded-xl text-xs transition-all duration-300 cursor-pointer"
+                  className="w-full bg-[#0f71cd] hover:bg-[#0c62b2] text-white font-bold py-3 rounded-xl text-xs transition-all duration-300 cursor-pointer font-tt-talent"
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   Save Display Name
                 </button>
@@ -276,7 +278,7 @@ export default function Login() {
             </div>
 
             <div className="mt-12 pt-6 border-t border-slate-100 text-center text-xs text-slate-400 font-semibold flex items-center justify-center gap-2">
-              <ShieldCheck size={16} className="text-emerald-500" />
+              <ShieldCheck size={16} className="text-[#0f71cd]" />
               Verified Student Session
             </div>
           </div>
@@ -286,7 +288,7 @@ export default function Login() {
             <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
               <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
                 <div>
-                  <h3 className="text-lg font-black text-slate-900">Active Applications</h3>
+                  <h3 className="text-lg font-black text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Active Applications</h3>
                   <p className="text-xs text-slate-400 font-semibold">Track your application review status with edeco. partners</p>
                 </div>
                 <span className="px-3 py-1.5 bg-slate-100 rounded-xl text-slate-700 text-xs font-bold border border-slate-200">
@@ -297,12 +299,12 @@ export default function Login() {
               <div className="space-y-4">
                 {mockApplications.map((app, i) => (
                   <div key={i} className="p-5 border border-slate-200 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 hover:border-slate-350 transition-colors">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center font-display font-black text-xs shrink-0">
+                    <div className="flex items-start gap-4 text-left">
+                      <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center font-tt-talent font-black text-xs shrink-0" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                         {app.college.split(' ').map(w => w[0]).join('').substring(0, 3)}
                       </div>
                       <div>
-                        <h4 className="font-extrabold text-slate-900 text-base">{app.college}</h4>
+                        <h4 className="font-extrabold text-[#0F141E] text-base font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{app.college}</h4>
                         <p className="text-xs text-slate-400 font-semibold mt-0.5">{app.course}</p>
                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-2">Applied on {app.date}</p>
                       </div>
@@ -311,7 +313,7 @@ export default function Login() {
                       <span className={`px-3 py-1 rounded-full text-xs font-extrabold border ${app.color}`}>
                         {app.status}
                       </span>
-                      <button className="px-4 py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl border border-slate-200 transition-colors">
+                      <button className="px-4 py-2 bg-slate-50 hover:bg-slate-100 text-[#0F141E] text-xs font-bold rounded-xl border border-slate-200 transition-colors font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                         Details
                       </button>
                     </div>
@@ -321,16 +323,16 @@ export default function Login() {
             </div>
 
             {/* Quick Consulting Banner */}
-            <div className="bg-slate-950 rounded-3xl p-8 text-white relative overflow-hidden shadow-lg">
+            <div className="bg-[#0F141E] rounded-3xl p-8 text-white relative overflow-hidden shadow-lg text-left">
               <div className="absolute top-0 right-0 w-64 h-64 bg-slate-800/40 rounded-full blur-3xl"></div>
-              <h3 className="text-xl font-black mb-2 flex items-center gap-2">
-                <Sparkles size={20} className="text-brand-300 animate-pulse" />
+              <h3 className="text-xl font-black mb-2 flex items-center gap-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+                <Sparkles size={20} className="text-[#0f71cd] animate-pulse" />
                 Want an application review?
               </h3>
               <p className="text-slate-300 text-sm leading-relaxed max-w-lg mb-6 font-medium">
                 Connect with our premium advisors to review your application form details, review essays, and double-check course eligibility before submission.
               </p>
-              <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-slate-950 font-bold px-6 py-3 rounded-xl text-xs hover:bg-slate-100 transition-all">
+              <Link to="/contact" className="inline-flex items-center gap-2 bg-[#0f71cd] text-white hover:bg-[#0c62b2] font-bold px-6 py-3 rounded-xl text-xs transition-all font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 Schedule Consultation <ArrowRight size={14} />
               </Link>
             </div>
@@ -348,16 +350,16 @@ export default function Login() {
     <div className="min-h-screen lg:h-screen lg:overflow-hidden bg-slate-50 flex">
       
       {/* Left Side - Visuals & Branding */}
-      <div className="hidden lg:flex lg:w-1/2 lg:h-screen relative bg-gradient-to-br from-[#110051] to-[#1e1a4f] p-8 flex-col justify-between overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 lg:h-screen relative bg-[#0F141E] p-8 flex-col justify-between overflow-hidden">
         {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-purple/10 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-mint/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0f71cd]/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#0f71cd]/5 rounded-full blur-[100px] pointer-events-none"></div>
 
         {/* Top Header */}
         <div className="relative z-10 text-left">
           <Link to="/" className="flex items-center gap-1.5 hover:opacity-90 transition-opacity">
-            <span className="font-display font-black text-3xl tracking-tight text-white">
-              edeco<span className="text-[#6affd9] font-black">.</span>
+            <span className="font-tt-talent font-black text-3xl tracking-tight text-white" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+              edeco<span className="text-[#0f71cd] font-black">.</span>
             </span>
           </Link>
         </div>
@@ -373,7 +375,7 @@ export default function Login() {
               transition={{ duration: 0.3 }}
               className="space-y-4 text-left"
             >
-              <h1 className="text-4xl font-display font-black leading-tight text-white">
+              <h1 className="text-4xl font-tt-talent font-black leading-tight text-white" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 {isLogin ? "Learn Smarter,\nAchieve More" : "Start your journey today."}
               </h1>
               <p className="text-slate-300 text-sm font-medium leading-relaxed">
@@ -387,19 +389,19 @@ export default function Login() {
           {/* Bullet Points */}
           <div className="space-y-3 pt-1 text-left">
             <div className="flex items-center gap-3 text-slate-100">
-              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#6affd9] border border-white/5 shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#0f71cd] border border-white/5 shrink-0">
                 <GraduationCap size={16} />
               </div>
               <span className="text-xs font-bold">Expert Admissions Advisors</span>
             </div>
             <div className="flex items-center gap-3 text-slate-100">
-              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#6affd9] border border-white/5 shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#0f71cd] border border-white/5 shrink-0">
                 <Sparkles size={16} />
               </div>
               <span className="text-xs font-bold">Real-time Application Trackers</span>
             </div>
             <div className="flex items-center gap-3 text-slate-100">
-              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#6affd9] border border-white/5 shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#0f71cd] border border-white/5 shrink-0">
                 <Globe size={16} />
               </div>
               <span className="text-xs font-bold">Global Universities & Cutoff Insights</span>
@@ -438,10 +440,10 @@ export default function Login() {
       <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-between p-5 sm:p-8 lg:p-10 bg-white overflow-y-auto">
         
         {/* Top Header Row */}
-        <div className="flex items-center justify-between w-full shrink-0 mb-3">
+        <div className="flex items-center justify-between w-full shrink-0 mb-3 text-left">
           <Link to="/" className="lg:hidden flex items-center gap-1.5">
-            <span className="font-display font-black text-2xl tracking-tight text-slate-900">
-              edeco<span className="text-brand-500 font-black">.</span>
+            <span className="font-tt-talent font-black text-2xl tracking-tight text-[#0F141E]" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+              edeco<span className="text-[#0f71cd] font-black">.</span>
             </span>
           </Link>
           <div className="hidden lg:block" />
@@ -457,7 +459,8 @@ export default function Login() {
                 setError('');
                 setValidationErrors({});
               }}
-              className="px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-800 text-xs font-bold transition-all shadow-xs cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:bg-slate-100 text-[#0F141E] text-xs font-bold transition-all shadow-xs cursor-pointer font-tt-talent"
+              style={{ fontFamily: '"TT Talent", sans-serif' }}
             >
               {isLogin ? "Create Account" : "Sign In"}
             </button>
@@ -480,11 +483,11 @@ export default function Login() {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1, rotate: 360 }}
                   transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                  className="w-16 h-16 rounded-full bg-emerald-50 border-4 border-emerald-500/20 flex items-center justify-center text-emerald-600 mb-6 shadow-md shadow-emerald-500/10"
+                  className="w-16 h-16 rounded-full bg-[#0f71cd]/10 border-4 border-[#0f71cd]/20 flex items-center justify-center text-[#0f71cd] mb-6 shadow-md shadow-[#0f71cd]/10"
                 >
                   <Check size={32} className="stroke-[3]" />
                 </motion.div>
-                <h3 className="text-xl font-black text-slate-900 mb-2">
+                <h3 className="text-xl font-black text-[#0F141E] mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                   {isLogin ? "Welcome Back!" : "Account Created!"}
                 </h3>
                 <p className="text-xs text-slate-500 font-semibold max-w-xs">
@@ -493,7 +496,7 @@ export default function Login() {
                     : "Registration successful. Redirecting you to home..."}
                 </p>
                 <div className="mt-8 flex items-center justify-center gap-2 text-slate-400">
-                  <Loader2 size={16} className="animate-spin text-slate-900" />
+                  <Loader2 size={16} className="animate-spin text-[#0F141E]" />
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Connecting to session...</span>
                 </div>
               </motion.div>
@@ -507,7 +510,7 @@ export default function Login() {
             className="space-y-4"
           >
             <div className="text-left">
-              <h2 className="text-2xl font-black text-slate-900 mb-1">
+              <h2 className="text-2xl font-black text-[#0F141E] mb-1 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 {isLogin ? "Welcome back" : signupStep === 1 ? "Create your account" : "Verify your email"}
               </h2>
               <p className="text-xs text-slate-450 font-bold">
@@ -559,8 +562,8 @@ export default function Login() {
                               value={name}
                               onChange={(e) => setName(e.target.value)}
                               disabled={localLoading}
-                              className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 ${
-                                validationErrors.name ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
+                              className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-[#0f71cd]/5 outline-none transition-all font-semibold text-[#0F141E] text-sm placeholder:text-slate-400 ${
+                                validationErrors.name ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-[#0f71cd]'
                               }`}
                               placeholder="e.g. John Doe"
                             />
@@ -587,8 +590,8 @@ export default function Login() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         disabled={localLoading}
-                        className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 ${
-                          validationErrors.email ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
+                        className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-[#0f71cd]/5 outline-none transition-all font-semibold text-[#0F141E] text-sm placeholder:text-slate-400 ${
+                          validationErrors.email ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-[#0f71cd]'
                         }`}
                         placeholder="Enter your email"
                       />
@@ -614,8 +617,8 @@ export default function Login() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         disabled={localLoading}
-                        className={`w-full pl-10 pr-10 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 ${
-                          validationErrors.password ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
+                        className={`w-full pl-10 pr-10 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-[#0f71cd]/5 outline-none transition-all font-semibold text-[#0F141E] text-sm placeholder:text-slate-400 ${
+                          validationErrors.password ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-[#0f71cd]'
                         }`}
                         placeholder="Enter your password"
                       />
@@ -654,11 +657,11 @@ export default function Login() {
                   {/* Remember me & Forgot Password */}
                   <div className="flex items-center justify-between text-xs font-bold pt-1">
                     <label className="flex items-center gap-2 cursor-pointer text-slate-600">
-                      <input type="checkbox" className="w-4 h-4 text-[#110051] border-slate-200 rounded-sm focus:ring-[#110051]/30" />
+                      <input type="checkbox" className="w-4 h-4 text-[#0f71cd] border-slate-200 rounded-sm focus:ring-[#0f71cd]/30" />
                       <span>Remember me</span>
                     </label>
                     {isLogin && (
-                      <a href="#" className="text-slate-500 hover:text-slate-800 transition-colors">
+                      <a href="#" className="text-slate-500 hover:text-[#0F141E] transition-colors">
                         Forgot password?
                       </a>
                     )}
@@ -691,9 +694,10 @@ export default function Login() {
                         value={otpCode}
                         onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ''))}
                         disabled={localLoading}
-                        className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-slate-900/5 outline-none transition-all font-semibold text-slate-900 text-sm placeholder:text-slate-400 tracking-[0.2em] text-center font-display ${
-                          validationErrors.otpCode ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-slate-800'
+                        className={`w-full pl-10 pr-4 py-2.5 bg-[#f8fafc] border rounded-xl focus:bg-white focus:ring-4 focus:ring-[#0f71cd]/5 outline-none transition-all font-semibold text-[#0F141E] text-sm placeholder:text-slate-400 tracking-[0.2em] text-center font-tt-talent ${
+                          validationErrors.otpCode ? 'border-red-400 focus:border-red-400' : 'border-slate-200 focus:border-[#0f71cd]'
                         }`}
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
                         placeholder="••••••"
                       />
                     </div>
@@ -713,7 +717,7 @@ export default function Login() {
                         setError('');
                         setValidationErrors({});
                       }}
-                      className="text-slate-500 hover:text-slate-800 transition-colors font-bold cursor-pointer"
+                      className="text-slate-500 hover:text-[#0F141E] transition-colors font-bold cursor-pointer"
                     >
                       ← Change Email
                     </button>
@@ -721,7 +725,7 @@ export default function Login() {
                       type="button"
                       onClick={handleResendOtp}
                       disabled={localLoading}
-                      className="text-[#110051] hover:underline font-extrabold cursor-pointer disabled:opacity-50"
+                      className="text-[#0f71cd] hover:underline font-extrabold cursor-pointer disabled:opacity-50"
                     >
                       Resend Code
                     </button>
@@ -733,7 +737,8 @@ export default function Login() {
               <button 
                 type="submit" 
                 disabled={localLoading}
-                className="w-full bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-2.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group mt-4 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed text-sm shadow-sm"
+                className="w-full bg-[#0f71cd] hover:bg-[#0c62b2] text-white font-bold py-2.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 group mt-4 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed text-sm shadow-sm font-tt-talent"
+                style={{ fontFamily: '"TT Talent", sans-serif' }}
               >
                 {localLoading ? (
                   <>
@@ -805,7 +810,7 @@ export default function Login() {
                   setSignupStep(1);
                   setOtpCode('');
                 }}
-                className="text-[#110051] hover:underline focus:outline-none font-extrabold"
+                className="text-[#0f71cd] hover:underline focus:outline-none font-extrabold"
               >
                 {isLogin ? "Sign up" : "Sign in"}
               </button>
@@ -817,16 +822,16 @@ export default function Login() {
         {/* Bottom Trust Badges */}
         <div className="w-full flex items-center justify-between gap-2 border-t border-slate-100 pt-3 mt-3 text-left shrink-0">
           <div className="flex items-start gap-2 max-w-[120px]">
-            <div className="p-1.5 rounded-lg bg-slate-50 text-slate-500 shrink-0 mt-0.5">
+            <div className="p-1.5 rounded-lg bg-slate-50 text-[#0f71cd] shrink-0 mt-0.5">
               <ShieldCheck size={14} />
             </div>
             <div>
               <h5 className="text-[10px] font-black text-slate-800 leading-tight">Secure & Private</h5>
-              <p className="text-[8px] text-slate-400 font-medium leading-normal mt-0.5">Encrypted with 256-bit security protocols.</p>
+              <p className="text-[8px] text-slate-400 font-medium leading-normal mt-0.5">Encrypted with 255-bit security protocols.</p>
             </div>
           </div>
           <div className="flex items-start gap-2 max-w-[120px]">
-            <div className="p-1.5 rounded-lg bg-slate-50 text-slate-500 shrink-0 mt-0.5">
+            <div className="p-1.5 rounded-lg bg-slate-50 text-[#0f71cd] shrink-0 mt-0.5">
               <Laptop size={14} />
             </div>
             <div>
@@ -835,7 +840,7 @@ export default function Login() {
             </div>
           </div>
           <div className="flex items-start gap-2 max-w-[120px]">
-            <div className="p-1.5 rounded-lg bg-slate-50 text-slate-500 shrink-0 mt-0.5">
+            <div className="p-1.5 rounded-lg bg-slate-50 text-[#0f71cd] shrink-0 mt-0.5">
               <Landmark size={14} />
             </div>
             <div>

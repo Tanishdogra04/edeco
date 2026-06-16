@@ -155,12 +155,12 @@ export default function AllDomains() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans selection:bg-[#110051]/20">
-      <Navbar />
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-[#0f71cd]/20">
+      <Navbar lightTextBeforeScroll={true} />
 
       {/* Hero Header Section */}
-      <section className="relative pt-24 pb-16 bg-[#110051] text-white overflow-hidden text-left">
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(251,146,60,0.12),transparent_50%)]"></div>
+      <section className="relative pt-24 pb-16 bg-[#0F141E] text-white overflow-hidden text-left">
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(15,113,205,0.12),transparent_50%)]"></div>
         <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_bottom_left,rgba(106,255,217,0.08),transparent_50%)]"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -170,9 +170,9 @@ export default function AllDomains() {
               <div className="flex items-center text-xs text-slate-400 gap-2 mb-4 font-bold uppercase tracking-wider">
                 <Link to="/" className="hover:text-white transition-colors">Home</Link>
                 <ChevronRight size={12} className="text-slate-600" />
-                <span className="text-indigo-400 font-bold">Academic Domains</span>
+                <span className="text-[#0f71cd] font-bold">Academic Domains</span>
               </div>
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight font-display">
+              <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 Explore Career Streams
               </h1>
               <p className="text-slate-300 text-sm sm:text-base mt-2 font-medium max-w-xl leading-relaxed">
@@ -182,7 +182,8 @@ export default function AllDomains() {
 
             <Link
               to="/"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-300 hover:text-white px-4 py-2.5 bg-white/10 rounded-xl hover:bg-white/15 transition-all w-fit border border-white/10 shrink-0 shadow-sm"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-300 hover:text-white px-4 py-2.5 bg-white/10 rounded-xl hover:bg-white/15 transition-all w-fit border border-white/10 shrink-0 shadow-sm font-tt-talent"
+              style={{ fontFamily: '"TT Talent", sans-serif' }}
             >
               <ArrowLeft size={14} /> Back to Portal
             </Link>
@@ -201,11 +202,12 @@ export default function AllDomains() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4.5 py-2.5 text-xs font-extrabold rounded-xl border transition-all cursor-pointer ${
+                className={`px-4.5 py-2.5 text-xs font-extrabold rounded-xl border transition-all cursor-pointer font-tt-talent ${
                   activeTab === tab.id
-                    ? 'bg-[#110051] text-white border-[#110051] shadow-sm'
+                    ? 'bg-[#0f71cd] text-white border-[#0f71cd] shadow-sm'
                     : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100/50 hover:text-slate-900'
                 }`}
+                style={{ fontFamily: '"TT Talent", sans-serif' }}
               >
                 {tab.name}
               </button>
@@ -213,8 +215,8 @@ export default function AllDomains() {
           </div>
 
           {/* Quick Search */}
-          <div className="relative w-full lg:w-72 flex items-center bg-slate-50 border border-slate-200 focus-within:border-brand-500 rounded-xl px-3.5 py-2.5 group transition-all">
-            <Search size={15} className="text-slate-400 group-focus-within:text-[#110051] transition-colors shrink-0 mr-2" />
+          <div className="relative w-full lg:w-72 flex items-center bg-slate-50 border border-slate-200 focus-within:border-[#0f71cd] rounded-xl px-3.5 py-2.5 group transition-all">
+            <Search size={15} className="text-slate-400 group-focus-within:text-[#0f71cd] transition-colors shrink-0 mr-2" />
             <input 
               type="text" 
               placeholder="Search by stream name or course..."
@@ -241,13 +243,14 @@ export default function AllDomains() {
         {filteredDomains.length === 0 ? (
           <div className="bg-white border border-slate-200 rounded-3xl p-16 text-center shadow-sm">
             <GraduationCap size={48} className="text-slate-350 mx-auto mb-4" />
-            <h3 className="text-lg font-bold text-slate-800">No matching domains found</h3>
+            <h3 className="text-lg font-bold text-slate-800 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>No matching domains found</h3>
             <p className="text-slate-500 text-sm mt-1 max-w-sm mx-auto font-medium">
               We couldn't find any streams that match your filter or query. Please update your search criteria.
             </p>
             <button
               onClick={() => { setSearchQuery(''); setActiveTab('all'); }}
-              className="mt-5 px-5 py-2.5 bg-[#110051] text-white font-bold text-xs rounded-xl shadow-sm hover:bg-[#1a0073] transition-all cursor-pointer"
+              className="mt-5 px-5 py-2.5 bg-[#0f71cd] hover:bg-[#0c62b2] text-white font-bold text-xs rounded-xl shadow-sm transition-all cursor-pointer font-tt-talent"
+              style={{ fontFamily: '"TT Talent", sans-serif' }}
             >
               Reset Filters
             </button>
@@ -275,7 +278,7 @@ export default function AllDomains() {
 
                     {/* Header Title & Description */}
                     <div className="space-y-2.5">
-                      <h3 className="font-display font-bold text-lg text-[#110051] group-hover:text-brand-500 transition-colors">
+                      <h3 className="font-tt-talent font-bold text-lg text-[#0F141E] group-hover:text-[#0f71cd] transition-colors" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                         {dom.name}
                       </h3>
                       <p className="text-slate-500 text-xs font-medium leading-relaxed line-clamp-3">
@@ -286,7 +289,7 @@ export default function AllDomains() {
                     {/* Metrics Badges */}
                     <div className="flex flex-wrap gap-2 pt-4">
                       <span className="px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/50 text-[10px] font-bold text-slate-500 flex items-center gap-1.5 shadow-sm">
-                        <Building2 size={12} className="text-[#110051]" />
+                        <Building2 size={12} className="text-[#0f71cd]" />
                         {dom.stats}
                       </span>
                       <span className="px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-100/50 text-[10px] font-bold text-emerald-700 flex items-center gap-1 shadow-sm">
@@ -300,18 +303,18 @@ export default function AllDomains() {
                       <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Popular Sub-Streams</span>
                       <div className="flex flex-wrap gap-1.5">
                         {dom.subCourses.map((c, i) => (
-                          <span key={i} className="px-2 py-0.5 text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-100 rounded-md">
-                            {c}
-                          </span>
+                           <span key={i} className="px-2 py-0.5 text-[10px] font-semibold text-slate-600 bg-slate-50 border border-slate-100 rounded-md">
+                             {c}
+                           </span>
                         ))}
                       </div>
                     </div>
                   </div>
 
                   {/* CTA link at bottom */}
-                  <div className="pt-4 mt-6 border-t border-slate-100 flex items-center justify-between text-slate-400 group-hover:text-[#110051] transition-all">
+                  <div className="pt-4 mt-6 border-t border-slate-100 flex items-center justify-between text-slate-400 group-hover:text-[#0f71cd] transition-all">
                     <span className="text-[9px] font-black uppercase tracking-wider">Explore Colleges & Guide</span>
-                    <div className="w-7 h-7 rounded-full bg-slate-50 group-hover:bg-[#110051] group-hover:text-white flex items-center justify-center transition-all">
+                    <div className="w-7 h-7 rounded-full bg-slate-50 group-hover:bg-[#0f71cd] group-hover:text-white flex items-center justify-center transition-all">
                       <ArrowUpRight size={14} />
                     </div>
                   </div>

@@ -115,30 +115,30 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
   return (
     <section id="colleges" className="py-20 bg-white relative overflow-hidden">
       {/* Decorative Blob */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-purple/5 rounded-full blur-[100px]"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#0f71cd]/5 rounded-full blur-[100px]"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div className="text-left space-y-2">
-            <span className="text-[12px] font-bold text-brand-600 uppercase tracking-widest block">
+            <span className="text-[12px] font-bold text-[#0f71cd] uppercase tracking-widest block">
               Curated Selection
             </span>
-            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-brand-800 tracking-tight">
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[#0F141E] tracking-tight">
               Featured Partners & Institutions
             </h2>
-            <p className="text-[14px] text-brand-800/60 max-w-lg font-medium">
+            <p className="text-[14px] text-[#0F141E]/60 max-w-lg font-medium">
               Highly ranked universities verified for placements, faculty excellence, and student environment.
             </p>
           </div>
 
           {/* Slider controls */}
           <div className="flex items-center gap-3 mt-6 md:mt-0">
-            <div className="swiper-prev-btn p-3 rounded-xl bg-white border border-brand-200 text-brand-800 hover:text-brand-600 shadow-sm active:scale-95 transition-all cursor-pointer">
+            <div className="swiper-prev-btn p-3 rounded-xl bg-white border border-slate-200 text-[#0F141E] hover:text-[#0f71cd] shadow-sm active:scale-95 transition-all cursor-pointer">
               <ChevronLeft size={18} />
             </div>
-            <div className="swiper-next-btn p-3 rounded-xl bg-white border border-brand-200 text-brand-800 hover:text-brand-600 shadow-sm active:scale-95 transition-all cursor-pointer">
+            <div className="swiper-next-btn p-3 rounded-xl bg-white border border-slate-200 text-[#0F141E] hover:text-[#0f71cd] shadow-sm active:scale-95 transition-all cursor-pointer">
               <ChevronRight size={18} />
             </div>
           </div>

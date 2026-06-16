@@ -119,7 +119,7 @@ export default function TopExams({ onCounsellingClick }) {
     : EXAMS_DATA.filter(exam => exam.category === activeCategory);
 
   return (
-    <section className="relative py-16 bg-brand-50 overflow-hidden border-y border-slate-200">
+    <section className="relative py-16 bg-slate-50 overflow-hidden border-y border-slate-200">
       {/* Background Ambience & 3D Elements */}
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png" alt="3D Books" className="absolute top-20 left-10 w-48 h-48 opacity-[0.05] blur-sm pointer-events-none animate-[bounce_8s_ease-in-out_infinite]" />
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Graduation%20Cap.png" alt="3D Cap" className="absolute bottom-20 right-10 w-64 h-64 opacity-[0.05] blur-[2px] pointer-events-none animate-[pulse_6s_ease-in-out_infinite]" />

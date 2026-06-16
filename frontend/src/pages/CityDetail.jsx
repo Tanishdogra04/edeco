@@ -317,21 +317,21 @@ export default function CityDetail() {
   }, [cityId]);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-brand-200 selection:text-brand-900">
-      <Navbar onCounsellingClick={() => setIsApplyOpen(true)} />
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans selection:bg-[#0f71cd]/20">
+      <Navbar onCounsellingClick={() => setIsApplyOpen(true)} lightTextBeforeScroll={true} />
 
       <main className="flex-1">
 
         {/* Compact Full-Width Hero Section */}
-        <div className="relative bg-[#0f172a] pt-24 pb-16 overflow-hidden">
+        <div className="relative bg-[#0F141E] pt-24 pb-16 overflow-hidden">
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img 
               src={heroImage} 
               alt={`${cityName} Skyline`} 
-              className="w-full h-full object-cover opacity-30 mix-blend-luminosity"
+              className="w-full h-full object-cover opacity-20 mix-blend-luminosity"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-[#0f172a]/30"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0F141E] via-[#0F141E]/85 to-[#0F141E]/30"></div>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -342,7 +342,7 @@ export default function CityDetail() {
               <ChevronRight size={14} className="text-slate-600" />
               <Link to="/cities" className="hover:text-white transition-colors">Cities</Link>
               <ChevronRight size={14} className="text-slate-600" />
-              <span className="text-slate-300 font-bold">{cityName}</span>
+              <span className="text-[#0f71cd] font-bold">{cityName}</span>
             </div>
 
             <motion.div
@@ -351,8 +351,8 @@ export default function CityDetail() {
               transition={{ duration: 0.5 }}
               className="max-w-4xl mx-auto"
             >
-              <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-tight drop-shadow-sm">
-                Top Colleges in <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-100">{cityName}</span>
+              <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-tight drop-shadow-sm font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+                Top Colleges in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-100">{cityName}</span>
               </h1>
               
               <p className="text-base md:text-lg text-slate-300 mb-8 max-w-2xl mx-auto font-medium leading-relaxed">
@@ -371,7 +371,7 @@ export default function CityDetail() {
                   placeholder={`Search in ${cityName}...`}
                   className="w-full py-2 px-1 bg-transparent border-none outline-none text-white placeholder:text-white/50 text-base font-medium"
                 />
-                <button className="bg-brand-600 hover:bg-brand-500 text-white px-6 py-2 rounded-lg font-bold transition-colors whitespace-nowrap text-sm shadow-md">
+                <button className="bg-[#0f71cd] hover:bg-[#0c62b2] text-white px-6 py-2 rounded-lg font-bold transition-colors whitespace-nowrap text-sm shadow-md font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                   Search
                 </button>
               </div>
@@ -382,11 +382,12 @@ export default function CityDetail() {
                   <button
                     key={idx}
                     onClick={() => handleCategoryClick(cat)}
-                    className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 border ${
+                    className={`px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 border font-tt-talent ${
                       activeCategory === cat 
-                        ? 'bg-brand-600 text-white border-brand-500 shadow-md shadow-brand-500/20 scale-103' 
+                        ? 'bg-[#0f71cd] text-white border-[#0f71cd] shadow-md shadow-[#0f71cd]/20 scale-103' 
                         : 'bg-white/5 text-white/90 border-white/10 hover:bg-white/10 shadow-sm'
                     }`}
+                    style={{ fontFamily: '"TT Talent", sans-serif' }}
                   >
                     {cat}
                   </button>
@@ -396,21 +397,19 @@ export default function CityDetail() {
           </div>
         </div>
 
-
-
         {/* Main Content Layout */}
         <section id="colleges-grid" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-20">
           <div className="flex flex-col lg:flex-row gap-8">
 
             {/* Sidebar / Filters (Desktop) */}
             <aside className="hidden lg:block w-72 shrink-0">
-              <div className="sticky top-24 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 overflow-y-auto max-h-[calc(100vh-120px)] no-scrollbar">
+              <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 overflow-y-auto max-h-[calc(100vh-120px)] no-scrollbar">
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
-                  <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <Filter size={20} className="text-brand-600" />
+                  <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+                    <Filter size={20} className="text-[#0f71cd]" />
                     Filters
                   </h2>
-                  <button onClick={clearFilters} className="text-sm text-brand-600 font-medium hover:text-brand-700">Clear All</button>
+                  <button onClick={clearFilters} className="text-sm text-[#0f71cd] font-medium hover:text-[#0c62b2] font-tt-talent cursor-pointer" style={{ fontFamily: '"TT Talent", sans-serif' }}>Clear All</button>
                 </div>
 
                 {/* Filter Groups */}
@@ -421,7 +420,7 @@ export default function CityDetail() {
                     <div className="space-y-2">
                       {['Private', 'Government', 'Deemed', 'Autonomous'].map(type => (
                         <label key={type} className="flex items-center gap-3 cursor-pointer group">
-                          <input type="checkbox" checked={selectedFilters.type.includes(type)} onChange={() => toggleFilter('type', type)} className="w-4 h-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500" />
+                          <input type="checkbox" checked={selectedFilters.type.includes(type)} onChange={() => toggleFilter('type', type)} className="w-4 h-4 rounded border-slate-300 text-[#0f71cd] focus:ring-[#0f71cd]" />
                           <span className="text-slate-600 group-hover:text-slate-900 font-medium text-sm">{type}</span>
                         </label>
                       ))}
@@ -434,7 +433,7 @@ export default function CityDetail() {
                     <div className="space-y-2">
                       {['< 1 Lakh', '1 - 2 Lakhs', '2 - 5 Lakhs', '> 5 Lakhs'].map(fee => (
                         <label key={fee} className="flex items-center gap-3 cursor-pointer group">
-                          <input type="checkbox" checked={selectedFilters.fee.includes(fee)} onChange={() => toggleFilter('fee', fee)} className="w-4 h-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500" />
+                          <input type="checkbox" checked={selectedFilters.fee.includes(fee)} onChange={() => toggleFilter('fee', fee)} className="w-4 h-4 rounded border-slate-300 text-[#0f71cd] focus:ring-[#0f71cd]" />
                           <span className="text-slate-600 group-hover:text-slate-900 font-medium text-sm">{fee}</span>
                         </label>
                       ))}
@@ -447,7 +446,7 @@ export default function CityDetail() {
                     <div className="space-y-2">
                       {['AICTE', 'UGC', 'NAAC A+', 'NBA'].map(app => (
                         <label key={app} className="flex items-center gap-3 cursor-pointer group">
-                          <input type="checkbox" checked={selectedFilters.approval.includes(app)} onChange={() => toggleFilter('approval', app)} className="w-4 h-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500" />
+                          <input type="checkbox" checked={selectedFilters.approval.includes(app)} onChange={() => toggleFilter('approval', app)} className="w-4 h-4 rounded border-slate-300 text-[#0f71cd] focus:ring-[#0f71cd]" />
                           <span className="text-slate-600 group-hover:text-slate-900 font-medium text-sm">{app}</span>
                         </label>
                       ))}
@@ -463,7 +462,7 @@ export default function CityDetail() {
               {/* Toolbar */}
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">Found {filteredColleges.length} Colleges</h2>
+                  <h2 className="text-xl font-bold text-slate-900 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Found {filteredColleges.length} Colleges</h2>
                   <p className="text-sm text-slate-500 font-medium">Showing top results for {activeCategory} in {cityName}</p>
                 </div>
 
@@ -482,7 +481,7 @@ export default function CityDetail() {
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-700 py-2.5 pl-4 pr-10 rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent cursor-pointer"
+                      className="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-700 py-2.5 pl-4 pr-10 rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-[#0f71cd] focus:border-transparent cursor-pointer text-xs"
                     >
                       <option value="Popularity">Popularity</option>
                       <option value="Highest Package">Highest Package</option>
@@ -502,7 +501,7 @@ export default function CityDetail() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-white rounded-2xl overflow-hidden border border-brand-200 shadow-sm hover:shadow-xl hover:border-brand-500/40 transition-all duration-300 group flex flex-col text-left relative"
+                    className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#0f71cd]/40 transition-all duration-300 group flex flex-col text-left relative"
                   >
                     {/* Card Header (Image) */}
                     <div className="relative h-48 overflow-hidden">
@@ -517,7 +516,7 @@ export default function CityDetail() {
                       <div className="absolute top-4 right-4 flex gap-2">
                         <button
                           onClick={(e) => handleShare(e, college.name)}
-                          className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-brand-600 transition-colors cursor-pointer"
+                          className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-[#0f71cd] transition-colors cursor-pointer"
                           title="Share"
                         >
                           <Share2 size={16} />
@@ -552,43 +551,43 @@ export default function CityDetail() {
                     {/* Card Body */}
                     <div className="p-6 pt-10 flex-1 flex flex-col">
                       <div className="mb-2">
-                        <h3 className="font-bold text-lg text-brand-800 leading-tight group-hover:text-brand-500 transition-colors line-clamp-1">
+                        <h3 className="font-bold text-lg text-[#0F141E] leading-tight group-hover:text-[#0f71cd] transition-colors line-clamp-1 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                           {college.name}
                         </h3>
-                        <p className="text-sm text-brand-800/60 font-medium flex items-center gap-1 mt-1">
-                          <MapPin size={14} className="text-brand-800/40" />
+                        <p className="text-sm text-[#0F141E]/60 font-medium flex items-center gap-1 mt-1">
+                          <MapPin size={14} className="text-[#0F141E]/40" />
                           {college.location}
                         </p>
                       </div>
 
-                      <p className="text-sm text-brand-800/70 line-clamp-2 mb-4 flex-1">
+                      <p className="text-sm text-[#0F141E]/70 line-clamp-2 mb-4 flex-1">
                         {college.description}
                       </p>
 
                       {/* Key Stats Grid */}
-                      <div className="grid grid-cols-2 gap-3 mb-4 bg-brand-50 p-3 rounded-xl border border-brand-200/50">
+                      <div className="grid grid-cols-2 gap-3 mb-4 bg-slate-50 p-3 rounded-xl border border-slate-200/50">
                         <div>
-                          <span className="text-[11px] text-brand-800/50 font-bold uppercase tracking-wider block">Avg Package</span>
-                          <span className="text-sm font-extrabold text-brand-800">{college.avgPackage}</span>
+                          <span className="text-[11px] text-[#0F141E]/50 font-bold uppercase tracking-wider block">Avg Package</span>
+                          <span className="text-sm font-extrabold text-[#0F141E]">{college.avgPackage}</span>
                         </div>
                         <div>
-                          <span className="text-[11px] text-brand-800/50 font-bold uppercase tracking-wider block">Placement</span>
-                          <span className="text-sm font-extrabold text-brand-600">{college.placement}</span>
+                          <span className="text-[11px] text-[#0F141E]/50 font-bold uppercase tracking-wider block">Placement</span>
+                          <span className="text-sm font-extrabold text-[#0f71cd]">{college.placement}</span>
                         </div>
                         <div>
-                          <span className="text-[11px] text-brand-800/50 font-bold uppercase tracking-wider block">Fees/Yr</span>
-                          <span className="text-sm font-extrabold text-brand-800">{college.fees}</span>
+                          <span className="text-[11px] text-[#0F141E]/50 font-bold uppercase tracking-wider block">Fees/Yr</span>
+                          <span className="text-sm font-extrabold text-[#0F141E]">{college.fees}</span>
                         </div>
                         <div>
-                          <span className="text-[11px] text-brand-800/50 font-bold uppercase tracking-wider block">NIRF Rank</span>
-                          <span className="text-sm font-extrabold text-brand-800">#{college.nirf}</span>
+                          <span className="text-[11px] text-[#0F141E]/50 font-bold uppercase tracking-wider block">NIRF Rank</span>
+                          <span className="text-sm font-extrabold text-[#0F141E]">#{college.nirf}</span>
                         </div>
                       </div>
 
                       {/* Badges */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         {college.badges.slice(0, 3).map((badge, i) => (
-                          <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-white border border-brand-200 text-brand-800/80 rounded-md">
+                          <span key={i} className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-white border border-slate-200 text-[#0F141E]/80 rounded-md">
                             {badge}
                           </span>
                         ))}
@@ -596,10 +595,10 @@ export default function CityDetail() {
 
                       {/* CTA Buttons */}
                       <div className="flex gap-3 mt-auto">
-                        <Link to={`/colleges/${college.id}`} className="flex-1 text-center py-2.5 rounded-xl border border-brand-200 text-brand-800 font-bold text-sm hover:bg-brand-50 transition-all duration-300">
+                        <Link to={`/colleges/${college.id}`} className="flex-1 text-center py-2.5 rounded-xl border border-slate-200 text-[#0F141E] font-bold text-sm hover:bg-slate-50 transition-all duration-300 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                           View Details
                         </Link>
-                        <button onClick={() => setIsApplyOpen(true)} className="flex-1 py-2.5 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white font-bold text-sm transition-all duration-300 shadow-sm cursor-pointer">
+                        <button onClick={() => setIsApplyOpen(true)} className="flex-1 py-2.5 rounded-xl bg-[#0f71cd] hover:bg-[#0c62b2] text-white font-bold text-sm transition-all duration-300 shadow-sm cursor-pointer font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                           Apply Now
                         </button>
                       </div>
@@ -611,14 +610,14 @@ export default function CityDetail() {
               {/* Pagination (Mock) */}
               <div className="mt-12 flex justify-center">
                 <nav className="flex items-center gap-2">
-                  <button className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-brand-600 transition-colors">
+                  <button className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-[#0f71cd] transition-colors">
                     <ChevronLeft size={18} />
                   </button>
-                  <button className="w-10 h-10 rounded-xl bg-brand-600 text-white font-bold shadow-md shadow-brand-500/20">1</button>
-                  <button className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-700 font-bold hover:bg-slate-50 hover:text-brand-600 transition-colors">2</button>
-                  <button className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-700 font-bold hover:bg-slate-50 hover:text-brand-600 transition-colors">3</button>
+                  <button className="w-10 h-10 rounded-xl bg-[#0f71cd] text-white font-bold shadow-md shadow-[#0f71cd]/20">1</button>
+                  <button className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-700 font-bold hover:bg-slate-50 hover:text-[#0f71cd] transition-colors">2</button>
+                  <button className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-700 font-bold hover:bg-slate-50 hover:text-[#0f71cd] transition-colors">3</button>
                   <span className="text-slate-400 font-bold px-2">...</span>
-                  <button className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-brand-600 transition-colors">
+                  <button className="w-10 h-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 hover:text-[#0f71cd] transition-colors">
                     <ChevronRight size={18} />
                   </button>
                 </nav>
@@ -631,7 +630,7 @@ export default function CityDetail() {
         {/* Top Recruiters Carousel */}
         <section className="bg-white py-16 border-y border-slate-200 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
-            <h2 className="text-2xl font-extrabold text-slate-900">Top Recruiters in {cityName}</h2>
+            <h2 className="text-2xl font-extrabold text-slate-900 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Top Recruiters in {cityName}</h2>
             <p className="text-slate-500 font-medium mt-2">Leading companies hiring from these campuses</p>
           </div>
 
@@ -642,8 +641,8 @@ export default function CityDetail() {
               transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
             >
               {[...recruiters, ...recruiters].map((company, idx) => (
-                <div key={idx} className="flex items-center justify-center h-20 w-48 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-brand-200 hover:shadow-md transition-all cursor-pointer">
-                  <span className="text-xl font-black text-slate-400 group-hover:text-brand-600 transition-colors tracking-tight uppercase">
+                <div key={idx} className="flex items-center justify-center h-20 w-48 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-[#0f71cd]/30 hover:shadow-md transition-all cursor-pointer">
+                  <span className="text-xl font-black text-slate-400 group-hover:text-[#0f71cd] transition-colors tracking-tight uppercase">
                     {company}
                   </span>
                 </div>
@@ -655,13 +654,13 @@ export default function CityDetail() {
         {/* FAQs */}
         <section className="py-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-4 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Frequently Asked Questions</h2>
             <p className="text-slate-500 font-medium text-lg">Everything you need to know about studying in {cityName}.</p>
           </div>
 
           <div className="space-y-4">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:border-brand-200 transition-colors">
+              <div key={idx} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:border-[#0f71cd]/30 transition-colors">
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full flex items-center justify-between p-6 text-left"
@@ -669,7 +668,7 @@ export default function CityDetail() {
                   <span className="font-bold text-slate-900 pr-8">{faq.q}</span>
                   <ChevronDown
                     size={20}
-                    className={`text-brand-600 transition-transform duration-300 shrink-0 ${openFaq === idx ? 'rotate-180' : ''}`}
+                    className={`text-[#0f71cd] transition-transform duration-300 shrink-0 ${openFaq === idx ? 'rotate-180' : ''}`}
                   />
                 </button>
                 <AnimatePresence>
@@ -696,10 +695,10 @@ export default function CityDetail() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-end justify-between mb-10">
               <div>
-                <h2 className="text-3xl font-extrabold text-slate-900">Explore Other Educational Hubs</h2>
+                <h2 className="text-3xl font-extrabold text-slate-900 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Explore Other Educational Hubs</h2>
                 <p className="text-slate-500 font-medium mt-2">Find top colleges in other major cities</p>
               </div>
-              <Link to="/cities" className="hidden sm:flex items-center gap-2 text-brand-600 font-bold hover:text-brand-700">
+              <Link to="/cities" className="hidden sm:flex items-center gap-2 text-[#0f71cd] font-bold hover:text-[#0c62b2] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 View All <ArrowRight size={18} />
               </Link>
             </div>
@@ -714,8 +713,8 @@ export default function CityDetail() {
                   <img src={city.image} alt={city.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
                   <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                    <h3 className="text-2xl font-extrabold text-white mb-1">{city.name}</h3>
-                    <p className="text-brand-300 font-semibold text-sm flex items-center gap-2">
+                    <h3 className="text-2xl font-extrabold text-white mb-1 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{city.name}</h3>
+                    <p className="text-[#0f71cd] font-semibold text-sm flex items-center gap-2">
                       <Building size={14} /> {city.count}
                     </p>
                   </div>
@@ -723,7 +722,7 @@ export default function CityDetail() {
               ))}
             </div>
 
-            <Link to="/cities" className="sm:hidden mt-8 flex items-center justify-center gap-2 w-full py-4 bg-white rounded-xl text-brand-600 font-bold border border-slate-200">
+            <Link to="/cities" className="sm:hidden mt-8 flex items-center justify-center gap-2 w-full py-4 bg-white rounded-xl text-[#0f71cd] font-bold border border-slate-200 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
               View All Cities <ArrowRight size={18} />
             </Link>
           </div>
@@ -751,7 +750,7 @@ export default function CityDetail() {
               className="fixed bottom-0 inset-x-0 h-[85vh] bg-white rounded-t-3xl z-50 lg:hidden flex flex-col shadow-2xl"
             >
               <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-                <h2 className="text-lg font-bold text-slate-900">Filters</h2>
+                <h2 className="text-lg font-bold text-slate-900 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Filters</h2>
                 <button onClick={() => setIsFilterOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500">
                   ✕
                 </button>
@@ -763,7 +762,7 @@ export default function CityDetail() {
                   <div className="space-y-3">
                     {['Private', 'Government', 'Deemed', 'Autonomous'].map(type => (
                       <label key={type} className="flex items-center gap-3">
-                        <input type="checkbox" checked={selectedFilters.type.includes(type)} onChange={() => toggleFilter('type', type)} className="w-5 h-5 rounded border-slate-300 text-brand-600 focus:ring-brand-500" />
+                        <input type="checkbox" checked={selectedFilters.type.includes(type)} onChange={() => toggleFilter('type', type)} className="w-5 h-5 rounded border-slate-300 text-[#0f71cd] focus:ring-[#0f71cd]" />
                         <span className="text-slate-700 font-medium text-base">{type}</span>
                       </label>
                     ))}
@@ -774,7 +773,7 @@ export default function CityDetail() {
                   <div className="space-y-3">
                     {['< 1 Lakh', '1 - 2 Lakhs', '2 - 5 Lakhs', '> 5 Lakhs'].map(fee => (
                       <label key={fee} className="flex items-center gap-3">
-                        <input type="checkbox" checked={selectedFilters.fee.includes(fee)} onChange={() => toggleFilter('fee', fee)} className="w-5 h-5 rounded border-slate-300 text-brand-600 focus:ring-brand-500" />
+                        <input type="checkbox" checked={selectedFilters.fee.includes(fee)} onChange={() => toggleFilter('fee', fee)} className="w-5 h-5 rounded border-slate-300 text-[#0f71cd] focus:ring-[#0f71cd]" />
                         <span className="text-slate-700 font-medium text-base">{fee}</span>
                       </label>
                     ))}
@@ -785,7 +784,7 @@ export default function CityDetail() {
                 <button onClick={() => { clearFilters(); setIsFilterOpen(false); }} className="flex-1 py-3 rounded-xl border border-slate-200 text-slate-700 font-bold">
                   Clear All
                 </button>
-                <button onClick={() => setIsFilterOpen(false)} className="flex-[2] py-3 rounded-xl bg-brand-600 text-white font-bold shadow-lg shadow-brand-500/30">
+                <button onClick={() => setIsFilterOpen(false)} className="flex-[2] py-3 rounded-xl bg-[#0f71cd] text-white font-bold shadow-lg shadow-[#0f71cd]/30 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                   Apply Filters
                 </button>
               </div>

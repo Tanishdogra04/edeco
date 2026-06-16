@@ -256,30 +256,30 @@ export default function Events() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-10">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-8 font-display text-left">
-            <Link to="/" className="hover:text-[#110051] transition-colors">Home</Link>
-            <ChevronRight size={12} className="text-slate-350" />
+            <Link to="/" className="hover:text-[#0f71cd] transition-colors">Home</Link>
+            <ChevronRight size={12} className="text-slate-355" />
             <span className="text-slate-600">Upcoming Events</span>
           </div>
 
-          <div className="bg-[rgb(30,26,77)] rounded-[36px] p-8 sm:p-12 text-left relative overflow-hidden shadow-xl border border-white/5">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-purple/10 rounded-full blur-[100px] pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-mint/5 rounded-full blur-[80px] pointer-events-none"></div>
+          <div className="bg-[#0F141E] rounded-[36px] p-8 sm:p-12 text-left relative overflow-hidden shadow-xl border border-white/5">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#0f71cd]/10 rounded-full blur-[100px] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none"></div>
 
             <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
               <div className="lg:col-span-7 space-y-5">
-                <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-mint/10 text-brand-mint border border-brand-mint/20">
+                <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0f71cd]/10 text-[#0f71cd] border border-[#0f71cd]/20">
                   Featured Event
                 </span>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight font-display">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                   Edeco National Admissions Fair 2026
                 </h1>
                 <p className="text-slate-300 text-sm leading-relaxed max-w-xl font-medium">
                   Connect face-to-face with admissions representatives from top global institutes. Register now for free profile evaluation & scholarship opportunities.
                 </p>
                 <div className="flex flex-wrap gap-4 text-xs font-semibold text-slate-300 pt-2">
-                  <div className="flex items-center gap-1.5"><Calendar size={14} className="text-brand-mint" /> June 25, 2026</div>
-                  <div className="flex items-center gap-1.5"><Clock size={14} className="text-brand-mint" /> 10:00 AM - 5:00 PM</div>
-                  <div className="flex items-center gap-1.5"><MapPin size={14} className="text-brand-mint" /> New Delhi HQ</div>
+                  <div className="flex items-center gap-1.5"><Calendar size={14} className="text-[#0f71cd]" /> June 25, 2026</div>
+                  <div className="flex items-center gap-1.5"><Clock size={14} className="text-[#0f71cd]" /> 10:00 AM - 5:00 PM</div>
+                  <div className="flex items-center gap-1.5"><MapPin size={14} className="text-[#0f71cd]" /> New Delhi HQ</div>
                 </div>
               </div>
 
@@ -296,14 +296,15 @@ export default function Events() {
                     { val: timeLeft.seconds, unit: "Secs" }
                   ].map((item, idx) => (
                     <div key={idx} className="bg-white/5 rounded-2xl p-2.5 border border-white/5">
-                      <div className="text-xl sm:text-2xl font-black font-display text-brand-mint">{String(item.val).padStart(2, '0')}</div>
+                      <div className="text-xl sm:text-2xl font-black text-[#0f71cd] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{String(item.val).padStart(2, '0')}</div>
                       <div className="text-[10px] text-slate-400 font-bold uppercase mt-1">{item.unit}</div>
                     </div>
                   ))}
                 </div>
                 <button
                   onClick={() => openBookingModal(eventsData[0])}
-                  className="w-full py-3.5 rounded-xl bg-gradient-brand hover:brightness-110 text-white font-bold text-xs transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg"
+                  className="w-full py-3.5 rounded-xl bg-[#0f71cd] hover:bg-[#0c62b2] text-white font-bold text-xs transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg font-tt-talent"
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   <Calendar size={14} />
                   Register Now for Free
@@ -317,7 +318,7 @@ export default function Events() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="text-left mb-8">
             <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Webinars & Virtual Events</h2>
-            <h3 className="text-3xl font-black text-[#110051] font-display">Upcoming Live Sessions</h3>
+            <h3 className="text-3xl font-black text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Upcoming Live Sessions</h3>
           </div>
 
           {/* Interactive filter controls bar */}
@@ -328,7 +329,7 @@ export default function Events() {
                 <select
                   value={selectedDest}
                   onChange={(e) => setSelectedDest(e.target.value)}
-                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm pr-8"
+                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-[#0F141E] outline-none focus:border-[#0f71cd] transition-all shadow-sm pr-8 animate-none"
                 >
                   {destinations.map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
@@ -340,7 +341,7 @@ export default function Events() {
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm pr-8"
+                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-[#0F141E] outline-none focus:border-[#0f71cd] transition-all shadow-sm pr-8"
                 >
                   {studyLevels.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
@@ -352,7 +353,7 @@ export default function Events() {
                 <select
                   value={selectedFormat}
                   onChange={(e) => setSelectedFormat(e.target.value)}
-                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm pr-8"
+                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-[#0F141E] outline-none focus:border-[#0f71cd] transition-all shadow-sm pr-8"
                 >
                   {eventFormats.map(ef => <option key={ef} value={ef}>{ef}</option>)}
                 </select>
@@ -364,7 +365,7 @@ export default function Events() {
                 <select
                   value={selectedType}
                   onChange={(e) => setSelectedType(e.target.value)}
-                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 outline-none focus:border-brand-500 transition-all shadow-sm pr-8"
+                  className="appearance-none w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-[#0F141E] outline-none focus:border-[#0f71cd] transition-all shadow-sm pr-8"
                 >
                   {eventTypes.map(et => <option key={et} value={et}>{et}</option>)}
                 </select>
@@ -380,7 +381,7 @@ export default function Events() {
                 placeholder="Search events..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-5 transition-all text-xs font-semibold text-slate-800"
+                className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-[#0f71cd] transition-all text-xs font-semibold text-[#0F141E]"
               />
             </div>
           </div>
@@ -399,7 +400,7 @@ export default function Events() {
                   <div className="space-y-4">
                     {/* Tags */}
                     <div className="flex gap-2">
-                      <span className="px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-brand-50 text-brand-600">
+                      <span className="px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-[#0f71cd]/10 text-[#0f71cd]">
                         {evt.type}
                       </span>
                       <span className="px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-slate-50 text-slate-500">
@@ -407,18 +408,18 @@ export default function Events() {
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-[#110051] font-display leading-snug group-hover:text-brand-600 transition-colors">
+                    <h3 className="text-lg font-bold text-[#0F141E] font-tt-talent leading-snug group-hover:text-[#0f71cd] transition-colors" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                       {evt.title}
                     </h3>
 
                     {/* Date/Time/Location Details */}
                     <div className="space-y-2 text-xs font-semibold text-slate-500 pl-0.5">
                       <div className="flex items-center gap-2">
-                        <Calendar size={13} className="text-[#110051]" />
+                        <Calendar size={13} className="text-[#0f71cd]" />
                         <span>{evt.date} • {evt.time}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <MapPin size={13} className="text-[#110051]" />
+                        <MapPin size={13} className="text-[#0f71cd]" />
                         <span>{evt.location}</span>
                       </div>
                     </div>
@@ -433,7 +434,7 @@ export default function Events() {
                     <div className="flex items-center gap-2.5">
                       <img src={evt.speaker?.avatar || ''} alt={evt.speaker?.name || 'Speaker'} className="w-9 h-9 rounded-xl object-cover border border-slate-100" />
                       <div className="text-left min-w-0">
-                        <div className="text-[12px] font-bold text-[#110051] truncate">{evt.speaker?.name || 'TBD'}</div>
+                        <div className="text-[12px] font-bold text-[#0F141E] truncate">{evt.speaker?.name || 'TBD'}</div>
                         <div className="text-[10px] text-slate-400 font-semibold truncate">{evt.speaker?.role || 'Guest Speaker'}</div>
                       </div>
                     </div>
@@ -444,7 +445,8 @@ export default function Events() {
                       </span>
                       <button
                         onClick={() => openBookingModal(evt)}
-                        className="px-4 py-2.5 bg-gradient-brand hover:brightness-110 text-white rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer shadow-sm"
+                        className="px-4 py-2.5 bg-[#0f71cd] hover:bg-[#0c62b2] text-white rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer shadow-sm font-tt-talent"
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
                       >
                         Register Free
                       </button>
@@ -460,7 +462,7 @@ export default function Events() {
               className="py-16 text-center"
             >
               <Compass size={44} className="mx-auto text-slate-350 mb-3 animate-pulse-slow" />
-              <h3 className="text-lg font-bold text-[#110051] font-display">No upcoming events available</h3>
+              <h3 className="text-lg font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>No upcoming events available</h3>
               <p className="text-slate-400 text-xs font-semibold mt-1 max-w-sm mx-auto">
                 We add new study sessions regularly. Check back soon or register general query to suggest a topic.
               </p>
@@ -472,8 +474,8 @@ export default function Events() {
         <div className="bg-slate-100/50 py-20 border-t border-b border-slate-200/40 text-left">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
-              <h2 className="text-xs font-bold text-[#6C63FF] uppercase tracking-widest mb-2.5">Student Reviews</h2>
-              <h3 className="text-3xl font-black text-[#110051] font-display mb-3">Hear From Our Students</h3>
+              <h2 className="text-xs font-bold text-[#0f71cd] uppercase tracking-widest mb-2.5">Student Reviews</h2>
+              <h3 className="text-3xl font-black text-[#0F141E] font-tt-talent mb-3" style={{ fontFamily: '"TT Talent", sans-serif' }}>Hear From Our Students</h3>
               <p className="text-slate-600 font-semibold text-sm max-w-xl">
                 Thousands of students have trusted Edeco on their learning and study abroad journey. Their success stories inspire us every day.
               </p>
@@ -484,7 +486,7 @@ export default function Events() {
               {testimonials.map((test, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-[28px] p-6 flex flex-col justify-between shadow-xl relative overflow-hidden group hover:scale-[1.02] hover:shadow-[#6C63FF]/10 transition-all duration-300 border border-slate-100 hover:border-[#6C63FF]/20"
+                  className="bg-white rounded-[28px] p-6 flex flex-col justify-between shadow-xl relative overflow-hidden group hover:scale-[1.02] hover:shadow-[#0f71cd]/10 transition-all duration-300 border border-slate-100 hover:border-[#0f71cd]/20"
                 >
                   <p className="text-sm font-semibold leading-relaxed mb-8 relative z-10 text-slate-700">
                     "{test.quote}"
@@ -493,8 +495,8 @@ export default function Events() {
                   <div className="flex items-center gap-3 relative z-10">
                     <img src={test.avatar} alt={test.name} className="w-10 h-10 rounded-xl object-cover border border-slate-100" />
                     <div>
-                      <h4 className="text-sm font-extrabold font-display leading-tight text-[#110051]">{test.name}</h4>
-                      <p className="text-[11px] text-[#6C63FF] font-bold">{test.country}</p>
+                      <h4 className="text-sm font-extrabold font-tt-talent leading-tight text-[#0F141E]" style={{ fontFamily: '"TT Talent", sans-serif' }}>{test.name}</h4>
+                      <p className="text-[11px] text-[#0f71cd] font-bold">{test.country}</p>
                     </div>
                   </div>
                 </div>
@@ -507,8 +509,8 @@ export default function Events() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-left">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
             <div>
-              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5 font-display">Aspirant Videos</h2>
-              <h3 className="text-3xl font-black text-[#110051] font-display mb-3">Your Success Story Starts Here</h3>
+              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Aspirant Videos</h2>
+              <h3 className="text-3xl font-black text-[#0F141E] font-tt-talent mb-3" style={{ fontFamily: '"TT Talent", sans-serif' }}>Your Success Story Starts Here</h3>
               <p className="text-slate-500 font-semibold text-sm max-w-xl">
                 Join students who achieved their dream college admissions with Edeco. Discover their journeys and begin your today.
               </p>
@@ -518,14 +520,14 @@ export default function Events() {
             <div className="flex gap-3 shrink-0">
               <button
                 onClick={() => scrollSlider('left')}
-                className="w-12 h-12 rounded-full bg-white hover:bg-[#110051] text-[#110051] hover:text-white border-2 border-[#110051]/10 hover:border-transparent flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-md hover:shadow-[#110051]/10 cursor-pointer group"
+                className="w-12 h-12 rounded-full bg-white hover:bg-[#0f71cd] text-[#0f71cd] hover:text-white border-2 border-[#0f71cd]/10 hover:border-transparent flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-md hover:shadow-[#0f71cd]/10 cursor-pointer group"
                 aria-label="Previous videos"
               >
                 <ChevronLeft size={20} className="transition-transform duration-300 group-hover:-translate-x-0.5" />
               </button>
               <button
                 onClick={() => scrollSlider('right')}
-                className="w-12 h-12 rounded-full bg-white hover:bg-[#110051] text-[#110051] hover:text-white border-2 border-[#110051]/10 hover:border-transparent flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-md hover:shadow-[#110051]/10 cursor-pointer group"
+                className="w-12 h-12 rounded-full bg-white hover:bg-[#0f71cd] text-[#0f71cd] hover:text-white border-2 border-[#0f71cd]/10 hover:border-transparent flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-md hover:shadow-[#0f71cd]/10 cursor-pointer group"
                 aria-label="Next videos"
               >
                 <ChevronRight size={20} className="transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -552,21 +554,21 @@ export default function Events() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-white/90 text-[#110051] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-full bg-white/90 text-[#0f71cd] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <Play size={18} className="fill-current ml-0.5" />
                     </div>
                   </div>
-                  <span className="absolute top-4 left-4 px-2.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-[#110051] text-white">
+                  <span className="absolute top-4 left-4 px-2.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-[#0f71cd] text-white">
                     {video.highlight}
                   </span>
                 </div>
 
                 {/* Card Text details */}
                 <div className="p-5 text-left space-y-2">
-                  <div className="text-[10px] font-bold text-brand-600 uppercase tracking-widest">
+                  <div className="text-[10px] font-bold text-[#0f71cd] uppercase tracking-widest">
                     {video.tagline}
                   </div>
-                  <h4 className="text-sm font-bold text-[#110051] font-display leading-snug truncate">
+                  <h4 className="text-sm font-bold text-[#0F141E] font-tt-talent leading-snug truncate" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                     {video.title}
                   </h4>
                   <p className="text-[11.5px] text-slate-500 leading-relaxed font-semibold line-clamp-2">
@@ -601,14 +603,14 @@ export default function Events() {
             >
               <div className="p-6 border-b border-slate-100 flex items-center justify-between text-left shrink-0">
                 <div>
-                  <h3 className="text-lg font-bold text-[#110051] font-display">Event Registration</h3>
+                  <h3 className="text-lg font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Event Registration</h3>
                   <p className="text-xs font-semibold text-slate-400 mt-1 truncate max-w-[280px]">
                     For: {activeRegisterEvent.title}
                   </p>
                 </div>
                 <button
                   onClick={() => setActiveRegisterEvent(null)}
-                  className="p-2 rounded-xl hover:bg-slate-100 transition-colors text-slate-500 hover:text-slate-800 cursor-pointer"
+                  className="p-2 rounded-xl hover:bg-slate-100 transition-colors text-slate-500 hover:text-[#0F141E] cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -621,16 +623,17 @@ export default function Events() {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex flex-col items-center justify-center py-10 text-center"
                   >
-                    <div className="w-14 h-14 rounded-full bg-[rgb(106,255,217)]/25 text-[#110051] flex items-center justify-center mb-6">
-                      <CheckCircle2 size={32} className="text-[#110051]" />
+                    <div className="w-14 h-14 rounded-full bg-[#0f71cd]/10 text-[#0f71cd] flex items-center justify-center mb-6">
+                      <CheckCircle2 size={32} className="text-[#0f71cd]" />
                     </div>
-                    <h4 className="text-xl font-bold text-[#110051] mb-2 font-display">Registration Confirmed!</h4>
+                    <h4 className="text-xl font-bold text-[#0F141E] mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Registration Confirmed!</h4>
                     <p className="text-xs text-slate-500 font-semibold max-w-xs leading-relaxed">
                       You're set. An access link and calendar invite have been sent to your email. We'll remind you 15 minutes before we go live.
                     </p>
                     <button
                       onClick={() => setActiveRegisterEvent(null)}
-                      className="mt-8 px-6 py-2.5 bg-[#110051] text-white text-xs font-bold rounded-xl hover:bg-[#110051]/90 transition-all cursor-pointer"
+                      className="mt-8 px-6 py-2.5 bg-[#0f71cd] text-white text-xs font-bold rounded-xl hover:bg-[#0c62b2] transition-all cursor-pointer font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       Done
                     </button>
@@ -645,7 +648,7 @@ export default function Events() {
                         value={registerForm.name}
                         onChange={(e) => setRegisterForm({...registerForm, name: e.target.value})}
                         placeholder="John Doe"
-                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10 outline-none transition-all text-xs font-semibold text-slate-800"
+                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                       />
                     </div>
 
@@ -657,7 +660,7 @@ export default function Events() {
                         value={registerForm.email}
                         onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
                         placeholder="john@example.com"
-                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10 outline-none transition-all text-xs font-semibold text-slate-800"
+                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                       />
                     </div>
 
@@ -669,17 +672,18 @@ export default function Events() {
                         value={registerForm.phone}
                         onChange={(e) => setRegisterForm({...registerForm, phone: e.target.value})}
                         placeholder="+91 98765 43210"
-                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10 outline-none transition-all text-xs font-semibold text-slate-800"
+                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isRegistering}
-                      className="w-full mt-4 bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white font-bold py-3.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm text-xs"
+                      className="w-full mt-4 bg-[#0f71cd] text-white hover:bg-[#0c62b2] font-bold py-3.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm text-xs font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       {isRegistering ? (
-                        <div className="w-5 h-5 border-2 border-[#110051] border-t-transparent rounded-full animate-spin"></div>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                       ) : (
                         <span>Confirm Free Spot</span>
                       )}
@@ -712,8 +716,8 @@ export default function Events() {
               {/* Header */}
               <div className="px-6 py-4 flex items-center justify-between text-left shrink-0 text-white border-b border-white/5 bg-slate-900/90">
                 <div>
-                  <h4 className="text-sm font-bold font-display">{activeVideo.title}</h4>
-                  <p className="text-[10px] text-brand-mint font-bold uppercase tracking-wider">{activeVideo.tagline}</p>
+                  <h4 className="text-sm font-bold font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{activeVideo.title}</h4>
+                  <p className="text-[10px] text-[#0f71cd] font-bold uppercase tracking-wider">{activeVideo.tagline}</p>
                 </div>
                 <button
                   onClick={() => setActiveVideo(null)}

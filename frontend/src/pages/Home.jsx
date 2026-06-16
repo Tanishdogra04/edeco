@@ -105,7 +105,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-between selection:bg-brand-200 selection:text-brand-800">
+    <div className="min-h-screen bg-white flex flex-col justify-between selection:bg-[#0f71cd]/20 selection:text-[#0F141E]">
       
       {/* Sticky Top Navigation */}
       <Navbar 

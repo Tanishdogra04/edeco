@@ -246,18 +246,18 @@ export default function FindUs() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
           {/* Breadcrumbs */}
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-8 font-display text-left">
-            <Link to="/" className="hover:text-[#110051] transition-colors">Home</Link>
+            <Link to="/" className="hover:text-[#0f71cd] transition-colors">Home</Link>
             <ChevronRight size={12} className="text-slate-300" />
             <span className="text-slate-600">Find nearest Edeco office</span>
           </div>
 
           {/* Heading */}
-          <div className="text-center mb-12 flex flex-col items-center">
+          <div className="text-center mb-12 flex flex-col items-center text-[#0F141E]">
             <h1 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
               Get in Touch
             </h1>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#110051] font-display leading-tight max-w-3xl mb-4 mx-auto">
-              Find a branch, book a call,<br className="hidden md:inline" /> <span className="bg-gradient-to-r from-brand-600 to-brand-purple bg-clip-text text-transparent">or chat with us.</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#0F141E] font-tt-talent leading-tight max-w-3xl mb-4 mx-auto" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+              Find a branch, book a call,<br className="hidden md:inline" /> <span className="bg-gradient-to-r from-[#0f71cd] to-[#3ba3ff] bg-clip-text text-transparent">or chat with us.</span>
             </h2>
             <p className="text-sm sm:text-base font-semibold text-slate-500 max-w-2xl leading-relaxed mx-auto">
               Your goals, your schedule.<br className="hidden sm:inline" /> Choose the easiest way to connect with our team.
@@ -272,7 +272,7 @@ export default function FindUs() {
               placeholder="Search branches..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-white border border-slate-100 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.015)] focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10 outline-none transition-all text-sm font-semibold text-slate-800 placeholder-slate-400"
+              className="w-full pl-12 pr-4 py-4 bg-white border border-slate-100 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.015)] focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-sm font-semibold text-[#0F141E] placeholder-slate-400"
             />
             {searchTerm && (
               <button
@@ -293,11 +293,12 @@ export default function FindUs() {
                   handleStateSelect(state);
                   setIsDropdownOpen(false);
                 }}
-                className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer ${
+                className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer font-tt-talent ${
                   selectedState === state
-                    ? 'bg-[#110051] border-[#110051] text-white shadow-md shadow-[#110051]/15'
-                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-350 hover:bg-slate-50'
+                    ? 'bg-[#0f71cd] border-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/15'
+                    : 'bg-white border-slate-200 text-slate-650 hover:border-[#0f71cd] hover:text-[#0f71cd] hover:bg-slate-50'
                 }`}
+                style={{ fontFamily: '"TT Talent", sans-serif' }}
               >
                 {state}
               </button>
@@ -307,11 +308,12 @@ export default function FindUs() {
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer flex items-center gap-1.5 font-tt-talent ${
                   dropdownStates.includes(selectedState)
-                    ? 'bg-[#110051] border-[#110051] text-white shadow-md shadow-[#110051]/15'
-                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-350 hover:bg-slate-50'
+                    ? 'bg-[#0f71cd] border-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/15'
+                    : 'bg-white border-slate-200 text-slate-650 hover:border-[#0f71cd] hover:text-[#0f71cd] hover:bg-slate-50'
                 }`}
+                style={{ fontFamily: '"TT Talent", sans-serif' }}
               >
                 <span>{dropdownStates.includes(selectedState) ? `More: ${selectedState}` : 'More'}</span>
                 <ChevronDown size={14} className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -342,12 +344,12 @@ export default function FindUs() {
                           }}
                           className={`w-full px-4 py-2.5 text-xs font-bold text-left transition-colors flex items-center justify-between cursor-pointer ${
                             selectedState === state
-                              ? 'bg-slate-50 text-[#110051]'
-                              : 'text-slate-600 hover:bg-slate-50/80 hover:text-[#110051]'
+                              ? 'bg-slate-50 text-[#0f71cd]'
+                              : 'text-slate-605 hover:bg-slate-50/80 hover:text-[#0f71cd]'
                           }`}
                         >
                           <span>{state}</span>
-                          {selectedState === state && <Check size={12} className="text-brand-600" />}
+                          {selectedState === state && <Check size={12} className="text-[#0f71cd]" />}
                         </button>
                       ))}
                     </motion.div>
@@ -372,7 +374,7 @@ export default function FindUs() {
                     {/* Header Tag Row */}
                     <div className="flex justify-between items-center mb-4">
                       {/* State Tag */}
-                      <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-50 text-brand-600">
+                      <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0f71cd]/10 text-[#0f71cd]">
                         {branch.state}
                       </span>
                       {/* Get Directions */}
@@ -380,22 +382,22 @@ export default function FindUs() {
                         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.name + ' ' + branch.address)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 font-bold transition-colors cursor-pointer text-xs"
+                        className="inline-flex items-center gap-1.5 text-[#0f71cd] hover:text-[#0c62b2] font-bold transition-colors cursor-pointer text-xs"
                       >
                         <Navigation size={12} className="shrink-0" /> Get Directions
                       </a>
                     </div>
 
                     {/* Branch Title */}
-                    <h3 className="text-xl font-bold text-[#110051] mb-4.5 font-display group-hover:text-brand-600 transition-colors">
+                    <h3 className="text-xl font-bold text-[#0F141E] mb-4.5 font-tt-talent group-hover:text-[#0f71cd] transition-colors" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                       {branch.name}
                     </h3>
 
                     {/* Contact Details */}
-                    <div className="space-y-4 mb-6">
+                    <div className="space-y-4 mb-6 text-[#0F141E]">
                       {/* Address */}
                       <div className="flex gap-3 items-start">
-                        <MapPin size={16} className="text-[#110051] shrink-0 mt-0.5" />
+                        <MapPin size={16} className="text-[#0f71cd] shrink-0 mt-0.5" />
                         <div className="text-[13px] leading-relaxed text-slate-600 font-sans font-medium">
                           {branch.address}
                         </div>
@@ -404,13 +406,13 @@ export default function FindUs() {
                       {/* Phone */}
                       {branch.phones && branch.phones.length > 0 && (
                         <div className="flex gap-3 items-start">
-                          <Phone size={16} className="text-[#110051] shrink-0 mt-0.5" />
+                          <Phone size={16} className="text-[#0f71cd] shrink-0 mt-0.5" />
                           <div className="flex flex-col text-[13px] text-slate-600 font-sans font-medium">
                             {branch.phones.map((phone, i) => (
                               <a
                                 key={i}
                                 href={`tel:${phone.replace(/\s+/g, '')}`}
-                                className="hover:text-brand-600 transition-colors"
+                                className="hover:text-[#0f71cd] transition-colors"
                               >
                                 {phone}
                               </a>
@@ -421,10 +423,10 @@ export default function FindUs() {
 
                       {/* Email */}
                       <div className="flex gap-3 items-center">
-                        <Mail size={16} className="text-[#110051] shrink-0" />
+                        <Mail size={16} className="text-[#0f71cd] shrink-0" />
                         <a
                           href={`mailto:${branch.email}`}
-                          className="text-[13px] text-slate-600 font-sans font-medium hover:text-brand-600 transition-colors"
+                          className="text-[13px] text-slate-600 font-sans font-medium hover:text-[#0f71cd] transition-colors"
                         >
                           {branch.email}
                         </a>
@@ -450,7 +452,8 @@ export default function FindUs() {
                     {/* Book an Appointment */}
                     <button
                       onClick={() => openBookingModal(branch)}
-                      className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-[#110051] text-white hover:bg-[#0e003e] font-bold transition-colors"
+                      className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-[#0f71cd] text-white hover:bg-[#0c62b2] font-bold font-tt-talent cursor-pointer"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       <span>Book an Appointment</span>
                       <ChevronRight size={14} />
@@ -459,7 +462,8 @@ export default function FindUs() {
                     {/* Visit Branch */}
                     <button
                       onClick={() => openVisitModal(branch)}
-                      className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-all duration-205 cursor-pointer"
+                      className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#0F141E] text-xs font-bold transition-all duration-205 cursor-pointer font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       <span>Visit Branch</span>
                       <ArrowRight size={14} />
@@ -475,7 +479,7 @@ export default function FindUs() {
               className="py-16 text-center"
             >
               <Compass size={48} className="mx-auto text-slate-355 mb-4 animate-pulse-slow" />
-              <h3 className="text-lg font-bold text-[#110051] font-display">No branches found</h3>
+              <h3 className="text-lg font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>No branches found</h3>
               <p className="text-slate-400 text-sm font-semibold mt-1">
                 Try searching for a different city or region.
               </p>
@@ -506,14 +510,14 @@ export default function FindUs() {
               {/* Modal Header */}
               <div className="p-6 border-b border-slate-100 flex items-center justify-between text-left shrink-0">
                 <div>
-                  <h3 className="text-xl font-bold text-[#110051] font-display">Book an Appointment</h3>
+                  <h3 className="text-xl font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Book an Appointment</h3>
                   <p className="text-xs font-semibold text-slate-400 mt-1">
                     At Edeco {activeBookingBranch.name}
                   </p>
                 </div>
                 <button
                   onClick={() => setActiveBookingBranch(null)}
-                  className="p-2 rounded-xl hover:bg-slate-100 transition-colors text-slate-500 hover:text-slate-800 cursor-pointer"
+                  className="p-2 rounded-xl hover:bg-slate-100 transition-colors text-slate-500 hover:text-[#0F141E] cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -527,16 +531,17 @@ export default function FindUs() {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex flex-col items-center justify-center py-12 text-center"
                   >
-                    <div className="w-16 h-16 rounded-full bg-[rgb(106,255,217)]/25 text-[#110051] flex items-center justify-center mb-6">
-                      <CheckCircle2 size={36} className="text-[#110051]" />
+                    <div className="w-16 h-16 rounded-full bg-[#0f71cd]/10 text-[#0f71cd] flex items-center justify-center mb-6">
+                      <CheckCircle2 size={36} className="text-[#0f71cd]" />
                     </div>
-                    <h4 className="text-xl font-bold text-[#110051] mb-2 font-display">Appointment Requested!</h4>
+                    <h4 className="text-xl font-bold text-[#0F141E] mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Appointment Requested!</h4>
                     <p className="text-sm text-slate-500 font-medium max-w-sm">
                       Thank you. We have received your request for Edeco {activeBookingBranch.name}. A representative will contact you shortly to confirm your booking.
                     </p>
                     <button
                       onClick={() => setActiveBookingBranch(null)}
-                      className="mt-8 px-6 py-2.5 bg-[#110051] hover:bg-[#110051]/95 text-white text-sm font-bold rounded-xl transition-all cursor-pointer"
+                      className="mt-8 px-6 py-2.5 bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-sm font-bold rounded-xl transition-all cursor-pointer font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       Close
                     </button>
@@ -552,7 +557,7 @@ export default function FindUs() {
                           value={bookingForm.firstName}
                           onChange={(e) => setBookingForm({...bookingForm, firstName: e.target.value})}
                           placeholder="John"
-                          className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-xs font-semibold text-slate-800"
+                          className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                         />
                       </div>
                       <div>
@@ -563,7 +568,7 @@ export default function FindUs() {
                           value={bookingForm.lastName}
                           onChange={(e) => setBookingForm({...bookingForm, lastName: e.target.value})}
                           placeholder="Doe"
-                          className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-xs font-semibold text-slate-800"
+                          className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                         />
                       </div>
                     </div>
@@ -576,7 +581,7 @@ export default function FindUs() {
                         value={bookingForm.email}
                         onChange={(e) => setBookingForm({...bookingForm, email: e.target.value})}
                         placeholder="john@example.com"
-                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-xs font-semibold text-slate-800"
+                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                       />
                     </div>
 
@@ -588,7 +593,7 @@ export default function FindUs() {
                         value={bookingForm.phone}
                         onChange={(e) => setBookingForm({...bookingForm, phone: e.target.value})}
                         placeholder="+91 98765 43210"
-                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-xs font-semibold text-slate-800"
+                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                       />
                     </div>
 
@@ -600,7 +605,7 @@ export default function FindUs() {
                           required
                           value={bookingForm.date}
                           onChange={(e) => setBookingForm({...bookingForm, date: e.target.value})}
-                          className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-xs font-semibold text-slate-800"
+                          className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                         />
                       </div>
                       <div>
@@ -608,7 +613,7 @@ export default function FindUs() {
                         <select
                           value={bookingForm.timeSlot}
                           onChange={(e) => setBookingForm({...bookingForm, timeSlot: e.target.value})}
-                          className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-xs font-semibold text-slate-800"
+                          className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                         >
                           <option>Morning (9:30 AM - 12:30 PM)</option>
                           <option>Afternoon (12:30 PM - 3:30 PM)</option>
@@ -624,17 +629,18 @@ export default function FindUs() {
                         value={bookingForm.message}
                         onChange={(e) => setBookingForm({...bookingForm, message: e.target.value})}
                         placeholder="Admissions guidance, course details..."
-                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all text-xs font-semibold text-slate-800 resize-none"
+                        className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E] resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full mt-4 bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50 text-sm"
+                      className="w-full mt-4 bg-[#0f71cd] text-white hover:bg-[#0c62b2] font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50 text-sm font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       {isSubmitting ? (
-                        <div className="w-5 h-5 border-2 border-[#110051] border-t-transparent rounded-full animate-spin"></div>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                       ) : (
                         <>
                           <Calendar size={16} />
@@ -670,14 +676,14 @@ export default function FindUs() {
               {/* Modal Header */}
               <div className="p-6 border-b border-slate-100 flex items-center justify-between text-left shrink-0">
                 <div>
-                  <h3 className="text-xl font-bold text-[#110051] font-display">{activeVisitBranch.name}</h3>
-                  <span className="inline-block px-2.5 py-0.5 mt-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-brand-50 text-brand-600">
+                  <h3 className="text-xl font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{activeVisitBranch.name}</h3>
+                  <span className="inline-block px-2.5 py-0.5 mt-1 rounded-full text-[10px] font-bold uppercase tracking-wide bg-[#0f71cd]/10 text-[#0f71cd]">
                     {activeVisitBranch.state} Edeco Office
                   </span>
                 </div>
                 <button
                   onClick={() => setActiveVisitBranch(null)}
-                  className="p-2 rounded-xl hover:bg-slate-100 transition-colors text-slate-500 hover:text-slate-800 cursor-pointer"
+                  className="p-2 rounded-xl hover:bg-slate-100 transition-colors text-slate-500 hover:text-[#0F141E] cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -689,7 +695,7 @@ export default function FindUs() {
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-                      <MapPin size={12} className="text-[#110051]" /> Office Address
+                      <MapPin size={12} className="text-[#0f71cd]" /> Office Address
                     </h4>
                     <p className="text-[13px] font-semibold text-slate-700 leading-relaxed font-sans pl-5">
                       {activeVisitBranch.address}
@@ -699,11 +705,11 @@ export default function FindUs() {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-                        <Phone size={12} className="text-[#110051]" /> Phone Numbers
+                        <Phone size={12} className="text-[#0f71cd]" /> Phone Numbers
                       </h4>
                       <div className="flex flex-col text-[13px] text-slate-700 pl-5 font-sans font-semibold">
                         {activeVisitBranch.phones.map((p, i) => (
-                          <a key={i} href={`tel:${p.replace(/\s+/g, '')}`} className="hover:text-brand-600 transition-colors">
+                          <a key={i} href={`tel:${p.replace(/\s+/g, '')}`} className="hover:text-[#0f71cd] transition-colors">
                             {p}
                           </a>
                         ))}
@@ -711,10 +717,10 @@ export default function FindUs() {
                     </div>
                     <div>
                       <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-                        <Mail size={12} className="text-[#110051]" /> Email Address
+                        <Mail size={12} className="text-[#0f71cd]" /> Email Address
                       </h4>
                       <div className="text-[13px] text-slate-700 pl-5 font-sans font-semibold">
-                        <a href={`mailto:${activeVisitBranch.email}`} className="hover:text-brand-600 transition-colors">
+                        <a href={`mailto:${activeVisitBranch.email}`} className="hover:text-[#0f71cd] transition-colors">
                           {activeVisitBranch.email}
                         </a>
                       </div>
@@ -723,10 +729,10 @@ export default function FindUs() {
 
                   <div>
                     <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-                      <Clock size={12} className="text-[#110051]" /> Operating Hours
+                      <Clock size={12} className="text-[#0f71cd]" /> Operating Hours
                     </h4>
                     <div className="text-[13px] font-semibold text-slate-600 pl-5 font-sans space-y-1">
-                      <p className="flex justify-between max-w-[220px]"><span>Monday - Saturday:</span> <span className="text-[#110051]">9:30 AM - 6:00 PM</span></p>
+                      <p className="flex justify-between max-w-[220px]"><span>Monday - Saturday:</span> <span className="text-[#0F141E]">9:30 AM - 6:00 PM</span></p>
                       <p className="flex justify-between max-w-[220px]"><span>Sunday:</span> <span className="text-red-500 font-bold">Closed</span></p>
                     </div>
                   </div>
@@ -734,8 +740,8 @@ export default function FindUs() {
 
                 {/* Features checklist */}
                 <div className="p-4 bg-slate-50/50 rounded-2xl border border-slate-100">
-                  <h4 className="text-xs font-bold text-[#110051] mb-2.5 font-display">Services Available at this Office:</h4>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-semibold text-slate-600">
+                  <h4 className="text-xs font-bold text-[#0F141E] mb-2.5 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Services Available at this Office:</h4>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-semibold text-slate-650">
                     {[
                       "Free Admission Counselling",
                       "College Shortlisting",
@@ -745,25 +751,25 @@ export default function FindUs() {
                       "Test Preparation Help"
                     ].map((svc, i) => (
                       <li key={i} className="flex items-center gap-2">
-                        <Check size={14} className="text-brand-mint shrink-0" />
+                        <Check size={14} className="text-[#0f71cd] shrink-0" />
                         <span>{svc}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Map Mockup Placeholder */}
+                 {/* Map Mockup Placeholder */}
                 <div className="h-32 bg-slate-100 rounded-2xl flex items-center justify-center relative overflow-hidden group/map border border-slate-100">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 via-slate-100 to-slate-200/50 animate-glow"></div>
                   <div className="relative z-10 flex flex-col items-center gap-2">
-                    <Compass size={24} className="text-brand-purple animate-bounce" />
+                    <Compass size={24} className="text-[#0f71cd] animate-bounce" />
                     <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Map directions loading...</span>
                   </div>
                   <a
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activeVisitBranch.name + ' ' + activeVisitBranch.address)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute inset-0 bg-brand-blue/80 opacity-0 group-hover/map:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white text-xs font-bold gap-1.5 cursor-pointer"
+                    className="absolute inset-0 bg-[#0f71cd]/90 opacity-0 group-hover/map:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white text-xs font-bold gap-1.5 cursor-pointer"
                   >
                     Open in Google Maps <ArrowRight size={14} />
                   </a>
@@ -787,7 +793,8 @@ export default function FindUs() {
                     setActiveVisitBranch(null);
                     openBookingModal(b);
                   }}
-                  className="flex-1 flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-[rgb(106,255,217)] text-[#110051] hover:bg-[#110051] hover:text-white text-xs font-bold shadow-sm transition-all duration-300 cursor-pointer"
+                  className="flex-1 flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-[#0f71cd] text-white hover:bg-[#0c62b2] text-xs font-bold shadow-sm transition-all duration-300 cursor-pointer font-tt-talent"
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   <Calendar size={14} />
                   Book Session

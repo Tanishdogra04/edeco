@@ -73,10 +73,10 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-100"
             >
-              <div className="w-5 h-5 rounded-full bg-[#110051]/10 flex items-center justify-center text-[#110051]">
-                <Sparkles size={11} className="text-[#110051]" />
+              <div className="w-5 h-5 rounded-full bg-[#0f71cd]/10 flex items-center justify-center text-[#0f71cd]">
+                <Sparkles size={11} className="text-[#0f71cd]" />
               </div>
-              <span className="text-[12px] font-bold text-[#110051] tracking-wide uppercase">
+              <span className="text-[12px] font-bold text-[#0f71cd] tracking-wide uppercase">
                 98% College Match Accuracy
               </span>
             </motion.div>
@@ -88,9 +88,9 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-4"
             >
-              <h1 className="font-sans font-extrabold text-4xl sm:text-5xl lg:text-[56px] text-[#110051] leading-[1.15] tracking-tight">
+              <h1 className="font-sans font-extrabold text-4xl sm:text-5xl lg:text-[56px] text-[#0f71cd] leading-[1.15] tracking-tight">
                 Find the right college. <br />
-                <span className="text-[#110051]">Shape your future.</span>
+                <span className="text-[#0f71cd]">Shape your future.</span>
               </h1>
               <p className="text-lg text-slate-600 max-w-xl font-normal leading-relaxed">
                 Connect with institutional partners, compare placement statistics, and get personalized counseling driven by career analytics.
@@ -105,7 +105,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
               className="relative max-w-2xl"
               ref={dropdownRef}
             >
-              <div className="flex items-center gap-2 p-2 bg-white rounded-2xl border border-slate-100 focus-within:border-[#110051]/30 focus-within:ring-2 focus-within:ring-[#110051]/5 transition-all duration-300">
+              <div className="flex items-center gap-2 p-2 bg-white rounded-2xl border border-slate-100 focus-within:border-[#0f71cd]/30 focus-within:ring-2 focus-within:ring-[#0f71cd]/5 transition-all duration-300">
                 <div className="pl-3 text-slate-400">
                   <Search size={22} />
                 </div>
@@ -124,7 +124,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
 
                 <button
                   onClick={() => onSearchSubmit(searchTerm)}
-                  className="px-6 py-3.5 rounded-xl bg-[#110051] text-white hover:bg-[#110051]/90 text-[15px] font-bold active:scale-[0.98] transition-all duration-300 cursor-pointer"
+                  className="px-6 py-3.5 rounded-xl bg-[#0f71cd] text-white hover:bg-[#0f71cd]/90 text-[15px] font-bold active:scale-[0.98] transition-all duration-300 cursor-pointer"
                 >
                   Search
                 </button>
@@ -186,8 +186,8 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
                       onSearchSubmit(cat.name);
                     }}
                     className={`flex items-center gap-1.5 px-4.5 py-2.5 rounded-xl border text-[13px] font-bold transition-all duration-200 cursor-pointer ${selectedCategory === cat.name
-                      ? 'bg-[#110051] border-[#110051] text-white'
-                      : 'bg-white border-slate-100 text-slate-700 hover:bg-slate-50 hover:border-[#110051]/50 hover:text-[#110051]'
+                      ? 'bg-[#0f71cd] border-[#0f71cd] text-white'
+                      : 'bg-white border-slate-100 text-slate-700 hover:bg-slate-50 hover:border-[#0f71cd]/50 hover:text-[#0f71cd]'
                       }`}
                   >
                     <span>{cat.icon}</span>
@@ -206,7 +206,7 @@ export default function Hero({ onSearchSubmit, onCounsellingClick }) {
             >
               <a
                 href="#colleges"
-                className="px-6 py-3.5 rounded-xl bg-[#110051] hover:bg-[#110051]/90 text-white text-[15px] font-bold transition-all duration-300"
+                className="px-6 py-3.5 rounded-xl bg-[#0f71cd] hover:bg-[#0f71cd]/90 text-white text-[15px] font-bold transition-all duration-300"
               >
                 Start Exploring
               </a>

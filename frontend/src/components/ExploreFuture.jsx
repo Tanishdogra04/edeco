@@ -16,7 +16,7 @@ export default function ExploreFuture() {
   ];
 
   return (
-    <section className="py-20 bg-brand-50 relative border-y border-slate-200/50">
+    <section className="py-20 bg-slate-50 relative border-y border-slate-200/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-16 text-left">
