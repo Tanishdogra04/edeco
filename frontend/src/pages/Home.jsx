@@ -10,7 +10,7 @@ import CompareDrawer from '../components/CompareDrawer';
 import TopExams from '../components/TopExams';
 import TrendingCourses from '../components/TrendingCourses';
 import LatestNews from '../components/LatestNews';
-import CounsellingCTA from '../components/CounsellingCTA';
+
 import CounsellingModal from '../components/CounsellingModal';
 import DetailModal from '../components/DetailModal';
 import Footer from '../components/Footer';
@@ -155,8 +155,7 @@ export default function Home() {
         {/* Latest News & Updates */}
         <LatestNews />
 
-        {/* Counselling CTA Banner */}
-        <CounsellingCTA onCounsellingClick={() => setIsCounsellingOpen(true)} />
+
 
       </main>
 

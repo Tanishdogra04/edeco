@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, TrendingUp, Monitor, HeartPulse, Briefcase, Scale, ArrowRight, Clock, DollarSign } from 'lucide-react';
+import { Code2, TrendingUp, Monitor, HeartPulse, Briefcase, Scale, ArrowRight, Clock, IndianRupee } from 'lucide-react';
 
 export default function TrendingCourses({ onExploreColleges }) {
 const courses = [
@@ -128,7 +128,7 @@ const courses = [
                       <span>{course.duration}</span>
                     </div>
                     <div className="flex items-center gap-2 text-[#0F141E]/75 text-xs font-semibold">
-                      <DollarSign size={14} className="text-[#0f71cd]" />
+                      <IndianRupee size={14} className="text-[#0f71cd]" />
                       <span className="text-[#0F141E]/80">Average Salary: <strong className="text-[#0F141E] font-bold">{course.salary}</strong></span>
                     </div>
                   </div>
