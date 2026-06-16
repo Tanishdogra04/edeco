@@ -70,14 +70,14 @@ export default function Footer() {
   };
 
   return (
-    <footer id="footer" className="bg-[rgb(30,26,77)] text-slate-300 pt-20 pb-28 lg:pb-16 border-t border-white/10 relative overflow-hidden">
+    <footer id="footer" className="bg-[#0F141E] text-slate-300 pt-20 pb-28 lg:pb-16 border-t border-white/10 relative overflow-hidden">
 
       {/* Top Border Glow Line */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#0f71cd]/20 to-transparent"></div>
 
       {/* Decorative Glows */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-brand-purple/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#0f71cd]/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#0f71cd]/5 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -86,8 +86,8 @@ export default function Footer() {
 
           {/* Logo & Value Proposition */}
           <div className="lg:col-span-5 text-left space-y-6">
-            <div 
-              className="inline-flex items-center gap-2.5 cursor-pointer px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 shadow-sm transition-all duration-300 group" 
+            <div
+              className="inline-flex items-center gap-2.5 cursor-pointer px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 shadow-sm transition-all duration-300 group"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <span className="font-display font-black text-2xl tracking-tight text-white">
@@ -113,7 +113,7 @@ export default function Footer() {
                     href={soc.href}
                     title={soc.name}
                     aria-label={`Follow us on ${soc.name}`}
-                    className="w-9 h-9 rounded-xl bg-white/5 hover:bg-gradient-brand text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg border border-white/10 shadow-sm"
+                    className="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#0f71cd] text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg border border-white/10 shadow-sm"
                   >
                     <Icon />
                   </a>
@@ -125,20 +125,20 @@ export default function Footer() {
           {/* Newsletter subscription Card */}
           <div className="lg:col-span-7 text-left w-full">
             <div className="relative overflow-hidden bg-white/5 border border-white/10 p-6 sm:p-8 rounded-3xl shadow-lg max-w-xl lg:ml-auto">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-purple/20 rounded-full blur-2xl"></div>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[#0f71cd]/20 rounded-full blur-2xl"></div>
               <div className="relative z-10 space-y-4">
                 <div className="flex items-center gap-2">
-                  <span className="p-1.5 rounded-lg bg-white/5 text-brand-mint border border-white/10">
+                  <span className="p-1.5 rounded-lg bg-white/5 text-[#3ba3ff] border border-white/10">
                     <Mail size={16} />
                   </span>
-                  <h4 className="text-sm font-bold text-white uppercase tracking-widest">
+                  <h4 className="text-sm font-bold text-white uppercase tracking-widest font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                     Admission Alerts & Newsletter
                   </h4>
                 </div>
                 <p className="text-xs text-slate-350 leading-relaxed font-medium">
                   Stay updated with deadlines, cutoffs, exam schedules, and exclusive tips. No spam, unsubscribe anytime.
                 </p>
-                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 bg-white/5 border border-white/10 p-1.5 rounded-2xl focus-within:border-brand-500/50 transition-colors shadow-sm">
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 bg-white/5 border border-white/10 p-1.5 rounded-2xl focus-within:border-[#0f71cd]/50 transition-colors shadow-sm">
                   <div className="flex-1 flex items-center gap-2.5 px-3 py-2 text-slate-450">
                     <Mail size={16} className="text-slate-450" />
                     <input
@@ -152,11 +152,12 @@ export default function Footer() {
                   </div>
                   <button
                     type="submit"
-                    className="px-6 py-3 rounded-xl bg-gradient-brand hover:brightness-110 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer shadow-md active:scale-95"
+                    className="px-6 py-3 rounded-xl bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all duration-300 cursor-pointer shadow-md active:scale-95 font-tt-talent"
+                    style={{ fontFamily: '"TT Talent", sans-serif' }}
                   >
                     {subscribed ? (
                       <>
-                         <ShieldCheck size={14} className="animate-bounce" />
+                        <ShieldCheck size={14} className="animate-bounce" />
                         <span>Subscribed</span>
                       </>
                     ) : (
@@ -177,25 +178,27 @@ export default function Footer() {
         <div className="border-b border-white/10"></div>
 
         {/* Middle Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-16 text-left">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 py-16 text-left">
 
           {/* Colleges links */}
           <div className="space-y-5">
             <h4 className="text-xs font-bold text-white uppercase tracking-widest">Top Domains</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3.5">
               {footerLinks.colleges.map((item, idx) => (
                 <li key={idx}>
                   <Link
                     to={item.href}
-                    className="group flex items-center gap-1.5 text-xs text-slate-300 hover:text-brand-mint transition-all duration-300 hover:translate-x-1"
+                    className="group flex items-center gap-2 text-xs text-slate-300 hover:text-[#3ba3ff] transition-all duration-300"
                   >
-                    <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 text-brand-mint transition-all duration-300 -ml-3 group-hover:ml-0" />
-                    <span>{item.name}</span>
-                    {item.badge && (
-                      <span className="px-1.5 py-0.5 text-[8px] font-extrabold uppercase bg-brand-500/10 text-brand-300 rounded-md border border-brand-500/20 tracking-wider">
-                        {item.badge}
-                      </span>
-                    )}
+                    <ChevronRight size={10} className="text-slate-500 group-hover:text-[#3ba3ff] transition-colors shrink-0" />
+                    <span className="group-hover:translate-x-0.5 transition-transform duration-300 flex items-center gap-1.5">
+                      <span>{item.name}</span>
+                      {item.badge && (
+                        <span className="px-1.5 py-0.5 text-[8px] font-extrabold uppercase bg-[#0f71cd]/10 text-blue-300 rounded-md border border-[#0f71cd]/20 tracking-wider ml-1 shrink-0">
+                          {item.badge}
+                        </span>
+                      )}
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -205,20 +208,22 @@ export default function Footer() {
           {/* Exams links */}
           <div className="space-y-5">
             <h4 className="text-xs font-bold text-white uppercase tracking-widest">National Exams</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3.5">
               {footerLinks.exams.map((item, idx) => (
                 <li key={idx}>
                   <Link
                     to={item.href}
-                    className="group flex items-center gap-1.5 text-xs text-slate-300 hover:text-brand-mint transition-all duration-300 hover:translate-x-1"
+                    className="group flex items-center gap-2 text-xs text-slate-300 hover:text-[#3ba3ff] transition-all duration-300"
                   >
-                    <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 text-brand-mint transition-all duration-300 -ml-3 group-hover:ml-0" />
-                    <span>{item.name}</span>
-                    {item.badge && (
-                      <span className="px-1.5 py-0.5 text-[8px] font-extrabold uppercase bg-rose-500/10 text-rose-350 rounded-md border border-rose-500/20 tracking-wider">
-                        {item.badge}
-                      </span>
-                    )}
+                    <ChevronRight size={10} className="text-slate-500 group-hover:text-[#3ba3ff] transition-colors shrink-0" />
+                    <span className="group-hover:translate-x-0.5 transition-transform duration-300 flex items-center gap-1.5">
+                      <span>{item.name}</span>
+                      {item.badge && (
+                        <span className="px-1.5 py-0.5 text-[8px] font-extrabold uppercase bg-rose-500/10 text-rose-350 rounded-md border border-rose-500/20 tracking-wider ml-1 shrink-0">
+                          {item.badge}
+                        </span>
+                      )}
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -228,20 +233,22 @@ export default function Footer() {
           {/* Courses links */}
           <div className="space-y-5">
             <h4 className="text-xs font-bold text-white uppercase tracking-widest">Hot Courses</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3.5">
               {footerLinks.courses.map((item, idx) => (
                 <li key={idx}>
                   <Link
                     to={item.href}
-                    className="group flex items-center gap-1.5 text-xs text-slate-300 hover:text-brand-mint transition-all duration-300 hover:translate-x-1"
+                    className="group flex items-center gap-2 text-xs text-slate-300 hover:text-[#3ba3ff] transition-all duration-300"
                   >
-                    <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 text-brand-mint transition-all duration-300 -ml-3 group-hover:ml-0" />
-                    <span>{item.name}</span>
-                    {item.badge && (
-                      <span className="px-1.5 py-0.5 text-[8px] font-extrabold uppercase bg-amber-500/10 text-amber-350 rounded-md border border-amber-500/20 tracking-wider">
-                        {item.badge}
-                      </span>
-                    )}
+                    <ChevronRight size={10} className="text-slate-500 group-hover:text-[#3ba3ff] transition-colors shrink-0" />
+                    <span className="group-hover:translate-x-0.5 transition-transform duration-300 flex items-center gap-1.5">
+                      <span>{item.name}</span>
+                      {item.badge && (
+                        <span className="px-1.5 py-0.5 text-[8px] font-extrabold uppercase bg-amber-500/10 text-amber-350 rounded-md border border-amber-500/20 tracking-wider ml-1 shrink-0">
+                          {item.badge}
+                        </span>
+                      )}
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -252,8 +259,8 @@ export default function Footer() {
           <div className="space-y-5">
             <h4 className="text-xs font-bold text-white uppercase tracking-widest">Contact & Office</h4>
             <ul className="space-y-4 text-xs text-slate-350 font-medium">
-              <li className="flex items-start gap-2.5">
-                <div className="p-1 rounded-lg bg-white/5 text-brand-mint border border-white/10 mt-0.5">
+              <li className="flex items-start gap-3">
+                <div className="p-1.5 rounded-lg bg-[#0f71cd]/10 text-[#3ba3ff] border border-[#0f71cd]/20 mt-0.5 shrink-0">
                   <MapPin size={14} />
                 </div>
                 <span className="leading-relaxed">
@@ -262,17 +269,17 @@ export default function Footer() {
                   Bangalore, Karnataka - 560095
                 </span>
               </li>
-              <li className="flex items-center gap-2.5">
-                <div className="p-1 rounded-lg bg-white/5 text-brand-mint border border-white/10">
+              <li className="flex items-center gap-3">
+                <div className="p-1.5 rounded-lg bg-[#0f71cd]/10 text-[#3ba3ff] border border-[#0f71cd]/20 shrink-0">
                   <Phone size={14} />
                 </div>
                 <span>+91 80 4912 3456</span>
               </li>
-              <li className="flex items-center gap-2.5">
-                <div className="p-1 rounded-lg bg-white/5 text-brand-mint border border-white/10">
+              <li className="flex items-center gap-3">
+                <div className="p-1.5 rounded-lg bg-[#0f71cd]/10 text-[#3ba3ff] border border-[#0f71cd]/20 shrink-0">
                   <Mail size={14} />
                 </div>
-                 <span className="hover:text-brand-mint transition-colors cursor-pointer">guidance@edeco.edu</span>
+                <span className="hover:text-[#3ba3ff] transition-colors cursor-pointer font-semibold">guidance@edeco.edu</span>
               </li>
             </ul>
           </div>
@@ -283,9 +290,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
 
           <div className="text-xs text-slate-400 font-semibold flex items-center gap-1">
-             <span>© 2026 Edeco Platforms Pvt Ltd. Built with</span>
-            <Heart size={10} className="text-rose-500 fill-rose-500 animate-pulse" />
-            <span>for Gen-Z Aspirants.</span>
+            <span>© 2026 Edeco Platforms Pvt Ltd.</span>
           </div>
 
           {/* Scroll to top button */}
@@ -293,7 +298,7 @@ export default function Footer() {
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden sm:inline">Back to Top</span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="group p-3 rounded-xl bg-white/5 hover:bg-gradient-brand text-slate-300 hover:text-white border border-white/10 hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-brand-500/20 cursor-pointer hover:-translate-y-1"
+              className="group p-3 rounded-xl bg-white/5 hover:bg-[#0f71cd] text-slate-300 hover:text-white border border-white/10 hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-[#0f71cd]/20 cursor-pointer hover:-translate-y-1"
               aria-label="Scroll to top"
             >
               <ArrowUp size={16} className="group-hover:-translate-y-0.5 transition-transform" />

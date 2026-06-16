@@ -118,10 +118,10 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
           {/* Header */}
           <div className="p-6 border-b border-slate-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="p-2 rounded-xl bg-brand-50 text-brand-600">
+              <div className="p-2 rounded-xl bg-[#0f71cd]/5 text-[#0f71cd]">
                 <Sparkles size={18} className="animate-spin-slow" />
               </div>
-              <span className="font-display font-extrabold text-slate-800 text-base">
+              <span className="font-tt-talent font-bold text-slate-800 text-base" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 {initialData && initialData.courseName ? `Apply for ${initialData.courseName}` : 'Free Admissions Counselling'}
               </span>
             </div>
@@ -136,24 +136,24 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
               <form onSubmit={handleSubmit} className="space-y-6">
                 
                 {/* Step indicator bar */}
-                <div className="flex items-center justify-between text-xs text-slate-400 font-bold mb-6">
-                  <div className={`flex items-center gap-1.5 ${step >= 1 ? 'text-brand-600' : ''}`}>
+                <div className="flex items-center justify-between text-xs text-slate-400 font-bold mb-6 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+                  <div className={`flex items-center gap-1.5 ${step >= 1 ? 'text-[#0f71cd]' : ''}`}>
                     <span className={`w-5 h-5 rounded-full flex items-center justify-center border text-[10px] ${
-                      step >= 1 ? 'bg-brand-600 text-white border-brand-600' : 'border-slate-200'
+                      step >= 1 ? 'bg-[#0f71cd] text-white border-[#0f71cd]' : 'border-slate-200'
                     }`}>1</span>
                     <span>Contact</span>
                   </div>
                   <div className="h-[2px] bg-slate-100 flex-1 mx-3"></div>
-                  <div className={`flex items-center gap-1.5 ${step >= 2 ? 'text-brand-600' : ''}`}>
+                  <div className={`flex items-center gap-1.5 ${step >= 2 ? 'text-[#0f71cd]' : ''}`}>
                     <span className={`w-5 h-5 rounded-full flex items-center justify-center border text-[10px] ${
-                      step >= 2 ? 'bg-brand-600 text-white border-brand-600' : 'border-slate-200'
+                      step >= 2 ? 'bg-[#0f71cd] text-white border-[#0f71cd]' : 'border-slate-200'
                     }`}>2</span>
                     <span>Interest</span>
                   </div>
                   <div className="h-[2px] bg-slate-100 flex-1 mx-3"></div>
-                  <div className={`flex items-center gap-1.5 ${step >= 3 ? 'text-brand-600' : ''}`}>
+                  <div className={`flex items-center gap-1.5 ${step >= 3 ? 'text-[#0f71cd]' : ''}`}>
                     <span className={`w-5 h-5 rounded-full flex items-center justify-center border text-[10px] ${
-                      step >= 3 ? 'bg-brand-600 text-white border-brand-600' : 'border-slate-200'
+                      step >= 3 ? 'bg-[#0f71cd] text-white border-[#0f71cd]' : 'border-slate-200'
                     }`}>3</span>
                     <span>Goals</span>
                   </div>
@@ -168,7 +168,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                   >
                     <div className="text-left">
                       <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Your Full Name *</label>
-                      <div className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus-within:border-brand-500/50 transition-all">
+                      <div className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus-within:border-[#0f71cd]/50 transition-all">
                         <User size={16} className="text-slate-400" />
                         <input 
                           type="text" 
@@ -183,7 +183,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
 
                     <div className="text-left">
                       <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Phone Number (WhatsApp Preferred) *</label>
-                      <div className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus-within:border-brand-500/50 transition-all">
+                      <div className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus-within:border-[#0f71cd]/50 transition-all">
                         <Phone size={16} className="text-slate-400" />
                         <input 
                           type="tel" 
@@ -198,7 +198,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
 
                     <div className="text-left">
                       <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Email Address *</label>
-                      <div className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus-within:border-brand-500/50 transition-all">
+                      <div className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus-within:border-[#0f71cd]/50 transition-all">
                         <Mail size={16} className="text-slate-400" />
                         <input 
                           type="email" 
@@ -230,7 +230,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                             onClick={() => handleInputChange('stream', s)}
                             className={`p-3 rounded-xl border text-xs font-bold text-center transition-all cursor-pointer ${
                               formData.stream === s
-                                ? 'bg-brand-50 border-brand-500 text-brand-600'
+                                ? 'bg-[#0f71cd]/5 border-[#0f71cd] text-[#0f71cd]'
                                 : 'bg-slate-50 border-slate-100 text-slate-600 hover:bg-slate-100/50'
                             }`}
                           >
@@ -250,7 +250,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                             onClick={() => handleInputChange('education', el)}
                             className={`p-3 rounded-xl border text-xs font-bold text-center transition-all cursor-pointer ${
                               formData.education === el
-                                ? 'bg-brand-50 border-brand-500 text-brand-600'
+                                ? 'bg-[#0f71cd]/5 border-[#0f71cd] text-[#0f71cd]'
                                 : 'bg-slate-50 border-slate-100 text-slate-600 hover:bg-slate-100/50'
                             }`}
                           >
@@ -271,7 +271,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                               value={yr}
                               checked={formData.year === yr}
                               onChange={() => handleInputChange('year', yr)}
-                              className="w-4 h-4 text-brand-600 focus:ring-brand-500"
+                              className="w-4 h-4 text-[#0f71cd] focus:ring-[#0f71cd]"
                             />
                             <span>Class of {yr}</span>
                           </label>
@@ -298,7 +298,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                             onClick={() => handleInputChange('exam', ex)}
                             className={`p-2.5 rounded-xl border text-[11px] font-bold text-center transition-all cursor-pointer ${
                               formData.exam === ex
-                                ? 'bg-brand-50 border-brand-500 text-brand-600'
+                                ? 'bg-[#0f71cd]/5 border-[#0f71cd] text-[#0f71cd]'
                                 : 'bg-slate-50 border-slate-100 text-slate-600 hover:bg-slate-100/50'
                             }`}
                           >
@@ -310,7 +310,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
 
                     <div>
                       <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Approx Score / Percentile / Rank (Optional)</label>
-                      <div className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus-within:border-brand-500/50 transition-all">
+                      <div className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus-within:border-[#0f71cd]/50 transition-all">
                         <Award size={16} className="text-slate-400" />
                         <input 
                           type="text" 
@@ -329,7 +329,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                         value={formData.query}
                         onChange={(e) => handleInputChange('query', e.target.value)}
                         placeholder="e.g. Looking for IIT Bombay CSE placements or bits pilani fees query..."
-                        className="w-full p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus:border-brand-500/50 outline-none text-sm text-slate-800 placeholder-slate-400 font-medium resize-none"
+                        className="w-full p-3 bg-slate-50 border border-slate-100 rounded-xl mt-1.5 focus:border-[#0f71cd]/50 outline-none text-sm text-slate-800 placeholder-slate-400 font-medium resize-none"
                       />
                     </div>
                   </motion.div>
@@ -354,7 +354,8 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="flex items-center gap-1.5 px-6 py-3 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white text-xs font-bold transition-all duration-300 shadow-md cursor-pointer"
+                      className="flex items-center gap-1.5 px-6 py-3 rounded-xl bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-xs font-bold transition-all duration-300 shadow-md cursor-pointer font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       Continue
                       <ChevronRight size={16} />
@@ -363,7 +364,8 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex items-center gap-1.5 px-8 py-3 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white text-xs font-bold shadow-md transition-all duration-300 cursor-pointer disabled:opacity-50"
+                      className="flex items-center gap-1.5 px-8 py-3 rounded-xl bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-xs font-bold shadow-md transition-all duration-300 cursor-pointer disabled:opacity-50 font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       {isSubmitting ? (
                         <span>Submitting...</span>
@@ -385,12 +387,12 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                 animate={{ scale: 1, opacity: 1 }}
                 className="text-center py-8 space-y-6"
               >
-                <div className="w-16 h-16 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center mx-auto border border-brand-100 shadow-md">
+                <div className="w-16 h-16 rounded-full bg-[#0f71cd]/5 text-[#0f71cd] flex items-center justify-center mx-auto border border-[#0f71cd]/10 shadow-md">
                   <BadgeCheck size={36} className="animate-bounce" />
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="font-display font-extrabold text-2xl text-slate-800 tracking-tight">
+                  <h3 className="font-tt-talent font-bold text-2xl text-slate-800 tracking-tight" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                     {initialData && initialData.courseName ? 'Application Submitted!' : 'Booking Successful!'}
                   </h3>
                   <p className="text-[13px] text-slate-400 font-medium px-4">
@@ -405,10 +407,10 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                 <div className="bg-slate-50 border border-slate-100 rounded-3xl p-5 text-left max-w-sm mx-auto space-y-3">
                   <div className="flex items-center gap-3">
                     <div className="relative">
-                      <div className="w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center text-xs font-bold text-brand-600">
+                      <div className="w-8 h-8 rounded-full bg-[#0f71cd]/10 flex items-center justify-center text-xs font-bold text-[#0f71cd]">
                         AM
                       </div>
-                      <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-brand-500 rounded-full border-2 border-white"></div>
+                      <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-[#0f71cd] rounded-full border-2 border-white"></div>
                     </div>
                     <div>
                       <p className="text-xs font-bold text-slate-800">Assigning Counselor...</p>
@@ -416,7 +418,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-1.5 text-[11px] text-brand-600 font-bold">
+                  <div className="flex items-center gap-1.5 text-[11px] text-[#0f71cd] font-bold">
                     <Star size={12} fill="currentColor" className="text-yellow-400" />
                     <span>Avg rating 4.9 • WhatsApp callback in 10 mins</span>
                   </div>

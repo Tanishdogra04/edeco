@@ -48,7 +48,7 @@ export default function DetailModal({ college, isOpen, onClose, onCounsellingCli
 
             {/* Title Overlaid */}
             <div className="absolute bottom-4 left-6 text-left text-white space-y-1 pr-12">
-              <span className="px-2.5 py-0.5 rounded bg-brand-600/90 text-[10px] font-bold tracking-wider uppercase">
+              <span className="px-2.5 py-0.5 rounded bg-[#0f71cd]/90 text-[10px] font-bold tracking-wider uppercase">
                 {college.stream}
               </span>
               <h3 className="font-display font-extrabold text-xl sm:text-2xl leading-tight">
@@ -86,14 +86,14 @@ export default function DetailModal({ college, isOpen, onClose, onCounsellingCli
               </div>
               <div className="bg-slate-50 border border-slate-100 p-3 rounded-2xl text-left">
                 <span className="text-[10px] text-slate-400 font-bold uppercase block">Highest Package</span>
-                <span className="text-sm font-extrabold text-brand-600">{college.highestPackage}</span>
+                <span className="text-sm font-extrabold text-[#0f71cd]">{college.highestPackage}</span>
               </div>
             </div>
 
             {/* Description Summary */}
             <div className="text-left space-y-2">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                <GraduationCap size={14} className="text-brand-600" />
+                <GraduationCap size={14} className="text-[#0f71cd]" />
                 <span>Overview & Academic Standard</span>
               </h4>
               <p className="text-sm text-slate-600 leading-relaxed font-medium">
@@ -109,7 +109,7 @@ export default function DetailModal({ college, isOpen, onClose, onCounsellingCli
             {/* Placements and Recruiters */}
             <div className="text-left space-y-3">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                <Briefcase size={14} className="text-brand-600" />
+                <Briefcase size={14} className="text-[#0f71cd]" />
                 <span>Top Placement Partners</span>
               </h4>
               <div className="flex flex-wrap gap-2">
@@ -127,7 +127,7 @@ export default function DetailModal({ college, isOpen, onClose, onCounsellingCli
             {/* Admission Parameters */}
             <div className="text-left space-y-3">
               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                <BookOpen size={14} className="text-brand-600" />
+                <BookOpen size={14} className="text-[#0f71cd]" />
                 <span>Admission Pathways</span>
               </h4>
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-xs text-slate-600 space-y-2 font-medium">
@@ -149,7 +149,8 @@ export default function DetailModal({ college, isOpen, onClose, onCounsellingCli
             </button>
             <button 
               onClick={() => { onClose(); onCounsellingClick(); }}
-              className="px-6 py-3 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold shadow-md shadow-brand-500/25 hover:-translate-y-0.5 transition-all cursor-pointer"
+              className="px-6 py-3 rounded-2xl bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-xs font-bold shadow-md shadow-[#0f71cd]/25 hover:-translate-y-0.5 transition-all cursor-pointer font-tt-talent"
+              style={{ fontFamily: '"TT Talent", sans-serif' }}
             >
               Apply for Guidance
             </button>

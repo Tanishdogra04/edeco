@@ -119,13 +119,13 @@ export default function TopExams({ onCounsellingClick }) {
     : EXAMS_DATA.filter(exam => exam.category === activeCategory);
 
   return (
-    <section className="relative py-16 bg-brand-50 overflow-hidden border-y border-brand-200">
+    <section className="relative py-16 bg-brand-50 overflow-hidden border-y border-slate-200">
       {/* Background Ambience & 3D Elements */}
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png" alt="3D Books" className="absolute top-20 left-10 w-48 h-48 opacity-[0.05] blur-sm pointer-events-none animate-[bounce_8s_ease-in-out_infinite]" />
       <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Graduation%20Cap.png" alt="3D Cap" className="absolute bottom-20 right-10 w-64 h-64 opacity-[0.05] blur-[2px] pointer-events-none animate-[pulse_6s_ease-in-out_infinite]" />
       
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-600/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#0f71cd]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#0f71cd]/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
       <div className="absolute inset-0 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.01]"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -133,15 +133,15 @@ export default function TopExams({ onCounsellingClick }) {
         {/* SECTION HEADER */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <div className="max-w-2xl text-left">
-            <h2 className="text-4xl sm:text-5xl font-black text-brand-800 tracking-tight mb-4 font-display">
+            <h2 className="text-4xl sm:text-5xl font-black text-[#0F141E] font-tt-talent tracking-tight mb-4" style={{ fontFamily: '"TT Talent", sans-serif' }}>
               Top Entrance Exams
-              <span className="block mt-2.5 h-1.5 w-24 bg-gradient-brand rounded-full"></span>
+              <span className="block mt-2.5 h-1.5 w-24 bg-gradient-to-r from-[#0f71cd] to-[#3ba3ff] rounded-full"></span>
             </h2>
-            <p className="text-brand-800/70 font-medium text-lg">
+            <p className="text-[#0F141E]/70 font-medium text-lg">
               Don’t miss important exam dates and deadlines. Stay ahead of your application timeline.
             </p>
           </div>
-          <button className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-brand-800 font-bold border border-brand-200 transition-all group shadow-sm cursor-pointer">
+          <button className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-[#0F141E] font-tt-talent font-bold border border-slate-200 hover:border-[#0f71cd]/30 hover:text-[#0f71cd] transition-all group shadow-sm cursor-pointer" style={{ fontFamily: '"TT Talent", sans-serif' }}>
             View All Exams <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -154,8 +154,8 @@ export default function TopExams({ onCounsellingClick }) {
               onClick={() => setActiveCategory(category)}
               className={`snap-start whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm cursor-pointer ${
                 activeCategory === category
-                  ? "bg-brand-800 text-white shadow-md shadow-brand-800/10"
-                  : "bg-white text-brand-800/70 border border-brand-200 hover:bg-slate-50 hover:text-brand-800"
+                  ? "bg-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/10"
+                  : "bg-white text-[#0F141E]/70 border border-slate-200 hover:bg-slate-50 hover:text-[#0f71cd] hover:border-[#0f71cd]/30"
               }`}
             >
               {category}
@@ -172,42 +172,42 @@ export default function TopExams({ onCounsellingClick }) {
             >
               {/* Top Section */}
               <div className="flex items-center justify-between mb-4">
-                <div className="px-3 h-10 rounded-lg bg-slate-50 text-[#110051] font-bold text-xs flex items-center justify-center border border-slate-205 shadow-xs transition-all duration-300">
+                <div className="px-3 h-10 rounded-lg bg-[#0f71cd]/5 text-[#0f71cd] font-tt-talent font-bold text-xs flex items-center justify-center border border-[#0f71cd]/20 shadow-xs transition-all duration-300" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                   {exam.name}
                 </div>
-                <span className="px-2.5 py-0.5 bg-[#110051]/5 text-[#110051] rounded-full text-[10px] font-semibold tracking-wide">
+                <span className="px-2.5 py-0.5 bg-[#0f71cd]/5 text-[#0f71cd] rounded-full text-[10px] font-semibold tracking-wide">
                   {exam.category}
                 </span>
               </div>
 
               {/* Exam Info */}
               <div className="mb-1 text-left h-[52px] flex flex-col justify-start">
-                <h3 className="text-lg font-bold text-[#110051] tracking-tight mb-0.5 leading-tight">{exam.name}</h3>
-                <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wider line-clamp-2 leading-tight">{exam.fullTitle}</p>
+                <h3 className="text-lg font-bold text-[#0F141E] font-tt-talent tracking-tight mb-0.5 leading-tight" style={{ fontFamily: '"TT Talent", sans-serif' }}>{exam.name}</h3>
+                <p className="text-[10px] font-medium text-[#0F141E]/50 uppercase tracking-wider line-clamp-2 leading-tight">{exam.fullTitle}</p>
               </div>
 
               {/* Key Info List */}
               <div className="space-y-2.5 mb-5 mt-1 pt-2.5 border-t border-slate-50">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-450 font-medium flex items-center gap-1.5">
-                    <Calendar size={13} className="text-[#110051]/60" /> 
+                  <span className="text-[#0F141E]/75 font-semibold flex items-center gap-1.5">
+                    <Calendar size={13} className="text-[#0f71cd]/60" /> 
                     Registration
                   </span>
-                  <span className="font-semibold text-slate-700">{exam.appOpen}</span>
+                  <span className="font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{exam.appOpen}</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-450 font-medium flex items-center gap-1.5">
-                    <Monitor size={13} className="text-[#110051]/60" /> 
+                  <span className="text-[#0F141E]/75 font-semibold flex items-center gap-1.5">
+                    <Monitor size={13} className="text-[#0f71cd]/60" /> 
                     Mode
                   </span>
-                  <span className="font-semibold text-slate-700">{exam.mode}</span>
+                  <span className="font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{exam.mode}</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-450 font-medium flex items-center gap-1.5">
-                    <Globe size={13} className="text-[#110051]/60" /> 
+                  <span className="text-[#0F141E]/75 font-semibold flex items-center gap-1.5">
+                    <Globe size={13} className="text-[#0f71cd]/60" /> 
                     Level
                   </span>
-                  <span className="font-semibold text-slate-700">{exam.level}</span>
+                  <span className="font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{exam.level}</span>
                 </div>
               </div>
 
@@ -215,7 +215,8 @@ export default function TopExams({ onCounsellingClick }) {
               <div className="flex items-center gap-2 pt-4 border-t border-slate-100 mt-auto">
                 <Link 
                   to={`/exam/${exam.id}`}
-                  className="flex-1 h-9 flex items-center justify-center gap-1.5 bg-[#110051] hover:bg-[#1a0073] text-white font-semibold text-xs rounded-lg transition-all duration-300 shadow-xs cursor-pointer"
+                  className="flex-1 h-9 flex items-center justify-center gap-1.5 bg-[#0f71cd] hover:bg-[#0c62b2] text-white font-tt-talent font-bold text-xs rounded-lg transition-all duration-300 shadow-xs cursor-pointer text-center"
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   View Details <ArrowRight size={14} />
                 </Link>
@@ -223,7 +224,7 @@ export default function TopExams({ onCounsellingClick }) {
                   onClick={() => handleToggleCompare(exam.id)}
                   className={`h-9 w-9 rounded-lg flex items-center justify-center transition-all duration-300 border shrink-0 cursor-pointer ${
                     comparedExams.includes(exam.id)
-                      ? 'bg-[#110051] text-white border-transparent'
+                      ? 'bg-[#0f71cd] text-white border-transparent'
                       : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-700 border-slate-200'
                   }`} 
                   title="Compare Exam"
@@ -251,11 +252,11 @@ export default function TopExams({ onCounsellingClick }) {
             >
               {/* Left section: Info */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#110051] flex items-center justify-center text-white shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-[#0f71cd] flex items-center justify-center text-white shadow-sm">
                   <GitCompare size={20} />
                 </div>
                 <div className="text-left">
-                  <h4 className="text-[14px] font-bold text-[#110051] font-display">Exam Compare Dock</h4>
+                  <h4 className="text-[14px] font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Exam Compare Dock</h4>
                   <p className="text-[12px] text-slate-400 font-medium">
                     {comparedExams.length === 1 
                       ? "Add 1 more exam to compare" 
@@ -301,8 +302,9 @@ export default function TopExams({ onCounsellingClick }) {
                   className={`w-full md:w-auto px-6 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all cursor-pointer ${
                     comparedExams.length < 2
                       ? 'bg-slate-150 text-slate-450 cursor-not-allowed border border-slate-200'
-                      : 'bg-[#110051] hover:bg-[#1a0073] text-white hover:-translate-y-0.5 duration-300'
+                      : 'bg-[#0f71cd] hover:bg-[#0c62b2] text-white hover:-translate-y-0.5 duration-300 font-tt-talent'
                   }`}
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   Compare Now
                 </button>
@@ -335,11 +337,11 @@ export default function TopExams({ onCounsellingClick }) {
               {/* Header */}
               <div className="p-6 border-b border-slate-100 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="p-2 rounded-xl bg-slate-50 text-[#110051]">
+                  <div className="p-2 rounded-xl bg-slate-50 text-[#0f71cd]">
                     <GitCompare size={20} />
                   </div>
                   <div className="text-left">
-                    <h3 className="font-display font-extrabold text-lg text-[#110051]">
+                    <h3 className="font-tt-talent font-bold text-lg text-[#0F141E]" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                       Entrance Exams Side-by-Side Comparison
                     </h3>
                     <p className="text-xs text-slate-400 font-medium font-sans">
@@ -367,8 +369,8 @@ export default function TopExams({ onCounsellingClick }) {
                         return (
                           <th key={exam.id} className="py-4 px-4 w-1/4">
                             <div className="flex flex-col text-left">
-                              <span className="text-[11px] font-bold text-[#110051] uppercase tracking-widest font-sans">{exam.category}</span>
-                              <span className="text-[14px] font-black text-[#110051] line-clamp-1 mt-0.5 font-display">{exam.name}</span>
+                              <span className="text-[11px] font-bold text-[#0f71cd] uppercase tracking-widest font-sans">{exam.category}</span>
+                              <span className="text-[14px] font-bold text-[#0F141E] font-tt-talent line-clamp-1 mt-0.5" style={{ fontFamily: '"TT Talent", sans-serif' }}>{exam.name}</span>
                             </div>
                           </th>
                         );
@@ -439,7 +441,8 @@ export default function TopExams({ onCounsellingClick }) {
                 </span>
                 <button 
                   onClick={() => { setIsCompareModalOpen(false); if (onCounsellingClick) onCounsellingClick(); }}
-                  className="px-6 py-2.5 rounded-xl bg-[#110051] hover:bg-[#1a0073] text-white font-bold text-xs shadow-sm cursor-pointer duration-300 transition-all"
+                  className="px-6 py-2.5 rounded-xl bg-[#0f71cd] hover:bg-[#0c62b2] text-white font-tt-talent font-bold text-xs shadow-sm cursor-pointer duration-300 transition-all"
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   Get Expert Guidance
                 </button>

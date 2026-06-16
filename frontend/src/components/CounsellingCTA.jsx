@@ -19,11 +19,11 @@ export default function CounsellingCTA({ onCounsellingClick }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Outer Banner container */}
-        <div className="relative rounded-[32px] bg-gradient-brand overflow-hidden p-8 sm:p-12 lg:p-16 text-white shadow-2xl shadow-brand-600/25">
+        <div className="relative rounded-[32px] bg-gradient-to-br from-[#0c59a3] via-[#0f71cd] to-[#3ba3ff] overflow-hidden p-8 sm:p-12 lg:p-16 text-white shadow-2xl shadow-[#0f71cd]/25">
           
           {/* Decorative glowing blobs */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-brand-purple/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
 
           <div className="grid lg:grid-cols-12 gap-10 items-center relative z-10">
             
@@ -35,7 +35,7 @@ export default function CounsellingCTA({ onCounsellingClick }) {
                 <span className="text-[10px] font-bold tracking-wider uppercase">Immediate Career Guidance</span>
               </div>
 
-              <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight tracking-tight">
+              <h2 className="font-tt-talent font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight tracking-tight" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                 Confused about which college or course is right for you?
               </h2>
 
@@ -63,13 +63,15 @@ export default function CounsellingCTA({ onCounsellingClick }) {
               <div className="flex flex-wrap gap-4 pt-6">
                 <button
                   onClick={handleClick}
-                  className="px-8 py-4 rounded-2xl bg-[#110051] text-white hover:bg-[#1a0073] font-extrabold text-sm shadow-xl transition-all duration-300 cursor-pointer"
+                  className="px-8 py-4 rounded-2xl bg-[#0F141E] text-white hover:bg-[#1C2433] font-tt-talent font-bold text-sm shadow-xl transition-all duration-300 cursor-pointer"
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   Book Free Counselling
                 </button>
                 <a
                   href="tel:8278713791"
-                  className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition-all duration-300 cursor-pointer"
+                  className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition-all duration-300 cursor-pointer font-tt-talent"
+                  style={{ fontFamily: '"TT Talent", sans-serif' }}
                 >
                   <PhoneCall size={14} />
                   <span>Talk to Expert Now</span>
@@ -88,7 +90,7 @@ export default function CounsellingCTA({ onCounsellingClick }) {
               >
                 <div className="flex items-center justify-between mb-6">
                   <span className="text-xs font-bold text-white/80 uppercase">Guaranteed Response</span>
-                  <div className="w-2.5 h-2.5 rounded-full bg-brand-400 animate-pulse"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
                 </div>
 
                 <div className="space-y-4">

@@ -206,7 +206,7 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
                           
                           {/* NIRF Rank Badges */}
-                          <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#110051]/90 backdrop-blur-xs text-white text-[9px] font-bold tracking-wider uppercase border border-white/10 shadow-sm">
+                          <div className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#0f71cd]/90 backdrop-blur-xs text-white text-[9px] font-bold tracking-wider uppercase border border-white/10 shadow-sm">
                             NIRF {college.nirf || '#N/A'}
                           </div>
 
@@ -217,7 +217,7 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                           </div>
 
                           {/* Logo tag floating */}
-                          <div className="absolute bottom-3 left-3 w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center font-display font-bold text-xs text-[#110051] shadow-md overflow-hidden p-0.5">
+                          <div className="absolute bottom-3 left-3 w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center font-tt-talent font-bold text-xs text-[#0F141E] shadow-md overflow-hidden p-0.5" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                             {college.logo ? (
                               college.logo.startsWith('http') || college.logo.startsWith('/') || college.logo.startsWith('data:') ? (
                                 <img src={college.logo} alt="" className="w-full h-full object-cover rounded-md" />
@@ -239,7 +239,7 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                             </span>
 
                             {/* College Name */}
-                            <h3 className="font-display font-bold text-base text-[#110051] tracking-tight line-clamp-1 hover:text-[#1a0073] transition-colors mb-1">
+                            <h3 className="font-tt-talent font-bold text-base text-[#0F141E] tracking-tight line-clamp-1 hover:text-[#0f71cd] transition-colors mb-1" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                               {college.name || 'Unnamed Institution'}
                             </h3>
 
@@ -267,11 +267,12 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                             {/* Compare toggle */}
                             <button
                               onClick={() => onToggleCompare(college)}
-                              className={`flex-1 h-9 flex items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-all duration-300 cursor-pointer ${
+                              className={`flex-1 h-9 flex items-center justify-center gap-1.5 rounded-lg text-xs font-tt-talent font-bold transition-all duration-300 cursor-pointer ${
                                 isCompared 
-                                  ? 'bg-[#110051] text-white border-transparent shadow-xs'
+                                  ? 'bg-[#0f71cd] text-white border-transparent shadow-xs'
                                   : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                               }`}
+                              style={{ fontFamily: '"TT Talent", sans-serif' }}
                             >
                               {isCompared ? (
                                 <>
@@ -286,7 +287,8 @@ export default function FeaturedColleges({ onToggleCompare, comparedColleges, on
                             {/* View Details */}
                             <Link 
                               to={`/colleges/${collegeId}`}
-                              className="flex-1 h-9 flex items-center justify-center gap-1.5 bg-[#110051] hover:bg-[#1a0073] text-white text-xs font-bold rounded-lg transition-all duration-300 cursor-pointer text-center"
+                              className="flex-1 h-9 flex items-center justify-center gap-1.5 bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-xs font-tt-talent font-bold rounded-lg transition-all duration-300 cursor-pointer text-center"
+                              style={{ fontFamily: '"TT Talent", sans-serif' }}
                             >
                               View Details
                             </Link>

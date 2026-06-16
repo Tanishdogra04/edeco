@@ -22,24 +22,24 @@ export default function LatestNews() {
   }, []);
 
   return (
-    <section id="news" className="py-20 bg-brand-50 relative border-y border-brand-200/30">
+    <section id="news" className="py-20 bg-slate-50/50 relative border-y border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <div className="text-left space-y-2">
-            <span className="text-[12px] font-bold text-brand-600 uppercase tracking-widest block">
+            <span className="text-[12px] font-bold text-[#0f71cd] uppercase tracking-widest block">
               Knowledge Hub
             </span>
-            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-brand-800 tracking-tight">
+            <h2 className="font-tt-talent font-bold text-3xl sm:text-4xl text-[#0F141E] tracking-tight" style={{ fontFamily: '"TT Talent", sans-serif' }}>
               Latest News & Admissions Insights
             </h2>
-            <p className="text-[14px] text-brand-800/60 max-w-md font-medium">
+            <p className="text-[14px] text-[#0F141E]/70 max-w-md font-medium">
               Read up-to-date reports from campus corridors, exam councils, and expert academic strategists.
             </p>
           </div>
 
-          <Link to="/news/jee-main-cutoff" className="flex items-center gap-1 text-[13px] font-extrabold text-brand-600 hover:text-brand-705 mt-4 md:mt-0 group cursor-pointer">
+          <Link to="/news/jee-main-cutoff" className="flex items-center gap-1 text-[13px] font-bold text-[#0f71cd] hover:text-[#0c62b2] mt-4 md:mt-0 group cursor-pointer font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
             <span>Visit the Blog Bulletin</span>
             <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
@@ -54,7 +54,7 @@ export default function LatestNews() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group flex flex-col justify-between h-full rounded-3xl overflow-hidden bg-white border border-brand-200 hover:border-brand-500/40 hover:shadow-md transition-all duration-300 cursor-pointer"
+                className="group flex flex-col justify-between h-full rounded-3xl overflow-hidden bg-white border border-slate-200 hover:border-[#0f71cd]/30 hover:shadow-md transition-all duration-300 cursor-pointer"
               >
               <div>
                 {/* Thumbnail Image */}
@@ -65,7 +65,7 @@ export default function LatestNews() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-lg bg-white/95 backdrop-blur-sm text-brand-800 text-[10px] font-bold shadow-sm uppercase tracking-wide">
+                    <span className="px-3 py-1 rounded-lg bg-white/95 backdrop-blur-sm text-[#0f71cd] text-[10px] font-bold shadow-sm uppercase tracking-wide">
                       {art.tag}
                     </span>
                   </div>
@@ -74,24 +74,24 @@ export default function LatestNews() {
                 {/* Body Content */}
                 <div className="p-6 text-left space-y-3">
                   {/* Meta data */}
-                  <div className="flex items-center gap-4 text-[11px] text-brand-800/50 font-semibold">
+                  <div className="flex items-center gap-4 text-[11px] text-[#0F141E]/55 font-semibold">
                     <div className="flex items-center gap-1">
-                      <Calendar size={12} />
+                      <Calendar size={12} className="text-[#0f71cd]/70" />
                       <span>{art.date}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <User size={12} />
+                      <User size={12} className="text-[#0f71cd]/70" />
                       <span>{typeof art.author === 'object' && art.author ? art.author.name : art.author}</span>
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-display font-extrabold text-lg text-brand-800 leading-snug tracking-tight group-hover:text-brand-500 transition-colors">
+                  <h3 className="font-tt-talent font-bold text-lg text-[#0F141E] leading-snug tracking-tight group-hover:text-[#0f71cd] transition-colors" style={{ fontFamily: '"TT Talent", sans-serif' }}>
                     {art.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-[13px] text-brand-800/60 font-normal leading-relaxed line-clamp-3">
+                  <p className="text-[13px] text-[#0F141E]/70 font-normal leading-relaxed line-clamp-3">
                     {art.desc}
                   </p>
                 </div>
@@ -99,7 +99,7 @@ export default function LatestNews() {
 
               {/* Read More footer link */}
               <div className="px-6 pb-6 pt-2 text-left">
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-800/80 group-hover:text-brand-500 transition-colors">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F141E]/80 group-hover:text-[#0f71cd] transition-colors">
                   <span>Read Article</span>
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </span>

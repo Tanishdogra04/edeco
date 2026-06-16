@@ -29,10 +29,10 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ y: -4 }}
-      className="bg-white rounded-xl border border-slate-100 shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(17,0,81,0.05)] hover:border-slate-200/60 transition-all duration-300 group flex flex-col overflow-hidden relative"
+      className="bg-white rounded-xl border border-slate-100 shadow-[0_2px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_30px_rgba(15,113,205,0.05)] hover:border-slate-200/60 transition-all duration-300 group flex flex-col overflow-hidden relative"
     >
       {/* Top Background Glow Effect on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#110051]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0f71cd]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       {/* ====================================================
           TOP IMAGE SECTION 
@@ -50,7 +50,7 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
         
         {/* Top Left: Stream Badge */}
         <div className="absolute top-3.5 left-3.5 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-md shadow-xs flex items-center gap-1 border border-slate-100/50">
-          <Sparkles size={12} className="text-[#110051]/80" />
+          <Sparkles size={12} className="text-[#0f71cd]/80" />
           <span className="text-[10px] font-bold text-slate-800 tracking-wide uppercase">{streamBadge}</span>
         </div>
 
@@ -74,7 +74,7 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
         {/* Title & Location */}
         <div className="mb-3">
           <Link to={`/colleges/${college.id}`} className="block group/link">
-            <h3 className="text-base font-bold text-[#110051] leading-snug mb-1 hover:text-[#1a0073] transition-colors line-clamp-2">
+            <h3 className="text-base font-bold text-[#0F141E] font-tt-talent leading-snug mb-1 hover:text-[#0f71cd] transition-colors line-clamp-2" style={{ fontFamily: '"TT Talent", sans-serif' }}>
               {college.name}
             </h3>
           </Link>
@@ -133,7 +133,8 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
         <div className="flex items-center gap-2 mt-auto pt-4 border-t border-slate-100">
           <Link 
             to={`/colleges/${college.id}`} 
-            className="flex-1 h-9 bg-[#110051] hover:bg-[#1a0073] text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-1.5 transition-all duration-300 shadow-xs group/btn text-xs"
+            className="flex-1 h-9 bg-[#0f71cd] hover:bg-[#0c62b2] text-white font-tt-talent font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-1.5 transition-all duration-300 shadow-xs group/btn text-xs text-center"
+            style={{ fontFamily: '"TT Talent", sans-serif' }}
           >
             View Details 
             <ArrowRight size={14} className="group-hover/btn:translate-x-0.5 transition-transform" />
