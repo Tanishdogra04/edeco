@@ -4,10 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search, MapPin, Phone, Mail, ChevronRight, ChevronDown, ArrowRight,
   Compass, X, Calendar, User, Clock, CheckCircle2, Send, Check,
-  Navigation
+  Navigation, ShieldCheck, MessageCircle
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import mapIllustration from '../assets/map_illustration.png';
 
 const branchesData = [
   {
@@ -238,253 +239,279 @@ export default function FindUs() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-between">
+    <div className="min-w-screen min-h-screen bg-gradient-to-b from-blue-50/20 via-white to-slate-50/20 flex flex-col justify-between relative overflow-hidden">
+
       <div>
         <Navbar />
 
-        {/* Locator Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-          {/* Breadcrumbs */}
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-8 font-display text-left">
-            <Link to="/" className="hover:text-[#0f71cd] transition-colors">Home</Link>
-            <ChevronRight size={12} className="text-slate-300" />
-            <span className="text-slate-600">Find nearest Edeco office</span>
-          </div>
+        {/* Hero & Locator Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-10">
 
-          {/* Heading */}
-          <div className="text-center mb-12 flex flex-col items-center text-[#0F141E]">
-            <h1 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
-              Get in Touch
-            </h1>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-[#0F141E] font-tt-talent leading-tight max-w-3xl mb-4 mx-auto" style={{ fontFamily: '"TT Talent", sans-serif' }}>
-              Find a branch, book a call,<br className="hidden md:inline" /> <span className="bg-gradient-to-r from-[#0f71cd] to-[#3ba3ff] bg-clip-text text-transparent">or chat with us.</span>
-            </h2>
-            <p className="text-sm sm:text-base font-semibold text-slate-500 max-w-2xl leading-relaxed mx-auto">
-              Your goals, your schedule.<br className="hidden sm:inline" /> Choose the easiest way to connect with our team.
-            </p>
-          </div>
+            {/* Left Column: Content + Filters */}
+            <div className="lg:col-span-7 flex flex-col items-start text-left">
+              {/* Breadcrumbs */}
+              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-400 mb-6 font-display">
+                <Link to="/" className="hover:text-[#0f71cd] transition-colors">Home</Link>
+                <ChevronRight size={10} className="text-slate-350" />
+                <span className="text-slate-550">Find nearest Edeco office</span>
+              </div>
 
-          {/* Search Bar */}
-          <div className="relative mb-6">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-            <input
-              type="text"
-              placeholder="Search branches..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-white border border-slate-100 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.015)] focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-sm font-semibold text-[#0F141E] placeholder-slate-400"
-            />
-            {searchTerm && (
-              <button
-                onClick={() => setSearchTerm("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-slate-50 text-slate-400 hover:text-slate-600 transition-colors"
-              >
-                <X size={16} />
-              </button>
-            )}
-          </div>
+              {/* Tag / Badge */}
+              <span className="inline-block px-4 py-1.5 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider bg-[#0f71cd]/8 text-[#0f71cd] mb-6">
+                Get in touch
+              </span>
 
-          {/* Filter Pills */}
-          <div className="relative flex flex-wrap gap-2.5 pb-4 mb-10 select-none items-center justify-center">
-            {visibleStates.map((state) => (
-              <button
-                key={state}
-                onClick={() => {
-                  handleStateSelect(state);
-                  setIsDropdownOpen(false);
-                }}
-                className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer font-tt-talent ${
-                  selectedState === state
-                    ? 'bg-[#0f71cd] border-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/15'
-                    : 'bg-white border-slate-200 text-slate-650 hover:border-[#0f71cd] hover:text-[#0f71cd] hover:bg-slate-50'
-                }`}
+              {/* Main Heading */}
+              <h1
+                className="text-4xl sm:text-5xl lg:text-[56px] font-black tracking-tight text-[#0F141E] font-tt-talent leading-[1.1] mb-6"
                 style={{ fontFamily: '"TT Talent", sans-serif' }}
               >
-                {state}
-              </button>
-            ))}
+                Find a branch, book a call,<br />
+                <span className="text-[#0f71cd]">or chat with us.</span>
+              </h1>
 
-            {/* Dropdown for More Regions */}
-            <div className="relative">
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer flex items-center gap-1.5 font-tt-talent ${
-                  dropdownStates.includes(selectedState)
-                    ? 'bg-[#0f71cd] border-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/15'
-                    : 'bg-white border-slate-200 text-slate-650 hover:border-[#0f71cd] hover:text-[#0f71cd] hover:bg-slate-50'
-                }`}
-                style={{ fontFamily: '"TT Talent", sans-serif' }}
-              >
-                <span>{dropdownStates.includes(selectedState) ? `More: ${selectedState}` : 'More'}</span>
-                <ChevronDown size={14} className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
+              {/* Subheading */}
+              <p className="text-sm sm:text-base font-semibold text-slate-500 mb-8 leading-relaxed max-w-xl">
+                Your goals, your schedule.<br className="hidden sm:inline" /> Choose the easiest way to connect with our team.
+              </p>
 
-              {/* Dropdown Menu */}
-              <AnimatePresence>
-                {isDropdownOpen && (
-                  <>
-                    {/* Backdrop wrapper to handle click outside */}
-                    <div 
-                      className="fixed inset-0 z-10 cursor-default" 
-                      onClick={() => setIsDropdownOpen(false)}
-                    />
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 mt-2 w-56 bg-white border border-slate-100 rounded-2xl shadow-xl z-20 py-2 overflow-hidden text-left"
-                    >
-                      {dropdownStates.map((state) => (
-                        <button
-                          key={state}
-                          onClick={() => {
-                            handleStateSelect(state);
-                            setIsDropdownOpen(false);
-                          }}
-                          className={`w-full px-4 py-2.5 text-xs font-bold text-left transition-colors flex items-center justify-between cursor-pointer ${
-                            selectedState === state
-                              ? 'bg-slate-50 text-[#0f71cd]'
-                              : 'text-slate-605 hover:bg-slate-50/80 hover:text-[#0f71cd]'
-                          }`}
-                        >
-                          <span>{state}</span>
-                          {selectedState === state && <Check size={12} className="text-[#0f71cd]" />}
-                        </button>
-                      ))}
-                    </motion.div>
-                  </>
+              {/* Search Bar */}
+              <div className="relative mb-6 w-full max-w-xl">
+                <Search className="absolute left-4.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <input
+                  type="text"
+                  placeholder="Search branches, cities or landmarks..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-12 py-4 bg-white border border-slate-100/80 rounded-2xl shadow-[0_8px_30px_rgba(15,113,205,0.03)] focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-sm font-semibold text-[#0F141E] placeholder-slate-400"
+                />
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm("")}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-lg hover:bg-slate-50 text-slate-450 hover:text-slate-655 transition-colors"
+                  >
+                    <X size={16} />
+                  </button>
                 )}
-              </AnimatePresence>
+              </div>
+
+              {/* Filter Pills */}
+              <div className="relative flex flex-wrap gap-2 pb-2 select-none items-center">
+                {visibleStates.map((state) => (
+                  <button
+                    key={state}
+                    onClick={() => {
+                      handleStateSelect(state);
+                      setIsDropdownOpen(false);
+                    }}
+                    className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer font-tt-talent ${selectedState === state
+                        ? 'bg-[#0f71cd] border-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/15'
+                        : 'bg-white border-slate-200/80 text-slate-600 hover:border-[#0f71cd] hover:text-[#0f71cd] hover:bg-slate-50'
+                      }`}
+                    style={{ fontFamily: '"TT Talent", sans-serif' }}
+                  >
+                    {state}
+                  </button>
+                ))}
+
+                {/* Dropdown for More Regions */}
+                <div className="relative">
+                  <button
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className={`px-4.5 py-2.5 rounded-full text-xs font-bold tracking-wide whitespace-nowrap border transition-all cursor-pointer flex items-center gap-1.5 font-tt-talent ${dropdownStates.includes(selectedState)
+                        ? 'bg-[#0f71cd] border-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/15'
+                        : 'bg-white border-slate-200/80 text-slate-600 hover:border-[#0f71cd] hover:text-[#0f71cd] hover:bg-slate-50'
+                      }`}
+                    style={{ fontFamily: '"TT Talent", sans-serif' }}
+                  >
+                    <span>{dropdownStates.includes(selectedState) ? `More: ${selectedState}` : 'More'}</span>
+                    <ChevronDown size={14} className={`transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <>
+                        <div
+                          className="fixed inset-0 z-10 cursor-default"
+                          onClick={() => setIsDropdownOpen(false)}
+                        />
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute left-0 mt-2 w-52 bg-white border border-slate-100 rounded-2xl shadow-xl z-20 py-2 overflow-hidden text-left"
+                        >
+                          {dropdownStates.map((state) => (
+                            <button
+                              key={state}
+                              onClick={() => {
+                                handleStateSelect(state);
+                                setIsDropdownOpen(false);
+                              }}
+                              className={`w-full px-4 py-2.5 text-xs font-bold text-left transition-colors flex items-center justify-between cursor-pointer ${selectedState === state
+                                  ? 'bg-slate-50 text-[#0f71cd]'
+                                  : 'text-slate-600 hover:bg-slate-50/80 hover:text-[#0f71cd]'
+                                }`}
+                            >
+                              <span>{state}</span>
+                              {selectedState === state && <Check size={12} className="text-[#0f71cd]" />}
+                            </button>
+                          ))}
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
             </div>
+
+            {/* Right Column: 3D Illustration Graphic */}
+            <div className="lg:col-span-5 flex justify-center items-center relative">
+              {/* Subtle background glow behind the map */}
+              <div className="absolute w-72 h-72 bg-[#0f71cd]/5 rounded-full blur-3xl -z-10" />
+
+              <div className="w-full max-w-[420px] lg:max-w-none">
+                <img
+                  src={mapIllustration}
+                  alt="Edeco Branch Locator Map Illustration"
+                  className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-[0_15px_30px_rgba(15,113,205,0.04)]"
+                />
+              </div>
+            </div>
+
           </div>
 
           {/* Cards Grid */}
-          {filteredBranches.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredBranches.map((branch, index) => (
-                <motion.div
-                  key={branch.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.03 }}
-                  className="bg-white rounded-[32px] p-6 border border-slate-100 shadow-[0_4px_25px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:border-slate-200 transition-all duration-300 group text-left"
-                >
-                  <div>
-                    {/* Header Tag Row */}
-                    <div className="flex justify-between items-center mb-4">
-                      {/* State Tag */}
-                      <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0f71cd]/10 text-[#0f71cd]">
-                        {branch.state}
-                      </span>
-                      {/* Get Directions */}
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.name + ' ' + branch.address)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-[#0f71cd] hover:text-[#0c62b2] font-bold transition-colors cursor-pointer text-xs"
-                      >
-                        <Navigation size={12} className="shrink-0" /> Get Directions
-                      </a>
-                    </div>
-
-                    {/* Branch Title */}
-                    <h3 className="text-xl font-bold text-[#0F141E] mb-4.5 font-tt-talent group-hover:text-[#0f71cd] transition-colors" style={{ fontFamily: '"TT Talent", sans-serif' }}>
-                      {branch.name}
-                    </h3>
-
-                    {/* Contact Details */}
-                    <div className="space-y-4 mb-6 text-[#0F141E]">
-                      {/* Address */}
-                      <div className="flex gap-3 items-start">
-                        <MapPin size={16} className="text-[#0f71cd] shrink-0 mt-0.5" />
-                        <div className="text-[13px] leading-relaxed text-slate-600 font-sans font-medium">
-                          {branch.address}
-                        </div>
-                      </div>
-
-                      {/* Phone */}
-                      {branch.phones && branch.phones.length > 0 && (
-                        <div className="flex gap-3 items-start">
-                          <Phone size={16} className="text-[#0f71cd] shrink-0 mt-0.5" />
-                          <div className="flex flex-col text-[13px] text-slate-600 font-sans font-medium">
-                            {branch.phones.map((phone, i) => (
-                              <a
-                                key={i}
-                                href={`tel:${phone.replace(/\s+/g, '')}`}
-                                className="hover:text-[#0f71cd] transition-colors"
-                              >
-                                {phone}
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Email */}
-                      <div className="flex gap-3 items-center">
-                        <Mail size={16} className="text-[#0f71cd] shrink-0" />
+          <div id="stores-section" className="scroll-mt-28">
+            {filteredBranches.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredBranches.map((branch, index) => (
+                  <motion.div
+                    key={branch.id}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.03 }}
+                    className="bg-white rounded-[32px] p-6 border border-slate-100 shadow-[0_4px_25px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:border-slate-200 transition-all duration-300 group text-left"
+                  >
+                    <div>
+                      {/* Header Tag Row */}
+                      <div className="flex justify-between items-center mb-4">
+                        {/* State Tag */}
+                        <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#0f71cd]/10 text-[#0f71cd]">
+                          {branch.state}
+                        </span>
+                        {/* Get Directions */}
                         <a
-                          href={`mailto:${branch.email}`}
-                          className="text-[13px] text-slate-600 font-sans font-medium hover:text-[#0f71cd] transition-colors"
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.name + ' ' + branch.address)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/8 text-amber-600 hover:bg-amber-500 hover:text-white font-bold transition-all duration-200 cursor-pointer text-[10px] sm:text-xs tracking-wide"
                         >
-                          {branch.email}
+                          <Navigation size={11} className="shrink-0" /> Get Directions
                         </a>
                       </div>
+
+                      {/* Branch Title */}
+                      <h3 className="text-xl font-bold text-[#0F141E] mb-4.5 font-tt-talent group-hover:text-[#0f71cd] transition-colors" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+                        {branch.name}
+                      </h3>
+
+                      {/* Contact Details */}
+                      <div className="space-y-4 mb-6 text-[#0F141E]">
+                        {/* Address */}
+                        <div className="flex gap-3 items-start">
+                          <MapPin size={16} className="text-[#0f71cd] shrink-0 mt-0.5" />
+                          <div className="text-[13px] leading-relaxed text-slate-600 font-sans font-medium">
+                            {branch.address}
+                          </div>
+                        </div>
+
+                        {/* Phone */}
+                        {branch.phones && branch.phones.length > 0 && (
+                          <div className="flex gap-3 items-start">
+                            <Phone size={16} className="text-[#0f71cd] shrink-0 mt-0.5" />
+                            <div className="flex flex-col text-[13px] text-slate-600 font-sans font-medium">
+                              {branch.phones.map((phone, i) => (
+                                <a
+                                  key={i}
+                                  href={`tel:${phone.replace(/\s+/g, '')}`}
+                                  className="hover:text-[#0f71cd] transition-colors"
+                                >
+                                  {phone}
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Email */}
+                        <div className="flex gap-3 items-center">
+                          <Mail size={16} className="text-[#0f71cd] shrink-0" />
+                          <a
+                            href={`mailto:${branch.email}`}
+                            className="text-[13px] text-slate-600 font-sans font-medium hover:text-[#0f71cd] transition-colors"
+                          >
+                            {branch.email}
+                          </a>
+                        </div>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Actions Section */}
-                  <div className="space-y-2.5 pt-4 border-t border-slate-50 shrink-0">
-                    {/* WhatsApp */}
-                    <a
-                      href={`https://wa.me/${branch.whatsapp}?text=${encodeURIComponent("Hi Edeco, I would like to learn more about the admissions guidelines and courses at the " + branch.name + " branch.")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-slate-200 hover:border-[#25D366] hover:bg-[#25D366]/5 text-slate-700 hover:text-[#25D366] text-xs font-bold transition-all duration-200 cursor-pointer"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="shrink-0">
-                        <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.761.46 3.473 1.332 4.988l-1.417 5.176 5.302-1.391c1.464.798 3.109 1.218 4.771 1.218h.004c5.502 0 9.984-4.483 9.984-9.99 0-2.67-1.037-5.18-2.92-7.062C17.18 3.037 14.673 2 12.012 2zm6.36 14.887c-.26.732-1.28 1.341-1.765 1.402-.455.057-.9-.122-2.882-.907-2.53-1.002-4.148-3.565-4.275-3.733-.127-.168-.94-1.246-.94-2.38 0-1.134.587-1.692.798-1.92.212-.228.462-.284.618-.284h.442c.137 0 .324-.051.488.349.168.41.577 1.408.627 1.51.05.101.084.22.016.353-.067.135-.1.22-.2.338-.1.118-.21.263-.3.353-.1.101-.205.212-.089.412.115.199.513.844 1.1 1.368.756.674 1.393.882 1.593.98.2.101.316.084.433-.05.118-.135.5-.588.634-.789.135-.201.27-.168.455-.101.185.067 1.178.556 1.38.657.2.101.333.151.383.236.05.084.05.492-.21.732z"/>
-                      </svg>
-                      <span>WhatsApp</span>
-                    </a>
+                    {/* Actions Section */}
+                    <div className="space-y-2.5 pt-4 border-t border-slate-50 shrink-0">
+                      {/* WhatsApp */}
+                      <a
+                        href={`https://wa.me/${branch.whatsapp}?text=${encodeURIComponent("Hi Edeco, I would like to learn more about the admissions guidelines and courses at the " + branch.name + " branch.")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-slate-200 hover:border-[#25D366] hover:bg-[#25D366]/5 text-slate-700 hover:text-[#25D366] text-xs font-bold transition-all duration-200 cursor-pointer"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="shrink-0">
+                          <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.761.46 3.473 1.332 4.988l-1.417 5.176 5.302-1.391c1.464.798 3.109 1.218 4.771 1.218h.004c5.502 0 9.984-4.483 9.984-9.99 0-2.67-1.037-5.18-2.92-7.062C17.18 3.037 14.673 2 12.012 2zm6.36 14.887c-.26.732-1.28 1.341-1.765 1.402-.455.057-.9-.122-2.882-.907-2.53-1.002-4.148-3.565-4.275-3.733-.127-.168-.94-1.246-.94-2.38 0-1.134.587-1.692.798-1.92.212-.228.462-.284.618-.284h.442c.137 0 .324-.051.488.349.168.41.577 1.408.627 1.51.05.101.084.22.016.353-.067.135-.1.22-.2.338-.1.118-.21.263-.3.353-.1.101-.205.212-.089.412.115.199.513.844 1.1 1.368.756.674 1.393.882 1.593.98.2.101.316.084.433-.05.118-.135.5-.588.634-.789.135-.201.27-.168.455-.101.185.067 1.178.556 1.38.657.2.101.333.151.383.236.05.084.05.492-.21.732z" />
+                        </svg>
+                        <span>WhatsApp</span>
+                      </a>
 
-                    {/* Book an Appointment */}
-                    <button
-                      onClick={() => openBookingModal(branch)}
-                      className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-[#0f71cd] text-white hover:bg-[#0c62b2] font-bold font-tt-talent cursor-pointer"
-                      style={{ fontFamily: '"TT Talent", sans-serif' }}
-                    >
-                      <span>Book an Appointment</span>
-                      <ChevronRight size={14} />
-                    </button>
+                      {/* Book an Appointment */}
+                      <button
+                        onClick={() => openBookingModal(branch)}
+                        className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-[#0f71cd] text-white hover:bg-[#0c62b2] font-bold font-tt-talent cursor-pointer"
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
+                      >
+                        <span>Book an Appointment</span>
+                        <ChevronRight size={14} />
+                      </button>
 
-                    {/* Visit Branch */}
-                    <button
-                      onClick={() => openVisitModal(branch)}
-                      className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#0F141E] text-xs font-bold transition-all duration-205 cursor-pointer font-tt-talent"
-                      style={{ fontFamily: '"TT Talent", sans-serif' }}
-                    >
-                      <span>Visit Branch</span>
-                      <ArrowRight size={14} />
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="py-16 text-center"
-            >
-              <Compass size={48} className="mx-auto text-slate-355 mb-4 animate-pulse-slow" />
-              <h3 className="text-lg font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>No branches found</h3>
-              <p className="text-slate-400 text-sm font-semibold mt-1">
-                Try searching for a different city or region.
-              </p>
-            </motion.div>
-          )}
+                      {/* Visit Branch */}
+                      <button
+                        onClick={() => openVisitModal(branch)}
+                        className="w-full flex items-center justify-center gap-1.5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#0F141E] text-xs font-bold transition-all duration-205 cursor-pointer font-tt-talent"
+                        style={{ fontFamily: '"TT Talent", sans-serif' }}
+                      >
+                        <span>Visit Branch</span>
+                        <ArrowRight size={14} />
+                      </button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="py-16 text-center"
+              >
+                <Compass size={48} className="mx-auto text-slate-355 mb-4 animate-pulse-slow" />
+                <h3 className="text-lg font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>No branches found</h3>
+                <p className="text-slate-400 text-sm font-semibold mt-1">
+                  Try searching for a different city or region.
+                </p>
+              </motion.div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -555,7 +582,7 @@ export default function FindUs() {
                           type="text"
                           required
                           value={bookingForm.firstName}
-                          onChange={(e) => setBookingForm({...bookingForm, firstName: e.target.value})}
+                          onChange={(e) => setBookingForm({ ...bookingForm, firstName: e.target.value })}
                           placeholder="John"
                           className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                         />
@@ -566,7 +593,7 @@ export default function FindUs() {
                           type="text"
                           required
                           value={bookingForm.lastName}
-                          onChange={(e) => setBookingForm({...bookingForm, lastName: e.target.value})}
+                          onChange={(e) => setBookingForm({ ...bookingForm, lastName: e.target.value })}
                           placeholder="Doe"
                           className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                         />
@@ -579,7 +606,7 @@ export default function FindUs() {
                         type="email"
                         required
                         value={bookingForm.email}
-                        onChange={(e) => setBookingForm({...bookingForm, email: e.target.value})}
+                        onChange={(e) => setBookingForm({ ...bookingForm, email: e.target.value })}
                         placeholder="john@example.com"
                         className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                       />
@@ -591,7 +618,7 @@ export default function FindUs() {
                         type="tel"
                         required
                         value={bookingForm.phone}
-                        onChange={(e) => setBookingForm({...bookingForm, phone: e.target.value})}
+                        onChange={(e) => setBookingForm({ ...bookingForm, phone: e.target.value })}
                         placeholder="+91 98765 43210"
                         className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                       />
@@ -604,7 +631,7 @@ export default function FindUs() {
                           type="date"
                           required
                           value={bookingForm.date}
-                          onChange={(e) => setBookingForm({...bookingForm, date: e.target.value})}
+                          onChange={(e) => setBookingForm({ ...bookingForm, date: e.target.value })}
                           className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                         />
                       </div>
@@ -612,7 +639,7 @@ export default function FindUs() {
                         <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Preferred Slot</label>
                         <select
                           value={bookingForm.timeSlot}
-                          onChange={(e) => setBookingForm({...bookingForm, timeSlot: e.target.value})}
+                          onChange={(e) => setBookingForm({ ...bookingForm, timeSlot: e.target.value })}
                           className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E]"
                         >
                           <option>Morning (9:30 AM - 12:30 PM)</option>
@@ -627,7 +654,7 @@ export default function FindUs() {
                       <textarea
                         rows={3}
                         value={bookingForm.message}
-                        onChange={(e) => setBookingForm({...bookingForm, message: e.target.value})}
+                        onChange={(e) => setBookingForm({ ...bookingForm, message: e.target.value })}
                         placeholder="Admissions guidance, course details..."
                         className="w-full mt-1.5 p-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#0f71cd] focus:ring-2 focus:ring-[#0f71cd]/10 outline-none transition-all text-xs font-semibold text-[#0F141E] resize-none"
                       />
@@ -758,7 +785,7 @@ export default function FindUs() {
                   </ul>
                 </div>
 
-                 {/* Map Mockup Placeholder */}
+                {/* Map Mockup Placeholder */}
                 <div className="h-32 bg-slate-100 rounded-2xl flex items-center justify-center relative overflow-hidden group/map border border-slate-100">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-200/50 via-slate-100 to-slate-200/50 animate-glow"></div>
                   <div className="relative z-10 flex flex-col items-center gap-2">
