@@ -12,6 +12,7 @@ const Exam = require('../models/Exam');
 const Event = require('../models/Event');
 const News = require('../models/News');
 const User = require('../models/User');
+const Course = require('../models/Course');
 
 // Helper to generate details for colleges based on getMockCollegeData in frontend
 const getCollegeDetails = (id, base) => {
@@ -571,6 +572,75 @@ const eventsData = [
   }
 ];
 
+const coursesData = [
+  {
+    name: "B.Tech (Computer Science)",
+    category: "Technology",
+    iconName: "Code2",
+    duration: "4 Years (8 Semesters)",
+    salary: "₹8.5 LPA - ₹28 LPA+",
+    demand: "Extreme High",
+    demandColor: "bg-[#0f71cd] text-white border-transparent",
+    eligibility: "12th with Physics, Chemistry & Math",
+    jobs: "Software Architect, AI Engineer, Fullstack Developer"
+  },
+  {
+    name: "MBA (Finance / Marketing)",
+    category: "Management",
+    iconName: "TrendingUp",
+    duration: "2 Years (4 Semesters)",
+    salary: "₹10.2 LPA - ₹35 LPA+",
+    demand: "High",
+    demandColor: "bg-[#0f71cd]/90 text-white border-transparent",
+    eligibility: "Graduation (Any stream) + CAT/XAT",
+    jobs: "Investment Banker, Product Manager, Consultant"
+  },
+  {
+    name: "BCA / MCA (Integrated)",
+    category: "Computer Applications",
+    iconName: "Monitor",
+    duration: "3-5 Years",
+    salary: "₹5.0 LPA - ₹15 LPA+",
+    demand: "Rising",
+    demandColor: "bg-[#0f71cd]/10 text-[#0f71cd] border-transparent",
+    eligibility: "12th Pass with Mathematics/IP",
+    jobs: "Cloud Specialist, System Admin, App Developer"
+  },
+  {
+    name: "MBBS (Medicine)",
+    category: "Healthcare",
+    iconName: "HeartPulse",
+    duration: "5.5 Years (Incl. Internship)",
+    salary: "₹9.0 LPA - ₹24 LPA+",
+    demand: "Constant High",
+    demandColor: "bg-[#0f71cd] text-white border-transparent",
+    eligibility: "12th with Biology + NEET Score",
+    jobs: "Resident Medical Officer, Cardiologist, Surgeon"
+  },
+  {
+    name: "BBA (Analytics / Fintech)",
+    category: "Management",
+    iconName: "Briefcase",
+    duration: "3 Years (6 Semesters)",
+    salary: "₹4.8 LPA - ₹12 LPA+",
+    demand: "Rising",
+    demandColor: "bg-[#0f71cd]/10 text-[#0f71cd] border-transparent",
+    eligibility: "12th Pass in any stream (Commerce pref.)",
+    jobs: "Data Analyst, HR Business Partner, Marketing Head"
+  },
+  {
+    name: "LLB (Hons) / BA LLB",
+    category: "Law",
+    iconName: "Scale",
+    duration: "3 or 5 Years",
+    salary: "₹6.0 LPA - ₹18 LPA+",
+    demand: "Moderate-High",
+    demandColor: "bg-slate-100 text-slate-700 border-slate-200",
+    eligibility: "12th Pass (for 5 Yr) or Grad (for 3 Yr) + CLAT",
+    jobs: "Corporate Legal Advisor, Litigator, Cyber Law Expert"
+  }
+];
+
 const seedDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/edeco');
@@ -583,6 +653,7 @@ const seedDB = async () => {
     await Event.deleteMany({});
     await News.deleteMany({});
     await User.deleteMany({});
+    await Course.deleteMany({});
     console.log('Cleared existing database collections.');
 
     // Seed default admin user
@@ -610,6 +681,10 @@ const seedDB = async () => {
     // Seed News
     await News.insertMany(newsArticles);
     console.log('News articles seeded!');
+
+    // Seed Courses
+    await Course.insertMany(coursesData);
+    console.log('Courses seeded!');
 
     // Seed Core Colleges
     const coreColleges = featuredCollegesBase.map((c) => getCollegeDetails(c.id, c));

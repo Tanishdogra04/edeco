@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
   Building2, ShieldCheck, Plus, Trash2, ArrowLeft, AlertCircle, 
-  CheckCircle, Compass, Sparkles, BookOpenCheck, PhoneCall, Mail, List
+  CheckCircle, Compass, Sparkles, BookOpenCheck, PhoneCall, Mail, List,
+  GraduationCap
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../utils/api';
@@ -118,6 +119,7 @@ export default function AdminDashboard() {
     description: '',
     about: '',
     approvals: '', // Comma-separated on input
+    images: '', // Comma-separated gallery URLs
     courses: [{ name: '', fees: '', duration: '', eligibility: '' }],
     whyChoose: [{ title: '', desc: '' }],
     facilities: [], // list of facilities objects
@@ -147,6 +149,22 @@ export default function AdminDashboard() {
   const [submittingExam, setSubmittingExam] = useState(false);
   const [examSuccess, setExamSuccess] = useState(null);
   const [examError, setExamError] = useState(null);
+
+  // --- Course Form State ---
+  const [courseForm, setCourseForm] = useState({
+    name: '',
+    category: 'Technology',
+    iconName: 'Code2',
+    duration: '',
+    salary: '',
+    demand: 'High',
+    eligibility: '',
+    jobs: ''
+  });
+
+  const [submittingCourse, setSubmittingCourse] = useState(false);
+  const [courseSuccess, setCourseSuccess] = useState(null);
+  const [courseError, setCourseError] = useState(null);
 
   if (loading) {
     return (
@@ -226,6 +244,7 @@ export default function AdminDashboard() {
     const payload = {
       ...collegeForm,
       approvals: collegeForm.approvals.split(',').map(s => s.trim()).filter(Boolean),
+      images: collegeForm.images.split(',').map(s => s.trim()).filter(Boolean),
       courses: collegeForm.courses.filter(c => c.name),
       whyChoose: collegeForm.whyChoose.filter(w => w.title),
       faqs: collegeForm.faqs.filter(f => f.q),
@@ -252,6 +271,7 @@ export default function AdminDashboard() {
           description: '',
           about: '',
           approvals: '',
+          images: '',
           courses: [{ name: '', fees: '', duration: '', eligibility: '' }],
           whyChoose: [{ title: '', desc: '' }],
           facilities: [],
@@ -340,6 +360,55 @@ export default function AdminDashboard() {
       setExamError(err.message || 'Failed to create entrance exam. Please try again.');
     } finally {
       setSubmittingExam(false);
+    }
+  };
+
+
+
+  const handleCourseChange = (e) => {
+    const { name, value } = e.target;
+    setCourseForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCourseSubmit = async (e) => {
+    e.preventDefault();
+    setSubmittingCourse(true);
+    setCourseSuccess(null);
+    setCourseError(null);
+
+    let demandColor = 'bg-[#0f71cd]/10 text-[#0f71cd] border-transparent';
+    if (courseForm.demand.includes('Extreme') || courseForm.demand === 'Constant High') {
+      demandColor = 'bg-[#0f71cd] text-white border-transparent';
+    } else if (courseForm.demand === 'High') {
+      demandColor = 'bg-[#0f71cd]/90 text-[#0f71cd] border-transparent';
+    } else if (courseForm.demand === 'Moderate') {
+      demandColor = 'bg-slate-100 text-slate-700 border-slate-200';
+    }
+
+    const payload = {
+      ...courseForm,
+      demandColor
+    };
+
+    try {
+      const data = await api.courses.create(payload);
+      if (data.success) {
+        setCourseSuccess(`Professional course "${data.course.name}" has been created successfully!`);
+        setCourseForm({
+          name: '',
+          category: 'Technology',
+          iconName: 'Code2',
+          duration: '',
+          salary: '',
+          demand: 'High',
+          eligibility: '',
+          jobs: ''
+        });
+      }
+    } catch (err) {
+      setCourseError(err.message || 'Failed to create professional course. Please try again.');
+    } finally {
+      setSubmittingCourse(false);
     }
   };
 
@@ -432,6 +501,19 @@ export default function AdminDashboard() {
               >
                 <BookOpenCheck size={18} className="shrink-0" />
                 Add Entrance Exam
+              </button>
+
+              <button
+                onClick={() => setActiveTab('add-course')}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-left transition-all font-tt-talent ${
+                  activeTab === 'add-course'
+                    ? 'bg-[#0f71cd] text-white shadow-md shadow-[#0f71cd]/20'
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                }`}
+                style={{ fontFamily: '"TT Talent", sans-serif' }}
+              >
+                <GraduationCap size={18} className="shrink-0" />
+                Add Professional Course
               </button>
             </div>
 
@@ -726,6 +808,18 @@ export default function AdminDashboard() {
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
                       />
                     </div>
+
+                    <div className="flex flex-col justify-between h-full space-y-1.5 mt-4">
+                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Campus Gallery Image URLs (comma-separated)</label>
+                      <input
+                        type="text"
+                        name="images"
+                        value={collegeForm.images}
+                        onChange={handleCollegeChange}
+                        placeholder="e.g. https://domain.com/campus1.jpg, https://domain.com/campus2.jpg"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
+                      />
+                    </div>
                   </div>
 
                   {/* Section 2: Stats & Key Metrics */}
@@ -734,9 +828,10 @@ export default function AdminDashboard() {
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                       <div className="flex flex-col justify-between h-full space-y-1.5">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Annual Fees</label>
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Annual Fees *</label>
                         <input
                           type="text"
+                          required
                           name="fees"
                           value={collegeForm.fees}
                           onChange={handleCollegeChange}
@@ -746,9 +841,10 @@ export default function AdminDashboard() {
                       </div>
 
                       <div className="flex flex-col justify-between h-full space-y-1.5">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Average Placement Package</label>
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Average Placement Package *</label>
                         <input
                           type="text"
+                          required
                           name="package"
                           value={collegeForm.package}
                           onChange={handleCollegeChange}
@@ -758,9 +854,10 @@ export default function AdminDashboard() {
                       </div>
 
                       <div className="flex flex-col justify-between h-full space-y-1.5">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Highest Package</label>
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Highest Package *</label>
                         <input
                           type="text"
+                          required
                           name="highestPackage"
                           value={collegeForm.highestPackage}
                           onChange={handleCollegeChange}
@@ -794,9 +891,10 @@ export default function AdminDashboard() {
                       </div>
 
                       <div className="flex flex-col justify-between h-full space-y-1.5">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Quick Description</label>
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Quick Description *</label>
                         <input
                           type="text"
+                          required
                           name="description"
                           value={collegeForm.description}
                           onChange={handleCollegeChange}
@@ -836,9 +934,10 @@ export default function AdminDashboard() {
                   {/* Section 4: Detailed About */}
                   <div className="space-y-1.5">
                     <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest border-b pb-2 mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>4. Detailed Profile Biography</h4>
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">About the College</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">About the College *</label>
                     <textarea
                       name="about"
+                      required
                       rows={4}
                       value={collegeForm.about}
                       onChange={handleCollegeChange}
@@ -1138,9 +1237,10 @@ export default function AdminDashboard() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Conducting Body</label>
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Conducting Body *</label>
                         <input
                           type="text"
+                          required
                           name="conductingBody"
                           value={examForm.conductingBody}
                           onChange={handleExamChange}
@@ -1162,9 +1262,10 @@ export default function AdminDashboard() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Duration</label>
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Duration *</label>
                         <input
                           type="text"
+                          required
                           name="duration"
                           value={examForm.duration}
                           onChange={handleExamChange}
@@ -1190,9 +1291,10 @@ export default function AdminDashboard() {
                   {/* Section 2: Detailed Overview */}
                   <div className="space-y-1.5">
                     <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest border-b pb-2 mb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>2. Detailed Exam Overview</h4>
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Overview Description</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Overview Description *</label>
                     <textarea
                       name="overview"
+                      required
                       rows={4}
                       value={examForm.overview}
                       onChange={handleExamChange}
@@ -1326,6 +1428,169 @@ export default function AdminDashboard() {
                       style={{ fontFamily: '"TT Talent", sans-serif' }}
                     >
                       {submittingExam ? 'Creating Portal...' : 'Create Exam Portal'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {/* ADD COURSE TAB */}
+            {activeTab === 'add-course' && (
+              <div className="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden">
+                <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                  <h3 className="font-black text-[#0F141E] text-lg font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>Add New Professional Course</h3>
+                  <span className="text-xs font-bold text-slate-400">Expand Career Pathways</span>
+                </div>
+
+                <form onSubmit={handleCourseSubmit} className="p-6 sm:p-8 space-y-8 text-left">
+                  {courseSuccess && (
+                    <div className="p-4 bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-2xl flex items-center gap-3 text-sm font-semibold">
+                      <CheckCircle className="shrink-0 text-emerald-600" size={18} />
+                      {courseSuccess}
+                    </div>
+                  )}
+
+                  {courseError && (
+                    <div className="p-4 bg-red-50 border border-red-100 text-red-700 rounded-2xl flex items-center gap-3 text-sm font-semibold">
+                      <AlertCircle className="shrink-0 text-red-650" size={18} />
+                      {courseError}
+                    </div>
+                  )}
+
+                  {/* Section 1: Course Info */}
+                  <div className="space-y-6">
+                    <h4 className="text-xs font-black text-[#0f71cd] uppercase tracking-widest border-b pb-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>1. Course Specifications</h4>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Course Name *</label>
+                        <input
+                          type="text"
+                          required
+                          name="name"
+                          value={courseForm.name}
+                          onChange={handleCourseChange}
+                          placeholder="e.g. B.Tech (Computer Science)"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
+                        />
+                      </div>
+
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Category / Field *</label>
+                        <select
+                          name="category"
+                          value={courseForm.category}
+                          onChange={handleCourseChange}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-semibold transition-all h-10"
+                        >
+                          <option value="Technology">Technology</option>
+                          <option value="Management">Management</option>
+                          <option value="Computer Applications">Computer Applications</option>
+                          <option value="Healthcare">Healthcare</option>
+                          <option value="Law">Law</option>
+                          <option value="Design">Design</option>
+                          <option value="Arts">Arts</option>
+                          <option value="Sciences">Sciences</option>
+                        </select>
+                      </div>
+
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Visual Representation Icon *</label>
+                        <select
+                          name="iconName"
+                          value={courseForm.iconName}
+                          onChange={handleCourseChange}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-semibold transition-all h-10"
+                        >
+                          <option value="Code2">Code/Technology (Code2)</option>
+                          <option value="TrendingUp">Analytics/Growth (TrendingUp)</option>
+                          <option value="Monitor">Computer Applications (Monitor)</option>
+                          <option value="HeartPulse">Healthcare/Medical (HeartPulse)</option>
+                          <option value="Briefcase">Business/Management (Briefcase)</option>
+                          <option value="Scale">Law/Justice (Scale)</option>
+                        </select>
+                      </div>
+
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Demand Scale *</label>
+                        <select
+                          name="demand"
+                          value={courseForm.demand}
+                          onChange={handleCourseChange}
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-semibold transition-all h-10"
+                        >
+                          <option value="Extreme High">Extreme High</option>
+                          <option value="High">High</option>
+                          <option value="Constant High">Constant High</option>
+                          <option value="Rising">Rising</option>
+                          <option value="Moderate-High">Moderate-High</option>
+                          <option value="Moderate">Moderate</option>
+                        </select>
+                      </div>
+
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Duration *</label>
+                        <input
+                          type="text"
+                          required
+                          name="duration"
+                          value={courseForm.duration}
+                          onChange={handleCourseChange}
+                          placeholder="e.g. 4 Years (8 Semesters)"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
+                        />
+                      </div>
+
+                      <div className="flex flex-col justify-between h-full space-y-1.5">
+                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Average Starting Salary *</label>
+                        <input
+                          type="text"
+                          required
+                          name="salary"
+                          value={courseForm.salary}
+                          onChange={handleCourseChange}
+                          placeholder="e.g. ₹8.5 LPA - ₹28 LPA+"
+                          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col justify-between h-full space-y-1.5 mt-4">
+                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Eligibility Criteria *</label>
+                      <input
+                        type="text"
+                        required
+                        name="eligibility"
+                        value={courseForm.eligibility}
+                        onChange={handleCourseChange}
+                        placeholder="e.g. 12th with Physics, Chemistry & Math"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
+                      />
+                    </div>
+
+                    <div className="flex flex-col justify-between h-full space-y-1.5 mt-4">
+                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Core Career Tracks / Job Roles *</label>
+                      <input
+                        type="text"
+                        required
+                        name="jobs"
+                        value={courseForm.jobs}
+                        onChange={handleCourseChange}
+                        placeholder="e.g. Software Architect, AI Engineer, Fullstack Developer"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#0f71cd]/30 focus:bg-white text-sm font-medium transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submission Footer */}
+                  <div className="pt-6 border-t border-slate-100 flex items-center justify-end">
+                    <button
+                      type="submit"
+                      disabled={submittingCourse}
+                      className="px-8 py-3.5 bg-[#0f71cd] hover:bg-[#0c62b2] text-white text-sm font-bold rounded-xl transition-all duration-300 disabled:opacity-50 flex items-center gap-2 cursor-pointer shadow-md font-tt-talent"
+                      style={{ fontFamily: '"TT Talent", sans-serif' }}
+                    >
+                      {submittingCourse ? 'Adding Course...' : 'Add Professional Course'}
                     </button>
                   </div>
                 </form>

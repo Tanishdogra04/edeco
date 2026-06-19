@@ -170,6 +170,7 @@ router.post('/', protect, admin, async (req, res) => {
     logo,
     stream,
     image,
+    images,
     location,
     rating,
     fees,
@@ -191,10 +192,10 @@ router.post('/', protect, admin, async (req, res) => {
   } = req.body;
 
   try {
-    if (!name || !location) {
+    if (!name || !location || !fees || !package || !highestPackage || !description || !about) {
       return res.status(400).json({
         success: false,
-        error: 'Please provide at least a college name and location'
+        error: 'Please provide all required fields: name, location, annual fees, average package, highest package, short description, and about biography'
       });
     }
 
@@ -219,6 +220,7 @@ router.post('/', protect, admin, async (req, res) => {
       logo: logo || name.split(' ').map(w => w.charAt(0)).join('').toUpperCase(),
       stream: stream || 'Engineering',
       image: image || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80',
+      images: images || [],
       location,
       rating: rating || '4.5',
       fees: fees || '',

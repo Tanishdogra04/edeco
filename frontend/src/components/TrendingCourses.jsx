@@ -1,76 +1,105 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, TrendingUp, Monitor, HeartPulse, Briefcase, Scale, ArrowRight, Clock, IndianRupee } from 'lucide-react';
+import { api } from '../utils/api';
+
+const iconMap = {
+  Code2,
+  TrendingUp,
+  Monitor,
+  HeartPulse,
+  Briefcase,
+  Scale
+};
+
+const defaultCourses = [
+  {
+    name: "B.Tech (Computer Science)",
+    category: "Technology",
+    icon: Code2,
+    duration: "4 Years (8 Semesters)",
+    salary: "₹8.5 LPA - ₹28 LPA+",
+    demand: "Extreme High",
+    demandColor: "bg-[#0f71cd] text-white border-transparent",
+    eligibility: "12th with Physics, Chemistry & Math",
+    jobs: "Software Architect, AI Engineer, Fullstack Developer"
+  },
+  {
+    name: "MBA (Finance / Marketing)",
+    category: "Management",
+    icon: TrendingUp,
+    duration: "2 Years (4 Semesters)",
+    salary: "₹10.2 LPA - ₹35 LPA+",
+    demand: "High",
+    demandColor: "bg-[#0f71cd]/90 text-white border-transparent",
+    eligibility: "Graduation (Any stream) + CAT/XAT",
+    jobs: "Investment Banker, Product Manager, Consultant"
+  },
+  {
+    name: "BCA / MCA (Integrated)",
+    category: "Computer Applications",
+    icon: Monitor,
+    duration: "3-5 Years",
+    salary: "₹5.0 LPA - ₹15 LPA+",
+    demand: "Rising",
+    demandColor: "bg-[#0f71cd]/10 text-[#0f71cd] border-transparent",
+    eligibility: "12th Pass with Mathematics/IP",
+    jobs: "Cloud Specialist, System Admin, App Developer"
+  },
+  {
+    name: "MBBS (Medicine)",
+    category: "Healthcare",
+    icon: HeartPulse,
+    duration: "5.5 Years (Incl. Internship)",
+    salary: "₹9.0 LPA - ₹24 LPA+",
+    demand: "Constant High",
+    demandColor: "bg-[#0f71cd] text-white border-transparent",
+    eligibility: "12th with Biology + NEET Score",
+    jobs: "Resident Medical Officer, Cardiologist, Surgeon"
+  },
+  {
+    name: "BBA (Analytics / Fintech)",
+    category: "Management",
+    icon: Briefcase,
+    duration: "3 Years (6 Semesters)",
+    salary: "₹4.8 LPA - ₹12 LPA+",
+    demand: "Rising",
+    demandColor: "bg-[#0f71cd]/10 text-[#0f71cd] border-transparent",
+    eligibility: "12th Pass in any stream (Commerce pref.)",
+    jobs: "Data Analyst, HR Business Partner, Marketing Head"
+  },
+  {
+    name: "LLB (Hons) / BA LLB",
+    category: "Law",
+    icon: Scale,
+    duration: "3 or 5 Years",
+    salary: "₹6.0 LPA - ₹18 LPA+",
+    demand: "Moderate-High",
+    demandColor: "bg-slate-100 text-slate-700 border-slate-200",
+    eligibility: "12th Pass (for 5 Yr) or Grad (for 3 Yr) + CLAT",
+    jobs: "Corporate Legal Advisor, Litigator, Cyber Law Expert"
+  }
+];
 
 export default function TrendingCourses({ onExploreColleges }) {
-const courses = [
-    {
-      name: "B.Tech (Computer Science)",
-      category: "Technology",
-      icon: Code2,
-      duration: "4 Years (8 Semesters)",
-      salary: "₹8.5 LPA - ₹28 LPA+",
-      demand: "Extreme High",
-      demandColor: "bg-[#0f71cd] text-white border-transparent",
-      eligibility: "12th with Physics, Chemistry & Math",
-      jobs: "Software Architect, AI Engineer, Fullstack Developer"
-    },
-    {
-      name: "MBA (Finance / Marketing)",
-      category: "Management",
-      icon: TrendingUp,
-      duration: "2 Years (4 Semesters)",
-      salary: "₹10.2 LPA - ₹35 LPA+",
-      demand: "High",
-      demandColor: "bg-[#0f71cd]/90 text-white border-transparent",
-      eligibility: "Graduation (Any stream) + CAT/XAT",
-      jobs: "Investment Banker, Product Manager, Consultant"
-    },
-    {
-      name: "BCA / MCA (Integrated)",
-      category: "Computer Applications",
-      icon: Monitor,
-      duration: "3-5 Years",
-      salary: "₹5.0 LPA - ₹15 LPA+",
-      demand: "Rising",
-      demandColor: "bg-[#0f71cd]/10 text-[#0f71cd] border-transparent",
-      eligibility: "12th Pass with Mathematics/IP",
-      jobs: "Cloud Specialist, System Admin, App Developer"
-    },
-    {
-      name: "MBBS (Medicine)",
-      category: "Healthcare",
-      icon: HeartPulse,
-      duration: "5.5 Years (Incl. Internship)",
-      salary: "₹9.0 LPA - ₹24 LPA+",
-      demand: "Constant High",
-      demandColor: "bg-[#0f71cd] text-white border-transparent",
-      eligibility: "12th with Biology + NEET Score",
-      jobs: "Resident Medical Officer, Cardiologist, Surgeon"
-    },
-    {
-      name: "BBA (Analytics / Fintech)",
-      category: "Management",
-      icon: Briefcase,
-      duration: "3 Years (6 Semesters)",
-      salary: "₹4.8 LPA - ₹12 LPA+",
-      demand: "Rising",
-      demandColor: "bg-[#0f71cd]/10 text-[#0f71cd] border-transparent",
-      eligibility: "12th Pass in any stream (Commerce pref.)",
-      jobs: "Data Analyst, HR Business Partner, Marketing Head"
-    },
-    {
-      name: "LLB (Hons) / BA LLB",
-      category: "Law",
-      icon: Scale,
-      duration: "3 or 5 Years",
-      salary: "₹6.0 LPA - ₹18 LPA+",
-      demand: "Moderate-High",
-      demandColor: "bg-slate-100 text-slate-700 border-slate-200",
-      eligibility: "12th Pass (for 5 Yr) or Grad (for 3 Yr) + CLAT",
-      jobs: "Corporate Legal Advisor, Litigator, Cyber Law Expert"
-    }
-  ];
+  const [courses, setCourses] = useState(defaultCourses);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const data = await api.courses.getAll();
+        if (data.success && data.courses && data.courses.length > 0) {
+          setCourses(data.courses);
+        }
+      } catch (err) {
+        console.error("Failed to load professional courses:", err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCourses();
+  }, []);
 
   return (
     <section className="py-20 bg-white relative overflow-hidden">
@@ -92,7 +121,7 @@ const courses = [
         {/* Courses Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map((course, idx) => {
-            const Icon = course.icon;
+            const Icon = iconMap[course.iconName] || course.icon || Code2;
             return (
               <motion.div
                 key={idx}

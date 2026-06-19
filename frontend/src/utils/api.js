@@ -180,5 +180,17 @@ export const api = {
         body: JSON.stringify({ status })
       });
     }
+  },
+  
+  courses: {
+    getAll: async () => {
+      return await apiRequest('/courses');
+    },
+    create: async (courseData) => {
+      return await apiRequest('/courses', {
+        method: 'POST',
+        body: JSON.stringify(courseData)
+      });
+    }
   }
 };

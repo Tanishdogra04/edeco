@@ -23,6 +23,7 @@ app.use('/api/exams', require('./routes/exams'));
 app.use('/api/events', require('./routes/events'));
 app.use('/api/news', require('./routes/news'));
 app.use('/api/counselling', require('./routes/counselling'));
+app.use('/api/courses', require('./routes/courses'));
 
 // Base root route
 app.get('/', (req, res) => {
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
       events: '/api/events',
       news: '/api/news',
       counselling: '/api/counselling',
+      courses: '/api/courses',
       status: '/api/status'
     }
   });

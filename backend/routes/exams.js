@@ -75,10 +75,10 @@ router.post('/', protect, admin, async (req, res) => {
   } = req.body;
 
   try {
-    if (!name) {
+    if (!name || !fullTitle || !conductingBody || !duration || !overview) {
       return res.status(400).json({
         success: false,
-        error: 'Please provide at least the exam name'
+        error: 'Please provide all required fields: short name, full title, conducting body, duration, and overview'
       });
     }
 
