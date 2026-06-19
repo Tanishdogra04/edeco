@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import mapIllustration from '../assets/map_illustration.png';
 
 const branchesData = [
   {
@@ -249,7 +248,7 @@ export default function FindUs() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-10">
 
             {/* Left Column: Content + Filters */}
-            <div className="lg:col-span-7 flex flex-col items-start text-left">
+            <div className="lg:col-span-8 flex flex-col items-start text-left">
               {/* Breadcrumbs */}
               <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-400 mb-6 font-display">
                 <Link to="/" className="hover:text-[#0f71cd] transition-colors">Home</Link>
@@ -368,18 +367,94 @@ export default function FindUs() {
               </div>
             </div>
 
-            {/* Right Column: 3D Illustration Graphic */}
-            <div className="lg:col-span-5 flex justify-center items-center relative">
-              {/* Subtle background glow behind the map */}
-              <div className="absolute w-72 h-72 bg-[#0f71cd]/5 rounded-full blur-3xl -z-10" />
+            {/* Right Column: Regions Listing */}
+            <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
+              
+              {/* Gujarat Card */}
+              <button
+                onClick={() => handleStateSelect("Gujarat")}
+                className={`flex items-center justify-between p-3.5 bg-white border rounded-2xl shadow-[0_4px_15px_rgba(15,113,205,0.01)] transition-all cursor-pointer text-left hover:border-[#0f71cd]/30 group ${
+                  selectedState === "Gujarat" ? "border-[#0f71cd] ring-2 ring-[#0f71cd]/10 bg-[#0f71cd]/2" : "border-slate-100"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#0f71cd]/8 flex items-center justify-center text-[#0f71cd] shrink-0">
+                    <MapPin size={16} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-tight">Gujarat</h4>
+                    <p className="text-[10px] sm:text-xs font-semibold text-slate-400 mt-0.5">3 Offices</p>
+                  </div>
+                </div>
+                <ChevronRight size={14} className="text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+              </button>
 
-              <div className="w-full max-w-[420px] lg:max-w-none">
-                <img
-                  src={mapIllustration}
-                  alt="Edeco Branch Locator Map Illustration"
-                  className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-[0_15px_30px_rgba(15,113,205,0.04)]"
-                />
-              </div>
+              {/* Delhi NCR Card */}
+              <button
+                onClick={() => handleStateSelect("Delhi NCR")}
+                className={`flex items-center justify-between p-3.5 bg-white border rounded-2xl shadow-[0_4px_15px_rgba(15,113,205,0.01)] transition-all cursor-pointer text-left hover:border-[#0f71cd]/30 group ${
+                  selectedState === "Delhi NCR" ? "border-[#0f71cd] ring-2 ring-[#0f71cd]/10 bg-[#0f71cd]/2" : "border-slate-100"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#0f71cd]/8 flex items-center justify-center text-[#0f71cd] shrink-0">
+                    <MapPin size={16} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-tight">Delhi NCR</h4>
+                    <p className="text-[10px] sm:text-xs font-semibold text-slate-400 mt-0.5">2 Offices</p>
+                  </div>
+                </div>
+                <ChevronRight size={14} className="text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+
+              {/* Maharashtra Card */}
+              <button
+                onClick={() => handleStateSelect("Maharashtra")}
+                className={`flex items-center justify-between p-3.5 bg-white border rounded-2xl shadow-[0_4px_15px_rgba(15,113,205,0.01)] transition-all cursor-pointer text-left hover:border-[#0f71cd]/30 group ${
+                  selectedState === "Maharashtra" ? "border-[#0f71cd] ring-2 ring-[#0f71cd]/10 bg-[#0f71cd]/2" : "border-slate-100"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#0f71cd]/8 flex items-center justify-center text-[#0f71cd] shrink-0">
+                    <MapPin size={16} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-tight">Maharashtra</h4>
+                    <p className="text-[10px] sm:text-xs font-semibold text-slate-400 mt-0.5">2 Offices</p>
+                  </div>
+                </div>
+                <ChevronRight size={14} className="text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+
+              {/* Karnataka Card */}
+              <button
+                onClick={() => handleStateSelect("Karnataka")}
+                className={`flex items-center justify-between p-3.5 bg-white border rounded-2xl shadow-[0_4px_15px_rgba(15,113,205,0.01)] transition-all cursor-pointer text-left hover:border-[#0f71cd]/30 group ${
+                  selectedState === "Karnataka" ? "border-[#0f71cd] ring-2 ring-[#0f71cd]/10 bg-[#0f71cd]/2" : "border-slate-100"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#0f71cd]/8 flex items-center justify-center text-[#0f71cd] shrink-0">
+                    <MapPin size={16} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-tight">Karnataka</h4>
+                    <p className="text-[10px] sm:text-xs font-semibold text-slate-400 mt-0.5">1 Office</p>
+                  </div>
+                </div>
+                <ChevronRight size={14} className="text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+
+              {/* View All Regions Link */}
+              <button
+                onClick={() => handleStateSelect("All regions")}
+                className="flex items-center justify-between p-2 text-xs sm:text-sm font-bold text-[#0f71cd] hover:text-[#0c62b2] transition-colors cursor-pointer group text-left self-start mt-1"
+              >
+                <span>View all regions</span>
+                <ChevronRight size={14} className="text-[#0f71cd] group-hover:translate-x-0.5 transition-transform mt-0.5" />
+              </button>
+
             </div>
 
           </div>
