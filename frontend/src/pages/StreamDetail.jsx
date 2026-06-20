@@ -621,9 +621,8 @@ export default function StreamDetail() {
             RESULTS HEADER
         ==================================================== */}
         <div id="results-section" className="scroll-mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 mt-12">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pb-6 border-b border-slate-200">
-            <h2 className="text-xl font-bold text-[#0F141E] flex items-center gap-2 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
-              <Sparkles className="text-[#0f71cd]" size={20} />
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pb-2">
+            <h2 className="text-xl font-bold text-[#0F141E] font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>
               Showing <span className="text-[#0f71cd]">{filteredColleges.length}</span> Colleges
             </h2>
             
