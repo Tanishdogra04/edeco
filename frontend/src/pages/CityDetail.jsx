@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -15,131 +15,14 @@ import CounsellingModal from '../components/CounsellingModal';
 import { api } from '../utils/api';
 import { useToast } from '../context/ToastContext';
 
-// Mock Data
-const categories = ['Engineering', 'MBA', 'Medical', 'Law', 'Design', 'Commerce', 'Science', 'Arts'];
-
-const stats = [
-  { label: "Total Colleges", value: "500+", icon: Building2, color: "text-slate-700", bg: "bg-slate-50" },
-  { label: "Engineering", value: "120+", icon: GraduationCap, color: "text-slate-600", bg: "bg-slate-100/50" },
-  { label: "Highest Package", value: "₹54 LPA", icon: TrendingUp, color: "text-zinc-700", bg: "bg-zinc-50" },
-  { label: "Top Recruiters", value: "200+", icon: Briefcase, color: "text-zinc-600", bg: "bg-zinc-100/50" },
-];
-
-const getMockColleges = (city, category) => [
-  {
-    id: `iit-${city.toLowerCase()}`,
-    name: `Indian Institute of Technology (IIT) ${city}`,
-    location: `${city}, India`,
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=IIT+${city}&background=1e293b&color=fff`,
-    description: `Premier ${category.toLowerCase()} institute in ${city} with global recognition and top-tier placement records.`,
-    nirf: 1,
-    avgPackage: "₹25.5 LPA",
-    placement: "100%",
-    fees: "₹2.5 L/yr",
-    badges: ["Government", "Autonomous", "Approved"],
-    type: "Public"
-  },
-  {
-    id: `${city.toLowerCase()}-college-of-${category.toLowerCase()}`,
-    name: `${city} College of ${category}`,
-    location: `Central District, ${city}`,
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=C${category.charAt(0)}&background=334155&color=fff`,
-    description: `Top private ${category.toLowerCase()} college in ${city} known for excellence in education.`,
-    nirf: 89,
-    avgPackage: "₹12.4 LPA",
-    placement: "95%",
-    fees: "₹4.5 L/yr",
-    badges: ["Private", "NAAC A+", "University"],
-    type: "Private"
-  },
-  {
-    id: `${city.toLowerCase()}-${category.toLowerCase()}-university`,
-    name: `${city} ${category} University`,
-    location: `University Road, ${city}`,
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=U&background=475569&color=fff`,
-    description: `Leading private university offering multi-disciplinary programs with industry tie-ups in ${city}.`,
-    nirf: 100,
-    avgPackage: "₹10.8 LPA",
-    placement: "92%",
-    fees: "₹3.8 L/yr",
-    badges: ["Private", "UGC Approved", "Autonomous"],
-    type: "Private"
-  },
-  {
-    id: `nit-${city.toLowerCase()}`,
-    name: `National Institute of ${category} (NIT) ${city}`,
-    location: `Campus Road, ${city}`,
-    image: "https://images.unsplash.com/photo-1592289658098-b80c102b5e28?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=NIT&background=1f2937&color=fff`,
-    description: `Renowned multi-disciplinary government university famous for its ${category.toLowerCase()} programs.`,
-    nirf: 60,
-    avgPackage: "₹15.5 LPA",
-    placement: "96%",
-    fees: "₹2.2 L/yr",
-    badges: ["Government", "Deemed", "AICTE"],
-    type: "Public"
-  },
-  {
-    id: `${city.toLowerCase()}-institute-of-${category.toLowerCase()}`,
-    name: `${city} Institute of ${category}`,
-    location: `Tech Park, ${city}`,
-    image: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=IT&background=374151&color=fff`,
-    description: `One of the oldest and most respected ${category.toLowerCase()} colleges in ${city}.`,
-    nirf: 73,
-    avgPackage: "₹9.2 LPA",
-    placement: "94%",
-    fees: "₹3.5 L/yr",
-    badges: ["Private", "Autonomous", "NBA Accredited"],
-    type: "Private"
-  },
-  {
-    id: `symbiosis-${city.toLowerCase()}`,
-    name: `Symbiosis Institute of ${category === 'MBA' ? 'Business Management' : category} ${city}`,
-    location: `Electronic City, ${city}`,
-    image: "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=800&q=80",
-    logo: `https://ui-avatars.com/api/?name=SI&background=4b5563&color=fff`,
-    description: `Premier institute offering world-class ${category.toLowerCase()} education and corporate exposure in ${city}.`,
-    nirf: 35,
-    avgPackage: "₹18.5 LPA",
-    placement: "98%",
-    fees: "₹9.5 L/yr",
-    badges: ["Private", "AACSB", "AIU"],
-    type: "Private"
-  }
-];
-
-const recruiters = [
-  "Google", "Amazon", "Microsoft", "Infosys", "TCS", "Wipro", "IBM", "Accenture", "Cognizant", "Deloitte"
-];
-
-const faqs = [
-  { q: "Which is the best engineering college here?", a: "The best engineering college varies based on your specific branch interest. However, institutes like RVCE, PES University, and BMSCE are consistently ranked at the top for engineering." },
-  { q: "What is the average placement package?", a: "The average placement package across top tier colleges is around ₹8-12 LPA, with highest packages often exceeding ₹40+ LPA for computer science and IT branches." },
-  { q: "What are the MBA fees in this city?", a: "MBA fees vary widely. Government aided institutions charge around ₹1-3 Lakhs, while top private B-Schools charge between ₹8-20 Lakhs for the complete course." },
-  { q: "Are there good hostel facilities available?", a: "Yes, almost all top colleges offer in-campus hostel facilities. Additionally, the city has a massive ecosystem of PGs and student housing options." }
-];
-
-const relatedCities = [
-  { name: "Pune", image: "https://images.unsplash.com/photo-1601999109332-542b18dbec57?auto=format&fit=crop&w=400&q=80", count: "110+ Colleges" },
-  { name: "Delhi", image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=400&q=80", count: "150+ Colleges" },
-  { name: "Mumbai", image: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=400&q=80", count: "90+ Colleges" },
-  { name: "Chennai", image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=400&q=80", count: "130+ Colleges" },
-];
-
-const cityHeroImages = {
-  pune: "https://images.unsplash.com/photo-1601999109332-542b18dbec57?auto=format&fit=crop&w=1920&q=80",
-  delhi: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1920&q=80",
-  'delhi-ncr': "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1920&q=80",
-  mumbai: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=1920&q=80",
-  bangalore: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1920&q=80",
-  bengaluru: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=1920&q=80",
-  hyderabad: "https://images.unsplash.com/photo-1605007493699-af65834f8a00?auto=format&fit=crop&w=1920&q=80",
-  chennai: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1920&q=80"
-};
+import { 
+  categories, 
+  getMockColleges, 
+  recruiters, 
+  cityFaqs as faqs, 
+  relatedCities, 
+  cityHeroImages 
+} from '../data/colleges';
 
 export default function CityDetail() {
   const toast = useToast();

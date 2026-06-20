@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, User, Phone, Mail, GraduationCap, Award, 
@@ -29,7 +29,9 @@ export default function ApplicationModal({ isOpen, onClose, initialData }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [applicationId, setApplicationId] = useState('');
 
-  useEffect(() => {
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
     if (isOpen) {
       setFormData({
         name: user?.name || '',
@@ -44,7 +46,7 @@ export default function ApplicationModal({ isOpen, onClose, initialData }) {
       });
       setIsSuccess(false);
     }
-  }, [isOpen, initialData, user]);
+  }
 
   const handleInputChange = (key, val) => {
     setFormData(prev => ({ ...prev, [key]: val }));

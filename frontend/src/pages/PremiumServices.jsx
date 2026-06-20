@@ -1,87 +1,23 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Sparkles, Award, PhoneCall, CheckCircle2, 
-  ArrowRight, ShieldCheck, Zap, Users, BrainCircuit
+  Sparkles, PhoneCall, CheckCircle2, 
+  ArrowRight, BrainCircuit
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import { features, pricing } from '../data/premiumServices';
+
+const ICON_MAP = {
+  BrainCircuit,
+  PhoneCall,
+  Sparkles
+};
 
 export default function PremiumServices() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const features = [
-    {
-      icon: BrainCircuit,
-      title: 'AI College Finder',
-      description: 'Our proprietary algorithm analyzes your profile, scores, and preferences to predict admission chances with 94% accuracy.',
-      color: 'text-[#0f71cd]',
-      bg: 'bg-blue-50'
-    },
-    {
-      icon: PhoneCall,
-      title: 'Expert Consultation',
-      description: '1-on-1 sessions with admission veterans who have helped thousands of students get into top-tier institutes.',
-      color: 'text-[#0f71cd]',
-      bg: 'bg-blue-50'
-    },
-    {
-      icon: Sparkles,
-      title: 'Admission Guidance',
-      description: 'End-to-end support from university shortlisting to application essays, interview prep, and final enrollment.',
-      color: 'text-[#0f71cd]',
-      bg: 'bg-blue-100'
-    }
-  ];
-
-  const pricing = [
-    {
-      name: 'Essential',
-      price: 'Free',
-      description: 'Perfect for initial college research',
-      features: [
-        'Access to College Directory',
-        'Basic Compare Tool (up to 3)',
-        'Standard Exam Updates',
-        'Community Forum Access'
-      ],
-      buttonText: 'Get Started',
-      popular: false
-    },
-    {
-      name: 'Pro Guidance',
-      price: '₹4,999',
-      period: '/year',
-      description: 'Comprehensive support for serious aspirants',
-      features: [
-        'Everything in Essential',
-        'AI College Predictor Access',
-        '2 Expert Counselling Sessions',
-        'Application Review (2 Colleges)',
-        'Priority Chat Support'
-      ],
-      buttonText: 'Upgrade to Pro',
-      popular: true
-    },
-    {
-      name: 'Elite Admission',
-      price: '₹14,999',
-      period: '/year',
-      description: 'End-to-end premium admission assistance',
-      features: [
-        'Everything in Pro Guidance',
-        'Unlimited Expert Sessions',
-        'Complete Essay/SOP Drafting',
-        'Mock Interviews & Prep',
-        'Dedicated Relationship Manager'
-      ],
-      buttonText: 'Contact Sales',
-      popular: false
-    }
-  ];
 
   const handlePricingScroll = () => {
     const el = document.getElementById('pricing');
@@ -159,22 +95,25 @@ export default function PremiumServices() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-slate-50 rounded-3xl p-8 border border-slate-200 hover:shadow-md transition-all duration-300 group"
-              >
-                <div className={`w-14 h-14 rounded-2xl ${feature.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <feature.icon size={28} className={feature.color} />
-                </div>
-                <h3 className="text-xl font-bold text-[#0F141E] mb-3 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{feature.title}</h3>
-                <p className="text-slate-500 font-medium leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
+            {features.map((feature, idx) => {
+              const Icon = ICON_MAP[feature.iconName] || BrainCircuit;
+              return (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-slate-50 rounded-3xl p-8 border border-slate-200 hover:shadow-md transition-all duration-300 group"
+                >
+                  <div className={`w-14 h-14 rounded-2xl ${feature.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                    <Icon size={28} className={feature.color} />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#0F141E] mb-3 font-tt-talent" style={{ fontFamily: '"TT Talent", sans-serif' }}>{feature.title}</h3>
+                  <p className="text-slate-500 font-medium leading-relaxed">{feature.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

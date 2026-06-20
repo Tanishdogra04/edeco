@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cities from './pages/Cities';
@@ -17,6 +16,7 @@ import Resources from './pages/Resources';
 import AdminDashboard from './pages/AdminDashboard';
 import ScrollToTop from './components/ScrollToTop';
 import AllDomains from './pages/AllDomains';
+import AllExams from './pages/AllExams';
 
 export default function App() {
   return (
@@ -39,6 +39,7 @@ export default function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/domains" element={<AllDomains />} />
+        <Route path="/exams" element={<AllExams />} />
       </Routes>
     </BrowserRouter>
   );

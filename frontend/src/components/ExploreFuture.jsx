@@ -1,19 +1,21 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Laptop, Briefcase, HeartPulse, Scale,
-  Palette, BarChart3, ArrowRight
+  Palette, BarChart3, ArrowRight, GraduationCap
 } from 'lucide-react';
+import { domainsList } from '../data/domains';
+
+const ICON_MAP = {
+  Laptop,
+  Briefcase,
+  HeartPulse,
+  Scale,
+  Palette,
+  BarChart3
+};
 
 export default function ExploreFuture() {
-  const domains = [
-    { name: "Engineering", icon: Laptop },
-    { name: "MBA / Business", icon: Briefcase },
-    { name: "Medical Science", icon: HeartPulse },
-    { name: "Law & Justice", icon: Scale },
-    { name: "Design & Arts", icon: Palette },
-    { name: "Commerce & Finance", icon: BarChart3 }
-  ];
+  const domains = domainsList.slice(0, 6);
 
   return (
     <section className="py-20 bg-slate-50 relative border-y border-slate-200/50">
@@ -46,11 +48,11 @@ export default function ExploreFuture() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
           {domains.map((dom, index) => {
-            const Icon = dom.icon;
+            const Icon = ICON_MAP[dom.iconName] || GraduationCap;
             return (
               <div key={index} className="h-full animate-hover">
                 <Link
-                  to={dom.to || `/stream/${dom.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                  to={`/stream/${dom.id}`}
                   className="group flex flex-col items-center justify-center h-full bg-white border border-slate-200/80 p-6 rounded-3xl text-center hover-lift hover:bg-[#0f71cd] transition-all duration-300 shadow-sm"
                 >
                   <div className="w-16 h-16 mx-auto bg-[#0f71cd]/5 rounded-2xl flex items-center justify-center shadow-sm group-hover:bg-white/20 group-hover:text-white transition-all duration-300 mb-4 text-[#0f71cd]">

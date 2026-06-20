@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ArrowRight, Heart, Bell, Calendar, Monitor, BookOpen, ArrowUpRight, Scale, Globe, X, GitCompare
+  ArrowRight, Calendar, Monitor, Scale, Globe, X, GitCompare
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
@@ -10,88 +10,7 @@ const CATEGORIES = [
   "All", "Engineering", "Management", "Law", "Medical", "Design", "Science", "Arts"
 ];
 
-const EXAMS_DATA = [
-  {
-    id: "jee-main",
-    category: "Engineering",
-    name: "JEE Main",
-    fullTitle: "Joint Entrance Examination Main",
-    desc: "National level exam for admission to NITs, IIITs, and CFTIs across India.",
-    appOpen: "Registration Closed",
-    mode: "Online (CBT)",
-    level: "National Level",
-  },
-  {
-    id: "cat",
-    category: "Management",
-    name: "CAT",
-    fullTitle: "Common Admission Test",
-    desc: "Premier management entrance exam for admission into the prestigious IIMs and other top B-schools.",
-    appOpen: "Aug - Sep 2026",
-    mode: "Online (CBT)",
-    level: "National Level",
-  },
-  {
-    id: "neet",
-    category: "Medical",
-    name: "NEET UG",
-    fullTitle: "National Eligibility cum Entrance Test",
-    desc: "Sole entrance test for admission to MBBS and BDS courses in India.",
-    appOpen: "May 3, 2026",
-    mode: "Pen & Paper",
-    level: "National Level",
-  },
-  {
-    id: "gate",
-    category: "Engineering",
-    name: "GATE",
-    fullTitle: "Graduate Aptitude Test in Engineering",
-    desc: "Comprehensive understanding of various undergraduate subjects in engineering and science.",
-    appOpen: "Starts Sep 2026",
-    mode: "Online (CBT)",
-    level: "National Level",
-  },
-  {
-    id: "clat",
-    category: "Law",
-    name: "CLAT",
-    fullTitle: "Common Law Admission Test",
-    desc: "Centralized national level entrance test for admissions to 22 National Law Universities.",
-    appOpen: "Dec 7, 2026",
-    mode: "Offline",
-    level: "National Level",
-  },
-  {
-    id: "xat",
-    category: "Management",
-    name: "XAT",
-    fullTitle: "Xavier Aptitude Test",
-    desc: "National-level management entrance examination conducted by XLRI, Jamshedpur.",
-    appOpen: "Jan 2027",
-    mode: "Online (CBT)",
-    level: "National Level",
-  },
-  {
-    id: "nift",
-    category: "Design",
-    name: "NIFT",
-    fullTitle: "National Institute of Fashion Technology",
-    desc: "Entrance exam for admission to bachelor's programs in design and fashion technology.",
-    appOpen: "Feb 2027",
-    mode: "CBT & PBT",
-    level: "National Level",
-  },
-  {
-    id: "cuet",
-    category: "Science",
-    name: "CUET UG",
-    fullTitle: "Common University Entrance Test",
-    desc: "All-India test for admission into various Undergraduate and Integrated programs.",
-    appOpen: "May 2026",
-    mode: "Online (CBT)",
-    level: "National Level",
-  },
-];
+import { EXAMS_DATA } from '../data/exams';
 
 export default function TopExams({ onCounsellingClick }) {
   const toast = useToast();
@@ -141,9 +60,13 @@ export default function TopExams({ onCounsellingClick }) {
               Don’t miss important exam dates and deadlines. Stay ahead of your application timeline.
             </p>
           </div>
-          <button className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-[#0F141E] font-tt-talent font-bold border border-slate-200 hover:border-[#0f71cd]/30 hover:text-[#0f71cd] transition-all group shadow-sm cursor-pointer" style={{ fontFamily: '"TT Talent", sans-serif' }}>
+          <Link 
+            to="/exams"
+            className="flex-shrink-0 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 text-[#0F141E] font-tt-talent font-bold border border-slate-200 hover:border-[#0f71cd]/30 hover:text-[#0f71cd] transition-all group shadow-sm cursor-pointer" 
+            style={{ fontFamily: '"TT Talent", sans-serif' }}
+          >
             View All Exams <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
 
         {/* CATEGORY PILLS NAVIGATION */}

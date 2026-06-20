@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Star, MapPin, Award, Building2, BookOpen, Landmark, Briefcase, GraduationCap } from 'lucide-react';
+import { X, Star, MapPin, BookOpen, Briefcase, GraduationCap } from 'lucide-react';
 
 export default function DetailModal({ college, isOpen, onClose, onCounsellingClick }) {
   if (!isOpen || !college) return null;

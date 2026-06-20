@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -9,86 +9,12 @@ import { useToast } from '../context/ToastContext';
 import { useAuth } from '../context/AuthContext';
 
 import { 
-  Calendar, Users, Target, BookOpen, AlertCircle, BadgeCheck, 
-  ChevronRight, FileText, ArrowRight, Bookmark, ArrowUpRight, 
-  MapPin, Clock, Download, ChevronDown, CheckCircle, ShieldCheck, User, Scale, Monitor
+  Calendar, Users, Target, BookOpen, 
+  ChevronRight, FileText, 
+  Clock, Download, ChevronDown, CheckCircle, ShieldCheck, User, Monitor
 } from 'lucide-react';
 
-const getMockExamData = (id) => {
-  const exams = {
-    'cat': {
-      id: 'cat',
-      name: "CAT 2026",
-      fullTitle: "Common Admission Test",
-      category: "Management",
-      level: "National Level",
-      mode: "Computer Based Test (CBT)",
-      applicants: "3.3 Lakh+",
-      duration: "120 Minutes",
-      conductingBody: "IIMs",
-      frequency: "Once a Year",
-      logo: "CA",
-      overview: "CAT is India's most prestigious management entrance exam conducted by the IIMs. It evaluates a candidate's quantitative, verbal, and logical reasoning skills for admission into top-tier MBA programs across the country.",
-      highlights: [
-        { label: "Exam Mode", value: "Online (CBT)" },
-        { label: "Exam Duration", value: "2 Hours (40 min/section)" },
-        { label: "Total Questions", value: "66 Questions" },
-        { label: "Negative Marking", value: "-1 for MCQs" },
-        { label: "Participating Colleges", value: "1000+ B-Schools" },
-        { label: "Difficulty Level", value: "High to Very High" },
-      ],
-      process: [
-        { title: "Registration", desc: "Fill the online application form and upload documents." },
-        { title: "Fee Payment", desc: "Pay the registration fee of ₹2400 (₹1200 for SC/ST)." },
-        { title: "Admit Card", desc: "Download admit card from the official CAT website." },
-        { title: "Examination", desc: "Appear for the CBT at the designated center." },
-        { title: "Results & WAT-PI", desc: "Shortlisted candidates appear for WAT and PI rounds." }
-      ],
-      syllabus: [
-        { subject: "Verbal Ability & Reading Comprehension (VARC)", topics: ["Reading Comprehension", "Para Jumbles", "Para Summary", "Odd Sentence Out"] },
-        { subject: "Data Interpretation & Logical Reasoning (DILR)", topics: ["Seating Arrangement", "Blood Relations", "Tables and Pie Charts", "Syllogism"] },
-        { subject: "Quantitative Aptitude (QA)", topics: ["Arithmetic", "Algebra", "Geometry", "Number System", "Modern Math"] }
-      ],
-      dates: [
-        { event: "Notification Release", date: "July 30, 2026", status: "completed" },
-        { event: "Registration Begins", date: "August 02, 2026", status: "active" },
-        { event: "Registration Closes", date: "September 20, 2026", status: "upcoming" },
-        { event: "Admit Card Release", date: "October 25, 2026", status: "upcoming" },
-        { event: "CAT 2026 Exam", date: "November 29, 2026", status: "upcoming" },
-        { event: "Result Declaration", date: "January 2027", status: "upcoming" }
-      ],
-      tips: [
-        { title: "Mock Tests are Key", desc: "Take at least 30-40 full-length mock tests before the actual exam to build stamina and identify weak areas." },
-        { title: "Focus on Accuracy", desc: "With a +3/-1 marking scheme, accuracy is more important than the number of attempts." },
-        { title: "Read Extensively", desc: "Improve your VARC score by reading diverse articles from sources like Aeon, The Economist, and ALD." }
-      ],
-      cutoffs: [
-        { college: "IIM Ahmedabad", cat: "General", percentile: "99.5+" },
-        { college: "IIM Bangalore", cat: "General", percentile: "99.0+" },
-        { college: "IIM Calcutta", cat: "General", percentile: "99.0+" },
-        { college: "FMS Delhi", cat: "General", percentile: "98.5+" },
-      ],
-      papers: [
-        { year: "2023", size: "2.4 MB" },
-        { year: "2022", size: "2.1 MB" },
-        { year: "2021", size: "1.8 MB" }
-      ],
-      faqs: [
-        { q: "What is the eligibility criteria for CAT?", a: "A bachelor's degree with at least 50% marks or equivalent CGPA (45% for SC/ST/PwD candidates)." },
-        { q: "Can final year students apply?", a: "Yes, candidates appearing for the final year of their bachelor's degree can also apply." },
-        { q: "Is calculator allowed?", a: "A basic on-screen calculator is provided during the exam. Physical calculators are strictly prohibited." }
-      ]
-    }
-  };
-  
-  return exams[id] || {
-    ...exams['cat'],
-    id: id,
-    name: id.toUpperCase() + " 2026",
-    logo: id.substring(0,2).toUpperCase(),
-    fullTitle: id.toUpperCase() + " Admission Test",
-  };
-};
+import { getMockExamData } from '../data/exams';
 
 export default function ExamDetail() {
   const toast = useToast();
@@ -110,7 +36,10 @@ export default function ExamDetail() {
 
   useEffect(() => {
     if (user) {
-      setSidebarName(user.name || '');
+      const timer = setTimeout(() => {
+        setSidebarName(user.name || '');
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [user]);
 

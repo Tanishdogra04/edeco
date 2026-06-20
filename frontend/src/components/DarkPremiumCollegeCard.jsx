@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -6,6 +5,7 @@ import {
   TrendingUp, Banknote, CalendarDays,
   ShieldCheck, Trophy, Sparkles
 } from 'lucide-react';
+import { getDeterministicRank } from '../utils/helpers';
 
 const formatFeeShort = (feeStr) => {
   if (!feeStr) return "2.0 lakh/year";
@@ -26,8 +26,7 @@ const formatFeeShort = (feeStr) => {
 
 export default function DarkPremiumCollegeCard({ college, streamName = "Engineering", onCompareClick }) {
 
-  // Parse dummy data or fallback
-  const rank = college.rank || Math.floor(Math.random() * 50) + 1;
+  const rank = college.rank || getDeterministicRank(college.name, 50);
   const placementPercent = college.placementPercentage || "94%";
   const estYear = college.estYear || "1994";
   const logo = (college.logo && (college.logo.startsWith('http') || college.logo.startsWith('/') || college.logo.startsWith('data:')))
@@ -49,12 +48,9 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
       whileHover={{ y: -6 }}
       className="bg-white rounded-[2rem] border border-slate-200 shadow-sm hover:border-[#0f71cd]/30 hover:shadow-md transition-all duration-300 group flex flex-col relative overflow-hidden"
     >
-      {/* Background Glow Effect on Hover */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0f71cd]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-      {/* ====================================================
-          TOP SECTION
-      ==================================================== */}
+      {/* Top Header Card Info */}
       <div className="p-6 pb-2 flex items-start justify-between relative z-10">
         
         {/* Floating College Logo */}
@@ -76,9 +72,7 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
         </div>
       </div>
 
-      {/* ====================================================
-          CONTENT SECTION 
-      ==================================================== */}
+      {/* College Info Body */}
       <div className="px-6 pt-2 pb-6 flex-1 flex flex-col relative z-10 text-left">
         
         {/* Title & Location */}
@@ -112,9 +106,7 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
           </span>
         </div>
 
-        {/* ====================================================
-            MIDDLE HIGHLIGHTS STRIP 
-        ==================================================== */}
+        {/* Highlights strip */}
         <div className="bg-slate-50 rounded-2xl p-4 flex items-center justify-between border border-slate-100 mb-6">
           <div className="flex flex-col items-center flex-1 border-r border-slate-200/50 last:border-0">
             <span className="text-[10px] text-[#0F141E]/50 font-bold uppercase tracking-wider mb-1 flex items-center gap-1 font-sans">
@@ -138,9 +130,7 @@ export default function DarkPremiumCollegeCard({ college, streamName = "Engineer
 
 
 
-        {/* ====================================================
-            BOTTOM ACTIONS 
-        ==================================================== */}
+        {/* Action buttons */}
         <div className="flex items-center gap-3 mt-auto pt-4 border-t border-slate-100">
           <Link 
             to={`/colleges/${college.id}`} 

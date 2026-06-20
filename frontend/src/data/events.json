@@ -1,0 +1,129 @@
+{
+  "eventsData": [
+    {
+      "id": "nat-fair-2026",
+      "title": "Edeco National Admissions Fair 2026",
+      "format": "Offline Seminar",
+      "type": "Admissions Fair",
+      "destination": "Global",
+      "studyLevel": "Undergraduate & PG",
+      "location": "New Delhi HQ",
+      "date": "June 25, 2026",
+      "time": "10:00 AM - 5:00 PM IST",
+      "desc": "Meet admissions directors from 100+ top universities in India, USA, UK, and Canada. Get on-spot profile assessment, loan inquiries, and scholarship queries resolved.",
+      "speaker": {
+        "name": "Dr. Rachel Green",
+        "role": "Dean of Admissions",
+        "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop"
+      },
+      "slots": "12 seats left"
+    },
+    {
+      "id": "ai-tech-webinar",
+      "title": "AI & Machine Learning: Future of Tech Careers",
+      "format": "Online Webinar",
+      "type": "Webinar",
+      "destination": "India",
+      "studyLevel": "Postgraduate",
+      "location": "Online Zoom Session",
+      "date": "June 15, 2026",
+      "time": "4:00 PM - 5:30 PM IST",
+      "desc": "Discover key specializations in Artificial Intelligence and Machine Learning. Get a comprehensive roadmap for building a high-growth career in engineering.",
+      "speaker": {
+        "name": "Prof. Alan Turing",
+        "role": "AI Research Lead",
+        "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"
+      },
+      "slots": "Last 5 slots"
+    },
+    {
+      "id": "mba-panel-insights",
+      "title": "MBA Panel: Insights from Top Business Schools",
+      "format": "Online Webinar",
+      "type": "Panel Discussion",
+      "destination": "India",
+      "studyLevel": "Postgraduate",
+      "location": "Online Zoom Session",
+      "date": "June 18, 2026",
+      "time": "6:00 PM - 7:30 PM IST",
+      "desc": "Learn what admissions committees look for in business leaders. Panel discussion with alumni from FMS, IIMs, and international business academies.",
+      "speaker": {
+        "name": "Sarah Jenkins",
+        "role": "Management Consultant",
+        "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop"
+      },
+      "slots": "18 slots left"
+    },
+    {
+      "id": "ielts-verbal-code",
+      "title": "IELTS Crack Code: Master Speaking & Writing",
+      "format": "Online Webinar",
+      "type": "Workshop",
+      "destination": "Global",
+      "studyLevel": "Undergraduate",
+      "location": "Online Zoom Session",
+      "date": "June 20, 2026",
+      "time": "3:00 PM - 5:00 PM IST",
+      "desc": "Struggling with the IELTS band requirements? Learn quick strategies, writing templates, and interactive tips to score Band 8.0+ in your first attempt.",
+      "speaker": {
+        "name": "Lisa Ray",
+        "role": "Lead Verbal Trainer",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+      },
+      "slots": "Filling fast"
+    }
+  ],
+  "destinations": ["All Destinations", "India", "Global"],
+  "studyLevels": ["All Levels", "Undergraduate", "Postgraduate"],
+  "eventFormats": ["All Formats", "Online Webinar", "Offline Seminar"],
+  "eventTypes": ["All Types", "Admissions Fair", "Webinar", "Panel Discussion", "Workshop"],
+  "testimonials": [
+    {
+      "quote": "Team Edeco's clear communication, quick responses, and professional, supportive approach made the unthinkable a reality. Many thanks to the education consultant for helping me get my application approved.",
+      "name": "Pooja Patel",
+      "country": "Canada Admissions",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop"
+    },
+    {
+      "quote": "Had a fantastic experience with Edeco. I received incredible help throughout the procedure and was given close attention to every little detail during my visa processing and university application. Highly recommend Edeco!",
+      "name": "Harsh Damor",
+      "country": "Australia Admissions",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop"
+    },
+    {
+      "quote": "Edeco helped me with my student visa. The whole process was very smooth. They are very experienced and supportive. Overall, my experience with Edeco was great.",
+      "name": "Kashish Rakholiya",
+      "country": "USA Admissions",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+    }
+  ],
+  "successVideos": [
+    {
+      "id": "neha",
+      "title": "My 100% Scholarship to Deakin University",
+      "tagline": "MEET NEHA KANNATH",
+      "highlight": "100% SCHOLARSHIP",
+      "desc": "Vice Chancellor's Meritorious Scholarship recipient details her preparation blueprint.",
+      "thumbnail": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=300&fit=crop",
+      "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+    },
+    {
+      "id": "paranjav",
+      "title": "I Got My Study Visa in Just 4 Days",
+      "tagline": "MEET PARANJAV SETHI",
+      "highlight": "UNIVERSITY AT BUFFALO",
+      "desc": "Paranjav outlines how mock interviews and documents vetting speeded his process.",
+      "thumbnail": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=300&fit=crop",
+      "videoUrl": "https://www.w3schools.com/html/movie.mp4"
+    },
+    {
+      "id": "arya",
+      "title": "My UWA Dream: From India to Australia",
+      "tagline": "MEET ARYA SINGH",
+      "highlight": "UWA ADMISSIONS",
+      "desc": "Arya shares her journey getting into the University of Western Australia.",
+      "thumbnail": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&h=300&fit=crop",
+      "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+    }
+  ]
+}

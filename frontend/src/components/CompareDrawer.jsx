@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, GitCompare, HelpCircle, Check, ArrowRight, ShieldAlert, BadgeCheck } from 'lucide-react';
+import { X, GitCompare, BadgeCheck } from 'lucide-react';
 
 export default function CompareDrawer({ isOpen, onClose, comparedColleges, onRemove, onClearAll }) {
   const [isModalOpen, setIsModalOpen] = useState(false);

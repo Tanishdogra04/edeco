@@ -1,0 +1,90 @@
+{
+  "btech": {
+    "id": "btech",
+    "name": "B.Tech / B.E.",
+    "title": "Top B.Tech Colleges in India",
+    "description": "Find the best Engineering colleges in India based on ranking, fees, placements, and reviews.",
+    "iconName": "Monitor",
+    "stats": { "totalColleges": "4,200+", "avgPackage": "₹6 - ₹12 LPA", "highestPackage": "₹50+ LPA" },
+    "filters": {
+      "state": ["Maharashtra", "Delhi NCR", "Karnataka", "Tamil Nadu", "Rajasthan", "Telangana"],
+      "city": ["Mumbai", "New Delhi", "Bangalore", "Chennai", "Vellore", "Pilani", "Tiruchirappalli"],
+      "exam": ["JEE Main", "JEE Advanced", "BITSAT", "VITEEE", "SRMJEEE", "MHT CET"],
+      "type": ["Private", "Public/Government"],
+      "fees": ["< 1 Lakh", "1 - 2 Lakhs", "2 - 3 Lakhs", "3 - 5 Lakhs", "> 5 Lakhs"]
+    },
+    "tags": ["Computer Science", "Mechanical", "Electrical", "Civil", "AI & ML", "Data Science"],
+    "topColleges": [
+      { "id": "iit-bombay", "name": "IIT Bombay - Indian Institute of Technology", "location": "Mumbai, Maharashtra", "state": "Maharashtra", "city": "Mumbai", "fees": "₹2.30 Lakhs (1st Year Fees)", "feesCategory": "2 - 3 Lakhs", "numericFees": 230000, "tags": ["Computer Science", "Mechanical", "Civil"], "placement": "₹36.9 LPA (Avg)", "rating": 4.8, "reviews": 450, "type": "Public/Government", "exams": ["JEE Advanced"], "approved": "AICTE, UGC", "image": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80" },
+      { "id": "iit-delhi", "name": "IIT Delhi - Indian Institute of Technology", "location": "New Delhi, Delhi NCR", "state": "Delhi NCR", "city": "New Delhi", "fees": "₹2.20 Lakhs (1st Year Fees)", "feesCategory": "2 - 3 Lakhs", "numericFees": 220000, "tags": ["Mechanical", "Electrical", "Civil"], "placement": "₹32.5 LPA (Avg)", "rating": 4.7, "reviews": 380, "type": "Public/Government", "exams": ["JEE Advanced"], "approved": "AICTE, UGC", "image": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80" },
+      { "id": "bits-pilani", "name": "BITS Pilani - Birla Institute of Technology", "location": "Pilani, Rajasthan", "state": "Rajasthan", "city": "Pilani", "fees": "₹5.50 Lakhs (1st Year Fees)", "feesCategory": "> 5 Lakhs", "numericFees": 550000, "tags": ["Computer Science", "Data Science", "Electrical"], "placement": "₹30.3 LPA (Avg)", "rating": 4.6, "reviews": 520, "type": "Private", "exams": ["BITSAT"], "approved": "AICTE, UGC", "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80" },
+      { "id": "nit-trichy", "name": "NIT Trichy - National Institute of Technology", "location": "Tiruchirappalli, Tamil Nadu", "state": "Tamil Nadu", "city": "Tiruchirappalli", "fees": "₹1.80 Lakhs (1st Year Fees)", "feesCategory": "1 - 2 Lakhs", "numericFees": 180000, "tags": ["Mechanical", "Civil", "Electrical"], "placement": "₹27.5 LPA (Avg)", "rating": 4.5, "reviews": 310, "type": "Public/Government", "exams": ["JEE Main"], "approved": "AICTE, UGC", "image": "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80" },
+      { "id": "vit-vellore", "name": "VIT Vellore - Vellore Institute of Technology", "location": "Vellore, Tamil Nadu", "state": "Tamil Nadu", "city": "Vellore", "fees": "₹1.98 Lakhs (1st Year Fees)", "feesCategory": "1 - 2 Lakhs", "numericFees": 198000, "tags": ["Computer Science", "AI & ML", "Data Science"], "placement": "₹9.2 LPA (Avg)", "rating": 4.2, "reviews": 1200, "type": "Private", "exams": ["VITEEE"], "approved": "AICTE, UGC", "image": "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  "mba": {
+    "id": "mba",
+    "name": "MBA / PGDM",
+    "title": "Top MBA Colleges in India",
+    "description": "Find the best MBA and PGDM colleges in India based on ranking, fees, placements, and reviews.",
+    "iconName": "Briefcase",
+    "stats": { "totalColleges": "3,100+", "avgPackage": "₹8 - ₹15 LPA", "highestPackage": "₹60+ LPA" },
+    "filters": {
+      "state": ["Gujarat", "Karnataka", "Telangana", "Maharashtra", "Delhi NCR", "West Bengal"],
+      "city": ["Ahmedabad", "Bangalore", "Hyderabad", "Mumbai", "New Delhi", "Kolkata"],
+      "exam": ["CAT", "XAT", "MAT", "CMAT", "GMAT", "SNAP"],
+      "type": ["Private", "Public/Government"],
+      "fees": ["< 5 Lakhs", "5 - 10 Lakhs", "10 - 20 Lakhs", "> 20 Lakhs"]
+    },
+    "tags": ["Finance", "Marketing", "HR", "Operations", "International Business", "Business Analytics"],
+    "topColleges": [
+      { "id": "iim-a", "name": "IIM Ahmedabad - Indian Institute of Management", "location": "Ahmedabad, Gujarat", "state": "Gujarat", "city": "Ahmedabad", "fees": "₹31.50 Lakhs (Total Fees)", "feesCategory": "> 20 Lakhs", "numericFees": 3150000, "tags": ["Finance", "Marketing", "Operations", "Business Analytics"], "placement": "₹32.8 LPA (Avg)", "rating": 4.9, "reviews": 850, "type": "Public/Government", "exams": ["CAT"], "approved": "AICTE", "image": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80" },
+      { "id": "iim-b", "name": "IIM Bangalore - Indian Institute of Management", "location": "Bangalore, Karnataka", "state": "Karnataka", "city": "Bangalore", "fees": "₹24.50 Lakhs (Total Fees)", "feesCategory": "> 20 Lakhs", "numericFees": 2450000, "tags": ["Marketing", "HR", "Operations"], "placement": "₹35.3 LPA (Avg)", "rating": 4.9, "reviews": 720, "type": "Public/Government", "exams": ["CAT"], "approved": "AICTE", "image": "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80" },
+      { "id": "isb-hyd", "name": "ISB Hyderabad - Indian School of Business", "location": "Hyderabad, Telangana", "state": "Telangana", "city": "Hyderabad", "fees": "₹39.00 Lakhs (Total Fees)", "feesCategory": "> 20 Lakhs", "numericFees": 3900000, "tags": ["Finance", "International Business"], "placement": "₹34.2 LPA (Avg)", "rating": 4.8, "reviews": 640, "type": "Private", "exams": ["GMAT"], "approved": "AMBA, EQUIS, AACSB", "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80" },
+      { "id": "xlri", "name": "XLRI Xavier School of Management", "location": "Jamshedpur, Jharkhand", "state": "Jharkhand", "city": "Jamshedpur", "fees": "₹27.40 Lakhs (Total Fees)", "feesCategory": "> 20 Lakhs", "numericFees": 2740000, "tags": ["HR", "Business Analytics"], "placement": "₹32.7 LPA (Avg)", "rating": 4.8, "reviews": 510, "type": "Private", "exams": ["XAT"], "approved": "AICTE", "image": "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80" },
+      { "id": "spjimr", "name": "SPJIMR - SP Jain Institute", "location": "Mumbai, Maharashtra", "state": "Maharashtra", "city": "Mumbai", "fees": "₹20.40 Lakhs (Total Fees)", "feesCategory": "> 20 Lakhs", "numericFees": 2040000, "tags": ["Finance", "Operations", "Marketing"], "placement": "₹32.0 LPA (Avg)", "rating": 4.7, "reviews": 460, "type": "Private", "exams": ["CAT", "GMAT"], "approved": "AICTE, NBA", "image": "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  "mbbs": {
+    "id": "mbbs",
+    "name": "MBBS",
+    "title": "Top MBBS Colleges in India",
+    "description": "Find the best Medical colleges in India based on ranking, fees, placements, and reviews.",
+    "iconName": "Target",
+    "stats": { "totalColleges": "800+", "avgPackage": "₹8 - ₹18 LPA", "highestPackage": "₹40+ LPA" },
+    "filters": {
+      "state": ["Delhi NCR", "Tamil Nadu", "Maharashtra", "Karnataka", "Uttar Pradesh"],
+      "city": ["New Delhi", "Vellore", "Mumbai", "Bangalore", "Lucknow", "Pune"],
+      "exam": ["NEET UG", "AIIMS", "JIPMER"],
+      "type": ["Private", "Public/Government"],
+      "fees": ["< 5 Lakhs", "5 - 15 Lakhs", "15 - 25 Lakhs", "> 25 Lakhs"]
+    },
+    "tags": ["MBBS", "BDS", "BAMS", "BHMS"],
+    "topColleges": [
+      { "id": "aiims-delhi", "name": "AIIMS New Delhi", "location": "New Delhi, Delhi NCR", "state": "Delhi NCR", "city": "New Delhi", "fees": "₹6.8k (1st Year Fees)", "feesCategory": "< 5 Lakhs", "numericFees": 6800, "tags": ["MBBS"], "placement": "₹12.0 LPA (Avg)", "rating": 4.9, "reviews": 950, "type": "Public/Government", "exams": ["NEET UG", "AIIMS"], "approved": "NMC", "image": "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80" },
+      { "id": "cmc-vellore", "name": "CMC Vellore - Christian Medical College", "location": "Vellore, Tamil Nadu", "state": "Tamil Nadu", "city": "Vellore", "fees": "₹1.50 Lakhs (1st Year Fees)", "feesCategory": "< 5 Lakhs", "numericFees": 150000, "tags": ["MBBS", "BDS"], "placement": "₹8.5 LPA (Avg)", "rating": 4.8, "reviews": 520, "type": "Private", "exams": ["NEET UG"], "approved": "NMC", "image": "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80" },
+      { "id": "afmc-pune", "name": "AFMC Pune - Armed Forces Medical College", "location": "Pune, Maharashtra", "state": "Maharashtra", "city": "Pune", "fees": "₹64.4k (1st Year Fees)", "feesCategory": "< 5 Lakhs", "numericFees": 64400, "tags": ["MBBS"], "placement": "₹10.0 LPA (Avg)", "rating": 4.7, "reviews": 410, "type": "Public/Government", "exams": ["NEET UG"], "approved": "NMC", "image": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80" }
+    ]
+  },
+  "llb": {
+    "id": "llb",
+    "name": "LLB / LLM",
+    "title": "Top Law Colleges in India",
+    "description": "Find the best Law universities in India based on ranking, fees, placements, and reviews.",
+    "iconName": "Scale",
+    "stats": { "totalColleges": "1,200+", "avgPackage": "₹6 - ₹12 LPA", "highestPackage": "₹40+ LPA" },
+    "filters": {
+      "state": ["Karnataka", "Delhi NCR", "Telangana", "West Bengal", "Maharashtra"],
+      "city": ["Bangalore", "New Delhi", "Hyderabad", "Kolkata", "Pune"],
+      "exam": ["CLAT", "LSAT", "AILET", "SLAT", "MH CET Law"],
+      "type": ["Private", "Public/Government"],
+      "fees": ["< 2 Lakhs", "2 - 5 Lakhs", "> 5 Lakhs"]
+    },
+    "tags": ["BA LLB", "BBA LLB", "LLM", "Corporate Law", "Criminal Law", "Cyber Law"],
+    "topColleges": [
+      { "id": "nlsiu-blr", "name": "NLSIU Bangalore - National Law School", "location": "Bangalore, Karnataka", "state": "Karnataka", "city": "Bangalore", "fees": "₹3.30 Lakhs (1st Year Fees)", "feesCategory": "2 - 5 Lakhs", "numericFees": 330000, "tags": ["BA LLB", "LLM", "Corporate Law"], "placement": "₹16.0 LPA (Avg)", "rating": 4.9, "reviews": 480, "type": "Public/Government", "exams": ["CLAT"], "approved": "BCI, UGC", "image": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=400&q=80" },
+      { "id": "nlu-delhi", "name": "NLU Delhi - National Law University", "location": "New Delhi, Delhi NCR", "state": "Delhi NCR", "city": "New Delhi", "fees": "₹2.80 Lakhs (1st Year Fees)", "feesCategory": "2 - 5 Lakhs", "numericFees": 280000, "tags": ["BA LLB", "LLM", "Criminal Law"], "placement": "₹14.0 LPA (Avg)", "rating": 4.8, "reviews": 390, "type": "Public/Government", "exams": ["AILET"], "approved": "BCI, UGC", "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80" },
+      { "id": "sls-pune", "name": "Symbiosis Law School", "location": "Pune, Maharashtra", "state": "Maharashtra", "city": "Pune", "fees": "₹4.20 Lakhs (1st Year Fees)", "feesCategory": "2 - 5 Lakhs", "numericFees": 420000, "tags": ["BBA LLB", "Corporate Law", "Cyber Law"], "placement": "₹11.0 LPA (Avg)", "rating": 4.6, "reviews": 310, "type": "Private", "exams": ["SLAT"], "approved": "BCI, UGC", "image": "https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80" }
+    ]
+  }
+}

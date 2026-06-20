@@ -1,76 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowRight, BookOpen, Search, Mail } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
-const MOCK_RESOURCES = [
-  {
-    id: "jee-main-cutoff",
-    title: "JEE Main Session 1 Cutoff Analysis & Tier-1 College Trends",
-    category: "Guides",
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80",
-    date: "May 24, 2026",
-    readTime: "6 Min Read"
-  },
-  {
-    id: "ugc-guidelines",
-    title: "UGC Guidelines Issued for Foreign University Campuses in India",
-    category: "Updates",
-    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
-    date: "May 20, 2026",
-    readTime: "5 Min Read"
-  },
-  {
-    id: "gen-ai-mba",
-    title: "How Gen-AI is Reshaping MBA Curriculums: Top Skills in Demand",
-    category: "Strategies",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
-    date: "May 15, 2026",
-    readTime: "7 Min Read"
-  },
-  {
-    id: "top-10-nits",
-    title: "Top 10 NITs for Computer Science in 2026",
-    category: "Guides",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
-    date: "May 22, 2026",
-    readTime: "4 Min Read"
-  },
-  {
-    id: "cuet-prep-strategy",
-    title: "Last 30 Days CUET Preparation Strategy",
-    category: "Strategies",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
-    date: "May 18, 2026",
-    readTime: "8 Min Read"
-  },
-  {
-    id: "study-abroad-scholarships",
-    title: "10 Fully Funded Scholarships for MS in USA",
-    category: "Success Stories",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
-    date: "May 12, 2026",
-    readTime: "6 Min Read"
-  }
-];
-
-const CATEGORIES = ["All", "Guides", "Strategies", "Updates", "Success Stories"];
+import { MOCK_RESOURCES, CATEGORIES } from '../data/resources';
 
 export default function Resources() {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryParam = searchParams.get('category');
   
-  const [activeCategory, setActiveCategory] = useState("All");
+  const activeCategory = (categoryParam && CATEGORIES.includes(categoryParam)) ? categoryParam : "All";
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (categoryParam && CATEGORIES.includes(categoryParam)) {
-      setActiveCategory(categoryParam);
-    }
-  }, [categoryParam]);
+  }, []);
 
   const filteredResources = MOCK_RESOURCES.filter(res => {
     const matchesCategory = activeCategory === "All" || res.category === activeCategory;
@@ -79,7 +24,6 @@ export default function Resources() {
   });
 
   const handleCategoryClick = (cat) => {
-    setActiveCategory(cat);
     setSearchParams(cat === "All" ? {} : { category: cat });
   };
 

@@ -1,30 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Mail, Phone, MapPin, Send, MessageSquare, ChevronDown, CheckCircle2,
-  Sparkles, ShieldCheck, HelpCircle, ArrowRight
+  Mail, Phone, MapPin, Send, ChevronDown, CheckCircle2,
+  HelpCircle, ArrowRight
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
-const faqs = [
-  {
-    question: "How long does a counselling session take?",
-    answer: "Typically, an initial counselling session takes 30-45 minutes. During this session, our expert mentors will evaluate your academic profile, understand your goals, and outline a customized roadmap for your college search."
-  },
-  {
-    question: "Are there any fees for using the college finder?",
-    answer: "Our basic AI College Finder tool, admissions guides, and initial consultations are 100% free. Premium services (like comprehensive application support, visa guidance, and exam prep packages) have transparent, custom pricing plans."
-  },
-  {
-    question: "How do I track my admissions application?",
-    answer: "Once your application is submitted, your dedicated Edeco counselor will upload all updates directly to your personalized Edeco Student Dashboard. You will also receive instant email notifications for major milestones."
-  },
-  {
-    question: "How can we establish corporate partnerships?",
-    answer: "We welcome partnerships with universities, corporate sponsors, and test-prep centers. Please choose 'Partnership Query' as your inquiry type in the form, or reach out to us at partnerships@edeco.edu."
-  }
-];
+import { faqs } from '../data/faqs';
 
 export default function Contact() {
   const [formData, setFormData] = useState({

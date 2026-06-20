@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sparkles, User, Phone, Mail, Award, BadgeCheck, ChevronRight, ChevronLeft, ArrowRight, Star } from 'lucide-react';
 import { api } from '../utils/api';
@@ -21,7 +21,9 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  useEffect(() => {
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
     if (isOpen) {
       if (initialData) {
         setFormData(prev => ({
@@ -47,7 +49,7 @@ export default function CounsellingModal({ isOpen, onClose, initialData }) {
       });
       setStep(1);
     }
-  }, [isOpen, initialData]);
+  }
 
   const streams = ["Engineering", "MBA / Management", "Medical Science", "Law & Legal Studies", "Design / Architecture", "Commerce / CA"];
   const educationLevels = ["Class 12th (Studying)", "Class 12th (Completed)", "Graduation (Studying)", "Graduation (Completed)"];

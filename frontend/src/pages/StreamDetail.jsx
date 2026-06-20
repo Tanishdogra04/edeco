@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState, useMemo } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Laptop, Briefcase, HeartPulse, Scale, 
-  Search, Filter, ChevronDown, ChevronRight, Sparkles, MapPin,
+  Search, Filter, ChevronDown, ChevronRight,
   MessageCircle, PhoneCall, ArrowRight, SlidersHorizontal
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -14,133 +13,7 @@ import CompareDrawer from '../components/CompareDrawer';
 import { useToast } from '../context/ToastContext';
 import collegeCampusBg from '../assets/college_campus_bg.png';
 
-// Mock Data Generator for all streams
-const getMockStreamData = (id) => {
-  const lowerId = id?.toLowerCase() || '';
-
-  // 1. Engineering Data
-  const engineeringData = {
-    id: 'engineering',
-    name: 'Engineering',
-    title: 'Explore Engineering Colleges',
-    description: 'Discover top engineering colleges across India. Filter by state, category, and placements to find your ideal institution.',
-    icon: Laptop,
-    stats: { totalColleges: '4,200+', avgPackage: '₹6 - ₹12 LPA', highestPackage: '₹50+ LPA' },
-    filters: {
-      state: ['Maharashtra', 'Delhi NCR', 'Karnataka', 'Tamil Nadu', 'Rajasthan', 'Telangana'],
-      city: ['Mumbai', 'New Delhi', 'Bangalore', 'Chennai', 'Vellore', 'Pilani', 'Tiruchirappalli'],
-      exam: ['JEE Main', 'JEE Advanced', 'BITSAT', 'VITEEE', 'SRMJEEE', 'MHT CET'],
-      type: ['Private', 'Public/Government'],
-      fees: ['< 1 Lakh', '1 - 2 Lakhs', '2 - 3 Lakhs', '3 - 5 Lakhs', '> 5 Lakhs']
-    },
-    tags: ['Computer Science', 'Mechanical', 'Electrical', 'Civil', 'AI & ML', 'Data Science'],
-    topColleges: [
-      { id: 'iit-bombay', name: 'IIT Bombay - Indian Institute of Technology', location: 'Mumbai, Maharashtra', state: 'Maharashtra', city: 'Mumbai', fees: '₹2.30 Lakhs/yr', feesCategory: '2 - 3 Lakhs', numericFees: 230000, tags: ['Computer Science', 'Mechanical', 'Civil'], placement: '₹36.9 LPA', rating: 4.8, reviews: 450, type: 'Public', exams: ['JEE Advanced'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80', placementPercentage: '98%', estYear: '1958', rank: 1 },
-      { id: 'iit-delhi', name: 'IIT Delhi - Indian Institute of Technology', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹2.20 Lakhs/yr', feesCategory: '2 - 3 Lakhs', numericFees: 220000, tags: ['Mechanical', 'Electrical', 'Civil'], placement: '₹32.5 LPA', rating: 4.7, reviews: 380, type: 'Public', exams: ['JEE Advanced'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80', placementPercentage: '96%', estYear: '1961', rank: 2 },
-      { id: 'bits-pilani', name: 'BITS Pilani - Birla Institute of Technology', location: 'Pilani, Rajasthan', state: 'Rajasthan', city: 'Pilani', fees: '₹5.50 Lakhs/yr', feesCategory: '> 5 Lakhs', numericFees: 550000, tags: ['Computer Science', 'Data Science', 'Electrical'], placement: '₹30.3 LPA', rating: 4.6, reviews: 520, type: 'Private', exams: ['BITSAT'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80', placementPercentage: '94%', estYear: '1964', rank: 5 },
-      { id: 'nit-trichy', name: 'NIT Trichy - National Institute of Technology', location: 'Tiruchirappalli, Tamil Nadu', state: 'Tamil Nadu', city: 'Tiruchirappalli', fees: '₹1.80 Lakhs/yr', feesCategory: '1 - 2 Lakhs', numericFees: 180000, tags: ['Mechanical', 'Civil', 'Electrical'], placement: '₹27.5 LPA', rating: 4.5, reviews: 310, type: 'Public', exams: ['JEE Main'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80', placementPercentage: '92%', estYear: '1964', rank: 9 },
-      { id: 'vit-vellore', name: 'VIT Vellore - Vellore Institute of Technology', location: 'Vellore, Tamil Nadu', state: 'Tamil Nadu', city: 'Vellore', fees: '₹1.98 Lakhs/yr', feesCategory: '1 - 2 Lakhs', numericFees: 198000, tags: ['Computer Science', 'AI & ML', 'Data Science'], placement: '₹9.2 LPA', rating: 4.2, reviews: 1200, type: 'Private', exams: ['VITEEE'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80', placementPercentage: '89%', estYear: '1984', rank: 11 },
-      { id: 'srm-chennai', name: 'SRM Institute of Science and Technology', location: 'Chennai, Tamil Nadu', state: 'Tamil Nadu', city: 'Chennai', fees: '₹2.50 Lakhs/yr', feesCategory: '2 - 3 Lakhs', numericFees: 250000, tags: ['Computer Science', 'IT'], placement: '₹7.5 LPA', rating: 4.1, reviews: 800, type: 'Private', exams: ['SRMJEEE'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80', placementPercentage: '85%', estYear: '1985', rank: 24 }
-    ]
-  };
-
-  const businessData = { 
-    ...engineeringData, 
-    id: 'business', 
-    name: 'Management', 
-    title: 'Explore MBA Colleges', 
-    description: 'Discover top management and business administration institutes across India. Filter by specialization, package, and locations to find your ideal business school.',
-    tags: ['Finance', 'Marketing', 'HR'],
-    topColleges: [
-      { id: 'iim-ahmedabad', name: 'IIM Ahmedabad - Indian Institute of Management', location: 'Ahmedabad, Gujarat', state: 'Gujarat', city: 'Ahmedabad', fees: '₹25.0 Lakhs/yr', feesCategory: '> 5 Lakhs', numericFees: 2500000, tags: ['Finance', 'Marketing', 'Strategy'], placement: '₹32.8 LPA', rating: 4.9, reviews: 600, type: 'Public', exams: ['CAT'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80', placementPercentage: '100%', estYear: '1961', rank: 1 },
-      { id: 'iim-bangalore', name: 'IIM Bangalore - Indian Institute of Management', location: 'Bangalore, Karnataka', state: 'Karnataka', city: 'Bangalore', fees: '₹24.5 Lakhs/yr', feesCategory: '> 5 Lakhs', numericFees: 2450000, tags: ['Marketing', 'Operations', 'Finance'], placement: '₹35.3 LPA', rating: 4.8, reviews: 550, type: 'Public', exams: ['CAT'], approved: 'AICTE, UGC', image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80', placementPercentage: '100%', estYear: '1973', rank: 2 },
-      { id: 'isb-hyderabad', name: 'ISB Hyderabad - Indian School of Business', location: 'Hyderabad, Telangana', state: 'Telangana', city: 'Hyderabad', fees: '₹38.0 Lakhs/yr', feesCategory: '> 5 Lakhs', numericFees: 3800000, tags: ['Strategy', 'Leadership', 'Finance'], placement: '₹34.0 LPA', rating: 4.7, reviews: 400, type: 'Private', exams: ['GMAT', 'GRE'], approved: 'AACSB, EQUIS', image: 'https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=400&q=80', placementPercentage: '98%', estYear: '2001', rank: 6 },
-    ]
-  };
-  
-  const medicalData = { 
-    ...engineeringData, 
-    id: 'medical', 
-    name: 'Medical Science', 
-    title: 'Explore Medical Institutes', 
-    description: 'Discover top medical institutes, MBBS programs, and dental schools across India. Filter by location and budget.',
-    tags: ['MBBS', 'BDS', 'Nursing'],
-    topColleges: [
-      { id: 'aiims-delhi', name: 'AIIMS Delhi - All India Institute of Medical Sciences', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹1.60 Thousands/yr', feesCategory: '< 1 Lakh', numericFees: 1600, tags: ['MBBS', 'MD', 'MS'], placement: '₹12.0 LPA', rating: 4.9, reviews: 750, type: 'Public', exams: ['NEET'], approved: 'MCI', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=400&q=80', placementPercentage: '100%', estYear: '1956', rank: 1 },
-      { id: 'cmc-vellore', name: 'CMC Vellore - Christian Medical College', location: 'Vellore, Tamil Nadu', state: 'Tamil Nadu', city: 'Vellore', fees: '₹1.50 Lakhs/yr', feesCategory: '1 - 2 Lakhs', numericFees: 150000, tags: ['MBBS', 'Nursing'], placement: '₹10.5 LPA', rating: 4.8, reviews: 520, type: 'Private', exams: ['NEET'], approved: 'MCI', image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=400&q=80', placementPercentage: '99%', estYear: '1900', rank: 3 },
-    ]
-  };
-
-  const lawData = { 
-    ...engineeringData, 
-    id: 'law', 
-    name: 'Law', 
-    title: 'Explore Law Academies', 
-    description: 'Discover top law academies, LLB/LLM programs, and law schools across India. Filter by specializations, exams, and states.',
-    tags: ['BA LLB', 'LLM', 'Corporate Law'],
-    topColleges: [
-      { id: 'nlsiu-bangalore', name: 'NLSIU Bangalore - National Law School of India', location: 'Bangalore, Karnataka', state: 'Karnataka', city: 'Bangalore', fees: '₹3.20 Lakhs/yr', feesCategory: '3 - 5 Lakhs', numericFees: 320000, tags: ['BA LLB', 'Corporate Law'], placement: '₹16.0 LPA', rating: 4.8, reviews: 310, type: 'Public', exams: ['CLAT'], approved: 'BCI', image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=400&q=80', placementPercentage: '95%', estYear: '1986', rank: 1 },
-      { id: 'nlu-delhi', name: 'NLU Delhi - National Law University', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹1.80 Lakhs/yr', feesCategory: '1 - 2 Lakhs', numericFees: 180000, tags: ['BA LLB', 'LLM'], placement: '₹14.5 LPA', rating: 4.7, reviews: 290, type: 'Public', exams: ['AILET'], approved: 'BCI', image: 'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?auto=format&fit=crop&w=400&q=80', placementPercentage: '92%', estYear: '2008', rank: 2 },
-    ]
-  };
-
-  const designData = { 
-    ...engineeringData, 
-    id: 'design', 
-    name: 'Design', 
-    title: 'Explore Design Colleges', 
-    description: 'Discover premier design academies and fashion institutes across India. Filter by specialization, mode, and fees.',
-    tags: ['B.Des', 'M.Des', 'Fashion'],
-    topColleges: [
-      { id: 'nid-ahmedabad', name: 'NID Ahmedabad - National Institute of Design', location: 'Ahmedabad, Gujarat', state: 'Gujarat', city: 'Ahmedabad', fees: '₹3.80 Lakhs/yr', feesCategory: '3 - 5 Lakhs', numericFees: 380000, tags: ['Product Design', 'Animation'], placement: '₹18.0 LPA', rating: 4.8, reviews: 210, type: 'Public', exams: ['NID DAT'], approved: 'UGC', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=400&q=80', placementPercentage: '90%', estYear: '1961', rank: 1 },
-      { id: 'nift-delhi', name: 'NIFT Delhi - National Institute of Fashion Technology', location: 'New Delhi, Delhi NCR', state: 'Delhi NCR', city: 'New Delhi', fees: '₹2.90 Lakhs/yr', feesCategory: '2 - 3 Lakhs', numericFees: 290000, tags: ['Fashion Design', 'Textile'], placement: '₹8.5 LPA', rating: 4.6, reviews: 340, type: 'Public', exams: ['NIFT Entrance'], approved: 'UGC', image: 'https://images.unsplash.com/photo-1558769132-cb1fac08c04c?auto=format&fit=crop&w=400&q=80', placementPercentage: '88%', estYear: '1986', rank: 1 },
-    ]
-  };
-
-  if (lowerId.includes('mba') || lowerId.includes('business') || lowerId.includes('management')) return businessData;
-  if (lowerId.includes('medical') || lowerId.includes('mbbs')) return medicalData;
-  if (lowerId.includes('law') || lowerId.includes('llb')) return lawData;
-  if (lowerId.includes('design')) return designData;
-  
-  return engineeringData;
-};
-
-const STREAM_CONFIGS = {
-  engineering: {
-    courseTypes: ['B.Tech / B.E.', 'M.Tech', 'BCA', 'MCA', 'Ph.D.'],
-    areasOfStudy: ['Computer Science', 'Mechanical', 'Electrical', 'Civil', 'AI & ML', 'Data Science'],
-    studyModes: ['Full-Time', 'Part-Time']
-  },
-  business: {
-    courseTypes: ['MBA', 'PGDM', 'BBA', 'Executive MBA'],
-    areasOfStudy: ['Finance', 'Marketing', 'HR', 'Strategy', 'Operations'],
-    studyModes: ['Full-Time', 'Part-Time', 'Distance Learning']
-  },
-  medical: {
-    courseTypes: ['MBBS', 'BDS', 'B.Sc Nursing', 'MD', 'MS'],
-    areasOfStudy: ['General Medicine', 'Surgery', 'Pediatrics', 'Dental Science', 'Nursing'],
-    studyModes: ['Full-Time']
-  },
-  law: {
-    courseTypes: ['BA LLB', 'BBA LLB', 'LL.B.', 'LL.M.'],
-    areasOfStudy: ['Corporate Law', 'Criminal Law', 'Civil Law', 'Constitutional Law', 'Intellectual Property'],
-    studyModes: ['Full-Time', 'Part-Time']
-  },
-  design: {
-    courseTypes: ['B.Des', 'M.Des', 'B.Arch', 'B.F.A.'],
-    areasOfStudy: ['Product Design', 'Fashion Design', 'UI/UX Design', 'Graphic Design', 'Interior Design'],
-    studyModes: ['Full-Time', 'Part-Time']
-  }
-};
-
-const getStreamConfigKey = (streamId) => {
-  const lowerId = streamId?.toLowerCase() || '';
-  if (lowerId.includes('mba') || lowerId.includes('business') || lowerId.includes('management')) return 'business';
-  if (lowerId.includes('medical') || lowerId.includes('mbbs')) return 'medical';
-  if (lowerId.includes('law') || lowerId.includes('llb')) return 'law';
-  if (lowerId.includes('design')) return 'design';
-  return 'engineering';
-};
+import { getMockStreamData, STREAM_CONFIGS, getStreamConfigKey } from '../data/streams';
 
 export default function StreamDetail() {
   const toast = useToast();
@@ -153,11 +26,9 @@ export default function StreamDetail() {
   const [sortBy, setSortBy] = useState('popularity');
   const [searchQuery, setSearchQuery] = useState('');
   const [stateFilter, setStateFilter] = useState('');
-  const [courseFilter, setCourseFilter] = useState(stream.name);
   const [comparedColleges, setComparedColleges] = useState([]);
 
   // New dashboard search & filter states
-  const [activeTab, setActiveTab] = useState('courses'); // 'courses' or 'institutes'
   const [courseType, setCourseType] = useState('');
   const [areaOfStudy, setAreaOfStudy] = useState('');
   const [levelOfStudy, setLevelOfStudy] = useState('');
@@ -197,12 +68,7 @@ export default function StreamDetail() {
     setStateFilter('');
   };
 
-  const handleTriggerSearchScroll = () => {
-    const el = document.getElementById('results-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+
 
   // Sorting and Filtering logic
   const filteredColleges = useMemo(() => {
@@ -285,12 +151,15 @@ export default function StreamDetail() {
       result.sort((a, b) => parsePackage(b.placement) - parsePackage(a.placement));
     }
     return result;
-  }, [stream, sortBy, searchQuery, stateFilter, courseType, areaOfStudy, levelOfStudy, estimatedCost, studyMode]);
+  }, [stream, sortBy, searchQuery, stateFilter, courseType, areaOfStudy, levelOfStudy, estimatedCost]);
 
   useEffect(() => {
     // Reset filters on stream change
-    handleClearAllFilters();
+    const timer = setTimeout(() => {
+      handleClearAllFilters();
+    }, 0);
     window.scrollTo(0, 0);
+    return () => clearTimeout(timer);
   }, [streamId]);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, TrendingUp, Monitor, HeartPulse, Briefcase, Scale, ArrowRight, Clock, IndianRupee } from 'lucide-react';
 import { api } from '../utils/api';

@@ -1,115 +1,12 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import { Star, MapPin, BadgePercent, GraduationCap, ChevronLeft, ChevronRight, Check } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Star, MapPin, GraduationCap, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 
 // Swiper CSS imports
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-export const collegesData = [
-  {
-    id: "iitb",
-    name: "Indian Institute of Technology (IIT) Bombay",
-    logo: "IITB",
-    stream: "Engineering",
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80",
-    location: "Mumbai, Maharashtra",
-    rating: "4.9",
-    fees: "₹2.2 Lakhs / Yr",
-    nirf: "#3 Engineering",
-    package: "₹21.8 LPA Avg",
-    highestPackage: "₹1.6 Crore",
-    reviews: "1,450 Reviews"
-  },
-  {
-    id: "iima",
-    name: "Indian Institute of Management (IIM) Ahmedabad",
-    logo: "IIMA",
-    stream: "Management",
-    image: "/images/mba.png",
-    location: "Ahmedabad, Gujarat",
-    rating: "4.9",
-    fees: "₹11.5 Lakhs / Yr",
-    nirf: "#1 Management",
-    package: "₹32.5 LPA Avg",
-    highestPackage: "₹1.1 Crore",
-    reviews: "980 Reviews"
-  },
-  {
-    id: "bits",
-    name: "Birla Institute of Technology & Science (BITS)",
-    logo: "BITS",
-    stream: "Engineering",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80",
-    location: "Pilani, Rajasthan",
-    rating: "4.7",
-    fees: "₹4.5 Lakhs / Yr",
-    nirf: "#20 Engineering",
-    package: "₹19.2 LPA Avg",
-    highestPackage: "₹72.0 LPA",
-    reviews: "1,120 Reviews"
-  },
-  {
-    id: "aiims",
-    name: "All India Institute of Medical Sciences (AIIMS)",
-    logo: "AIIMS",
-    stream: "Medical",
-    image: "/images/medical.png",
-    location: "New Delhi, Delhi",
-    rating: "4.8",
-    fees: "₹1,628 / Yr",
-    nirf: "#1 Medical",
-    package: "₹18.0 LPA Avg",
-    highestPackage: "₹45.0 LPA",
-    reviews: "670 Reviews"
-  },
-  {
-    id: "cmc-vellore",
-    name: "Christian Medical College (CMC) Vellore",
-    logo: "CMC",
-    stream: "Medical",
-    image: "/images/medical_college_new.jpg",
-    location: "Vellore, Tamil Nadu",
-    rating: "4.8",
-    fees: "₹1.5 Lakhs / Yr",
-    nirf: "#3 Medical",
-    package: "₹10.5 LPA Avg",
-    highestPackage: "₹25.0 LPA",
-    reviews: "520 Reviews"
-  },
-  {
-    id: "siu",
-    name: "Symbiosis Institute of Business Management",
-    logo: "SIBM",
-    stream: "Management",
-    image: "/images/mba.png",
-    location: "Pune, Maharashtra",
-    rating: "4.5",
-    fees: "₹11.2 Lakhs / Yr",
-    nirf: "#17 Management",
-    package: "₹23.0 LPA Avg",
-    highestPackage: "₹49.0 LPA",
-    reviews: "830 Reviews"
-  },
-  {
-    id: "nlsiu",
-    name: "National Law School of India University",
-    logo: "NLSIU",
-    stream: "Law",
-    image: "/images/law.png",
-    location: "Bengaluru, Karnataka",
-    rating: "4.7",
-    fees: "₹2.8 Lakhs / Yr",
-    nirf: "#1 Law",
-    package: "₹16.0 LPA Avg",
-    highestPackage: "₹38.0 LPA",
-    reviews: "450 Reviews"
-  }
-];
 
 export default function FeaturedColleges({ onToggleCompare, comparedColleges, onViewDetails, onCounsellingClick, colleges = [], isLoading = false }) {
   return (

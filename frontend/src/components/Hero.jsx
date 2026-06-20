@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Sparkles, Star, ShieldCheck, Users, ChevronRight, Award, MessageCircle, Play, BadgeCheck, TrendingUp } from 'lucide-react';
 import educationPlatformHero from '../assets/education_platform_hero.png';

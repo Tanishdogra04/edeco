@@ -1,0 +1,70 @@
+{
+  "features": [
+    {
+      "iconName": "BrainCircuit",
+      "title": "AI College Finder",
+      "description": "Our proprietary algorithm analyzes your profile, scores, and preferences to predict admission chances with 94% accuracy.",
+      "color": "text-[#0f71cd]",
+      "bg": "bg-blue-50"
+    },
+    {
+      "iconName": "PhoneCall",
+      "title": "Expert Consultation",
+      "description": "1-on-1 sessions with admission veterans who have helped thousands of students get into top-tier institutes.",
+      "color": "text-[#0f71cd]",
+      "bg": "bg-blue-50"
+    },
+    {
+      "iconName": "Sparkles",
+      "title": "Admission Guidance",
+      "description": "End-to-end support from university shortlisting to application essays, interview prep, and final enrollment.",
+      "color": "text-[#0f71cd]",
+      "bg": "bg-blue-100"
+    }
+  ],
+  "pricing": [
+    {
+      "name": "Essential",
+      "price": "Free",
+      "description": "Perfect for initial college research",
+      "features": [
+        "Access to College Directory",
+        "Basic Compare Tool (up to 3)",
+        "Standard Exam Updates",
+        "Community Forum Access"
+      ],
+      "buttonText": "Get Started",
+      "popular": false
+    },
+    {
+      "name": "Pro Guidance",
+      "price": "₹4,999",
+      "period": "/year",
+      "description": "Comprehensive support for serious aspirants",
+      "features": [
+        "Everything in Essential",
+        "AI College Predictor Access",
+        "2 Expert Counselling Sessions",
+        "Application Review (2 Colleges)",
+        "Priority Chat Support"
+      ],
+      "buttonText": "Upgrade to Pro",
+      "popular": true
+    },
+    {
+      "name": "Elite Admission",
+      "price": "₹14,999",
+      "period": "/year",
+      "description": "End-to-end premium admission assistance",
+      "features": [
+        "Everything in Pro Guidance",
+        "Unlimited Expert Sessions",
+        "Complete Essay/SOP Drafting",
+        "Mock Interviews & Prep",
+        "Dedicated Relationship Manager"
+      ],
+      "buttonText": "Contact Sales",
+      "popular": false
+    }
+  ]
+}

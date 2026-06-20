@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, PhoneCall, ShieldCheck, HeartHandshake, Users2, Star } from 'lucide-react';
 import CounsellingModal from './CounsellingModal';

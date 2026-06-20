@@ -1,0 +1,187 @@
+{
+  "articles": [
+    {
+      "id": "jee-main-cutoff",
+      "title": "JEE Main Session 1 Cutoff Analysis & Tier-1 College Trends",
+      "subtitle": "An in-depth review of score-versus-percentile shifts this season and what it means for admissions into top NITs/IIITs.",
+      "category": "Admission News",
+      "date": "May 24, 2026",
+      "readTime": "6 Min Read",
+      "views": "12.4k Views",
+      "author": {
+        "name": "Aditya Sharma",
+        "role": "Senior Academic Analyst",
+        "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80"
+      },
+      "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1920&q=80",
+      "content": [
+        { "type": "h2", "text": "Overview of Session 1 Results", "id": "overview" },
+        { "type": "p", "text": "The Joint Entrance Examination (JEE) Main Session 1 has concluded, and the results have sparked widespread discussions among aspirants and educators alike. This year, we've witnessed an unprecedented shift in the score-versus-percentile metrics, indicating a highly competitive landscape for engineering admissions." },
+        { "type": "p", "text": "With over 1.2 million candidates appearing for the exam, the normalization process has resulted in significant variations across different shifts. Students are advised to carefully analyze their raw scores against the published answer keys before estimating their percentiles." },
+        { "type": "highlight", "title": "Important Highlights", "id": "highlights", "items": [
+          "A significant spike in the number of candidates scoring above the 99th percentile.",
+          "The cutoff for top-tier NITs and IIITs is expected to rise by 2-3 percentile points.",
+          "Core branches like Computer Science (CSE) and Artificial Intelligence remain the most sought-after."
+        ]},
+        { "type": "h2", "text": "Tier-1 College Cutoff Trends", "id": "trends" },
+        { "type": "p", "text": "Analyzing the trends from the past three years, it is evident that the demand for circuit branches has reached an all-time high. Institutions like NIT Trichy, Surathkal, and Warangal are expected to close their CSE admissions at a staggering 99.8+ percentile for the open category." },
+        { "type": "quote", "text": "Students falling slightly below their target percentile shouldn't lose hope. Strong tier-2 institutions and state-level engineering colleges offer excellent placements and robust curriculums. The focus should now shift entirely to optimizing performance in Session 2.", "author": "Dr. Arvind Kumar, Ex-Director, NTA" },
+        { "type": "h2", "text": "Action Plan for Session 2", "id": "action-plan" },
+        { "type": "p", "text": "For candidates aiming to improve their scores in the upcoming session, a strategic shift in preparation is required. Rather than learning new concepts, the emphasis must be on rigorous mock testing, time management, and minimizing negative marking." },
+        { "type": "p", "text": "Ensure that you are revising NCERT textbooks thoroughly, especially for Chemistry, as it continues to be the most scoring section based on the current paper pattern." }
+      ]
+    },
+    {
+      "id": "ugc-guidelines",
+      "title": "UGC Guidelines Issued for Foreign University Campuses in India",
+      "subtitle": "Everything you need to know about double degrees, credit transfer policy, and the top international universities establishing hubs.",
+      "category": "Policy Update",
+      "date": "May 20, 2026",
+      "readTime": "5 Min Read",
+      "views": "8.2k Views",
+      "author": {
+        "name": "Editorial Team",
+        "role": "Education Policy Desk",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+      },
+      "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80",
+      "content": [
+        { "type": "h2", "text": "The New Regulatory Framework", "id": "overview" },
+        { "type": "p", "text": "In a landmark move to internationalize higher education, the University Grants Commission (UGC) has released comprehensive guidelines allowing foreign universities to set up their campuses in India. This opens up global opportunities for Indian students without the massive financial burden of studying abroad." },
+        { "type": "highlight", "title": "What This Means for Students", "id": "highlights", "items": [
+          "Double Degrees: Pursue programs offering degrees recognized in both India and the host country.",
+          "Credit Transfers: Seamless transfer of credits between the Indian campus and the parent campus abroad.",
+          "Cost Efficiency: Experience Ivy League education at a fraction of the cost of studying internationally."
+        ]},
+        { "type": "h2", "text": "Universities in Talks", "id": "universities" },
+        { "type": "p", "text": "Several Ivy League and Russell Group universities are currently in advanced talks to establish their hubs in metropolitan cities like Mumbai, Pune, and Bangalore. The government is providing regulatory ease to ensure a smooth transition and setup phase for these global giants." },
+        { "type": "quote", "text": "This is a watershed moment for Indian higher education. By bringing global pedagogical standards to our shores, we are democratizing access to world-class education and stemming the brain drain.", "author": "Prof. M. Jagadesh Kumar, Chairman, UGC" }
+      ]
+    },
+    {
+      "id": "gen-ai-mba",
+      "title": "How Gen-AI is Reshaping MBA Curriculums: Top Skills in Demand",
+      "subtitle": "Top business institutions are integrating prompt engineering and LLM analytics into management majors. Here is our report.",
+      "category": "Career Guide",
+      "date": "May 15, 2026",
+      "readTime": "7 Min Read",
+      "views": "15.6k Views",
+      "author": {
+        "name": "Dr. R. K. Sen",
+        "role": "Tech & Strategy Expert",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+      },
+      "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80",
+      "content": [
+        { "type": "h2", "text": "The AI Revolution in Business", "id": "overview" },
+        { "type": "p", "text": "Generative AI is no longer just a buzzword; it's actively reshaping the corporate landscape, and business schools are racing to adapt. Leading IIMs and global business institutions are now incorporating AI-driven modules into their core MBA curriculums to prepare future leaders." },
+        { "type": "highlight", "title": "Emerging Management Skills", "id": "skills", "items": [
+          "Prompt Engineering: Understanding how to effectively communicate with LLMs to extract strategic insights.",
+          "AI-Driven Analytics: Moving beyond Excel models to leverage AI for predictive market trends.",
+          "AI Ethics: Managing the ethical implications and biases inherent in automated decision-making systems."
+        ]},
+        { "type": "h2", "text": "Corporate Demand", "id": "demand" },
+        { "type": "p", "text": "Recruiters from top consulting firms like McKinsey, BCG, and Bain are specifically looking for MBA graduates who can bridge the gap between business strategy and AI implementation. Traditional management frameworks are now being supplemented with algorithmic thinking." },
+        { "type": "quote", "text": "The manager of tomorrow won't be replaced by AI. They will be replaced by a manager who knows how to use AI.", "author": "Satya Nadella, CEO, Microsoft" }
+      ]
+    },
+    {
+      "id": "top-10-nits",
+      "title": "Top 10 NITs for Computer Science in 2026",
+      "subtitle": "A comprehensive ranking based on placements, infrastructure, and research opportunities.",
+      "category": "Guides",
+      "date": "May 22, 2026",
+      "readTime": "4 Min Read",
+      "views": "18.5k Views",
+      "author": {
+        "name": "Priya Sharma",
+        "role": "Tech Education Lead",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+      },
+      "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80",
+      "content": [
+        { "type": "h2", "text": "Why NITs over Tier-2 IITs?", "id": "overview" },
+        { "type": "p", "text": "When it comes to Computer Science, the top NITs (Trichy, Surathkal, Warangal) often outshine newer or lower-tier IITs in terms of median packages and alumni network. Tech giants like Google, Microsoft, and Amazon recruit heavily from these campuses." },
+        { "type": "highlight", "title": "Top 3 Performers", "id": "highlights", "items": [
+          "NIT Trichy: Consistent 100% placement for CSE with a median package of ₹27 LPA.",
+          "NIT Surathkal: Exceptional coding culture and high GSoC selections.",
+          "NIT Warangal: Rapidly growing research output in AI and ML."
+        ]},
+        { "type": "quote", "text": "An NIT Trichy CS graduate is evaluated at par with top IITians in the software industry.", "author": "HR Director, Top Tech Firm" }
+      ]
+    },
+    {
+      "id": "cuet-prep-strategy",
+      "title": "Last 30 Days CUET Preparation Strategy",
+      "subtitle": "Maximize your percentile for Delhi University admissions with this proven 30-day revision blueprint.",
+      "category": "Strategies",
+      "date": "May 18, 2026",
+      "readTime": "8 Min Read",
+      "views": "22.1k Views",
+      "author": {
+        "name": "Rahul Verma",
+        "role": "Test Prep Expert",
+        "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80"
+      },
+      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1920&q=80",
+      "content": [
+        { "type": "h2", "text": "The Final Sprint", "id": "overview" },
+        { "type": "p", "text": "With CUET just 30 days away, the focus must shift entirely from learning new concepts to rigorous revision and mock testing. The CUET exam tests speed and accuracy as much as knowledge, given the tight time constraints." },
+        { "type": "highlight", "title": "Week-by-Week Blueprint", "id": "highlights", "items": [
+          "Days 1-10: Rapid revision of NCERT domain subjects and formula memorization.",
+          "Days 11-20: Focus on the General Test (Quants & Reasoning) and English vocabulary.",
+          "Days 21-30: One full-length mock test every day, followed by detailed analysis."
+        ]},
+        { "type": "quote", "text": "Don't try to read new reference books now. NCERT is your bible for the domain subjects.", "author": "Topper, SRCC Batch 2025" }
+      ]
+    },
+    {
+      "id": "study-abroad-scholarships",
+      "title": "10 Fully Funded Scholarships for MS in USA",
+      "subtitle": "Pursue your Master's degree in the US without the financial burden. A complete guide to applying for top scholarships.",
+      "category": "Success Stories",
+      "date": "May 12, 2026",
+      "readTime": "6 Min Read",
+      "views": "30.4k Views",
+      "author": {
+        "name": "Sarah Jenkins",
+        "role": "Global Admissions Consultant",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80"
+      },
+      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=80",
+      "content": [
+        { "type": "h2", "text": "Breaking the Financial Barrier", "id": "overview" },
+        { "type": "p", "text": "Studying in the US is expensive, but full-ride scholarships and assistantships make it possible for meritorious international students. We've compiled a list of the top 10 fully-funded programs available for Indian students targeting STEM and Management degrees." },
+        { "type": "highlight", "title": "Key Requirements", "id": "highlights", "items": [
+          "A stellar GPA (usually above 8.5/10).",
+          "High GRE/GMAT and TOEFL/IELTS scores.",
+          "Strong Letters of Recommendation and a compelling Statement of Purpose."
+        ]},
+        { "type": "quote", "text": "Apply early. The biggest mistake international students make is waiting until the regular decision deadline when most funding is already exhausted.", "author": "Admissions Director, Stanford Engineering" }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "id": "top-10-nits",
+      "title": "Top 10 NITs for Computer Science in 2026",
+      "category": "Rankings",
+      "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80",
+      "date": "May 22, 2026"
+    },
+    {
+      "id": "cuet-prep-strategy",
+      "title": "Last 30 Days CUET Preparation Strategy",
+      "category": "Exam Prep",
+      "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80",
+      "date": "May 18, 2026"
+    },
+    {
+      "id": "study-abroad-scholarships",
+      "title": "10 Fully Funded Scholarships for MS in USA",
+      "category": "Study Abroad",
+      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80",
+      "date": "May 12, 2026"
+    }
+  ]
+}

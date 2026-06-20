@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -6,10 +5,10 @@ import {
   TrendingUp, Banknote,
   ShieldCheck, Trophy, Sparkles
 } from 'lucide-react';
+import { getDeterministicRank } from '../utils/helpers';
 
 export default function PremiumCollegeCard({ college, streamName = "Engineering", onCompareClick }) {
-  // Parse dummy data or fallback
-  const rank = college.rank || Math.floor(Math.random() * 50) + 1;
+  const rank = college.rank || getDeterministicRank(college.name, 50);
   const placementPercent = college.placementPercentage || "94%";
   const estYear = college.estYear || "1994";
   const logo = (college.logo && (college.logo.startsWith('http') || college.logo.startsWith('/') || college.logo.startsWith('data:')))
@@ -34,9 +33,7 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
       {/* Top Background Glow Effect on Hover */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0f71cd]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-      {/* ====================================================
-          TOP IMAGE SECTION 
-      ==================================================== */}
+      {/* Banner and Logo */}
       <div className="relative h-48 w-full overflow-hidden shrink-0">
         {/* Banner Image with hover zoom */}
         <img 
@@ -66,9 +63,7 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
         </div>
       </div>
 
-      {/* ====================================================
-          CONTENT SECTION 
-      ==================================================== */}
+      {/* College Info Body */}
       <div className="p-5 pt-8 flex-1 flex flex-col relative z-10 text-left">
         
         {/* Title & Location */}
@@ -103,9 +98,7 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
           </span>
         </div>
 
-        {/* ====================================================
-            STATS STRIP 
-        ==================================================== */}
+        {/* Stats Strip */}
         <div className="bg-slate-50 rounded-lg p-3 flex items-center justify-between border border-slate-100 mb-5">
           <div className="flex flex-col items-center flex-1 border-r border-slate-200/50 last:border-0">
             <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
@@ -127,9 +120,7 @@ export default function PremiumCollegeCard({ college, streamName = "Engineering"
           </div>
         </div>
 
-        {/* ====================================================
-            BOTTOM ACTIONS 
-        ==================================================== */}
+        {/* Footer Actions */}
         <div className="flex items-center gap-2 mt-auto pt-4 border-t border-slate-100">
           <Link 
             to={`/colleges/${college.id}`} 

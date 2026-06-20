@@ -1,0 +1,96 @@
+{
+  "menuItems": {
+    "institution": {
+      "title": "Institution",
+      "subtitle": "Discover colleges & paths",
+      "iconName": "Compass",
+      "columns": [
+        {
+          "title": "Technical & Medical",
+          "links": [
+            { "name": "Engineering Colleges", "href": "/stream/engineering", "iconName": "Laptop" },
+            { "name": "Medical Institutes", "href": "/stream/medical", "iconName": "HeartPulse" },
+            { "name": "Design & Arts Academies", "href": "/stream/design-&-arts", "iconName": "Palette" }
+          ]
+        },
+        {
+          "title": "Business & Professional",
+          "links": [
+            { "name": "Business Schools", "href": "/stream/mba-&-business", "iconName": "GraduationCap" },
+            { "name": "Law Academies", "href": "/stream/law-&-justice", "iconName": "Scale" },
+            { "name": "Commerce & Finance", "href": "/stream/commerce-&-finance", "iconName": "BarChart3" }
+          ]
+        }
+      ]
+    },
+    "courses": {
+      "title": "Courses",
+      "subtitle": "Choose your specialization",
+      "iconName": "GraduationCap",
+      "columns": [
+        {
+          "title": "Undergraduate (UG)",
+          "links": [
+            { "name": "B.Tech / B.E.", "desc": "4 Years • Technology", "href": "/course/btech" },
+            { "name": "BBA / BCA", "desc": "3 Years • Management/IT", "href": "/course/bba" },
+            { "name": "MBBS", "desc": "5.5 Years • Medical", "href": "/course/mbbs" },
+            { "name": "B.Des / B.Arch", "desc": "4-5 Years • Creative", "href": "/course/bdes" }
+          ]
+        },
+        {
+          "title": "Postgraduate (PG)",
+          "links": [
+            { "name": "MBA / PGDM", "desc": "2 Years • Business Leaders", "href": "/course/mba", "badge": "Hot" },
+            { "name": "M.Tech", "desc": "2 Years • Specialization", "href": "/course/mtech" },
+            { "name": "MCA / M.Sc", "desc": "2 Years • Advanced Tech", "href": "/course/mca" },
+            { "name": "LL.B / LL.M", "desc": "3-2 Years • Law", "href": "/course/llb" }
+          ]
+        }
+      ]
+    },
+    "exams": {
+      "title": "Exams",
+      "subtitle": "Ace your entrance tests",
+      "iconName": "BookOpenCheck",
+      "columns": [
+        {
+          "title": "Engineering & Medical",
+          "links": [
+            { "name": "JEE Main / Advanced", "desc": "Engineering Entrance", "href": "/exam/jee-main" },
+            { "name": "NEET UG", "desc": "Medical Entrance", "href": "/exam/neet" },
+            { "name": "GATE", "desc": "Postgrad Tech", "href": "/exam/gate" }
+          ]
+        },
+        {
+          "title": "Management & Others",
+          "links": [
+            { "name": "CAT / XAT / CMAT", "desc": "Management Admissions", "href": "/exam/cat", "badge": "Trending" },
+            { "name": "CUET", "desc": "Central Universities", "href": "/exam/cuet" },
+            { "name": "CLAT", "desc": "Law Admissions", "href": "/exam/clat" }
+          ]
+        }
+      ]
+    },
+    "services": {
+      "title": "Services",
+      "subtitle": "Premium guidance & tools",
+      "iconName": "Sparkles",
+      "columns": [
+        {
+          "title": "Admission Guidance",
+          "links": [
+            { "name": "Admission Guidance", "href": "/premium", "iconName": "Sparkles", "badge": "Popular" },
+            { "name": "AI College Finder", "href": "/premium#features", "iconName": "Award" }
+          ]
+        },
+        {
+          "title": "Student Tools",
+          "links": [
+            { "name": "Expert Consultation", "href": "/premium#features", "iconName": "PhoneCall" },
+            { "name": "Compare Colleges", "isAction": true, "actionType": "compare", "iconName": "GitCompare" }
+          ]
+        }
+      ]
+    }
+  }
+}
